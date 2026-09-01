@@ -1,22 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sumanth Reddy | Portfolio</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sumanth Reddy Settipalli | Computational Engineer</title>
+<meta name="description" content="MSc Computational Engineering (FAU Erlangen-Nuremberg). Scientific machine learning, FEM simulation and CAD automation. Based in Reutlingen, Germany, available immediately.">
+<style>
+:root{
+  --bg:#ffffff; --fg:#1a1d21; --muted:#5b6470; --line:#e3e6ea;
+  --accent:#1f5fa8; --chip-bg:#f2f4f7; --card:#fafbfc;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1216; --fg:#e6e9ed; --muted:#98a2b0; --line:#252b33;
+    --accent:#6fa8e8; --chip-bg:#1a1f26; --card:#141920;
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px; margin:0 auto; padding:56px 24px 72px}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline}
+h1{font-size:2rem; line-height:1.2; margin:0 0 6px; letter-spacing:-.02em}
+.role{color:var(--muted); font-size:1.05rem; margin:0 0 18px}
+.meta{color:var(--muted); font-size:.92rem; margin:0 0 4px}
+.avail{
+  display:inline-block; margin-top:14px; padding:5px 12px; border-radius:999px;
+  background:var(--chip-bg); border:1px solid var(--line);
+  font-size:.87rem; font-weight:500;
+}
+h2{
+  font-size:.78rem; text-transform:uppercase; letter-spacing:.09em;
+  color:var(--muted); font-weight:600;
+  margin:44px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--line);
+}
+.item{margin:0 0 24px}
+.item:last-child{margin-bottom:0}
+.item h3{font-size:1.02rem; margin:0 0 3px; font-weight:600}
+.when{color:var(--muted); font-size:.85rem; margin:0 0 7px}
+.item p{margin:0 0 8px}
+.stack{color:var(--muted); font-size:.85rem; margin:0}
+.chips{display:flex; flex-wrap:wrap; gap:7px; margin:0}
+.chip{
+  background:var(--chip-bg); border:1px solid var(--line);
+  border-radius:5px; padding:4px 10px; font-size:.85rem;
+}
+.skillrow{margin:0 0 12px; font-size:.95rem}
+.skillrow b{font-weight:600}
+.skillrow span{color:var(--muted)}
+.note{
+  background:var(--card); border:1px solid var(--line); border-left:3px solid var(--accent);
+  border-radius:6px; padding:14px 16px; margin:40px 0 0; font-size:.92rem; color:var(--muted);
+}
+footer{margin-top:44px; padding-top:20px; border-top:1px solid var(--line); font-size:.92rem}
+footer a{margin-right:16px; display:inline-block}
+@media (max-width:520px){ .wrap{padding:36px 18px 56px} h1{font-size:1.6rem} }
+</style>
 </head>
 <body>
-  <h1>Hi, I'm Sumanth Reddy</h1>
-  <p>Wannabe Computational Material Scientist | Machine Learning Enthusiast | Mechanical Engineer</p>
-  <h2>Featured Projects</h2>
-  <ul>
-    <li><a href="https://github.com/Sumanthreddy-DE/Feed-Forward-Neural-Network">Feed-Forward-Neural-Network</a></li>
-    <li><a href="https://github.com/Sumanthreddy-DE/Predicting-the-Bulk-Modulus-of-Inorganic-Crystals">Predicting-the-Bulk-Modulus-of-Inorganic-Crystals</a></li>
-    <li><a href="https://github.com/Sumanthreddy-DE/Simulation-of-Diffusion-using-Finite-Differences">Simulation-of-Diffusion-using-Finite-Differences</a></li>
-    <!-- Add more projects as needed -->
-  </ul>
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:Sumanthreddy.de@gmail.com">Sumanthreddy.de@gmail.com</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/sumanthreddys">sumanthreddys</a></p>
+<div class="wrap">
+
+  <h1>Sumanth Reddy Settipalli</h1>
+  <p class="role">Computational engineer working on scientific machine learning, FEM simulation and CAD automation.</p>
+  <p class="meta">Reutlingen, Germany</p>
+  <p class="meta">MSc Computational Engineering, FAU Erlangen-Nuremberg, completed August 2026</p>
+  <p><span class="avail">Available immediately for Berechnung and Scientific ML roles in the DACH region</span></p>
+
+  <h2>Selected work</h2>
+
+  <div class="item">
+    <h3><a href="https://github.com/Sumanthreddy-DE/PINN-for-composite-interface-identification">PINN for composite interface identification</a></h3>
+    <p class="when">Master thesis, submitted February 2026, defended March 2026</p>
+    <p>A physics-informed neural network that solves an inverse problem: given the effective bulk and shear moduli of a three-layer interphase in a fibre-reinforced composite, it recovers the interface parameters that reproduce them. Accuracy came from correcting mislabelled boundary cases, adaptive loss weighting and gradient clipping.</p>
+    <p class="stack">PyTorch, NumPy, SciPy</p>
+  </div>
+
+  <div class="item">
+    <h3><a href="https://github.com/Sumanthreddy-DE/simready">SimReady</a></h3>
+    <p class="when">March 2026 to present</p>
+    <p>An assistant for FEA pre-processing. It runs twelve geometry checks over a STEP file, scores whether the part is ready to mesh, and explains each finding in chat with the affected faces highlighted on the model. A graph neural network trained on generated parts predicts which CAD faces need mesh refinement, using each face neighbours as context.</p>
+    <p class="stack">PyTorch Geometric, pythonocc, LLM fine-tuning, Streamlit</p>
+  </div>
+
+  <div class="item">
+    <h3><a href="https://github.com/Sumanthreddy-DE/NX-Constraints-training">NX constraint to joint classification</a></h3>
+    <p class="when">Chair of Engineering Design (KTmfk), FAU, 2025 to 2026</p>
+    <p>A transformer model that maps Siemens NX assembly constraints to the matching NX Motion joint, framed as supervised classification. The training set was built from scratch by parsing public STEP files into constraint and joint pairs.</p>
+    <p class="stack">TensorFlow, NXOpen API, Siemens NX</p>
+  </div>
+
+  <div class="item">
+    <h3><a href="https://github.com/Sumanthreddy-DE/Peak-Power-Minimization">Peak power minimization under harmonic loads</a></h3>
+    <p class="when">September 2024</p>
+    <p>A Python reimplementation of a published semidefinite programming method for truss topology optimization, solved with MOSEK. The work included diagnosing why the reference implementation behaved differently from its paper.</p>
+    <p class="stack">Python, FEM, PICOS, MOSEK</p>
+  </div>
+
+  <h2>Experience</h2>
+
+  <div class="item">
+    <h3>Research assistant and tutor, FAU Erlangen-Nuremberg</h3>
+    <p class="when">November 2023 to August 2026, across four chairs</p>
+    <p>Engineering Design: a tool converting Siemens NX assemblies into simulation-ready XML for MATLAB Simscape, plus the constraint classification model above. Technical Dynamics: tutoring MATLAB exercises in numerical statics and dynamics, including truss FE analysis and transient crane vibration. Manufacturing Technology: FEM simulation of shear clinching in multi-layer aluminium and steel sheet in Simufact Forming. Continuum Mechanics (BRAINIACS): nonlinear viscoelastic FE simulations in deal.II fitted to measured hydrogel relaxation against brain tissue behaviour.</p>
+  </div>
+
+  <div class="item">
+    <h3>Automation engineer, Tata Consultancy Services</h3>
+    <p class="when">August 2020 to September 2022, India</p>
+    <p>ServiceNow rollout for an international client across eight countries, including data migration from Jira over REST APIs, user acceptance testing and go-live. Built client-requested features in JavaScript on both server logic and the user interface.</p>
+  </div>
+
+  <h2>Skills</h2>
+  <p class="skillrow"><b>Programming</b> <span>Python, C++ (deal.II), MATLAB, Fortran, Git</span></p>
+  <p class="skillrow"><b>Machine learning</b> <span>PyTorch, PyTorch Geometric, TensorFlow, Transformers, scikit-learn, pandas, NumPy, SciPy</span></p>
+  <p class="skillrow"><b>ML methods</b> <span>Physics-informed neural networks, graph neural networks, LLM fine-tuning, named entity recognition, inverse parameter identification</span></p>
+  <p class="skillrow"><b>Simulation and FEM</b> <span>Continuum mechanics, topology optimization, multibody simulation, Simufact Forming, MATLAB Simscape and Simulink, ParaView</span></p>
+  <p class="skillrow"><b>CAD and automation</b> <span>Siemens NX, NXOpen API, PTC Creo, STEP and pythonocc</span></p>
+
+  <h2>Education</h2>
+  <div class="item">
+    <h3>MSc Computational Engineering</h3>
+    <p class="when">FAU Erlangen-Nuremberg, October 2022 to August 2026</p>
+  </div>
+  <div class="item">
+    <h3>BEng Mechanical Engineering</h3>
+    <p class="when">Amrita Vishwa Vidyapeetham, India, 2016 to 2020</p>
+  </div>
+
+  <h2>Languages</h2>
+  <p class="chips">
+    <span class="chip">German B2</span>
+    <span class="chip">English C1</span>
+    <span class="chip">Hindi fluent</span>
+    <span class="chip">Telugu native</span>
+  </p>
+
+  <div class="note">
+    This page is a plain summary. A fuller version is planned, where you can ask questions about my work and get answers grounded in these projects. Until then the links above go straight to the code.
+  </div>
+
+  <footer>
+    <a href="https://github.com/Sumanthreddy-DE">GitHub</a>
+    <a href="https://www.linkedin.com/in/sumanthreddys">LinkedIn</a>
+    <a href="mailto:sumanthreddy.settipalli@gmail.com">sumanthreddy.settipalli@gmail.com</a>
+  </footer>
+
+</div>
 </body>
 </html>
