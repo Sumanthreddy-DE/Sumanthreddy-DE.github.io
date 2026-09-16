@@ -1,0 +1,15 @@
+# This repo is PUBLIC and cannot be made private: a GitHub Pages user site must
+# be named <username>.github.io, and those are public by definition. So the rule
+# here is stricter than in a normal project repo — working material stays local.
+#
+# The design spec and the idea capture both name private repos and local paths,
+# including where personal data is kept. None of that is dangerous on its own,
+# but together it maps where private data lives — published under a real name on
+# the page recruiters read. Once pushed it stays in the history.
+#
+# Working material — commit when there is a site to explain, not before.
+# Archive/ is ignored whole, not just Archive/brainstorming/: its README indexes
+# what it holds, so committing the index while ignoring the contents would
+# publish a description of the private material plus dead links to it.
+docs/exec-plans/
+Archive/
