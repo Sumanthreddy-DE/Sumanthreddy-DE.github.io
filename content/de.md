@@ -78,15 +78,15 @@ Das Ergebnis: Weniger Routinearbeit, weniger vergessene Geometriefehler, schnell
 
 Am Lehrstuhl werden Mehrkörper-Simulationen für elektrische Ski-Rollen gebaut. Die Geometrie kommt aus Siemens NX, die Bewegung wird in MATLAB Simscape gerechnet. Der Übergang war früher Handarbeit: Ingenieure haben Gelenke, Verbindungen und Bauteile von Hand übertragen. Das war langsam und fehleranfällig.
 
-Ich habe eine Pipeline gebaut, die das automatisch macht. Sie liest Geometrie und Verbindungen direkt aus der NX-Baugruppe aus und baut daraus ein lauffähiges Simscape-Modell. Das Herzstück ist eine Übersetzung: Jede CAD-Verbindung bekommt das passende Gelenk in Simscape.
+Ich habe eine Pipeline gebaut, die das automatisch macht. Sie liest Geometrie und Verbindungen direkt aus der NX-Baugruppe aus und erzeugt daraus simulationsfertiges XML für Simscape. Das Herzstück ist eine Übersetzung: Jede CAD-Verbindung bekommt das passende Gelenk.
 
-Für diese Übersetzung habe ich zusätzlich ein Transformer-Modell trainiert. Es ordnet eine Verbindung aus NX automatisch dem richtigen Gelenk zu. Die Trainingsdaten habe ich selbst erzeugt: Ich habe öffentliche STEP-Dateien ausgewertet und daraus Paare aus Verbindung und Gelenk aufgebaut.
+Für diese Übersetzung habe ich zusätzlich ein Transformer-Modell trainiert. Es ordnet eine Verbindung aus NX automatisch dem passenden Gelenk in PTC Creo zu. Die Trainingsdaten habe ich selbst erzeugt: Ich habe öffentliche STEP-Dateien ausgewertet und daraus 1.000 Paare aus Verbindung und Gelenk aufgebaut. Das Modell habe ich dann geprüft, indem ich die Vorhersagen mit echten Modellen in PTC Creo verglichen habe.
 
-Am Ende prüft die Pipeline das Ergebnis: Stimmen die Positionen in NX und in Simscape überein? Wenn nicht, gibt es eine Warnung.
+Am Ende kontrolliert die Pipeline das Ergebnis: Stimmen die Positionen in NX und in Simscape überein? Wenn nicht, gibt es eine Warnung.
 
 Das Ergebnis: Aus Stunden Handarbeit werden Minuten. Und die Ergebnisse sind geprüft, nicht nur schnell.
 
-**Technik:** TensorFlow, NXOpen API, Siemens NX, MATLAB Simscape
+**Technik:** TensorFlow, NXOpen API, Siemens NX, PTC Creo, MATLAB Simscape
 
 **Link:** Code für das ML-Modell auf GitHub
 
