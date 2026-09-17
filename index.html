@@ -6,25 +6,35 @@
 <title>Sumanth Reddy Settipalli | Ingenieur für Simulation und Machine Learning</title>
 <meta name="description" content="Ich mache Simulationen schneller und günstiger — mit Machine Learning. Master Computational Engineering, FAU Erlangen-Nürnberg. Reutlingen, Deutschland.">
 <style>
-/* Swiss Modernism 2.0: structured grid, confident typography, technical precision */
+/* Direction 1: Editorial serif-led, light-first, industrial accent */
+/* Libre Bodoni for serif headings, Public Sans for body */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Public+Sans:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --slate-950: #0F172A;
-  --slate-900: #1E293B;
-  --slate-800: #334155;
-  --slate-700: #475569;
-  --slate-300: #CBD5E1;
-  --slate-200: #E2E8F0;
-  --slate-100: #F1F5F9;
-  --slate-50: #F8FAFC;
-  --cyan-400: #22D3EE;
-  --orange-500: #F97316;
-  --bg: var(--slate-950);
-  --fg: var(--slate-50);
-  --muted: var(--slate-300);
-  --line: var(--slate-800);
-  --card-bg: var(--slate-900);
-  --accent-cool: var(--cyan-400);
-  --accent-warm: var(--orange-500);
+  --paper: #F5F2EB;
+  --ink: #1A1815;
+  --ink-muted: #5C544A;
+  --rule: #2B2823;
+  --rule-soft: #C8C0B0;
+  --accent: #B8473A;
+  --accent-soft: #D9856F;
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --muted: var(--ink-muted);
+  --line: var(--rule-soft);
+  --rule-strong: var(--rule);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14110E;
+    --ink: #EDE6D6;
+    --ink-muted: #8A8270;
+    --rule: #EDE6D6;
+    --rule-soft: #3A352C;
+    --accent: #E08572;
+    --accent-soft: #B8473A;
+  }
 }
 
 * {
@@ -36,209 +46,245 @@
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
-  max-width: 1120px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 80px 32px;
+  padding: 96px 32px 80px;
 }
 
-/* Hero section */
+/* Editorial pull-quote rule */
+.pull-quote {
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 24px 0;
+  margin: 32px 0;
+}
+
+/* Hero */
 .hero {
-  margin-bottom: 120px;
-  max-width: 840px;
+  margin-bottom: 96px;
+  padding-bottom: 48px;
+  border-bottom: 2px solid var(--rule-strong);
 }
 
-.hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: 12px;
-}
-
-.hero .role {
-  font-size: 1.25rem;
-  color: var(--muted);
-  font-weight: 500;
-  margin-bottom: 32px;
-}
-
-.hero .positioning {
-  font-size: 1.5rem;
+.hero-eyebrow {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.75rem;
   font-weight: 600;
-  line-height: 1.3;
-  color: var(--accent-cool);
-  margin-bottom: 32px;
-  letter-spacing: -0.02em;
-}
-
-.hero-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 24px;
 }
 
-.hero-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.hero h1 {
+  font-family: 'Libre Bodoni', Georgia, 'Times New Roman', serif;
+  font-size: 3.75rem;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.hero .role {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-bottom: 32px;
+  letter-spacing: 0.01em;
+}
+
+.hero .positioning {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.35;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 40px;
+  padding-left: 20px;
+  border-left: 3px solid var(--accent);
+}
+
+.hero-meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.hero-meta span {
+  display: inline-block;
+  margin-right: 6px;
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .availability {
   display: inline-block;
-  background: var(--card-bg);
-  border: 1px solid var(--accent-warm);
-  border-radius: 6px;
-  padding: 12px 20px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--accent-warm);
+  margin-top: 28px;
+  padding: 10px 18px;
+  border: 1px solid var(--rule-strong);
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  background: transparent;
 }
 
-/* Section headers */
+/* Section headers - magazine-style */
 .section-title {
-  font-size: 0.875rem;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  margin-bottom: 48px;
+  letter-spacing: 0.22em;
+  color: var(--rule-strong);
+  margin-bottom: 56px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--rule-strong);
 }
 
-/* Case studies - editorial cards */
+/* Case studies - editorial chapters */
 .case-studies {
-  margin-bottom: 120px;
+  margin-bottom: 96px;
 }
 
 .case-study {
-  background: var(--card-bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 48px;
-  margin-bottom: 48px;
+  margin-bottom: 88px;
+  padding-bottom: 0;
 }
 
 .case-study:last-child {
   margin-bottom: 0;
 }
 
-.case-study-header {
-  margin-bottom: 24px;
+.case-study-number {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+  margin-bottom: 12px;
 }
 
 .case-study-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
 }
 
 .case-study-context {
-  font-size: 0.9rem;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.85rem;
   color: var(--muted);
   font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
 }
 
 .case-study-body {
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: var(--slate-200);
+  font-family: 'Public Sans', sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--fg);
   margin-bottom: 32px;
 }
 
 .case-study-body p {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .case-study-body p:last-child {
   margin-bottom: 0;
 }
 
+.case-study-body strong {
+  font-weight: 600;
+}
+
 .case-study-footer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   flex-wrap: wrap;
   gap: 16px;
-  padding-top: 24px;
+  padding-top: 20px;
   border-top: 1px solid var(--line);
 }
 
 .tech-stack {
-  font-size: 0.9rem;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.8rem;
   color: var(--muted);
   font-weight: 500;
+  letter-spacing: 0.03em;
 }
 
 .github-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--accent-cool);
+  font-family: 'Public Sans', sans-serif;
+  color: var(--fg);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: color 0.2s;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
 }
 
 .github-link:hover {
-  color: var(--slate-50);
-}
-
-.github-link::after {
-  content: '→';
-  font-size: 1.2rem;
+  opacity: 0.6;
 }
 
 /* Supporting projects */
 .supporting-projects {
-  margin-bottom: 120px;
+  margin-bottom: 96px;
 }
 
 .supporting-projects ul {
   list-style: none;
-  display: grid;
-  gap: 16px;
 }
 
 .supporting-projects li {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--slate-200);
-  padding-left: 24px;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--fg);
+  margin-bottom: 16px;
+  padding-left: 28px;
   position: relative;
 }
 
 .supporting-projects li::before {
-  content: '·';
+  content: '—';
   position: absolute;
-  left: 8px;
-  color: var(--accent-cool);
-  font-weight: 700;
-  font-size: 1.5rem;
+  left: 0;
+  color: var(--accent);
+  font-weight: 400;
 }
 
 .supporting-projects strong {
   font-weight: 600;
-  color: var(--slate-50);
 }
 
-/* Experience section */
+/* Experience */
 .experience {
-  margin-bottom: 120px;
+  margin-bottom: 96px;
 }
 
 .experience-item {
@@ -250,26 +296,30 @@ body {
 }
 
 .experience-title {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.2;
   margin-bottom: 8px;
 }
 
 .experience-meta {
-  font-size: 0.9rem;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.85rem;
   color: var(--muted);
   margin-bottom: 16px;
+  letter-spacing: 0.02em;
 }
 
 .experience-body {
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: var(--slate-200);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--fg);
 }
 
 .experience-body ul {
   list-style: none;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .experience-body li {
@@ -279,35 +329,45 @@ body {
 }
 
 .experience-body li::before {
-  content: '—';
+  content: '·';
   position: absolute;
-  left: 0;
-  color: var(--accent-cool);
+  left: 4px;
+  color: var(--accent);
+  font-weight: 700;
 }
 
-/* Skills grid */
+.experience-body strong {
+  font-weight: 600;
+}
+
+/* Skills */
 .skills {
-  margin-bottom: 120px;
+  margin-bottom: 96px;
 }
 
 .skills-grid {
   display: grid;
-  gap: 24px;
+  gap: 20px;
 }
 
 .skill-row {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 180px 1fr;
   gap: 24px;
   align-items: baseline;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
 }
 
 .skill-label {
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
 }
 
 .skill-items {
+  font-family: 'Public Sans', sans-serif;
   font-size: 0.95rem;
   color: var(--muted);
   line-height: 1.6;
@@ -315,11 +375,11 @@ body {
 
 /* Education */
 .education {
-  margin-bottom: 120px;
+  margin-bottom: 96px;
 }
 
 .education-item {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .education-item:last-child {
@@ -327,19 +387,21 @@ body {
 }
 
 .education-degree {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 4px;
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 6px;
 }
 
 .education-meta {
+  font-family: 'Public Sans', sans-serif;
   font-size: 0.9rem;
   color: var(--muted);
 }
 
 /* Languages */
 .languages {
-  margin-bottom: 120px;
+  margin-bottom: 96px;
 }
 
 .languages-list {
@@ -349,60 +411,73 @@ body {
 }
 
 .language-chip {
-  background: var(--card-bg);
+  font-family: 'Public Sans', sans-serif;
   border: 1px solid var(--line);
-  border-radius: 6px;
   padding: 8px 16px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
+  color: var(--fg);
 }
 
 /* Footer */
 footer {
-  padding-top: 48px;
-  border-top: 1px solid var(--line);
+  padding-top: 56px;
+  border-top: 2px solid var(--rule-strong);
 }
 
 .contact {
-  margin-bottom: 48px;
+  margin-bottom: 56px;
 }
 
 .contact-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 28px;
 }
 
 .contact-link {
-  color: var(--accent-cool);
+  font-family: 'Public Sans', sans-serif;
+  color: var(--fg);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
 }
 
 .contact-link:hover {
-  color: var(--slate-50);
+  opacity: 0.6;
 }
 
 .impressum {
-  font-size: 0.85rem;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.8rem;
   color: var(--muted);
   line-height: 1.5;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.impressum strong {
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: 0.02em;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .container {
-    padding: 48px 24px;
+    padding: 64px 24px 56px;
   }
 
   .hero {
-    margin-bottom: 80px;
+    margin-bottom: 72px;
+    padding-bottom: 32px;
   }
 
   .hero h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .hero .positioning {
@@ -410,26 +485,20 @@ footer {
   }
 
   .case-study {
-    padding: 32px 24px;
-    margin-bottom: 32px;
+    margin-bottom: 64px;
   }
 
   .case-study-title {
-    font-size: 1.4rem;
+    font-size: 1.75rem;
   }
 
   .case-study-body {
     font-size: 1rem;
   }
 
-  .case-study-footer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .skill-row {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 6px;
   }
 
   .case-studies,
@@ -438,7 +507,7 @@ footer {
   .skills,
   .education,
   .languages {
-    margin-bottom: 80px;
+    margin-bottom: 72px;
   }
 }
 </style>
@@ -448,14 +517,13 @@ footer {
 
   <!-- Hero -->
   <header class="hero">
+    <div class="hero-eyebrow">Computational Engineering · Simulation · Machine Learning</div>
     <h1>Sumanth Reddy Settipalli</h1>
     <div class="role">Ingenieur für Simulation und Machine Learning</div>
     <div class="positioning">Ich mache Simulationen schneller und günstiger — mit Machine Learning.</div>
-    <div class="hero-meta">
-      <div class="hero-meta-item">📍 Reutlingen, Deutschland</div>
-      <div class="hero-meta-item">🎓 Master Computational Engineering, FAU Erlangen-Nürnberg (abgeschlossen August 2026)</div>
-    </div>
-    <div class="availability">Ab sofort verfügbar — für Stellen in Berechnung, Simulation und angewandtem ML in der DACH-Region</div>
+    <div class="hero-meta"><span>Standort</span>Reutlingen, Deutschland</div>
+    <div class="hero-meta"><span>Abschluss</span>Master Computational Engineering, FAU Erlangen-Nürnberg (abgeschlossen August 2026)</div>
+    <div class="availability">Ab sofort verfügbar — Berechnung, Simulation und angewandtes ML in der DACH-Region</div>
   </header>
 
   <!-- Case Studies -->
@@ -463,54 +531,51 @@ footer {
     <h2 class="section-title">Fallstudien</h2>
 
     <article class="case-study">
-      <div class="case-study-header">
-        <h3 class="case-study-title">Werkstoffkennwerte aus Messdaten zurückrechnen</h3>
-        <div class="case-study-context">Leichtbau, Faserverbund-Werkstoffe, industrielle Materialprüfung</div>
-      </div>
+      <div class="case-study-number">I.</div>
+      <h3 class="case-study-title">Werkstoffkennwerte aus Messdaten zurückrechnen</h3>
+      <div class="case-study-context">Leichtbau · Faserverbund-Werkstoffe · industrielle Materialprüfung</div>
       <div class="case-study-body">
         <p>Faserverbund-Werkstoffe stecken in vielen Bauteilen — von der Luftfahrt bis zum Maschinenbau. Das Problem: Die Kennwerte an den Grenzschichten zwischen Faser und Kunststoff kann man fast nicht direkt messen. Heute heißt das oft: teure Versuche im Labor, oder man schätzt die Werte einfach.</p>
         <p>Ich habe ein Verfahren gebaut, das diese Werte automatisch zurückrechnet. Man gibt die gemessenen Kennwerte des fertigen Bauteils ein. Das Verfahren findet dann die Grenzschicht-Werte, die dazu passen. Fachleute nennen das ein inverses Problem. Gelernt hat das ein neuronales Netz, das die Physik des Werkstoffs mit einrechnet.</p>
         <p>Damit die Ergebnisse stimmen, habe ich drei Dinge verbessert: falsch markierte Trainingsdaten korrigiert, die Gewichtung der Fehler automatisch angepasst und zu große Sprünge beim Lernen abgefangen. Danach war die Genauigkeit gut genug für die Praxis.</p>
-        <p>Das Ergebnis: Weniger Laborversuche, schnellere Materialentwicklung, geringere Kosten.</p>
+        <p>Das Ergebnis: weniger Laborversuche, schnellere Materialentwicklung, geringere Kosten.</p>
       </div>
       <div class="case-study-footer">
-        <div class="tech-stack">PyTorch, NumPy, SciPy</div>
-        <a href="https://github.com/Sumanthreddy-DE/PINN-for-composite-interface-identification" class="github-link">Code und Dokumentation auf GitHub</a>
+        <div class="tech-stack">PyTorch · NumPy · SciPy</div>
+        <a href="https://github.com/Sumanthreddy-DE/PINN-for-composite-interface-identification" class="github-link">Code und Dokumentation</a>
       </div>
     </article>
 
     <article class="case-study">
-      <div class="case-study-header">
-        <h3 class="case-study-title">SimReady — schneller von der CAD-Datei zum fertigen Netz</h3>
-        <div class="case-study-context">Eigenes Projekt, läuft seit März 2026, öffentlich auf GitHub</div>
-      </div>
+      <div class="case-study-number">II.</div>
+      <h3 class="case-study-title">SimReady — schneller von der CAD-Datei zum fertigen Netz</h3>
+      <div class="case-study-context">Eigenes Projekt · seit März 2026 · öffentlich auf GitHub</div>
       <div class="case-study-body">
         <p>Bevor eine Simulation loslaufen kann, muss das Bauteil vorbereitet werden. Man prüft die Geometrie, räumt das Modell auf und entscheidet, wo das Netz fein sein muss. Das kostet erfahrene Ingenieure oft Stunden pro Bauteil.</p>
         <p>SimReady macht diese Vorbereitung schneller. Das Werkzeug lädt eine STEP-Datei und prüft die Geometrie automatisch — zwölf Checks, zum Beispiel auf scharfe Kanten, winzige Flächen oder Lücken. Danach gibt es eine klare Antwort: Ist das Teil bereit für das Netz, ja oder nein? Jeder Befund wird im Chat erklärt, und die betroffenen Flächen leuchten direkt im 3D-Modell auf.</p>
         <p>Der zweite Teil ist Machine Learning. Ein Graph-Netzwerk sagt voraus, welche Flächen ein feineres Netz brauchen. Es schaut sich dabei jede Fläche zusammen mit ihren Nachbarn an — so wie ein erfahrener Ingenieur das Bauteil als Ganzes betrachtet. Trainiert habe ich es mit selbst erzeugten Bauteilen.</p>
-        <p>Das Ergebnis: Weniger Routinearbeit, weniger vergessene Geometriefehler, schneller zur Simulation.</p>
+        <p>Das Ergebnis: weniger Routinearbeit, weniger vergessene Geometriefehler, schneller zur Simulation.</p>
       </div>
       <div class="case-study-footer">
-        <div class="tech-stack">PyTorch Geometric, pythonocc, LLM-Fine-Tuning, Streamlit</div>
+        <div class="tech-stack">PyTorch Geometric · pythonocc · LLM-Fine-Tuning · Streamlit</div>
         <a href="https://github.com/Sumanthreddy-DE/simready" class="github-link">Code auf GitHub</a>
       </div>
     </article>
 
     <article class="case-study">
-      <div class="case-study-header">
-        <h3 class="case-study-title">Automatische Pipeline: Siemens NX → MATLAB Simscape</h3>
-        <div class="case-study-context">Lehrstuhl für Konstruktionstechnik (KTmfk), FAU Erlangen-Nürnberg, 2025 bis 2026</div>
-      </div>
+      <div class="case-study-number">III.</div>
+      <h3 class="case-study-title">Automatische Pipeline: Siemens NX → MATLAB Simscape</h3>
+      <div class="case-study-context">Lehrstuhl für Konstruktionstechnik (KTmfk) · FAU Erlangen-Nürnberg · 2025–2026</div>
       <div class="case-study-body">
         <p>Am Lehrstuhl werden Mehrkörper-Simulationen für elektrische Ski-Rollen gebaut. Die Geometrie kommt aus Siemens NX, die Bewegung wird in MATLAB Simscape gerechnet. Der Übergang war früher Handarbeit: Ingenieure haben Gelenke, Verbindungen und Bauteile von Hand übertragen. Das war langsam und fehleranfällig.</p>
         <p>Ich habe eine Pipeline gebaut, die das automatisch macht. Sie liest Geometrie und Verbindungen direkt aus der NX-Baugruppe aus und erzeugt daraus simulationsfertiges XML für Simscape. Das Herzstück ist eine Übersetzung: Jede CAD-Verbindung bekommt das passende Gelenk.</p>
         <p>Für diese Übersetzung habe ich zusätzlich ein Transformer-Modell trainiert. Es ordnet eine Verbindung aus NX automatisch dem passenden Gelenk in PTC Creo zu. Die Trainingsdaten habe ich selbst erzeugt: Ich habe öffentliche STEP-Dateien ausgewertet und daraus 1.000 Paare aus Verbindung und Gelenk aufgebaut. Das Modell habe ich dann geprüft, indem ich die Vorhersagen mit echten Modellen in PTC Creo verglichen habe.</p>
         <p>Am Ende kontrolliert die Pipeline das Ergebnis: Stimmen die Positionen in NX und in Simscape überein? Wenn nicht, gibt es eine Warnung.</p>
-        <p>Das Ergebnis: Aus Stunden Handarbeit werden Minuten. Und die Ergebnisse sind geprüft, nicht nur schnell.</p>
+        <p>Das Ergebnis: aus Stunden Handarbeit werden Minuten. Und die Ergebnisse sind geprüft, nicht nur schnell.</p>
       </div>
       <div class="case-study-footer">
-        <div class="tech-stack">TensorFlow, NXOpen API, Siemens NX, PTC Creo, MATLAB Simscape</div>
-        <a href="https://github.com/Sumanthreddy-DE/NX-Constraint-to-Creo-Joint-Classification" class="github-link">Code für das ML-Modell auf GitHub</a>
+        <div class="tech-stack">TensorFlow · NXOpen API · Siemens NX · PTC Creo · MATLAB Simscape</div>
+        <a href="https://github.com/Sumanthreddy-DE/NX-Constraint-to-Creo-Joint-Classification" class="github-link">Code für das ML-Modell</a>
       </div>
     </article>
   </section>
@@ -519,8 +584,8 @@ footer {
   <section class="supporting-projects">
     <h2 class="section-title">Weitere Arbeiten</h2>
     <ul>
-      <li><strong>Vorhersage von Werkstoffkennwerten:</strong> Ein ML-Modell, das den Kompressionsmodul (Bulk-Modul) von Werkstoffen aus ihrem Aufbau vorhersagt.</li>
-      <li><strong>Spitzenlasten senken bei schwingenden Bauteilen:</strong> Eine Optimierungsmethode aus einer Veröffentlichung in Python nachgebaut und geprüft — inklusive der Frage, warum der Original-Code anders reagiert als im Paper beschrieben.</li>
+      <li><strong>Vorhersage von Werkstoffkennwerten.</strong> Ein ML-Modell, das den Kompressionsmodul (Bulk-Modul) von Werkstoffen aus ihrem Aufbau vorhersagt.</li>
+      <li><strong>Spitzenlasten senken bei schwingenden Bauteilen.</strong> Eine Optimierungsmethode aus einer Veröffentlichung in Python nachgebaut und geprüft — inklusive der Frage, warum der Original-Code anders reagiert als im Paper beschrieben.</li>
     </ul>
   </section>
 
@@ -530,10 +595,10 @@ footer {
     
     <div class="experience-item">
       <h3 class="experience-title">Wissenschaftlicher Mitarbeiter und Tutor, FAU Erlangen-Nürnberg</h3>
-      <div class="experience-meta">November 2023 bis August 2026, vier Lehrstühle</div>
+      <div class="experience-meta">November 2023 bis August 2026 · vier Lehrstühle</div>
       <div class="experience-body">
         <ul>
-          <li><strong>Konstruktionstechnik:</strong> die NX→Simscape-Pipeline und das ML-Modell aus Fallstudie 3.</li>
+          <li><strong>Konstruktionstechnik:</strong> die NX→Simscape-Pipeline und das ML-Modell aus Fallstudie III.</li>
           <li><strong>Technische Dynamik:</strong> Tutor für MATLAB-Übungen — Statik und Dynamik, Fachwerke, schwingende Kräne.</li>
           <li><strong>Fertigungstechnologie:</strong> FEM-Simulation von Scherclinch-Verbindungen in Aluminium und Stahl (Simufact Forming).</li>
           <li><strong>Kontinuumsmechanik (BRAINIACS):</strong> nichtlineare FEM-Simulationen in deal.II (C++), angepasst an Messdaten von Hydrogelen — als Modell für Hirngewebe.</li>
@@ -543,7 +608,7 @@ footer {
 
     <div class="experience-item">
       <h3 class="experience-title">Automatisierungsingenieur, Tata Consultancy Services</h3>
-      <div class="experience-meta">August 2020 bis September 2022, Indien</div>
+      <div class="experience-meta">August 2020 bis September 2022 · Indien</div>
       <div class="experience-body">
         Einführung von ServiceNow für einen internationalen Kunden in acht Ländern. Daten aus Jira über Schnittstellen übertragen, Tests mit Anwendern, Go-Live. Eigene Funktionen in JavaScript gebaut — im Server und in der Oberfläche.
       </div>
@@ -612,8 +677,7 @@ footer {
       </div>
     </div>
     <div class="impressum">
-      <strong>Impressum</strong><br>
-      Angaben gemäß § 5 DDG: Sumanth Reddy Settipalli, Reutlingen. Kontakt: sumanthreddy.settipalli@gmail.com
+      <strong>Impressum</strong> · Angaben gemäß § 5 DDG: Sumanth Reddy Settipalli, Reutlingen. Kontakt: sumanthreddy.settipalli@gmail.com
     </div>
   </footer>
 
