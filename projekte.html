@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sumanth Reddy Settipalli — Ingenieur für Simulation und Machine Learning</title>
-<meta name="description" content="Ich mache Simulationen schneller und günstiger — mit Machine Learning. Inverse Parameteridentifikation mit PINN, FEA-Vorverarbeitung mit Graph Neural Networks, CAD-zu-Simulation-Automatisierung. Reutlingen, Deutschland.">
+<title>Alle Projekte — Sumanth Reddy Settipalli</title>
+<meta name="description" content="Alle Projekte: Simulation und Machine Learning, Hackathons, Werkzeuge und Automatisierung. PINN, SimReady, NX-zu-Simscape, Topologieoptimierung und mehr.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-<meta property="og:type" content="profile">
+<meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
-<meta property="og:url" content="https://sumanthreddy-de.github.io/">
-<meta property="og:title" content="Sumanth Reddy Settipalli — Ingenieur für Simulation und Machine Learning">
-<meta property="og:description" content="Ich mache Simulationen schneller und günstiger — mit Machine Learning.">
+<meta property="og:url" content="https://sumanthreddy-de.github.io/projekte.html">
+<meta property="og:title" content="Alle Projekte — Sumanth Reddy Settipalli">
+<meta property="og:description" content="Simulation und Machine Learning zuerst, Werkzeuge danach.">
 <meta property="og:image" content="https://sumanthreddy-de.github.io/assets/portrait.svg">
 <meta name="twitter:card" content="summary">
 
@@ -534,69 +534,47 @@ footer {
 
 <nav class="topbar" aria-label="Hauptnavigation">
   <span class="mark">Sumanth Reddy Settipalli</span>
-  <a class="lnk" href="projekte.html">Alle Projekte</a>
-  <a class="lnk" href="#ueber-mich">Über mich</a>
-  <a class="lnk" href="#kontakt">Kontakt</a>
+  <a class="lnk" href="index.html">Startseite</a>
+  <a class="lnk" href="index.html#ueber-mich">Über mich</a>
+  <a class="lnk" href="index.html#kontakt">Kontakt</a>
   <a class="lnk" href="profil.html">Lebenslauf</a>
 </nav>
 
 <header class="hero">
   <div class="hero-inner">
-    <img class="portrait" src="assets/portrait.svg" alt="Porträt von Sumanth Reddy Settipalli" width="180" height="180">
+    <div class="rail">
+      <dl>
+        <dt>Stand</dt><dd>September 2026</dd>
+        <dt>Code</dt><dd><a class="lnk" href="https://github.com/Sumanthreddy-DE">github.com/Sumanthreddy-DE</a></dd>
+      </dl>
+    </div>
     <div>
-      <h1>Sumanth Reddy Settipalli</h1>
-      <div class="role">Ingenieur für Simulation und Machine Learning</div>
-      <p class="claim">Ich mache Simulationen schneller und günstiger — mit Machine Learning.</p>
-      <div class="hero-facts">
-        Reutlingen, Deutschland · Master Computational Engineering,
-        FAU Erlangen-Nürnberg (08/2026)
-      </div>
-      <ul class="jump">
-        <li><a href="#pinn">
-          <span class="what">Inverse Parameteridentifikation mit PINN</span>
-          <span class="metric">Fehler unter 5 %</span>
-        </a></li>
-        <li><a href="#simready">
-          <span class="what">SimReady — STEP-Datei auf Vernetzbarkeit prüfen</span>
-          <span class="metric">GNN auf 1.100 Bauteilen</span>
-        </a></li>
-        <li><a href="#nx">
-          <span class="what">NX → Simscape automatisiert</span>
-          <span class="metric">Stunden zu Minuten</span>
-        </a></li>
-      </ul>
+      <h1>Alle Projekte</h1>
+      <p class="claim">Simulation zuerst, Werkzeuge danach.</p>
+      <p class="hero-facts">Die drei ausführlichen Fallstudien stehen auf der <a class="lnk" href="index.html#projekte">Startseite</a>. Hier steht alles — auch die kleineren Arbeiten und die Software, die neben der Simulation entstanden ist.</p>
     </div>
   </div>
 </header>
 
-<!-- ============================ PROJEKTE ============================ -->
-<section id="projekte">
+<!-- ============================ SIMULATION UND ML ============================ -->
+<section id="simulation-ml">
   <div class="row">
     <div class="rail"></div>
-    <h2 class="section-head">Projekte</h2>
+    <h2 class="section-head">Simulation und Machine Learning</h2>
   </div>
 
-  <article class="entry" id="pinn">
+  <article class="entry">
     <div class="row">
       <div class="rail">
         <dl>
           <dt>Kontext</dt><dd>Masterarbeit, FAU Erlangen-Nürnberg</dd>
           <dt>Zeitraum</dt><dd>10/2025 – 02/2026</dd>
-          <dt>Feld</dt><dd>Faserverstärkte Verbundwerkstoffe</dd>
         </dl>
       </div>
       <div>
         <h3>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen</h3>
-
-        <p>Die Parameter der Interphase zwischen Faser und Matrix entscheiden über das Bauteilverhalten, lassen sich messtechnisch aber kaum direkt erfassen. Ich habe ein physikinformiertes neuronales Netz entwickelt, das sie aus den effektiven Kompressions- und Schubmoduli zurückrechnet — die Mikromechanik der Homogenisierung steckt dabei in der Verlustfunktion selbst.</p>
-
+        <p>Ein physikinformiertes neuronales Netz bestimmt die Parameter der Interphase zwischen Faser und Matrix aus den effektiven Kompressions- und Schubmoduli. Die Mikromechanik der Homogenisierung steckt in der Verlustfunktion.</p>
         <p class="metric-line">Vorhersagefehler unter 5 %</p>
-
-        <figure>
-          <img src="assets/pinn-interface.svg" class="plate" alt="Schema der dreischichtigen Interphase zwischen Faser und Matrix" width="900" height="560" loading="lazy">
-          <figcaption>Vorhergesagte gegen referenzierte Grenzflächenparameter.</figcaption>
-        </figure>
-
         <div class="entry-foot">
           <div class="stack">PyTorch · NumPy · SciPy</div>
           <div class="entry-links">
@@ -609,27 +587,18 @@ footer {
     </div>
   </article>
 
-  <article class="entry" id="simready">
+  <article class="entry">
     <div class="row">
       <div class="rail">
         <dl>
-          <dt>Kontext</dt><dd>Eigenes Projekt, öffentlich auf GitHub</dd>
+          <dt>Kontext</dt><dd>Eigenes Projekt, öffentlich</dd>
           <dt>Zeitraum</dt><dd>seit 03/2026</dd>
-          <dt>Feld</dt><dd>FEA-Vorverarbeitung</dd>
         </dl>
       </div>
       <div>
         <h3>SimReady — von der STEP-Datei zum vernetzungsfähigen Bauteil</h3>
-
-        <p>Ein Bauteil für die FE-Rechnung vorzubereiten kostet erfahrene Berechnungsingenieure Stunden, und was dabei übersehen wird, fällt erst im Solver auf. SimReady prüft eine STEP-Datei in zwölf Geometrieprüfungen, begründet jeden Befund farbig am 3D-Modell und sagt über ein Graph Neural Network voraus, welche Flächen eine Netzverfeinerung brauchen.</p>
-
+        <p>Zwölf Geometrieprüfungen auf einer STEP-Datei, jeder Befund farbig am 3D-Modell begründet. Ein Graph Neural Network sagt voraus, welche Flächen eine Netzverfeinerung brauchen.</p>
         <p class="metric-line">Graph Neural Network, trainiert auf 1.100 Bauteilen</p>
-
-        <figure>
-          <img src="assets/simready-ui.svg" class="plate" alt="SimReady-Oberfläche mit farbig markierten Befundflächen am 3D-Modell" width="900" height="560" loading="lazy">
-          <figcaption>Zwölf Geometrieprüfungen, jeder Befund am Modell markiert und im Chat begründet.</figcaption>
-        </figure>
-
         <div class="entry-foot">
           <div class="stack">PyTorch Geometric · pythonocc · LLM-Fine-Tuning · Streamlit</div>
           <div class="entry-links">
@@ -641,27 +610,18 @@ footer {
     </div>
   </article>
 
-  <article class="entry" id="nx">
+  <article class="entry">
     <div class="row">
       <div class="rail">
         <dl>
-          <dt>Kontext</dt><dd>Lehrstuhl für Konstruktionstechnik (KTmfk), FAU Erlangen-Nürnberg</dd>
+          <dt>Kontext</dt><dd>Lehrstuhl für Konstruktionstechnik (KTmfk), FAU</dd>
           <dt>Zeitraum</dt><dd>04/2025 – 02/2026</dd>
-          <dt>Feld</dt><dd>CAD-Automatisierung, Mehrkörpersimulation</dd>
         </dl>
       </div>
       <div>
         <h3>Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell</h3>
-
-        <p>Der Weg von der NX-Baugruppe ins Simscape-Modell war Handarbeit: Bauteile, Zwangsbedingungen und Gelenke wurden manuell übertragen. Meine Pipeline liest die Baugruppe über die NXOpen API aus, ordnet jede Zwangsbedingung über ein Transformer-Modell dem passenden Gelenk in PTC Creo zu und prüft am Ende die Gelenkpositionen gegen das Original.</p>
-
+        <p>Die Pipeline liest Geometrie und Zwangsbedingungen über die NXOpen API aus, ordnet jede Zwangsbedingung über ein Transformer-Modell dem passenden Gelenk in PTC Creo zu und prüft am Ende die Gelenkpositionen gegen das Original.</p>
         <p class="metric-line">Aus Stunden manueller Übertragung werden Minuten</p>
-
-        <figure>
-          <img src="assets/nx-simscape.svg" class="plate" alt="NX-Baugruppe neben dem erzeugten Simscape-Blockdiagramm" width="900" height="560" loading="lazy">
-          <figcaption>Baugruppe und erzeugtes Simscape-Modell — die Pipeline vergleicht beide Gelenkpositionen automatisch.</figcaption>
-        </figure>
-
         <div class="entry-foot">
           <div class="stack">TensorFlow · NXOpen API · Siemens NX · PTC Creo · MATLAB Simscape</div>
           <div class="entry-links">
@@ -675,7 +635,26 @@ footer {
 
   <div class="row">
     <div class="rail"></div>
-    <p><a class="lnk" href="projekte.html">Alle Projekte ansehen — auch die kleineren Arbeiten und die Werkzeuge</a></p>
+    <div>
+      <h3 class="group-head">Kleinere Arbeiten</h3>
+      <ul class="minor">
+        <li>
+          <b>Kompressionsmodul anorganischer Kristalle vorhersagen</b>
+          <p>Regressionsmodelle auf Matminer/Magpie-Deskriptoren, mit Merkmalsauswahl und Modellvergleich.</p>
+          <a class="lnk" href="https://github.com/Sumanthreddy-DE/Predicting-the-Bulk-Modulus-of-Inorganic-Crystals">Code</a>
+        </li>
+        <li>
+          <b>Spitzenleistungsminimierung unter harmonischen Lasten</b>
+          <p>Publizierte SDP-Methode zur Topologieoptimierung von Fachwerken in Python nachgebaut (MOSEK, PICOS), einschließlich der Diagnose, warum die Referenzimplementierung abweicht.</p>
+          <a class="lnk" href="https://github.com/Sumanthreddy-DE/Peak-Power-Minimization">Code</a>
+        </li>
+        <li>
+          <b>Named Entity Recognition auf technischen Texten</b>
+          <p>Erkennung von Fachbegriffen in synthetischen technischen Beschreibungen, Hiwi am KTmfk.</p>
+          <a class="lnk" href="https://github.com/Sumanthreddy-DE/Named-Entity-Recognition">Code</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -685,148 +664,46 @@ footer {
     <div class="rail"></div>
     <div>
       <h2 class="section-head">Hackathons</h2>
-      <p class="section-note">Zwei Wochenenden, zwei fremde Datensätze, zwei lauffähige Ergebnisse.</p>
-    </div>
-  </div>
-
-  <article class="entry">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Veranstaltung</dt><dd>DEHN Servus AI Summer Hackathon 2025, Challenge 2</dd>
-          <dt>Rolle</dt><dd>Team</dd>
-        </dl>
-      </div>
-      <div>
-        <h3>Prozesse automatisch auf Baukasten-Elemente abbilden</h3>
-
-        <p>Fertigungsprozesse sollen automatisch den passenden Elementen des Firmen-Baukastens zugeordnet werden — Roboter, Greifer, Zuführtechnik, gepflegt in einer über Jahre gewachsenen Lösungsbibliothek in Excel. Ich habe die Zuordnung über semantische Ähnlichkeit statt über Stichwortsuche gelöst: Sentence-Transformer-Embeddings mit adaptiver Ähnlichkeitsschwelle, die alle plausiblen Treffer liefert statt einer festen Top-k-Auswahl.</p>
-
-        <figure>
-          <img src="assets/mindmap.png" class="plate" alt="Schematische Darstellung der Aufgabe: vom Problem über die Lösungsbibliothek zu Modulen und Baukastenklassen" width="931" height="507" loading="lazy">
-          <figcaption>Die Aufgabenstellung des Hackathons: vom Problem einer Kollegin über die Lösungsklassen der Bibliothek zu den Modulen und Baukastenklassen. Schaubild: DEHN.</figcaption>
-        </figure>
-
-        <div class="entry-foot">
-          <div class="stack">Python · Sentence-Transformers · scikit-learn · pandas</div>
-          <div class="entry-links">
-            <a class="lnk" href="https://github.com/Sumanthreddy-DE/Production-Engineering-Data-Automation">Code</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="entry">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Veranstaltung</dt><dd>Smart City Hackathon (Infosys)</dd>
-          <dt>Zeitraum</dt><dd>06/2025</dd>
-          <dt>Rolle</dt><dd>Team</dd>
-        </dl>
-      </div>
-      <div>
-        <h3>DigiDorf — Behördengänge in der eigenen Sprache</h3>
-
-        <p>Wer neu in Deutschland ist, scheitert selten an der Sache, sondern am Verfahren und an der Sprache. DigiDorf führt Schritt für Schritt durch die Verwaltungsleistungen einer Stadt — mit Unterlagen, Bearbeitungsdauer, Gebühren und dem offiziellen Formular. Ein Chatbot beantwortet Rückfragen, die Oberfläche lässt sich umschalten. Das Problem kenne ich aus eigener Erfahrung.</p>
-
-        <figure class="inset">
-          <img src="assets/digidorf.png" alt="DÜSSELBOT, das Maskottchen der DigiDorf-Anwendung" width="800" height="800" loading="lazy">
-          <figcaption>DÜSSELBOT, das Maskottchen der Anwendung. Es beantwortet Rückfragen zu den Verwaltungsleistungen.</figcaption>
-        </figure>
-
-        <div class="entry-foot">
-          <div class="stack">React · TypeScript · Vite · Flask</div>
-          <div class="entry-links">
-            <a class="lnk" href="https://github.com/shriya1808/dorf-navigator-guide">Code (Team)</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
-</section>
-
-<!-- ============================ ENGAGEMENT ============================ -->
-<section id="engagement">
-  <div class="row">
-    <div class="rail"></div>
-    <h2 class="section-head">Engagement</h2>
-  </div>
-
-  <article class="entry">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Organisation</dt><dd>TEA, FAU Erlangen-Nürnberg</dd>
-          <dt>Zeitraum</dt><dd>seit 09/2024</dd>
-          <dt>Team</dt><dd>Kernteam aus sechs Personen</dd>
-        </dl>
-      </div>
-      <div>
-        <h3>Mitgründer der Studierendeninitiative TEA</h3>
-        <p>Ich habe TEA im September 2024 mitgegründet — eine Studierendeninitiative, die internationale Studierende beim Studienstart in Erlangen begleitet: Ankunft, Behördengänge, die ersten Wochen. Getragen von einem Kernteam aus sechs Personen, läuft bis heute.</p>
-
-        <figure class="inset">
-          <img src="assets/tea-team.png" alt="Plakat der TEA-Veranstaltung zu Ganesh Chaturthi" width="175" height="247" loading="lazy">
-          <figcaption>Eine der Veranstaltungen, die TEA organisiert — Ganesh Chaturthi, gemeinsam mit FAU und Stuve.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </article>
-
-  <article class="entry">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Wettbewerb</dt><dd>Go-Kart Design Competition</dd>
-          <dt>Zeitraum</dt><dd>2019</dd>
-          <dt>Rolle</dt><dd>Leitung Designteam</dd>
-        </dl>
-      </div>
-      <div>
-        <h3>Rahmenstruktur und Lenkgeometrie eines Go-Karts</h3>
-        <p>Ich habe das Designteam geleitet. Wir haben die Rahmenstruktur des Karts in AutoCAD konstruiert und die Lenkgeometrie nach dem Ackermann-Prinzip ausgelegt.</p>
-
-        <p class="metric-line">Platz 11 von über 250 teilnehmenden Teams</p>
-
-        <figure class="inset">
-          <img src="assets/gokart.jpg" alt="Das Kart des Teams mit der Startnummer 85 in der Box" width="314" height="318" loading="lazy">
-          <figcaption>Das Kart in der Box, Startnummer 85.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </article>
-</section>
-
-<!-- ============================ ÜBER MICH ============================ -->
-<section id="ueber-mich">
-  <div class="row">
-    <div class="rail"></div>
-    <div class="about">
-      <h2 class="section-head">Über mich</h2>
-
-      <p>Ich komme aus dem Maschinenbau. Mein Bachelor in Indien war klassische Konstruktion und Fertigung — Zeichnungen, Bauteile, Prüfstände. Im Master Computational Engineering an der FAU habe ich gelernt, dieselben Fragen numerisch zu stellen: nicht „hält das", sondern „was sagt das Modell, und wie weit traue ich ihm".</p>
-
-      <p>Zum Machine Learning bin ich nicht aus Begeisterung für Machine Learning gekommen, sondern aus Ungeduld. In der Simulation ist zu vieles Routine, das trotzdem jemand mit Erfahrung von Hand macht: Geometrie aufräumen, Gelenke übertragen, entscheiden, wo das Netz feiner werden muss. Genau diese Stellen lassen sich lernen — und genau dort arbeite ich am liebsten.</p>
-
-      <p>Seit 2022 lebe ich in Deutschland, inzwischen in Reutlingen. Deutsch habe ich neben dem Studium gelernt und arbeite weiter daran. Was ich baue, baue ich meistens, weil mich etwas im Alltag gestört hat — deshalb stehen unter „Weitere Arbeiten" auch ein paar Werkzeuge, die mit Simulation nichts zu tun haben.</p>
+      <ul class="minor">
+        <li>
+          <b>Prozesse automatisch auf Baukasten-Elemente abbilden</b>
+          <p>DEHN Servus AI Summer Hackathon 2025, Challenge 2. Zuordnung von Fertigungsprozessen auf Baukasten-Elemente über Sentence-Transformer-Embeddings mit adaptiver Ähnlichkeitsschwelle.</p>
+          <a class="lnk" href="https://github.com/Sumanthreddy-DE/Production-Engineering-Data-Automation">Code</a>
+        </li>
+        <li>
+          <b>DigiDorf — Behördengänge in der eigenen Sprache</b>
+          <p>Smart City Hackathon (Infosys), 06/2025. Führt Schritt für Schritt durch Verwaltungsleistungen, mit Unterlagen, Bearbeitungsdauer und Gebühren. Chatbot für Rückfragen, umschaltbare Sprache.</p>
+          <a class="lnk" href="https://github.com/shriya1808/dorf-navigator-guide">Code (Team)</a>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ============================ KONTAKT ============================ -->
-<section id="kontakt">
+<!-- ============================ WERKZEUGE ============================ -->
+<section id="werkzeuge">
   <div class="row">
     <div class="rail"></div>
-    <div class="cta">
-      <h2>Sie suchen jemanden für Berechnung, Simulation und angewandtes ML?</h2>
-      <p>Ich suche eine Festanstellung im Raum Stuttgart und Reutlingen — Berechnung, Simulation, CAE-Automatisierung oder angewandtes Machine Learning in der Fertigung. Ab sofort verfügbar. Schreiben Sie mir gern auf Deutsch oder Englisch.</p>
-      <div class="foot-links">
-        <a class="lnk" href="mailto:sumanthreddy.settipalli@gmail.com">E-Mail schreiben</a>
-        <a class="lnk" href="https://github.com/Sumanthreddy-DE">GitHub</a>
-        <a class="lnk" href="https://www.linkedin.com/in/sumanthreddys">LinkedIn</a>
-      </div>
+    <div>
+      <h2 class="section-head">Werkzeuge und Automatisierung</h2>
+      <p class="group-note">Software, die ich neben der Simulation gebaut habe — meist, um ein eigenes Problem loszuwerden.</p>
+      <ul class="minor">
+        <li>
+          <b>Tägliche Stellenbenachrichtigung für SmartRecruiters</b>
+          <p>Eine Mail pro Tag mit den Stellen, die seit gestern neu sind. Python, GitHub-Actions-Cron, kein Server, kein API-Schlüssel. Lief fünf Monate täglich.</p>
+          <a class="lnk" href="https://github.com/Sumanthreddy-DE/smartrecruiters-job-alerts">Code</a>
+        </li>
+        <li>
+          <b>Tagesübersicht für Terminbuchungen</b>
+          <p>Playwright-Scraper ohne Oberfläche, Versand über Gmail SMTP, geplant über GitHub Actions, mit pytest und CI.</p>
+          <a class="lnk" href="https://github.com/Sumanthreddy-DE/anny-booking-bot">Code</a>
+        </li>
+        <li>
+          <b>Wöchentliche Zusammenfassung von Newslettern</b>
+          <p>Fasst abonnierte Newsletter zu einer Wochenübersicht zusammen.</p>
+          <span class="no-link">Repository nicht öffentlich</span>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -834,10 +711,18 @@ footer {
 <footer>
   <div class="row">
     <div class="rail"></div>
-    <p class="fineprint">
-      Sumanth Reddy Settipalli · Reutlingen, Deutschland ·
-      <a href="impressum.html">Impressum</a>
-    </p>
+    <div>
+      <div class="foot-links">
+        <a class="lnk" href="index.html">Startseite</a>
+        <a class="lnk" href="mailto:sumanthreddy.settipalli@gmail.com">E-Mail schreiben</a>
+        <a class="lnk" href="https://github.com/Sumanthreddy-DE">GitHub</a>
+        <a class="lnk" href="https://www.linkedin.com/in/sumanthreddys">LinkedIn</a>
+      </div>
+      <p class="fineprint">
+        Sumanth Reddy Settipalli · Reutlingen, Deutschland ·
+        <a href="impressum.html">Impressum</a>
+      </p>
+    </div>
   </div>
 </footer>
 

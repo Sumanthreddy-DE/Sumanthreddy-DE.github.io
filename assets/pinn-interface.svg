@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" role="img" aria-label="Platzhalter: Interphasen-Schema / Fehlerdiagramm">
+  <rect width="900" height="560" fill="#E8E2D6"/>
+  <rect x="8" y="8" width="884" height="544" fill="none" stroke="#C0B7A4" stroke-width="2" stroke-dasharray="10 8"/>
+  <g fill="#8C8371" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">
+    <text x="450" y="250" font-size="19" letter-spacing="2">PLATZHALTER</text>
+    <text x="450" y="291" font-size="21">Interphasen-Schema / Fehlerdiagramm</text>
+    <text x="450" y="341" font-size="16" fill="#A79D89">900 × 560</text>
+  </g>
+</svg>

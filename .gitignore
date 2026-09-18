@@ -13,3 +13,6 @@
 # publish a description of the private material plus dead links to it.
 docs/exec-plans/
 Archive/
+
+# Impeccable design-hook config: a local tooling decision, not site content.
+.impeccable/

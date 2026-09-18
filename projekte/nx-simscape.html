@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell — Sumanth Reddy Settipalli</title>
+<meta name="description" content="Eine Pipeline überführt Siemens-NX-Baugruppen automatisch in simulationsfähiges XML für MATLAB Simscape, inklusive Gelenkzuordnung per Transformer-Modell.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://sumanthreddy-de.github.io/projekte/nx-simscape.html">
+<meta property="og:title" content="Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell">
+<meta property="og:description" content="Eine Pipeline überführt Siemens-NX-Baugruppen automatisch in simulationsfähiges XML für MATLAB Simscape, inklusive Gelenkzuordnung per Transformer-Modell.">
+<meta property="og:image" content="https://sumanthreddy-de.github.io/assets/nx-simscape.svg">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------------------------------------------------------------
+   Editorial grid: fixed meta rail + text column.
+   Figures break out of the text column into the right margin.
+   Homepage carries short entries only; long prose lives on the
+   per-project detail pages (not built yet).
+   --------------------------------------------------------------- */
+
+:root {
+  --paper: #F5F2EB;
+  --ink: #1A1815;
+  --ink-muted: #5C544A;
+  --rule-soft: #C8C0B0;
+  --rule-strong: #2B2823;
+  --accent: #B8473A;
+  --figure-bg: #E8E2D6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14110E;
+    --ink: #EDE6D6;
+    --ink-muted: #948B78;
+    --rule-soft: #3A352C;
+    --rule-strong: #C9C1AE;
+    --accent: #E08572;
+    --figure-bg: #1F1B16;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 40px 96px;
+}
+
+/* --- the grid ------------------------------------------------- */
+
+.row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 660px);
+  gap: 48px;
+}
+
+.rail {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  padding-top: 6px;
+}
+
+.rail dt {
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rule-strong);
+  margin-bottom: 3px;
+}
+
+.rail dd { margin-bottom: 16px; }
+.rail dd:last-child { margin-bottom: 0; }
+
+/* --- top bar -------------------------------------------------- */
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 24px;
+  padding: 28px 0 0;
+}
+
+.topbar .mark {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-style: italic;
+  font-size: 1.0625rem;
+  margin-right: auto;
+}
+
+/* --- links ---------------------------------------------------- */
+
+.lnk {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+  transition: color .15s, border-color .15s;
+}
+
+.lnk:hover, .lnk:focus-visible { color: var(--accent); }
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* --- hero ----------------------------------------------------- */
+
+.hero {
+  padding: 72px 0 56px;
+  border-bottom: 2px solid var(--rule-strong);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 660px);
+  gap: 48px;
+  align-items: start;
+}
+
+.portrait {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.hero h1 {
+  font-family: 'Libre Bodoni', Georgia, 'Times New Roman', serif;
+  font-size: 2.75rem;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin-bottom: 14px;
+}
+
+.hero .role {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  margin-bottom: 26px;
+}
+
+.hero .claim {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.35;
+  color: var(--accent);
+  margin-bottom: 32px;
+  max-width: 34ch;
+}
+
+.hero-facts {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  margin-bottom: 32px;
+}
+
+/* evidence list — the three projects, above the fold */
+.jump {
+  list-style: none;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.jump li { border-bottom: 1px solid var(--rule-soft); }
+
+.jump a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: baseline;
+  padding: 13px 0;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color .15s;
+}
+
+.jump a:hover, .jump a:focus-visible { color: var(--accent); }
+
+.jump .what { font-weight: 600; font-size: 0.9375rem; }
+
+.jump .metric {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* --- sections ------------------------------------------------- */
+
+section { padding-top: 88px; }
+
+.section-head {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--rule-strong);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: 44px;
+}
+
+.section-note {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: var(--ink-muted);
+  margin: -24px 0 44px;
+}
+
+/* --- entries -------------------------------------------------- */
+
+.entry { margin-bottom: 72px; }
+.entry:last-child { margin-bottom: 0; }
+
+.entry h3 {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+
+.entry p { margin-bottom: 16px; }
+.entry p:last-child { margin-bottom: 0; }
+
+.metric-line {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding: 2px 0 2px 16px;
+  margin: 20px 0 24px;
+}
+
+/* figure breaks out of the text column to the right */
+figure {
+  margin: 24px 0;
+  width: calc(100% + 120px);
+  max-width: calc(100vw - 80px);
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--figure-bg);
+}
+
+/* Plots and UI screenshots carry their own light background. Matting them on a
+   white plate makes that read as deliberate instead of a hole punched in the
+   page — which is exactly how an unmatted white PNG looks in dark mode.
+   Photographs do NOT get this: they bleed to the figure edge. */
+figure img.plate {
+  background: #FFFFFF;
+  padding: 14px;
+  border: 1px solid var(--rule-soft);
+}
+
+/* An image too small for the breakout slot is shown at its natural size rather
+   than upscaled into blur. Left-aligned in the text column, it reads as a
+   deliberate inset instead of a broken full-width figure. */
+figure.inset {
+  width: auto;
+  max-width: 100%;
+}
+
+figure.inset img {
+  width: auto;
+  max-width: 100%;
+}
+
+figure.inset figcaption { max-width: 420px; }
+
+figcaption {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 8px;
+  max-width: 660px;
+}
+
+.entry-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 24px;
+}
+
+.stack {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
+.entry-links { display: flex; flex-wrap: wrap; gap: 20px; }
+
+/* --- compact lists -------------------------------------------- */
+
+.group-head {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+
+.group-note {
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+}
+
+.minor { list-style: none; margin-bottom: 48px; }
+.minor:last-child { margin-bottom: 0; }
+
+.minor li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.minor li:first-child { border-top: 1px solid var(--rule-soft); }
+
+.minor b { font-weight: 600; display: block; margin-bottom: 3px; }
+
+.minor p { font-size: 0.9375rem; color: var(--ink-muted); margin-bottom: 8px; }
+
+.no-link {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+/* --- about ---------------------------------------------------- */
+
+.about p {
+  margin-bottom: 18px;
+  max-width: 62ch;
+}
+
+.about p:last-child { margin-bottom: 0; }
+
+/* --- contact call to action ----------------------------------- */
+
+.cta h2 {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 1.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  max-width: 24ch;
+}
+
+.cta p {
+  margin-bottom: 28px;
+  max-width: 56ch;
+}
+
+/* --- profile -------------------------------------------------- */
+
+.job { margin-bottom: 36px; }
+.job:last-child { margin-bottom: 0; }
+
+.job h4 {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 1.1875rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.job .when {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  margin-bottom: 14px;
+}
+
+.job ul { list-style: none; }
+
+.job li {
+  padding-left: 18px;
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 0.9375rem;
+}
+
+.job li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.job li b { font-weight: 600; }
+
+.pairs { width: 100%; border-collapse: collapse; }
+
+.pairs th {
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  font-size: 0.875rem;
+  width: 190px;
+  padding: 12px 20px 12px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.pairs td {
+  vertical-align: top;
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.sub-head {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-muted);
+  margin: 40px 0 18px;
+}
+
+.sub-head:first-child { margin-top: 0; }
+
+/* --- footer --------------------------------------------------- */
+
+footer {
+  margin-top: 88px;
+  padding-top: 40px;
+  border-top: 2px solid var(--rule-strong);
+}
+
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.fineprint {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
+.fineprint a { color: var(--ink-muted); }
+
+/* --- responsive ----------------------------------------------- */
+
+@media (max-width: 900px) {
+  .page { padding: 0 28px 72px; }
+  .row, .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .rail { padding-top: 0; }
+  .rail dl { display: flex; flex-wrap: wrap; gap: 6px 28px; }
+  .rail dd { margin-bottom: 0; }
+  figure { width: 100%; max-width: 100%; }
+  .portrait { width: 140px; height: 140px; }
+  .hero { padding: 48px 0 40px; }
+  .hero h1 { font-size: 2.125rem; }
+  .hero .claim { font-size: 1.1875rem; }
+  section { padding-top: 64px; }
+  .entry h3 { font-size: 1.5rem; }
+  .cta h2 { font-size: 1.625rem; }
+  .pairs th, .pairs td { display: block; width: auto; border: 0; padding: 0; }
+  .pairs th { padding-top: 14px; }
+  .pairs td { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); }
+  .jump a { grid-template-columns: 1fr; gap: 2px; }
+}
+
+@media print {
+  /* Reset the palette for paper. Without this, printing from dark mode
+     carries the dark-mode tokens onto a white sheet — muted text lands at
+     3.4:1 and the accent at 2.7:1. */
+  :root {
+    --paper: #FFFFFF;
+    --ink: #000000;
+    --ink-muted: #3A3A3A;
+    --rule-soft: #B0B0B0;
+    --rule-strong: #000000;
+    --accent: #000000;
+    --figure-bg: #FFFFFF;
+  }
+  .jump, figure, .topbar { display: none; }
+  body { font-size: 11pt; color: #000; background: #fff; }
+  .row, .hero-inner { grid-template-columns: 150px 1fr; }
+  a { color: #000; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<nav class="topbar" aria-label="Hauptnavigation">
+  <span class="mark">Sumanth Reddy Settipalli</span>
+  <a class="lnk" href="../index.html">Startseite</a>
+  <a class="lnk" href="../projekte.html">Alle Projekte</a>
+  <a class="lnk" href="../index.html#kontakt">Kontakt</a>
+  <a class="lnk" href="../profil.html">Lebenslauf</a>
+</nav>
+
+<article>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="rail">
+        <dl>
+          <dt>Kontext</dt><dd>Lehrstuhl für Konstruktionstechnik (KTmfk), FAU Erlangen-Nürnberg</dd>
+          <dt>Zeitraum</dt><dd>04/2025 – 02/2026</dd>
+          <dt>Feld</dt><dd>CAD-Automatisierung, Mehrkörpersimulation</dd>
+          <dt>Technologien</dt><dd>TensorFlow, NXOpen API, Siemens NX, PTC Creo, MATLAB Simscape</dd>
+        </dl>
+      </div>
+      <div>
+        <h1>Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell</h1>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="row">
+      <div class="rail"></div>
+      <div class="about">
+        <p>Am Lehrstuhl entstehen Mehrkörpersimulationen von Baugruppen. Die Geometrie kommt aus Siemens NX, gerechnet wird in MATLAB Simscape. Der Übergang zwischen beiden war Handarbeit: Bauteile, Zwangsbedingungen und Gelenke wurden manuell übertragen — langsam und fehleranfällig.</p>
+
+        <figure>
+          <img src="../assets/nx-simscape.svg" class="plate" alt="Baugruppe und erzeugtes Simscape-Modell." width="900" height="560" loading="lazy">
+          <figcaption>Baugruppe und erzeugtes Simscape-Modell.</figcaption>
+        </figure>
+
+        <h2 class="sub-head">Die Pipeline</h2>
+
+        <p>Sie liest Geometrie und Zwangsbedingungen über die NXOpen API direkt aus der Baugruppe aus und erzeugt daraus simulationsfähiges XML für Simscape. Der Kern ist die Zuordnung: Jede NX-Zwangsbedingung braucht das passende Gelenk.</p>
+
+        <h2 class="sub-head">Zuordnung als Klassifikationsproblem</h2>
+
+        <p>Diese Zuordnung übernimmt ein Transformer-Modell, formuliert als überwachte Klassifikation auf das passende Gelenk in PTC Creo. Den Trainingsdatensatz habe ich selbst aufgebaut — öffentliche STEP-Dateien geparst und daraus 1.000 Paare aus Zwangsbedingung und Gelenk extrahiert. Validiert wurde gegen reale Modelle in PTC Creo.</p>
+
+        <figure>
+          <img src="../assets/nx-mapping.svg" class="plate" alt="Zwangsbedingung aus NX und zugeordnetes Gelenk." width="900" height="560" loading="lazy">
+          <figcaption>Zwangsbedingung aus NX und zugeordnetes Gelenk.</figcaption>
+        </figure>
+
+        <h2 class="sub-head">Die Pipeline prüft sich selbst</h2>
+
+        <p>Zum Schluss vergleicht sie die Gelenkpositionen in NX und in Simscape. Weicht etwas ab, gibt es eine Warnung statt eines stillen Fehlers. Das ist der Teil, der den Unterschied macht: ein automatisch erzeugtes Modell, dem niemand traut, spart keine Zeit.</p>
+
+        <p class="metric-line">Aus Stunden manueller Übertragung werden Minuten</p>
+
+        <div class="entry-foot">
+          <div class="stack">TensorFlow, NXOpen API, Siemens NX, PTC Creo, MATLAB Simscape</div>
+          <div class="entry-links">
+            <a class="lnk" href="https://github.com/Sumanthreddy-DE/NX-Constraint-to-Creo-Joint-Classification">Code für das Klassifikationsmodell</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+<footer>
+  <div class="row">
+    <div class="rail"></div>
+    <div>
+      <div class="foot-links">
+        <a class="lnk" href="../projekte.html">Alle Projekte</a>
+        <a class="lnk" href="../index.html">Startseite</a>
+        <a class="lnk" href="mailto:sumanthreddy.settipalli@gmail.com">E-Mail schreiben</a>
+      </div>
+      <p class="fineprint">
+        Sumanth Reddy Settipalli · Reutlingen, Deutschland ·
+        <a href="../impressum.html">Impressum</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

@@ -24,7 +24,22 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
-_(none yet)_
+- **ktmfk-application-unknown** — the old copy claimed the NX→Simscape work was for
+  "elektrische Ski-Rollen". That term is not German, and the application appears in
+  **no source**: not the CV, not any repo. Treated as invented by the previous copy
+  pass and **removed** 2026-09-17; the text is now generic ("Baugruppen"). Reopen with
+  the real application — a concrete one would strengthen the strongest case study.
+- **cv-bullet-nx-motion** — `Myself/CV/DE/content/lebenslauf.json` KTMFK bullet says
+  joints "in NX Motion"; correct target is **PTC Creo** (confirmed 2026-09-17). User
+  fixes the CV himself; the site is already right.
+- **profil-keywords-lost** - removing the Profil block from the homepage also removed
+  the Kenntnisse table and language levels, the scannable keyword list a recruiter or
+  ATS looks for. Now only in the CV PDF, one click away. Decide: leave it, or build
+  profil.html. Task 4 of the active plan.
+- **weekly-digest-private** - listed under Weitere Arbeiten with no link because the
+  repo is private. Make it public or drop the entry.
+- **images-placeholder** — 8 image slots defined in `content/de.md` Anhang. All
+  placeholders until real files land.
 
 ---
 
