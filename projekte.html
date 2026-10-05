@@ -22,30 +22,29 @@
 <style>
 /* ---------------------------------------------------------------
    Editorial grid: fixed meta rail + text column.
-   Figures break out of the text column into the right margin.
-   Homepage carries short entries only; long prose lives on the
-   per-project detail pages (not built yet).
+   Everything that is not on the homepage lives here.
+   Palette: Tinte & Zederngrün. No italic display text.
    --------------------------------------------------------------- */
 
 :root {
-  --paper: #F5F2EB;
-  --ink: #1A1815;
-  --ink-muted: #5C544A;
-  --rule-soft: #C8C0B0;
-  --rule-strong: #2B2823;
-  --accent: #B8473A;
-  --figure-bg: #E8E2D6;
+  --paper: #F3F4F1;
+  --ink: #171A17;
+  --ink-muted: #555B54;
+  --rule-soft: #C8CCC4;
+  --rule-strong: #23261F;
+  --accent: #2F5D46;
+  --figure-bg: #E6E9E2;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #14110E;
-    --ink: #EDE6D6;
-    --ink-muted: #948B78;
-    --rule-soft: #3A352C;
-    --rule-strong: #C9C1AE;
-    --accent: #E08572;
-    --figure-bg: #1F1B16;
+    --paper: #141613;
+    --ink: #DFE2DC;
+    --ink-muted: #8E938A;
+    --rule-soft: #2C2F29;
+    --rule-strong: #C4C8BF;
+    --accent: #8FB8A3;
+    --figure-bg: #1A1C18;
   }
 }
 
@@ -68,8 +67,6 @@ body {
   margin: 0 auto;
   padding: 0 40px 96px;
 }
-
-/* --- the grid ------------------------------------------------- */
 
 .row {
   display: grid;
@@ -108,10 +105,15 @@ body {
 
 .topbar .mark {
   font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
   font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
   margin-right: auto;
+  border-bottom: none;
 }
+
+.topbar .mark:hover { color: var(--accent); }
 
 /* --- links ---------------------------------------------------- */
 
@@ -146,14 +148,6 @@ a:focus-visible {
   align-items: start;
 }
 
-.portrait {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(1) contrast(1.05);
-}
-
 .hero h1 {
   font-family: 'Libre Bodoni', Georgia, 'Times New Roman', serif;
   font-size: 2.75rem;
@@ -163,57 +157,18 @@ a:focus-visible {
   margin-bottom: 14px;
 }
 
-.hero .role {
-  font-size: 1rem;
-  color: var(--ink-muted);
-  margin-bottom: 26px;
-}
-
 .hero .claim {
   font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
   font-size: 1.375rem;
   line-height: 1.35;
   color: var(--accent);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   max-width: 34ch;
 }
 
 .hero-facts {
   font-size: 0.875rem;
   color: var(--ink-muted);
-  margin-bottom: 32px;
-}
-
-/* evidence list — the three projects, above the fold */
-.jump {
-  list-style: none;
-  border-top: 1px solid var(--rule-soft);
-}
-
-.jump li { border-bottom: 1px solid var(--rule-soft); }
-
-.jump a {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 20px;
-  align-items: baseline;
-  padding: 13px 0;
-  text-decoration: none;
-  color: var(--ink);
-  transition: color .15s;
-}
-
-.jump a:hover, .jump a:focus-visible { color: var(--accent); }
-
-.jump .what { font-weight: 600; font-size: 0.9375rem; }
-
-.jump .metric {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
-  font-size: 0.9375rem;
-  color: var(--accent);
-  white-space: nowrap;
 }
 
 /* --- sections ------------------------------------------------- */
@@ -229,14 +184,6 @@ section { padding-top: 88px; }
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule-strong);
   margin-bottom: 44px;
-}
-
-.section-note {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
-  font-size: 1.0625rem;
-  color: var(--ink-muted);
-  margin: -24px 0 44px;
 }
 
 /* --- entries -------------------------------------------------- */
@@ -257,16 +204,14 @@ section { padding-top: 88px; }
 .entry p:last-child { margin-bottom: 0; }
 
 .metric-line {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
   color: var(--accent);
   border-left: 2px solid var(--accent);
   padding: 2px 0 2px 16px;
   margin: 20px 0 24px;
 }
 
-/* figure breaks out of the text column to the right */
 figure {
   margin: 24px 0;
   width: calc(100% + 120px);
@@ -280,19 +225,12 @@ figure img {
   background: var(--figure-bg);
 }
 
-/* Plots and UI screenshots carry their own light background. Matting them on a
-   white plate makes that read as deliberate instead of a hole punched in the
-   page — which is exactly how an unmatted white PNG looks in dark mode.
-   Photographs do NOT get this: they bleed to the figure edge. */
 figure img.plate {
   background: #FFFFFF;
   padding: 14px;
   border: 1px solid var(--rule-soft);
 }
 
-/* An image too small for the breakout slot is shown at its natural size rather
-   than upscaled into blur. Left-aligned in the text column, it reads as a
-   deliberate inset instead of a broken full-width figure. */
 figure.inset {
   width: auto;
   max-width: 100%;
@@ -366,104 +304,7 @@ figcaption {
 .no-link {
   font-size: 0.8125rem;
   color: var(--ink-muted);
-  font-style: italic;
 }
-
-/* --- about ---------------------------------------------------- */
-
-.about p {
-  margin-bottom: 18px;
-  max-width: 62ch;
-}
-
-.about p:last-child { margin-bottom: 0; }
-
-/* --- contact call to action ----------------------------------- */
-
-.cta h2 {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-size: 1.875rem;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin-bottom: 20px;
-  max-width: 24ch;
-}
-
-.cta p {
-  margin-bottom: 28px;
-  max-width: 56ch;
-}
-
-/* --- profile -------------------------------------------------- */
-
-.job { margin-bottom: 36px; }
-.job:last-child { margin-bottom: 0; }
-
-.job h4 {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-size: 1.1875rem;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.job .when {
-  font-size: 0.8125rem;
-  color: var(--ink-muted);
-  margin-bottom: 14px;
-}
-
-.job ul { list-style: none; }
-
-.job li {
-  padding-left: 18px;
-  position: relative;
-  margin-bottom: 10px;
-  font-size: 0.9375rem;
-}
-
-.job li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.62em;
-  width: 7px;
-  height: 1px;
-  background: var(--accent);
-}
-
-.job li b { font-weight: 600; }
-
-.pairs { width: 100%; border-collapse: collapse; }
-
-.pairs th {
-  text-align: left;
-  vertical-align: top;
-  font-weight: 600;
-  font-size: 0.875rem;
-  width: 190px;
-  padding: 12px 20px 12px 0;
-  border-bottom: 1px solid var(--rule-soft);
-}
-
-.pairs td {
-  vertical-align: top;
-  font-size: 0.9375rem;
-  color: var(--ink-muted);
-  padding: 12px 0;
-  border-bottom: 1px solid var(--rule-soft);
-}
-
-.sub-head {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--ink-muted);
-  margin: 40px 0 18px;
-}
-
-.sub-head:first-child { margin-top: 0; }
 
 /* --- footer --------------------------------------------------- */
 
@@ -496,23 +337,14 @@ footer {
   .rail dl { display: flex; flex-wrap: wrap; gap: 6px 28px; }
   .rail dd { margin-bottom: 0; }
   figure { width: 100%; max-width: 100%; }
-  .portrait { width: 140px; height: 140px; }
   .hero { padding: 48px 0 40px; }
   .hero h1 { font-size: 2.125rem; }
   .hero .claim { font-size: 1.1875rem; }
   section { padding-top: 64px; }
   .entry h3 { font-size: 1.5rem; }
-  .cta h2 { font-size: 1.625rem; }
-  .pairs th, .pairs td { display: block; width: auto; border: 0; padding: 0; }
-  .pairs th { padding-top: 14px; }
-  .pairs td { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); }
-  .jump a { grid-template-columns: 1fr; gap: 2px; }
 }
 
 @media print {
-  /* Reset the palette for paper. Without this, printing from dark mode
-     carries the dark-mode tokens onto a white sheet — muted text lands at
-     3.4:1 and the accent at 2.7:1. */
   :root {
     --paper: #FFFFFF;
     --ink: #000000;
@@ -522,7 +354,7 @@ footer {
     --accent: #000000;
     --figure-bg: #FFFFFF;
   }
-  .jump, figure, .topbar { display: none; }
+  figure, .topbar { display: none; }
   body { font-size: 11pt; color: #000; background: #fff; }
   .row, .hero-inner { grid-template-columns: 150px 1fr; }
   a { color: #000; }
@@ -533,10 +365,10 @@ footer {
 <div class="page">
 
 <nav class="topbar" aria-label="Hauptnavigation">
-  <span class="mark">Sumanth Reddy Settipalli</span>
+  <a class="mark" href="index.html">Sumanth Reddy Settipalli</a>
   <a class="lnk" href="index.html">Startseite</a>
   <a class="lnk" href="index.html#ueber-mich">Über mich</a>
-  <a class="lnk" href="index.html#kontakt">Kontakt</a>
+  <a class="lnk" href="#kontakt">Kontakt</a>
   <a class="lnk" href="profil.html">Lebenslauf</a>
 </nav>
 
@@ -544,14 +376,14 @@ footer {
   <div class="hero-inner">
     <div class="rail">
       <dl>
-        <dt>Stand</dt><dd>September 2026</dd>
+        <dt>Stand</dt><dd>Oktober 2026</dd>
         <dt>Code</dt><dd><a class="lnk" href="https://github.com/Sumanthreddy-DE">github.com/Sumanthreddy-DE</a></dd>
       </dl>
     </div>
     <div>
       <h1>Alle Projekte</h1>
       <p class="claim">Simulation zuerst, Werkzeuge danach.</p>
-      <p class="hero-facts">Die drei ausführlichen Fallstudien stehen auf der <a class="lnk" href="index.html#projekte">Startseite</a>. Hier steht alles — auch die kleineren Arbeiten und die Software, die neben der Simulation entstanden ist.</p>
+      <p class="hero-facts">Die drei ausführlichen Fallstudien stehen auf der <a class="lnk" href="index.html#projekte">Startseite</a>. Hier steht alles — auch die kleineren Arbeiten, Hackathons, das Engagement und die Software, die neben der Simulation entstanden ist.</p>
     </div>
   </div>
 </header>
@@ -662,22 +494,117 @@ footer {
 <section id="hackathons">
   <div class="row">
     <div class="rail"></div>
-    <div>
-      <h2 class="section-head">Hackathons</h2>
-      <ul class="minor">
-        <li>
-          <b>Prozesse automatisch auf Baukasten-Elemente abbilden</b>
-          <p>DEHN Servus AI Summer Hackathon 2025, Challenge 2. Zuordnung von Fertigungsprozessen auf Baukasten-Elemente über Sentence-Transformer-Embeddings mit adaptiver Ähnlichkeitsschwelle.</p>
-          <a class="lnk" href="https://github.com/Sumanthreddy-DE/Production-Engineering-Data-Automation">Code</a>
-        </li>
-        <li>
-          <b>DigiDorf — Behördengänge in der eigenen Sprache</b>
-          <p>Smart City Hackathon (Infosys), 06/2025. Führt Schritt für Schritt durch Verwaltungsleistungen, mit Unterlagen, Bearbeitungsdauer und Gebühren. Chatbot für Rückfragen, umschaltbare Sprache.</p>
-          <a class="lnk" href="https://github.com/shriya1808/dorf-navigator-guide">Code (Team)</a>
-        </li>
-      </ul>
-    </div>
+    <h2 class="section-head">Hackathons</h2>
   </div>
+
+  <article class="entry">
+    <div class="row">
+      <div class="rail">
+        <dl>
+          <dt>Veranstaltung</dt><dd>DEHN Servus AI Summer Hackathon 2025, Challenge 2</dd>
+          <dt>Rolle</dt><dd>Team</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Prozesse automatisch auf Baukasten-Elemente abbilden</h3>
+
+        <p>Fertigungsprozesse sollen automatisch den passenden Elementen des Firmen-Baukastens zugeordnet werden — Roboter, Greifer, Zuführtechnik, gepflegt in einer über Jahre gewachsenen Lösungsbibliothek in Excel. Ich habe die Zuordnung über semantische Ähnlichkeit statt über Stichwortsuche gelöst: Sentence-Transformer-Embeddings mit adaptiver Ähnlichkeitsschwelle, die alle plausiblen Treffer liefert statt einer festen Top-k-Auswahl.</p>
+
+        <figure>
+          <img src="assets/mindmap.png" class="plate" alt="Schematische Darstellung der Aufgabe: vom Problem über die Lösungsbibliothek zu Modulen und Baukastenklassen" width="931" height="507" loading="lazy">
+          <figcaption>Die Aufgabenstellung des Hackathons: vom Problem einer Kollegin über die Lösungsklassen der Bibliothek zu den Modulen und Baukastenklassen. Schaubild: DEHN.</figcaption>
+        </figure>
+
+        <div class="entry-foot">
+          <div class="stack">Python · Sentence-Transformers · scikit-learn · pandas</div>
+          <div class="entry-links">
+            <a class="lnk" href="https://github.com/Sumanthreddy-DE/Production-Engineering-Data-Automation">Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry">
+    <div class="row">
+      <div class="rail">
+        <dl>
+          <dt>Veranstaltung</dt><dd>Smart City Hackathon (Infosys)</dd>
+          <dt>Zeitraum</dt><dd>06/2025</dd>
+          <dt>Rolle</dt><dd>Team</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>DigiDorf — Behördengänge in der eigenen Sprache</h3>
+
+        <p>Wer neu in Deutschland ist, scheitert selten an der Sache, sondern am Verfahren und an der Sprache. DigiDorf führt Schritt für Schritt durch die Verwaltungsleistungen einer Stadt — mit Unterlagen, Bearbeitungsdauer, Gebühren und dem offiziellen Formular. Ein Chatbot beantwortet Rückfragen, die Oberfläche lässt sich umschalten. Das Problem kenne ich aus eigener Erfahrung.</p>
+
+        <figure class="inset">
+          <img src="assets/digidorf.png" alt="DÜSSELBOT, das Maskottchen der DigiDorf-Anwendung" width="800" height="800" loading="lazy">
+          <figcaption>DÜSSELBOT, das Maskottchen der Anwendung. Es beantwortet Rückfragen zu den Verwaltungsleistungen.</figcaption>
+        </figure>
+
+        <div class="entry-foot">
+          <div class="stack">React · TypeScript · Vite · Flask</div>
+          <div class="entry-links">
+            <a class="lnk" href="https://github.com/shriya1808/dorf-navigator-guide">Code (Team)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============================ ENGAGEMENT ============================ -->
+<section id="engagement">
+  <div class="row">
+    <div class="rail"></div>
+    <h2 class="section-head">Engagement</h2>
+  </div>
+
+  <article class="entry">
+    <div class="row">
+      <div class="rail">
+        <dl>
+          <dt>Organisation</dt><dd>TEA, FAU Erlangen-Nürnberg</dd>
+          <dt>Zeitraum</dt><dd>seit 09/2024</dd>
+          <dt>Team</dt><dd>Kernteam aus sechs Personen</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Mitgründer der Studierendeninitiative TEA</h3>
+        <p>Ich habe TEA im September 2024 mitgegründet — eine Studierendeninitiative, die internationale Studierende beim Studienstart in Erlangen begleitet: Ankunft, Behördengänge, die ersten Wochen. Getragen von einem Kernteam aus sechs Personen, läuft bis heute.</p>
+
+        <figure class="inset">
+          <img src="assets/tea-team.png" alt="Plakat der TEA-Veranstaltung zu Ganesh Chaturthi" width="175" height="247" loading="lazy">
+          <figcaption>Eine der Veranstaltungen, die TEA organisiert — Ganesh Chaturthi, gemeinsam mit FAU und Stuve.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry">
+    <div class="row">
+      <div class="rail">
+        <dl>
+          <dt>Wettbewerb</dt><dd>Go-Kart Design Competition</dd>
+          <dt>Zeitraum</dt><dd>2019</dd>
+          <dt>Rolle</dt><dd>Leitung Designteam</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Rahmenstruktur und Lenkgeometrie eines Go-Karts</h3>
+        <p>Ich habe das Designteam geleitet. Wir haben die Rahmenstruktur des Karts in AutoCAD konstruiert und die Lenkgeometrie nach dem Ackermann-Prinzip ausgelegt.</p>
+
+        <p class="metric-line">Platz 11 von über 250 teilnehmenden Teams</p>
+
+        <figure class="inset">
+          <img src="assets/gokart.jpg" alt="Das Kart des Teams mit der Startnummer 85 in der Box" width="314" height="318" loading="lazy">
+          <figcaption>Das Kart in der Box, Startnummer 85.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
 </section>
 
 <!-- ============================ WERKZEUGE ============================ -->
@@ -699,11 +626,32 @@ footer {
           <a class="lnk" href="https://github.com/Sumanthreddy-DE/anny-booking-bot">Code</a>
         </li>
         <li>
-          <b>Wöchentliche Zusammenfassung von Newslettern</b>
-          <p>Fasst abonnierte Newsletter zu einer Wochenübersicht zusammen.</p>
-          <span class="no-link">Repository nicht öffentlich</span>
+          <b>Career-Ops — eigene Bewerbungszentrale</b>
+          <p>Stellen-Suche, Lebenslauf-Anpassung und Tracking in einem System, auf mein Profil zugeschnitten. Mit Portal-Anbindung über eigene Abfragen, einem privaten Dashboard in Go und eigenen Schreib-Skills, die Lebensläufe und Anschreiben pro Stelle erzeugen.</p>
+          <span class="no-link">Repository privat — gern zeige ich es im Gespräch.</span>
+        </li>
+        <li>
+          <b>Sprach-Coach für gesprochenes Deutsch</b>
+          <p>Analysiert selbst aufgenommene Sprachübungen gegen eine CEFR-Wortschatz-Basis: Transkription lokal über faster-whisper, Auswertung in Python, SQLite als Speicher. Entstanden, weil keine App das tut, was ich beim Lernen brauche.</p>
+          <span class="no-link">Repository privat — gern zeige ich es im Gespräch.</span>
         </li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ KONTAKT ============================ -->
+<section id="kontakt">
+  <div class="row">
+    <div class="rail"></div>
+    <div>
+      <h2 class="section-head">Kontakt</h2>
+      <p style="margin-bottom: 28px; max-width: 56ch;">Fragen zu einem der Projekte, oder Interesse an einer Zusammenarbeit? Schreiben Sie mir gern auf Deutsch oder Englisch.</p>
+      <div class="foot-links">
+        <a class="lnk" href="mailto:sumanthreddy.settipalli@gmail.com">E-Mail schreiben</a>
+        <a class="lnk" href="https://github.com/Sumanthreddy-DE">GitHub</a>
+        <a class="lnk" href="https://www.linkedin.com/in/sumanthreddys">LinkedIn</a>
+      </div>
     </div>
   </div>
 </section>

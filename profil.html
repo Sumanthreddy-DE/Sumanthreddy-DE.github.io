@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -28,24 +28,24 @@
    --------------------------------------------------------------- */
 
 :root {
-  --paper: #F5F2EB;
-  --ink: #1A1815;
-  --ink-muted: #5C544A;
-  --rule-soft: #C8C0B0;
-  --rule-strong: #2B2823;
-  --accent: #B8473A;
-  --figure-bg: #E8E2D6;
+  --paper: #F3F4F1;
+  --ink: #171A17;
+  --ink-muted: #555B54;
+  --rule-soft: #C8CCC4;
+  --rule-strong: #23261F;
+  --accent: #2F5D46;
+  --figure-bg: #E6E9E2;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #14110E;
-    --ink: #EDE6D6;
-    --ink-muted: #948B78;
-    --rule-soft: #3A352C;
-    --rule-strong: #C9C1AE;
-    --accent: #E08572;
-    --figure-bg: #1F1B16;
+    --paper: #141613;
+    --ink: #DFE2DC;
+    --ink-muted: #8E938A;
+    --rule-soft: #2C2F29;
+    --rule-strong: #C4C8BF;
+    --accent: #8FB8A3;
+    --figure-bg: #1A1C18;
   }
 }
 
@@ -108,10 +108,15 @@ body {
 
 .topbar .mark {
   font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
   font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
   margin-right: auto;
+  border-bottom: none;
 }
+
+.topbar .mark:hover { color: var(--accent); }
 
 /* --- links ---------------------------------------------------- */
 
@@ -171,7 +176,6 @@ a:focus-visible {
 
 .hero .claim {
   font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
   font-size: 1.375rem;
   line-height: 1.35;
   color: var(--accent);
@@ -209,10 +213,8 @@ a:focus-visible {
 .jump .what { font-weight: 600; font-size: 0.9375rem; }
 
 .jump .metric {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
-  font-size: 0.9375rem;
-  color: var(--accent);
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
   white-space: nowrap;
 }
 
@@ -232,9 +234,7 @@ section { padding-top: 88px; }
 }
 
 .section-note {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   color: var(--ink-muted);
   margin: -24px 0 44px;
 }
@@ -257,9 +257,8 @@ section { padding-top: 88px; }
 .entry p:last-child { margin-bottom: 0; }
 
 .metric-line {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-style: italic;
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
   color: var(--accent);
   border-left: 2px solid var(--accent);
   padding: 2px 0 2px 16px;
@@ -366,7 +365,6 @@ figcaption {
 .no-link {
   font-size: 0.8125rem;
   color: var(--ink-muted);
-  font-style: italic;
 }
 
 /* --- about ---------------------------------------------------- */
@@ -564,7 +562,7 @@ footer {
 <div class="page">
 
 <nav class="topbar" aria-label="Hauptnavigation">
-  <span class="mark">Sumanth Reddy Settipalli</span>
+  <a class="mark" href="index.html">Sumanth Reddy Settipalli</a>
   <a class="lnk" href="index.html">Startseite</a>
   <a class="lnk" href="projekte.html">Alle Projekte</a>
   <a class="lnk" href="index.html#kontakt">Kontakt</a>

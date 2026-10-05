@@ -24,20 +24,6 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
-- **ktmfk-application-unknown** — the old copy claimed the NX→Simscape work was for
-  "elektrische Ski-Rollen". That term is not German, and the application appears in
-  **no source**: not the CV, not any repo. Treated as invented by the previous copy
-  pass and **removed** 2026-09-17; the text is now generic ("Baugruppen"). Reopen with
-  the real application — a concrete one would strengthen the strongest case study.
-- **cv-bullet-nx-motion** — `Myself/CV/DE/content/lebenslauf.json` KTMFK bullet says
-  joints "in NX Motion"; correct target is **PTC Creo** (confirmed 2026-09-17). User
-  fixes the CV himself; the site is already right.
-- **profil-keywords-lost** - removing the Profil block from the homepage also removed
-  the Kenntnisse table and language levels, the scannable keyword list a recruiter or
-  ATS looks for. Now only in the CV PDF, one click away. Decide: leave it, or build
-  profil.html. Task 4 of the active plan.
-- **weekly-digest-private** - listed under Weitere Arbeiten with no link because the
-  repo is private. Make it public or drop the entry.
 - **images-placeholder** — 8 image slots defined in `content/de.md` Anhang. All
   placeholders until real files land.
 
@@ -65,9 +51,34 @@ _(items currently being worked — move from Open when started, back to Open if 
 
 ---
 
-## Done this session (2026-09-16)
+## Done this session (2026-10-05)
 
-_(none yet — items move here on close, sweep to Archived at end of session.)_
+- **cv-bullet-nx-motion** — closed, won't-fix-here. CV `lebenslauf.json` line 44 already
+  says "Gelenke in PTC Creo"; "NX Motion" does not appear. Site and CV agree.
+- **ktmfk-application-unknown** — closed, confirmed absent. Read the full CV this
+  session: no ski-roller, no named application; the bullets say "Baugruppen". The
+  invented term stays out. Reopen only if the user supplies a real application.
+- **profil-keywords-lost** — closed by user. `profil.html` carries the Kenntnisse
+  table and language levels; the homepage intentionally does not.
+- **weekly-digest-private** — closed. Entry dropped from `projekte.html` → Werkzeuge;
+  replaced by two entries the user does want shown: Career-Ops (private Go dashboard +
+  custom CV-writing skills) and the self-talk German coach. Both marked "Repository
+  privat — gern zeige ich es im Gespräch."
+- **palette-claude-tell** — user reaction: the cream `#F5F2EB` + terracotta `#B8473A`
+  reads as "something Claude made". Replaced across all 7 pages with **Tinte &
+  Zederngrün** (paper `#F3F4F1`, accent `#2F5D46` light / `#8FB8A3` dark; WCAG AA
+  verified 5.8:1 minimum). Decision method: user reacted to a local comparison page
+  with 4 directions rendered on real content — brief §6 method ("reacting is possible
+  where specifying is not"), not hex codes in chat.
+- **italic-serif-tell** — all display italics removed (claim, metric-line,
+  section-note, jump-metric) — the "italic serif display" slop rule. Serif stays for
+  headings, upright. Brand mark de-italicised and turned into a home link on every
+  page (was a dead `<span>`; fixes the "can't get back home" complaint).
+- **structure-strip-down** — homepage cut from 5 sections to hero + 3 case studies +
+  Über mich + Kontakt (the "holes" complaint). Hackathons and Engagement moved to
+  `projekte.html`, which also gained a Kontakt block so its nav link stops jumping to
+  the bottom of the homepage. Two SVG/PNG assets (`mindmap`, `digidorf`, `tea-team`,
+  `gokart`) moved with them.
 
 ---
 
