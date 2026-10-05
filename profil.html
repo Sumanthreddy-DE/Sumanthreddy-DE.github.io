@@ -67,6 +67,11 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 40px 96px;
+  /* Hairline page edge: gives the whitespace a boundary on wide screens
+     instead of letting the content float in a void. Disappears under the
+     breakpoint, where the padding collapses anyway. */
+  border-left: 1px solid var(--rule-soft);
+  border-right: 1px solid var(--rule-soft);
 }
 
 /* --- the grid ------------------------------------------------- */
