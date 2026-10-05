@@ -12,7 +12,7 @@ Living list of open issues, deferred work, and known caveats. Updated each sessi
 - Mention by short slug in commit body (e.g. "Closes: my-issue-slug").
 - On close → move to **Done this session** with commit SHA.
 - End of session → user sweeps **Done** → **Archived** (one-line compress).
-- Last swept: **2026-09-16** (initialised).
+- Last swept: **2026-10-05** (palette + alignment session archived).
 
 ---
 
@@ -60,35 +60,22 @@ _(items currently being worked — move from Open when started, back to Open if 
 
 ## Done this session (2026-10-05)
 
-- **cv-bullet-nx-motion** — closed, won't-fix-here. CV `lebenslauf.json` line 44 already
-  says "Gelenke in PTC Creo"; "NX Motion" does not appear. Site and CV agree.
-- **ktmfk-application-unknown** — closed, confirmed absent. Read the full CV this
-  session: no ski-roller, no named application; the bullets say "Baugruppen". The
-  invented term stays out. Reopen only if the user supplies a real application.
-- **profil-keywords-lost** — closed by user. `profil.html` carries the Kenntnisse
-  table and language levels; the homepage intentionally does not.
-- **weekly-digest-private** — closed. Entry dropped from `projekte.html` → Werkzeuge;
-  replaced by two entries the user does want shown: Career-Ops (private Go dashboard +
-  custom CV-writing skills) and the self-talk German coach. Both marked "Repository
-  privat — gern zeige ich es im Gespräch."
-- **palette-claude-tell** — user reaction: the cream `#F5F2EB` + terracotta `#B8473A`
-  reads as "something Claude made". Replaced across all 7 pages with **Tinte &
-  Zederngrün** (paper `#F3F4F1`, accent `#2F5D46` light / `#8FB8A3` dark; WCAG AA
-  verified 5.8:1 minimum). Decision method: user reacted to a local comparison page
-  with 4 directions rendered on real content — brief §6 method ("reacting is possible
-  where specifying is not"), not hex codes in chat.
-- **italic-serif-tell** — all display italics removed (claim, metric-line,
-  section-note, jump-metric) — the "italic serif display" slop rule. Serif stays for
-  headings, upright. Brand mark de-italicised and turned into a home link on every
-  page (was a dead `<span>`; fixes the "can't get back home" complaint).
-- **structure-strip-down** — homepage cut from 5 sections to hero + 3 case studies +
-  Über mich + Kontakt (the "holes" complaint). Hackathons and Engagement moved to
-  `projekte.html`, which also gained a Kontakt block so its nav link stops jumping to
-  the bottom of the homepage. Two SVG/PNG assets (`mindmap`, `digidorf`, `tea-team`,
-  `gokart`) moved with them.
+_(empty — swept to Archived below.)_
 
 ---
 
 ## Archived (older sweeps, compressed)
 
-_(empty — populates over time as one-line entries per sweep.)_
+- **2026-10-05 · palette, structure, alignment, AI-tell sweep** (7 items) — see commits
+  `f3b0b71`..`1858ab0`. Cream/terracotta replaced with Tinte & Zederngrün after user
+  flagged the "Claude look" (`palette-claude-tell`). All display italics removed
+  (`italic-serif-tell`); brand mark became a home link, later dropped from the
+  homepage nav as an H1 duplicate. Homepage stripped to hero + 3 cases + Über mich +
+  Kontakt; Hackathons/Engagement/Werkzeuge moved to `projekte.html`
+  (`structure-strip-down`). Figure breakout killed; 780px column aligns rules,
+  figures, captions, text by construction. All prose em-dashes → en-dash
+  Gedankenstrich per rulebook lesson 9/10. Contact heading question → statement.
+  Werkzeuge gained Career-Ops + self-talk-coach (private). Closed:
+  `cv-bullet-nx-motion` (CV already correct), `ktmfk-application-unknown` (confirmed
+  absent from CV), `profil-keywords-lost` (user call), `weekly-digest-private`
+  (dropped). Opened: `en-toggle` (S2, deferred until after images land).

@@ -18,17 +18,18 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
 
 ## Doing
 
-- Phase A — **shipped and live** (`7e571ff`). Restructured and recolored 2026-10-05
-  (uncommitted): homepage stripped to hero + 3 case studies + Über mich + Kontakt;
-  Hackathons, Engagement and Werkzeuge moved to `projekte.html` (which gained a
-  Kontakt block). Palette changed from cream/terracotta to Tinte & Zederngrün
-  (`#F3F4F1` / `#2F5D46`, dark `#141613` / `#8FB8A3`) after the user flagged the old
-  one as the "Claude look". All display italics removed (italic-serif slop rule);
-  brand mark is now a home link on every page.
+- Phase A — **shipped and live** (`7e571ff`). Visual overhaul committed 2026-10-05
+  (`f3b0b71`, `8f0c130`, `1858ab0`): cream/terracotta → Tinte & Zederngrün after the
+  user flagged the "Claude look"; italics and prose em-dashes swept (AI tells);
+  homepage stripped to hero + 3 case studies + Über mich + Kontakt; figure breakout
+  killed — 780px column aligns rules/figures/captions/text by construction; Contact
+  heading is now a statement. Werkzeuge gained Career-Ops + self-talk-coach (private).
 - **Waiting on the user for 7 images.** Placeholders remain for `portrait`,
   `pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-gnn`, `nx-simscape`,
   `nx-mapping`. `pinn-fehler` matters most — the "unter 5 %" claim sits above the
   fold with nothing evidencing it.
+- **EN toggle** — user asked for DE/EN switch; filed as backlog S2, deferred until
+  the images land and the German copy has settled.
 - Phase B chat spec — still **blocked** on the same question: homepage
   below-the-fold, or its own page framed as a project.
 - Selector / gate idea — parked. Reorder filter, not a gate. Not specced.
