@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alle Projekte — Sumanth Reddy Settipalli</title>
+<title>Alle Projekte – Sumanth Reddy Settipalli</title>
 <meta name="description" content="Alle Projekte: Simulation und Machine Learning, Hackathons, Werkzeuge und Automatisierung. PINN, SimReady, NX-zu-Simscape, Topologieoptimierung und mehr.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:url" content="https://sumanthreddy-de.github.io/projekte.html">
-<meta property="og:title" content="Alle Projekte — Sumanth Reddy Settipalli">
+<meta property="og:title" content="Alle Projekte – Sumanth Reddy Settipalli">
 <meta property="og:description" content="Simulation und Machine Learning zuerst, Werkzeuge danach.">
 <meta property="og:image" content="https://sumanthreddy-de.github.io/assets/portrait.svg">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@ body {
   color: var(--ink);
   font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -75,7 +75,7 @@ body {
 
 .row {
   display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
+  grid-template-columns: 180px minmax(0, 780px);
   gap: 48px;
 }
 
@@ -148,7 +148,7 @@ a:focus-visible {
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
+  grid-template-columns: 180px minmax(0, 780px);
   gap: 48px;
   align-items: start;
 }
@@ -168,7 +168,7 @@ a:focus-visible {
   line-height: 1.35;
   color: var(--accent);
   margin-bottom: 24px;
-  max-width: 34ch;
+
 }
 
 .hero-facts {
@@ -181,15 +181,14 @@ a:focus-visible {
 section { padding-top: 88px; }
 
 .section-head {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--rule-strong);
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule-strong);
-  margin-bottom: 44px;
-}
+  margin-bottom: 44px;}
 
 /* --- entries -------------------------------------------------- */
 
@@ -205,7 +204,7 @@ section { padding-top: 88px; }
   margin-bottom: 18px;
 }
 
-.entry p { margin-bottom: 16px; }
+.entry p { margin-bottom: 12px; }
 .entry p:last-child { margin-bottom: 0; }
 
 .metric-line {
@@ -219,8 +218,7 @@ section { padding-top: 88px; }
 
 figure {
   margin: 24px 0;
-  width: calc(100% + 120px);
-  max-width: calc(100vw - 80px);
+  width: 100%;
 }
 
 figure img {
@@ -246,7 +244,14 @@ figure.inset img {
   max-width: 100%;
 }
 
-figure.inset figcaption { max-width: 420px; }
+figure.inset figcaption {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 8px;
+  text-align: center;
+}
 
 figcaption {
   font-size: 0.8125rem;
@@ -254,7 +259,7 @@ figcaption {
   padding-top: 10px;
   border-top: 1px solid var(--rule-soft);
   margin-top: 8px;
-  max-width: 660px;
+  text-align: center;
 }
 
 .entry-foot {
@@ -388,7 +393,7 @@ footer {
     <div>
       <h1>Alle Projekte</h1>
       <p class="claim">Simulation zuerst, Werkzeuge danach.</p>
-      <p class="hero-facts">Die drei ausführlichen Fallstudien stehen auf der <a class="lnk" href="index.html#projekte">Startseite</a>. Hier steht alles — auch die kleineren Arbeiten, Hackathons, das Engagement und die Software, die neben der Simulation entstanden ist.</p>
+      <p class="hero-facts">Die drei ausführlichen Fallstudien stehen auf der <a class="lnk" href="index.html#projekte">Startseite</a>. Hier steht alles – auch die kleineren Arbeiten, Hackathons, das Engagement und die Software, die neben der Simulation entstanden ist.</p>
     </div>
   </div>
 </header>
@@ -433,7 +438,7 @@ footer {
         </dl>
       </div>
       <div>
-        <h3>SimReady — von der STEP-Datei zum vernetzungsfähigen Bauteil</h3>
+        <h3>SimReady – von der STEP-Datei zum vernetzungsfähigen Bauteil</h3>
         <p>Zwölf Geometrieprüfungen auf einer STEP-Datei, jeder Befund farbig am 3D-Modell begründet. Ein Graph Neural Network sagt voraus, welche Flächen eine Netzverfeinerung brauchen.</p>
         <p class="metric-line">Graph Neural Network, trainiert auf 1.100 Bauteilen</p>
         <div class="entry-foot">
@@ -513,7 +518,7 @@ footer {
       <div>
         <h3>Prozesse automatisch auf Baukasten-Elemente abbilden</h3>
 
-        <p>Fertigungsprozesse sollen automatisch den passenden Elementen des Firmen-Baukastens zugeordnet werden — Roboter, Greifer, Zuführtechnik, gepflegt in einer über Jahre gewachsenen Lösungsbibliothek in Excel. Ich habe die Zuordnung über semantische Ähnlichkeit statt über Stichwortsuche gelöst: Sentence-Transformer-Embeddings mit adaptiver Ähnlichkeitsschwelle, die alle plausiblen Treffer liefert statt einer festen Top-k-Auswahl.</p>
+        <p>Fertigungsprozesse sollen automatisch den passenden Elementen des Firmen-Baukastens zugeordnet werden – Roboter, Greifer, Zuführtechnik, gepflegt in einer über Jahre gewachsenen Lösungsbibliothek in Excel. Ich habe die Zuordnung über semantische Ähnlichkeit statt über Stichwortsuche gelöst: Sentence-Transformer-Embeddings mit adaptiver Ähnlichkeitsschwelle, die alle plausiblen Treffer liefert statt einer festen Top-k-Auswahl.</p>
 
         <figure>
           <img src="assets/mindmap.png" class="plate" alt="Schematische Darstellung der Aufgabe: vom Problem über die Lösungsbibliothek zu Modulen und Baukastenklassen" width="931" height="507" loading="lazy">
@@ -540,9 +545,9 @@ footer {
         </dl>
       </div>
       <div>
-        <h3>DigiDorf — Behördengänge in der eigenen Sprache</h3>
+        <h3>DigiDorf – Behördengänge in der eigenen Sprache</h3>
 
-        <p>Wer neu in Deutschland ist, scheitert selten an der Sache, sondern am Verfahren und an der Sprache. DigiDorf führt Schritt für Schritt durch die Verwaltungsleistungen einer Stadt — mit Unterlagen, Bearbeitungsdauer, Gebühren und dem offiziellen Formular. Ein Chatbot beantwortet Rückfragen, die Oberfläche lässt sich umschalten. Das Problem kenne ich aus eigener Erfahrung.</p>
+        <p>Wer neu in Deutschland ist, scheitert selten an der Sache, sondern am Verfahren und an der Sprache. DigiDorf führt Schritt für Schritt durch die Verwaltungsleistungen einer Stadt – mit Unterlagen, Bearbeitungsdauer, Gebühren und dem offiziellen Formular. Ein Chatbot beantwortet Rückfragen, die Oberfläche lässt sich umschalten. Das Problem kenne ich aus eigener Erfahrung.</p>
 
         <figure class="inset">
           <img src="assets/digidorf.png" alt="DÜSSELBOT, das Maskottchen der DigiDorf-Anwendung" width="800" height="800" loading="lazy">
@@ -578,11 +583,11 @@ footer {
       </div>
       <div>
         <h3>Mitgründer der Studierendeninitiative TEA</h3>
-        <p>Ich habe TEA im September 2024 mitgegründet — eine Studierendeninitiative, die internationale Studierende beim Studienstart in Erlangen begleitet: Ankunft, Behördengänge, die ersten Wochen. Getragen von einem Kernteam aus sechs Personen, läuft bis heute.</p>
+        <p>Ich habe TEA im September 2024 mitgegründet – eine Studierendeninitiative, die internationale Studierende beim Studienstart in Erlangen begleitet: Ankunft, Behördengänge, die ersten Wochen. Getragen von einem Kernteam aus sechs Personen, läuft bis heute.</p>
 
         <figure class="inset">
           <img src="assets/tea-team.png" alt="Plakat der TEA-Veranstaltung zu Ganesh Chaturthi" width="175" height="247" loading="lazy">
-          <figcaption>Eine der Veranstaltungen, die TEA organisiert — Ganesh Chaturthi, gemeinsam mit FAU und Stuve.</figcaption>
+          <figcaption>Eine der Veranstaltungen, die TEA organisiert – Ganesh Chaturthi, gemeinsam mit FAU und Stuve.</figcaption>
         </figure>
       </div>
     </div>
@@ -618,7 +623,7 @@ footer {
     <div class="rail"></div>
     <div>
       <h2 class="section-head">Werkzeuge und Automatisierung</h2>
-      <p class="group-note">Software, die ich neben der Simulation gebaut habe — meist, um ein eigenes Problem loszuwerden.</p>
+      <p class="group-note">Software, die ich neben der Simulation gebaut habe – meist, um ein eigenes Problem loszuwerden.</p>
       <ul class="minor">
         <li>
           <b>Tägliche Stellenbenachrichtigung für SmartRecruiters</b>
@@ -631,14 +636,14 @@ footer {
           <a class="lnk" href="https://github.com/Sumanthreddy-DE/anny-booking-bot">Code</a>
         </li>
         <li>
-          <b>Career-Ops — eigene Bewerbungszentrale</b>
+          <b>Career-Ops – eigene Bewerbungszentrale</b>
           <p>Stellen-Suche, Lebenslauf-Anpassung und Tracking in einem System, auf mein Profil zugeschnitten. Mit Portal-Anbindung über eigene Abfragen, einem privaten Dashboard in Go und eigenen Schreib-Skills, die Lebensläufe und Anschreiben pro Stelle erzeugen.</p>
-          <span class="no-link">Repository privat — gern zeige ich es im Gespräch.</span>
+          <span class="no-link">Repository privat – gern zeige ich es im Gespräch.</span>
         </li>
         <li>
           <b>Sprach-Coach für gesprochenes Deutsch</b>
           <p>Analysiert selbst aufgenommene Sprachübungen gegen eine CEFR-Wortschatz-Basis: Transkription lokal über faster-whisper, Auswertung in Python, SQLite als Speicher. Entstanden, weil keine App das tut, was ich beim Lernen brauche.</p>
-          <span class="no-link">Repository privat — gern zeige ich es im Gespräch.</span>
+          <span class="no-link">Repository privat – gern zeige ich es im Gespräch.</span>
         </li>
       </ul>
     </div>

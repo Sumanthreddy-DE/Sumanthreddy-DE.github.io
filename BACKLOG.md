@@ -26,6 +26,13 @@ _(none yet)_
 
 - **images-placeholder** — 8 image slots defined in `content/de.md` Anhang. All
   placeholders until real files land.
+- **en-toggle** — user asked for a DE/EN language toggle in the top bar. Deferred
+  2026-10-05: the brief's decided line is "German-first, English later", and the
+  positioning argument (Mittelstand reads German) still holds. Adding EN doubles the
+  copy surface to maintain while the copy is still moving, and the English half is
+  where AI tells creep back in. Revisit **after** the images land and the German copy
+  has settled. Right shape when we do it: a static `en/` mirror or `lang` swap, not
+  a JS toggle — and a session of its own.
 
 ---
 

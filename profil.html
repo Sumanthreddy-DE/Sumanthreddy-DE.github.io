@@ -58,7 +58,7 @@ body {
   color: var(--ink);
   font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -78,7 +78,7 @@ body {
 
 .row {
   display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
+  grid-template-columns: 180px minmax(0, 780px);
   gap: 48px;
 }
 
@@ -151,7 +151,7 @@ a:focus-visible {
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
+  grid-template-columns: 180px minmax(0, 780px);
   gap: 48px;
   align-items: start;
 }
@@ -185,7 +185,7 @@ a:focus-visible {
   line-height: 1.35;
   color: var(--accent);
   margin-bottom: 32px;
-  max-width: 34ch;
+
 }
 
 .hero-facts {
@@ -194,7 +194,7 @@ a:focus-visible {
   margin-bottom: 32px;
 }
 
-/* evidence list — the three projects, above the fold */
+/* evidence list – the three projects, above the fold */
 .jump {
   list-style: none;
   border-top: 1px solid var(--rule-soft);
@@ -228,15 +228,14 @@ a:focus-visible {
 section { padding-top: 88px; }
 
 .section-head {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--rule-strong);
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule-strong);
-  margin-bottom: 44px;
-}
+  margin-bottom: 44px;}
 
 .section-note {
   font-size: 0.9375rem;
@@ -258,7 +257,7 @@ section { padding-top: 88px; }
   margin-bottom: 18px;
 }
 
-.entry p { margin-bottom: 16px; }
+.entry p { margin-bottom: 12px; }
 .entry p:last-child { margin-bottom: 0; }
 
 .metric-line {
@@ -273,8 +272,7 @@ section { padding-top: 88px; }
 /* figure breaks out of the text column to the right */
 figure {
   margin: 24px 0;
-  width: calc(100% + 120px);
-  max-width: calc(100vw - 80px);
+  width: 100%;
 }
 
 figure img {
@@ -286,7 +284,7 @@ figure img {
 
 /* Plots and UI screenshots carry their own light background. Matting them on a
    white plate makes that read as deliberate instead of a hole punched in the
-   page — which is exactly how an unmatted white PNG looks in dark mode.
+   page – which is exactly how an unmatted white PNG looks in dark mode.
    Photographs do NOT get this: they bleed to the figure edge. */
 figure img.plate {
   background: #FFFFFF;
@@ -307,7 +305,14 @@ figure.inset img {
   max-width: 100%;
 }
 
-figure.inset figcaption { max-width: 420px; }
+figure.inset figcaption {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 8px;
+  text-align: center;
+}
 
 figcaption {
   font-size: 0.8125rem;
@@ -315,7 +320,7 @@ figcaption {
   padding-top: 10px;
   border-top: 1px solid var(--rule-soft);
   margin-top: 8px;
-  max-width: 660px;
+  text-align: center;
 }
 
 .entry-foot {
@@ -390,12 +395,12 @@ figcaption {
   line-height: 1.2;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
-  max-width: 24ch;
+
 }
 
 .cta p {
   margin-bottom: 28px;
-  max-width: 56ch;
+
 }
 
 /* --- profile -------------------------------------------------- */
@@ -514,7 +519,7 @@ footer {
 
 @media print {
   /* Reset the palette for paper. Without this, printing from dark mode
-     carries the dark-mode tokens onto a white sheet — muted text lands at
+     carries the dark-mode tokens onto a white sheet – muted text lands at
      3.4:1 and the accent at 2.7:1. */
   :root {
     --paper: #FFFFFF;
@@ -598,18 +603,18 @@ footer {
       <h2 class="section-head">Berufserfahrung</h2>
 
       <div class="job">
-        <h3>Wissenschaftliche Hilfskraft und Tutor — FAU Erlangen-Nürnberg</h3>
+        <h3>Wissenschaftliche Hilfskraft und Tutor – FAU Erlangen-Nürnberg</h3>
         <div class="when">11/2023 – 08/2026 · parallel an vier Lehrstühlen</div>
         <ul>
-          <li><b>Konstruktionstechnik (KTmfk), 04/2025 – 02/2026</b> — Pipeline von Siemens NX nach MATLAB Simscape und Gelenk-Klassifikation über ein Transformer-Modell. <a class="lnk" href="projekte/nx-simscape.html">Fallstudie lesen</a></li>
-          <li><b>Technische Dynamik, 09/2025 – 08/2026</b> — Tutor für MATLAB-Übungen zu numerischen Methoden der Statik und Dynamik: FE-Analyse von Fachwerken, transiente Simulation von Kranschwingungen.</li>
-          <li><b>Fertigungstechnologie, 06/2024 – 12/2024</b> — FEM-Simulation des Scherclinchens mehrlagiger Blechbauteile aus Aluminium und Stahl in Simufact Forming; Analyse von Materialfluss, Verformung und Rissbildung.</li>
-          <li><b>BRAINIACS, Kontinuumsmechanik, 11/2023 – 11/2024</b> — FE-Simulationen mit nichtlinearen, viskoelastischen Materialmodellen in deal.II (C++), parametriert gegen das gemessene Relaxationsverhalten von Hydrogelen als Ersatzmodell für Hirngewebe.</li>
+          <li><b>Konstruktionstechnik (KTmfk), 04/2025 – 02/2026</b> – Pipeline von Siemens NX nach MATLAB Simscape und Gelenk-Klassifikation über ein Transformer-Modell. <a class="lnk" href="projekte/nx-simscape.html">Fallstudie lesen</a></li>
+          <li><b>Technische Dynamik, 09/2025 – 08/2026</b> – Tutor für MATLAB-Übungen zu numerischen Methoden der Statik und Dynamik: FE-Analyse von Fachwerken, transiente Simulation von Kranschwingungen.</li>
+          <li><b>Fertigungstechnologie, 06/2024 – 12/2024</b> – FEM-Simulation des Scherclinchens mehrlagiger Blechbauteile aus Aluminium und Stahl in Simufact Forming; Analyse von Materialfluss, Verformung und Rissbildung.</li>
+          <li><b>BRAINIACS, Kontinuumsmechanik, 11/2023 – 11/2024</b> – FE-Simulationen mit nichtlinearen, viskoelastischen Materialmodellen in deal.II (C++), parametriert gegen das gemessene Relaxationsverhalten von Hydrogelen als Ersatzmodell für Hirngewebe.</li>
         </ul>
       </div>
 
       <div class="job">
-        <h3>Automatisierungsingenieur — Tata Consultancy Services</h3>
+        <h3>Automatisierungsingenieur – Tata Consultancy Services</h3>
         <div class="when">08/2020 – 09/2022 · Indien</div>
         <ul>
           <li>ServiceNow-Einführung für einen internationalen Kunden in acht Ländern: Datenmigration aus Jira über REST-API-Integrationen, Abnahmetests (UAT) und Go-live.</li>
@@ -628,8 +633,8 @@ footer {
       <h2 class="section-head">Ausbildung</h2>
       <div class="job">
         <ul>
-          <li><b>Master Computational Engineering</b> — FAU Erlangen-Nürnberg, 10/2022 – 08/2026</li>
-          <li><b>Bachelor Maschinenbau</b> — Amrita Vishwa Vidyapeetham, Indien, 07/2016 – 06/2020</li>
+          <li><b>Master Computational Engineering</b> – FAU Erlangen-Nürnberg, 10/2022 – 08/2026</li>
+          <li><b>Bachelor Maschinenbau</b> – Amrita Vishwa Vidyapeetham, Indien, 07/2016 – 06/2020</li>
         </ul>
       </div>
     </div>

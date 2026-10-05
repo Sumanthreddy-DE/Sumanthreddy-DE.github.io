@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen — Sumanth Reddy Settipalli</title>
+<title>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen – Sumanth Reddy Settipalli</title>
 <meta name="description" content="Ein physikinformiertes neuronales Netz bestimmt Grenzflächenparameter in faserverstärkten Verbundwerkstoffen invers. Vorhersagefehler unter 5 %.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -58,7 +58,7 @@ body {
   color: var(--ink);
   font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -78,7 +78,7 @@ body {
 
 .row {
   display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
+  grid-template-columns: 180px minmax(0, 780px);
   gap: 48px;
 }
 
@@ -151,7 +151,7 @@ a:focus-visible {
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
+  grid-template-columns: 180px minmax(0, 780px);
   gap: 48px;
   align-items: start;
 }
@@ -185,7 +185,7 @@ a:focus-visible {
   line-height: 1.35;
   color: var(--accent);
   margin-bottom: 32px;
-  max-width: 34ch;
+
 }
 
 .hero-facts {
@@ -194,7 +194,7 @@ a:focus-visible {
   margin-bottom: 32px;
 }
 
-/* evidence list — the three projects, above the fold */
+/* evidence list – the three projects, above the fold */
 .jump {
   list-style: none;
   border-top: 1px solid var(--rule-soft);
@@ -228,15 +228,14 @@ a:focus-visible {
 section { padding-top: 88px; }
 
 .section-head {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--rule-strong);
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule-strong);
-  margin-bottom: 44px;
-}
+  margin-bottom: 44px;}
 
 .section-note {
   font-size: 0.9375rem;
@@ -258,7 +257,7 @@ section { padding-top: 88px; }
   margin-bottom: 18px;
 }
 
-.entry p { margin-bottom: 16px; }
+.entry p { margin-bottom: 12px; }
 .entry p:last-child { margin-bottom: 0; }
 
 .metric-line {
@@ -273,8 +272,7 @@ section { padding-top: 88px; }
 /* figure breaks out of the text column to the right */
 figure {
   margin: 24px 0;
-  width: calc(100% + 120px);
-  max-width: calc(100vw - 80px);
+  width: 100%;
 }
 
 figure img {
@@ -286,7 +284,7 @@ figure img {
 
 /* Plots and UI screenshots carry their own light background. Matting them on a
    white plate makes that read as deliberate instead of a hole punched in the
-   page — which is exactly how an unmatted white PNG looks in dark mode.
+   page – which is exactly how an unmatted white PNG looks in dark mode.
    Photographs do NOT get this: they bleed to the figure edge. */
 figure img.plate {
   background: #FFFFFF;
@@ -307,7 +305,14 @@ figure.inset img {
   max-width: 100%;
 }
 
-figure.inset figcaption { max-width: 420px; }
+figure.inset figcaption {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 8px;
+  text-align: center;
+}
 
 figcaption {
   font-size: 0.8125rem;
@@ -315,7 +320,7 @@ figcaption {
   padding-top: 10px;
   border-top: 1px solid var(--rule-soft);
   margin-top: 8px;
-  max-width: 660px;
+  text-align: center;
 }
 
 .entry-foot {
@@ -390,12 +395,12 @@ figcaption {
   line-height: 1.2;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
-  max-width: 24ch;
+
 }
 
 .cta p {
   margin-bottom: 28px;
-  max-width: 56ch;
+
 }
 
 /* --- profile -------------------------------------------------- */
@@ -514,7 +519,7 @@ footer {
 
 @media print {
   /* Reset the palette for paper. Without this, printing from dark mode
-     carries the dark-mode tokens onto a white sheet — muted text lands at
+     carries the dark-mode tokens onto a white sheet – muted text lands at
      3.4:1 and the accent at 2.7:1. */
   :root {
     --paper: #FFFFFF;
@@ -564,7 +569,7 @@ footer {
     <div class="row">
       <div class="rail"></div>
       <div class="about">
-        <p>In faserverstärkten Verbundwerkstoffen entscheidet die Interphase zwischen Faser und Matrix maßgeblich über das Bauteilverhalten. Ihre Parameter lassen sich messtechnisch kaum direkt erfassen. In der Praxis bedeutet das: aufwendige Versuchsreihen — oder Annahmewerte aus der Literatur.</p>
+        <p>In faserverstärkten Verbundwerkstoffen entscheidet die Interphase zwischen Faser und Matrix maßgeblich über das Bauteilverhalten. Ihre Parameter lassen sich messtechnisch kaum direkt erfassen. In der Praxis bedeutet das: aufwendige Versuchsreihen – oder Annahmewerte aus der Literatur.</p>
 
         <figure>
           <img src="../assets/pinn-interface.svg" class="plate" alt="Die dreischichtige Interphase zwischen Faser und Matrix." width="900" height="560" loading="lazy">
@@ -575,11 +580,11 @@ footer {
 
         <p>Ich habe ein physikinformiertes neuronales Netz (PINN) entwickelt, das diese Parameter invers bestimmt. Eingang sind die effektiven Kompressions- und Schubmoduli eines dreischichtigen Interphasenmodells, Ausgang der Parametersatz, der genau diese Moduli reproduziert.</p>
 
-        <p>Die Mikromechanik der Homogenisierung steckt dabei in der Verlustfunktion selbst — das Netz lernt nicht nur aus Daten, sondern gegen die Physik. Damit bleibt die Lösung auch dort physikalisch sinnvoll, wo der Trainingsdatensatz dünn ist.</p>
+        <p>Die Mikromechanik der Homogenisierung steckt dabei in der Verlustfunktion selbst – das Netz lernt nicht nur aus Daten, sondern gegen die Physik. Damit bleibt die Lösung auch dort physikalisch sinnvoll, wo der Trainingsdatensatz dünn ist.</p>
 
         <h2 class="sub-head">Was über die Genauigkeit entschieden hat</h2>
 
-        <p>Drei Eingriffe, in dieser Reihenfolge: die Korrektur falsch annotierter Randfälle im Trainingsdatensatz, adaptive Verlustgewichtung, und Gradientenbegrenzung gegen instabile Updates. Der erste Punkt war der größte Hebel — fehlerhafte Labels an den Rändern des Parameterraums haben das Modell systematisch in die falsche Richtung gezogen.</p>
+        <p>Drei Eingriffe, in dieser Reihenfolge: die Korrektur falsch annotierter Randfälle im Trainingsdatensatz, adaptive Verlustgewichtung, und Gradientenbegrenzung gegen instabile Updates. Der erste Punkt war der größte Hebel – fehlerhafte Labels an den Rändern des Parameterraums haben das Modell systematisch in die falsche Richtung gezogen.</p>
 
         <figure>
           <img src="../assets/pinn-konvergenz.png" class="plate" alt="Konvergenz des inversen PINN: Gesamt-, Validierungs-, Physik-, Daten- und Property-Verlust über 500 Epochen, logarithmische Skala" width="1155" height="823" loading="lazy">

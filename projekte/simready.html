@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SimReady — von der STEP-Datei zum vernetzungsfähigen Bauteil — Sumanth Reddy Settipalli</title>
+<title>SimReady – von der STEP-Datei zum vernetzungsfähigen Bauteil – Sumanth Reddy Settipalli</title>
 <meta name="description" content="Zwölf Geometrieprüfungen auf einer STEP-Datei, jeder Befund am 3D-Modell begründet. Ein Graph Neural Network sagt die nötige Netzverfeinerung voraus.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
 <meta property="og:url" content="https://sumanthreddy-de.github.io/projekte/simready.html">
-<meta property="og:title" content="SimReady — von der STEP-Datei zum vernetzungsfähigen Bauteil">
+<meta property="og:title" content="SimReady – von der STEP-Datei zum vernetzungsfähigen Bauteil">
 <meta property="og:description" content="Zwölf Geometrieprüfungen auf einer STEP-Datei, jeder Befund am 3D-Modell begründet. Ein Graph Neural Network sagt die nötige Netzverfeinerung voraus.">
 <meta property="og:image" content="https://sumanthreddy-de.github.io/assets/simready-ui.svg">
 <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@ body {
   color: var(--ink);
   font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -78,7 +78,7 @@ body {
 
 .row {
   display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
+  grid-template-columns: 180px minmax(0, 780px);
   gap: 48px;
 }
 
@@ -151,7 +151,7 @@ a:focus-visible {
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
+  grid-template-columns: 180px minmax(0, 780px);
   gap: 48px;
   align-items: start;
 }
@@ -185,7 +185,7 @@ a:focus-visible {
   line-height: 1.35;
   color: var(--accent);
   margin-bottom: 32px;
-  max-width: 34ch;
+
 }
 
 .hero-facts {
@@ -194,7 +194,7 @@ a:focus-visible {
   margin-bottom: 32px;
 }
 
-/* evidence list — the three projects, above the fold */
+/* evidence list – the three projects, above the fold */
 .jump {
   list-style: none;
   border-top: 1px solid var(--rule-soft);
@@ -228,15 +228,14 @@ a:focus-visible {
 section { padding-top: 88px; }
 
 .section-head {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--rule-strong);
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule-strong);
-  margin-bottom: 44px;
-}
+  margin-bottom: 44px;}
 
 .section-note {
   font-size: 0.9375rem;
@@ -258,7 +257,7 @@ section { padding-top: 88px; }
   margin-bottom: 18px;
 }
 
-.entry p { margin-bottom: 16px; }
+.entry p { margin-bottom: 12px; }
 .entry p:last-child { margin-bottom: 0; }
 
 .metric-line {
@@ -273,8 +272,7 @@ section { padding-top: 88px; }
 /* figure breaks out of the text column to the right */
 figure {
   margin: 24px 0;
-  width: calc(100% + 120px);
-  max-width: calc(100vw - 80px);
+  width: 100%;
 }
 
 figure img {
@@ -286,7 +284,7 @@ figure img {
 
 /* Plots and UI screenshots carry their own light background. Matting them on a
    white plate makes that read as deliberate instead of a hole punched in the
-   page — which is exactly how an unmatted white PNG looks in dark mode.
+   page – which is exactly how an unmatted white PNG looks in dark mode.
    Photographs do NOT get this: they bleed to the figure edge. */
 figure img.plate {
   background: #FFFFFF;
@@ -307,7 +305,14 @@ figure.inset img {
   max-width: 100%;
 }
 
-figure.inset figcaption { max-width: 420px; }
+figure.inset figcaption {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 8px;
+  text-align: center;
+}
 
 figcaption {
   font-size: 0.8125rem;
@@ -315,7 +320,7 @@ figcaption {
   padding-top: 10px;
   border-top: 1px solid var(--rule-soft);
   margin-top: 8px;
-  max-width: 660px;
+  text-align: center;
 }
 
 .entry-foot {
@@ -390,12 +395,12 @@ figcaption {
   line-height: 1.2;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
-  max-width: 24ch;
+
 }
 
 .cta p {
   margin-bottom: 28px;
-  max-width: 56ch;
+
 }
 
 /* --- profile -------------------------------------------------- */
@@ -514,7 +519,7 @@ footer {
 
 @media print {
   /* Reset the palette for paper. Without this, printing from dark mode
-     carries the dark-mode tokens onto a white sheet — muted text lands at
+     carries the dark-mode tokens onto a white sheet – muted text lands at
      3.4:1 and the accent at 2.7:1. */
   :root {
     --paper: #FFFFFF;
@@ -555,7 +560,7 @@ footer {
         </dl>
       </div>
       <div>
-        <h1>SimReady — von der STEP-Datei zum vernetzungsfähigen Bauteil</h1>
+        <h1>SimReady – von der STEP-Datei zum vernetzungsfähigen Bauteil</h1>
       </div>
     </div>
   </header>
@@ -564,7 +569,7 @@ footer {
     <div class="row">
       <div class="rail"></div>
       <div class="about">
-        <p>Vor jeder FE-Rechnung steht die Vorverarbeitung: Geometrie prüfen, Modell bereinigen, entscheiden, wo das Netz verfeinert werden muss. Pro Bauteil kostet das erfahrene Berechnungsingenieure schnell mehrere Stunden. Was dabei übersehen wird, fällt erst im Solver auf — oder gar nicht.</p>
+        <p>Vor jeder FE-Rechnung steht die Vorverarbeitung: Geometrie prüfen, Modell bereinigen, entscheiden, wo das Netz verfeinert werden muss. Pro Bauteil kostet das erfahrene Berechnungsingenieure schnell mehrere Stunden. Was dabei übersehen wird, fällt erst im Solver auf – oder gar nicht.</p>
 
         <h2 class="sub-head">Zwölf Prüfungen und eine klare Aussage</h2>
 
@@ -579,7 +584,7 @@ footer {
 
         <h2 class="sub-head">Das Graph Neural Network</h2>
 
-        <p>Der zweite Teil sagt voraus, welche CAD-Flächen eine Netzverfeinerung benötigen und welcher Fehlertyp vorliegt. Entscheidend ist der Kontext: jede Fläche wird zusammen mit ihren Nachbarflächen bewertet — so, wie ein erfahrener Berechnungsingenieur ein Bauteil als Ganzes liest, nicht Fläche für Fläche.</p>
+        <p>Der zweite Teil sagt voraus, welche CAD-Flächen eine Netzverfeinerung benötigen und welcher Fehlertyp vorliegt. Entscheidend ist der Kontext: jede Fläche wird zusammen mit ihren Nachbarflächen bewertet – so, wie ein erfahrener Berechnungsingenieur ein Bauteil als Ganzes liest, nicht Fläche für Fläche.</p>
 
         <figure>
           <img src="../assets/simready-gnn.svg" class="plate" alt="Flächen mit vorhergesagtem Verfeinerungsbedarf." width="900" height="560" loading="lazy">
