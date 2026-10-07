@@ -172,7 +172,7 @@ Gelenkpositionen gegen das Original.
 **Kennzahl:** aus Stunden manueller Übertragung werden Minuten
 
 **Technologien:** TensorFlow · NXOpen API · Siemens NX · PTC Creo · MATLAB Simscape
-**Links:** [Code für das Klassifikationsmodell](https://github.com/Sumanthreddy-DE/NX-Constraint-to-Creo-Joint-Classification)
+**Links:** [Code für das Klassifikationsmodell](https://github.com/Sumanthreddy-DE/NX-Constraints-training)
 
 `[BILD 4]` — NX-Baugruppe neben erzeugtem Simscape-Blockdiagramm.
 
