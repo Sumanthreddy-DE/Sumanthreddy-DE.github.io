@@ -16,3 +16,8 @@ Archive/
 
 # Impeccable design-hook config: a local tooling decision, not site content.
 .impeccable/
+
+# Redesign brief and design directions: competitive self-assessment, kept local.
+# Not indexed in docs/design-docs/index.md for the same reason as Archive/ above.
+docs/design-docs/2026-09-16-redesign-brief.md
+docs/design-docs/2026-09-16-design-directions.md

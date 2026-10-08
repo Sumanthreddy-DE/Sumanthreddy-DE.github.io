@@ -24,8 +24,9 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
-- **images-placeholder** — 8 image slots defined in `content/de.md` Anhang. All
-  placeholders until real files land.
+- **images-placeholder** — 7 placeholder SVGs remain: `portrait`, `pinn-interface`,
+  `pinn-fehler`, `simready-ui`, `simready-gnn`, `nx-simscape`, `nx-mapping`. `tea-team`, `gokart`, `digidorf` are already real
+  files. Count corrected 2026-10-08 (was "8 slots").
 - **en-toggle** — user asked for a DE/EN language toggle in the top bar. Deferred
   2026-10-05: the brief's decided line is "German-first, English later", and the
   positioning argument (Mittelstand reads German) still holds. Adding EN doubles the
