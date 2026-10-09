@@ -2,7 +2,7 @@
 
 Type: project
 Status: active
-Last touched: 2026-09-23
+Last touched: 2026-10-09
 
 <!-- Machine-maintained by /save-session Step 6b. Do not hand-edit rows or dates. -->
 <!-- Set `Type: hub` if this folder only routes to sub-projects; hubs get their
@@ -30,23 +30,31 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
   fold with nothing evidencing it.
 - **EN toggle** — user asked for DE/EN switch; filed as backlog S2, deferred until
   the images land and the German copy has settled.
-- Phase B chat spec — still **blocked** on the same question: homepage
-  below-the-fold, or its own page framed as a project.
+- **Phase B chat — spec v3 done (chatbot-first)**, in the private nested repo
+  `docs/exec-plans/` (`portfolio-private`). German corpus from the CV master `ml`
+  preset + case-study HTML; thread UI with streaming and follow-ups; FAQ only as a
+  hidden fallback; the eval picks Haiku 4.5 vs Sonnet 5. Backend repo
+  `Sumanthreddy-DE/resume-assistant` created (public, empty). Placement waits on a
+  chat-first mockup.
 - Selector / gate idea — parked. Reorder filter, not a gate. Not specced.
 
 ## Resume here
 
-Drop the supplied images into `assets/` under the existing base names, then update
-`src` + `width`/`height` in `index.html` and the matching `projekte/*.html`. Add
-`class="plate"` for plots and screenshots, omit it for photographs; anything under
-~700px wide gets `<figure class="inset">` instead of being upscaled. Re-render
-previews, run `bash scripts/lint-arch.sh`, commit, hand over the push line.
+Read spec v3 (`docs/exec-plans/active/2026-09-15-ask-me-anything-chat-design.md` §1,
+§2, §5, §15). Render a **chat-first** `fragen.html` mockup (desktop + 390 px, real
+stylesheet, per memory `lessons_mockups.md`) plus the quiet homepage link, and show
+it to the user. Once placement is picked: superpowers:writing-plans → implementation
+plan in `docs/exec-plans/active/`, committed inside `docs/exec-plans/` (private repo).
+
+Images (parallel track, waiting on user): drop into `assets/` under the existing
+base names, update `src` + `width`/`height`, `class="plate"` for plots and
+screenshots, `<figure class="inset">` under ~700 px. Re-render, lint, commit.
 
 **Do not re-run `scratchpad/build_details.py`** — `projekte/pinn.html` carries a
 hand-added figure the generator would destroy.
 
-Live plan: `docs/exec-plans/active/2026-09-17-multipage-portfolio.md` (Tasks 2, 3, 4
-done; 1 and 5 open).
+Live plans: chat spec v3 (above); `docs/exec-plans/active/2026-09-17-multipage-portfolio.md`
+(only Task 1, the images, open).
 
 ## Pipeline
 
@@ -58,8 +66,10 @@ done; 1 and 5 open).
   `<username>.github.io`. `.gitignore` excludes `docs/exec-plans/` and `Archive/` for
   that reason; its comments carry the reasoning. Stage explicit paths, never
   `git add -A`.
-- `docs/design-docs/2026-09-16-redesign-brief.md` is **deliberately untracked** — it
+- The redesign brief (`docs/exec-plans/design-docs/2026-09-16-redesign-brief.md`)
   contains competitive self-assessment that must not be published under a real name.
+  It lives in the private nested repo since 2026-10-09; never copy it back into the
+  public `docs/design-docs/`.
 - A parallel `claude-lab` session works in this repo. It has reset history here once
   (`reset: moving to 0a247c4`). Check `git reflog`, not just `git log`, before
   committing.
@@ -69,8 +79,9 @@ done; 1 and 5 open).
 - **An earlier copy pass invented a fact that reached production**: the site claimed the
   NX→Simscape work was for "elektrische Ski-Rollen", an application in no CV or repo.
   Removed 2026-09-23. Verify concrete specifics in inherited copy before republishing.
-- **Both exec-plans are gitignored and have no remote backup** — the chat spec and
-  `2026-09-17-multipage-portfolio.md` exist only on this machine.
+- **`docs/exec-plans/` is its own private git repo** (`portfolio-private`, since
+  2026-10-09), holding plans, `design-docs/` and `Archive/`. The site repo ignores it.
+  Run git for plans **inside that folder**; a commit from the site root never sees them.
 - The CV PDF at repo root **contains the user's phone number**, published deliberately
   on his explicit call after the exposure was flagged. Do not silently strip it.
 
@@ -92,3 +103,8 @@ done; 1 and 5 open).
   `projekte.html`, three detail pages and `profil.html`. Nav "Lebenslauf" now opens a
   page instead of firing a download. Fixed a real print-palette bug (dark-mode tokens
   printed onto white at 3.4:1). Verified live.
+- 2026-10-09 — housekeeping: brief ignored + index rows reverted (`98a0fd7`), multipage plan
+  Task 1/5 refreshed, superseded plan moved to `completed/`. Chat spec rewritten v1 → v3
+  (German corpus, chatbot-first, eval-picked model, prior-art rules). Created
+  `portfolio-private` (private, nested at `docs/exec-plans/`; brief, directions, Archive
+  moved in; `81dd4a7`, `b496849`) and `resume-assistant` (public, empty).
