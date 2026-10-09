@@ -13,7 +13,7 @@ erklärt — der Leser ist Berechnungsingenieur oder Recruiter mit technischem U
 
 **Bildplatzhalter:** `[BILD n]` · **Offene Punkte:** `[PRÜFEN]`
 
-**Ersetzt** die B1-Fassung vom 2026-09-16 (`Archive/de.md.b1-version.bak`).
+**Ersetzt** die B1-Fassung vom 2026-09-16 (`docs/exec-plans/Archive/de.md.b1-version.bak`, privat).
 
 ---
 

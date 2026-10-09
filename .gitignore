@@ -12,6 +12,8 @@
 # what it holds, so committing the index while ignoring the contents would
 # publish a description of the private material plus dead links to it.
 docs/exec-plans/
+# Archive/ moved into the private docs/exec-plans/ repo on 2026-10-09; the line stays so a
+# recreated root Archive/ can never be published by accident.
 Archive/
 
 # Impeccable design-hook config: a local tooling decision, not site content.
