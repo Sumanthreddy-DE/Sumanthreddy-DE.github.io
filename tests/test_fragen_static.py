@@ -34,8 +34,13 @@ def test_without_javascript_prepared_answers_are_readable(browser, site_url):
     assert pg.locator("#vorbereitet").get_attribute("open") is not None
     assert pg.locator("#antwort-siemens").is_visible()
     assert not pg.locator(".chat-live").is_visible()
-    assert pg.get_by_text("Der Assistent braucht JavaScript").is_visible()
     context.close()
+    # Playwright's java_script_enabled=False does not switch the HTML parser to
+    # "scripting disabled", so <noscript> content never renders there. Check the
+    # notice in the source instead.
+    html = (ROOT / "fragen.html").read_text(encoding="utf-8-sig")
+    noscript = re.search(r"<noscript>(.*?)</noscript>", html, re.S).group(1)
+    assert "Der Assistent braucht JavaScript" in noscript
 
 
 def test_no_prose_em_dash_and_no_italics():
