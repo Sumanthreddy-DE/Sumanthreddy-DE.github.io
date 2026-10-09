@@ -112,24 +112,37 @@
       }
     }
 
-    async function readEvents(response, onDelta) {
+    async function readEvents(response, onDelta, signal) {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = '';
       let end = null;
-      for (;;) {
-        const chunk = await reader.read();
-        if (chunk.done) break;
-        buffer += decoder.decode(chunk.value, { stream: true });
-        let newline;
-        while ((newline = buffer.indexOf('\n')) >= 0) {
-          const line = buffer.slice(0, newline).trim();
-          buffer = buffer.slice(newline + 1);
-          if (!line) continue;
-          const event = JSON.parse(line);
-          if (event.type === 'delta') onDelta(event.text);
-          else end = event;
+      function handle(line) {
+        if (!line) return;
+        const event = JSON.parse(line);
+        if (event.type === 'delta') onDelta(event.text);
+        else end = event;
+      }
+      // A mocked/odd fetch may not honor AbortSignal on its own; cancelling the
+      // reader directly is what actually unblocks a stalled reader.read().
+      const onAbort = () => { reader.cancel().catch(() => {}); };
+      if (signal) signal.addEventListener('abort', onAbort);
+      try {
+        for (;;) {
+          const chunk = await reader.read();
+          if (chunk.done) break;
+          buffer += decoder.decode(chunk.value, { stream: true });
+          let newline;
+          while ((newline = buffer.indexOf('\n')) >= 0) {
+            const line = buffer.slice(0, newline).trim();
+            buffer = buffer.slice(newline + 1);
+            handle(line);
+          }
         }
+        buffer += decoder.decode();
+        if (buffer.trim()) handle(buffer.trim());
+      } finally {
+        if (signal) signal.removeEventListener('abort', onAbort);
       }
       return end;
     }
@@ -145,8 +158,15 @@
       let full = '';
       let started = false;
       let end = null;
-      const timer = setTimeout(() => { if (!started) controller.abort(); },
-        Number(root.dataset.timeoutMs) || 8000);
+      let timer = null;
+      function arm() {
+        clearTimeout(timer);
+        const ms = started
+          ? (Number(root.dataset.stallMs) || 15000)
+          : (Number(root.dataset.timeoutMs) || 8000);
+        timer = setTimeout(() => { controller.abort(); }, ms);
+      }
+      arm();
       try {
         const response = await fetch(endpoint + '/chat', {
           method: 'POST',
@@ -163,7 +183,8 @@
             started = true;
             full += text;
             turn.body.textContent = full;
-          });
+            arm();
+          }, controller.signal);
         }
       } catch (err) {
         end = { type: 'fallback', reason: started ? 'error' : 'timeout' };

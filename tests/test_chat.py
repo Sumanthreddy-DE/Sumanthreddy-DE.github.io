@@ -151,3 +151,33 @@ def test_no_backend_contact_before_interaction(page, site_url):
 def test_prepared_answers_collapse_when_javascript_runs(page, site_url):
     open_page(page, site_url)
     assert page.locator("#vorbereitet").get_attribute("open") is None
+
+
+def test_final_line_without_newline_is_still_parsed(page, site_url):
+    b = open_page(page, site_url)
+    page.route("**/chat", lambda route: route.fulfill(
+        status=200, content_type="application/x-ndjson",
+        headers={"Access-Control-Allow-Origin": "*"},
+        body='{"type": "delta", "text": "Er ist sofort verfügbar.\\nQuelle: Lebenslauf"}\n'
+             '{"type": "done", "model": "m", "cache_read": 0}'))
+    ask_free(page, "Frage")
+    expect(last_answer(page).locator(".source")).to_have_text("Quelle: Lebenslauf")
+    expect(last_answer(page).locator(".text")).to_have_text("Er ist sofort verfügbar.")
+
+
+def test_mid_stream_stall_ends_in_fallback_and_unlocks(page, site_url):
+    open_page(page, site_url)
+    page.evaluate("""() => {
+        document.querySelector('.chat').dataset.stallMs = '300';
+        window.fetch = async (url) => {
+            if (String(url).endsWith('/health')) return new Response('{"ok":true}');
+            const enc = new TextEncoder();
+            const body = new ReadableStream({ start(c) { c.enqueue(enc.encode('{"type":"delta","text":"Halber Sa"}\\n')); } });
+            return new Response(body, { status: 200 });
+        };
+    }""")
+    chip(page, "siemens").click()
+    expect(last_answer(page).locator(".chat-status")).to_have_text(
+        "Vorbereitete Antwort – der Assistent startet gerade.", timeout=3000)
+    expect(last_answer(page).locator(".text")).not_to_contain_text("Halber Sa")
+    expect(page.locator(".chat .ask button")).to_be_enabled()
