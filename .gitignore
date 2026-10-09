@@ -21,3 +21,6 @@ Archive/
 
 # docs/exec-plans/ is its own private repo (Sumanthreddy-DE/portfolio-private) since
 # 2026-10-09; the redesign brief and design directions moved into it, out of docs/design-docs/.
+
+__pycache__/
+.pytest_cache/
