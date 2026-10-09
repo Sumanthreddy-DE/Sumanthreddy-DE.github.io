@@ -7,18 +7,19 @@
   const MAX_CHARS = 500;
   const EMAIL = 'sumanthreddy.settipalli@gmail.com';
   const STARTING = 'Vorbereitete Antwort – der Assistent startet gerade.';
+  const NO_LIVE = 'Gerade keine Live-Antwort – hier die vorbereitete Antwort.';
   const BUSY = 'Gerade viele Fragen – hier die vorbereitete Antwort.';
   const PREPARED_STATUS = {
     timeout: STARTING,
-    error: STARTING,
-    truncated: STARTING,
+    error: NO_LIVE,
+    truncated: NO_LIVE,
     rate: BUSY,
     upstream_busy: BUSY,
     cap: 'Der Assistent pausiert für heute – hier die vorbereitete Antwort.',
     off: 'Der Assistent ist gerade abgeschaltet – hier die vorbereitete Antwort.'
   };
   const UNREACHABLE = 'Der Assistent ist gerade nicht erreichbar. Schreiben Sie mir: ' + EMAIL;
-  const INVALID = 'Diese Frage ließ sich nicht senden. Bitte kürzer fassen – höchstens 500 Zeichen.';
+  const INVALID = 'Diese Frage ließ sich nicht senden. Bitte formulieren Sie sie neu – höchstens 500 Zeichen.';
   const SOURCE_LINE = /^(Quelle|Source):/;
 
   document.documentElement.classList.add('js');
@@ -192,7 +193,9 @@
       clearTimeout(timer);
       if (end && end.type === 'done') {
         finish(turn, full);
-        history.push({ role: 'user', content: question }, { role: 'assistant', content: full.trim() });
+        if (full.trim()) {
+          history.push({ role: 'user', content: question }, { role: 'assistant', content: full.trim() });
+        }
       } else {
         fallback(turn, end ? end.reason : 'error', key);
       }
@@ -233,15 +236,22 @@
   function initPanel(openButton) {
     const panel = document.getElementById(openButton.getAttribute('aria-controls'));
     const closeButton = panel.querySelector('.panel-close');
+    const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
     function open() {
       panel.hidden = false;
       openButton.setAttribute('aria-expanded', 'true');
       panel.querySelector('textarea').focus();
+      if (isMobile()) {
+        const page = document.querySelector('.page');
+        if (page) page.setAttribute('inert', '');
+      }
     }
     function close() {
       panel.hidden = true;
       openButton.setAttribute('aria-expanded', 'false');
       openButton.focus();
+      const page = document.querySelector('.page');
+      if (page) page.removeAttribute('inert');
     }
     openButton.addEventListener('click', () => (panel.hidden ? open() : close()));
     closeButton.addEventListener('click', close);

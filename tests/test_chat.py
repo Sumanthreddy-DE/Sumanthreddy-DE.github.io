@@ -10,7 +10,7 @@ STATUS = {
     "upstream_busy": "Gerade viele Fragen – hier die vorbereitete Antwort.",
     "cap": "Der Assistent pausiert für heute – hier die vorbereitete Antwort.",
     "off": "Der Assistent ist gerade abgeschaltet – hier die vorbereitete Antwort.",
-    "error": "Vorbereitete Antwort – der Assistent startet gerade.",
+    "error": "Gerade keine Live-Antwort – hier die vorbereitete Antwort.",
 }
 UNREACHABLE = "Der Assistent ist gerade nicht erreichbar. Schreiben Sie mir: sumanthreddy.settipalli@gmail.com"
 
@@ -132,7 +132,7 @@ def test_invalid_request_status(page, site_url):
     b.reply = (422, [])
     ask_free(page, "Frage")
     expect(last_answer(page).locator(".chat-status")).to_have_text(
-        "Diese Frage ließ sich nicht senden. Bitte kürzer fassen – höchstens 500 Zeichen.")
+        "Diese Frage ließ sich nicht senden. Bitte formulieren Sie sie neu – höchstens 500 Zeichen.")
 
 
 def test_no_backend_contact_before_interaction(page, site_url):
@@ -165,6 +165,16 @@ def test_final_line_without_newline_is_still_parsed(page, site_url):
     expect(last_answer(page).locator(".text")).to_have_text("Er ist sofort verfügbar.")
 
 
+def test_empty_answer_is_not_added_to_history(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = [{"type": "done", "model": "m", "cache_read": 0}]
+    ask_free(page, "Frage eins")
+    page.wait_for_timeout(300)
+    ask_free(page, "Frage zwei")
+    page.wait_for_timeout(300)
+    assert b.requests[1]["history"] == []
+
+
 def test_mid_stream_stall_ends_in_fallback_and_unlocks(page, site_url):
     open_page(page, site_url)
     page.evaluate("""() => {
@@ -178,6 +188,6 @@ def test_mid_stream_stall_ends_in_fallback_and_unlocks(page, site_url):
     }""")
     chip(page, "siemens").click()
     expect(last_answer(page).locator(".chat-status")).to_have_text(
-        "Vorbereitete Antwort – der Assistent startet gerade.", timeout=3000)
+        "Gerade keine Live-Antwort – hier die vorbereitete Antwort.", timeout=3000)
     expect(last_answer(page).locator(".text")).not_to_contain_text("Halber Sa")
     expect(page.locator(".chat .ask button")).to_be_enabled()

@@ -43,6 +43,20 @@ def test_panel_fallback_links_to_prepared_answers(page, site_url):
     expect(answer_turn.locator("a.lnk")).to_have_attribute("href", "fragen.html#vorbereitet")
 
 
+def test_panel_makes_page_inert_on_mobile_until_closed(browser, site_url):
+    context = browser.new_context(viewport={"width": 390, "height": 844})
+    pg = context.new_page()
+    Backend(pg)
+    pg.goto(f"{site_url}/index.html")
+    pg.locator(".chat-open").click()
+    expect(pg.locator("#chat-panel")).to_be_visible()
+    assert pg.locator(".page").get_attribute("inert") is not None
+    pg.keyboard.press("Escape")
+    expect(pg.locator("#chat-panel")).to_be_hidden()
+    assert pg.locator(".page").get_attribute("inert") is None
+    context.close()
+
+
 def test_button_hidden_without_javascript(browser, site_url):
     context = browser.new_context(java_script_enabled=False)
     pg = context.new_page()
