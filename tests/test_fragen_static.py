@@ -19,7 +19,11 @@ def test_every_chip_has_a_prepared_answer_with_source(page, site_url):
     for key in KEYS:
         assert page.locator(f".chip[data-key={key}]").count() == 1
         prepared = page.locator(f"#antwort-{key}")
-        assert prepared.locator("p.source").inner_text().startswith("Quelle:")
+        # text_content(), not inner_text(): chat.js (Task 10) collapses #vorbereitet
+        # via `details.open = false`, and inner_text() follows DOM rendering rules,
+        # returning "" for content inside a closed <details>. text_content() reads
+        # the markup regardless of visibility, which is what this check needs.
+        assert prepared.locator("p.source").text_content().startswith("Quelle:")
 
 
 def test_eval_table_lists_fifteen_questions(page, site_url):
