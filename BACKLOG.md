@@ -39,6 +39,15 @@ _(none yet)_
 
 ## Open — S3 (tech debt, deprecations, low-impact polish)
 
+- **chat-panel-focus** — the homepage chat panel puts focus in the textarea, so the
+  close button is reached with Shift+Tab. Desktop panel is non-modal by design.
+- **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
+  verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
+- **eval-prescreen-nie** — auto pre-screen misses "nie"/"keine/keinen" as negations
+  (false flags on Haiku 5.5 / Sonnet 5 answers). Hand grading decides; tidy the regexes.
+- **state-md-private-path** — `STATE.md` on `main` names a path inside the private CV
+  repo; reword on the next STATE edit (public repo).
+
 - **dotted-folder-name** — whether to rename the *local* working folder from
   `Sumanthreddy-DE.github.io` to `Sumanthreddy-DE-github-io`. Dots in a path
   cause friction in some tooling; nothing is broken today.
@@ -56,6 +65,34 @@ _(none yet)_
 ## Doing
 
 _(items currently being worked — move from Open when started, back to Open if paused.)_
+
+- **chat-layer** — "Fragen an meinen Lebenslauf". Tasks 1–14 of the plan done
+  (corpus, backend, frontend, deploy). Branch `chat-layer` holds all site work and is
+  **not pushed and not merged**. Backend live at `https://api.sumanthreddy.de` (VPS,
+  Caddy + systemd), currently `MODEL=claude-sonnet-5`, `DEBUG_IP=true`. Next steps, in order:
+  1. **Sonnet 5 eval on prompt v3** — re-run after freeing laptop memory (last two runs
+     were cut off: a DNS hiccup, then low memory). From `Projects/resume-assistant`:
+     `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`
+     (~16 min, pauses 62 s per question). Results so far: Haiku 4.5 ~11/15, Sonnet 5 14/15
+     on prompt v2 (wrong language, rule since added), Haiku 5.5 14/15 on v3 (listed
+     SimReady as an employer). Files in `resume-assistant/evals/results/`.
+  2. **Pick the model** by the spec rule (cheapest that passes all 15). If Sonnet 5 passes
+     → keep it. If not → add a rule "projects are not employers", re-run Haiku 5.5 and
+     Sonnet 5. User grades the "Urteil" column by hand; commit the graded files.
+  3. **Fill the page**: `fragen.html` results column (`offen` → `bestanden`, row order =
+     `evals/questions.json`), rail "Modell" → model name; README eval line; spec §10 row.
+  4. **Server clean-up (user, VPS)**: `DEBUG_IP=false` and remove
+     `http://127.0.0.1:8000` from `ALLOWED_ORIGIN` in `/etc/resume-assistant/env`, then
+     restart the service.
+  5. **Launch gate** (plan Task 16 Step 2): `grep -c "\[VPS-" impressum.html` = 0 (done),
+     `grep -c '<td class="res">offen</td>' fragen.html` = 0, `python -m pytest tests -q`,
+     `bash scripts/lint-arch.sh`; live smoke test from `http://127.0.0.1:8000/fragen.html`
+     before removing that origin.
+  6. **Merge** `chat-layer` → `main` (`--no-ff`), user pushes, verify the live site at
+     1280 and 390 px.
+  7. After launch (needs user approval, CV repo): add the bot as a CV project line and a
+     "Live-Demo" link in AI-job Anschreiben (spec §14). Rebuild the CV PDFs: the master
+     now says "KTmfk" but the published PDF still says "KTMFK".
 
 ---
 
