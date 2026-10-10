@@ -47,6 +47,13 @@ _(none yet)_
   (false flags on Haiku 5.5 / Sonnet 5 answers). Hand grading decides; tidy the regexes.
 - **state-md-private-path** — `STATE.md` on `main` names a path inside the private CV
   repo; reword on the next STATE edit (public repo).
+- **css-blocks-drift** — the shared inline `<style>` is no longer one block: four
+  variants (index, projekte, impressum, and case studies + profil + fragen). Decide:
+  re-unify into one block, or document the drift as intended. *(found 2026-10-10,
+  Sumanthreddy-DE.github.io session)*
+- **design-directions-status** — `docs/exec-plans/active/2026-09-16-design-directions.md`
+  has no `**Status:**` line; set done/abandoned and move it to `completed/` (private
+  plans repo). *(found 2026-10-10, Sumanthreddy-DE.github.io session)*
 
 - **dotted-folder-name** — whether to rename the *local* working folder from
   `Sumanthreddy-DE.github.io` to `Sumanthreddy-DE-github-io`. Dots in a path
