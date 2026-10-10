@@ -24,6 +24,11 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
+- **anny-link-404** — `projekte.html` links `github.com/Sumanthreddy-DE/anny-booking-bot`,
+  which is private since 2026-10-07 (history purge, waiting on GitHub Support), so
+  visitors hit a 404. Remove or unlink it until the repo is public again.
+  *(found 2026-10-10, Sumanthreddy-DE session)*
+
 - **images-placeholder** — 7 placeholder SVGs remain: `portrait`, `pinn-interface`,
   `pinn-fehler`, `simready-ui`, `simready-gnn`, `nx-simscape`, `nx-mapping`. `tea-team`, `gokart`, `digidorf` are already real
   files. Count corrected 2026-10-08 (was "8 slots").
