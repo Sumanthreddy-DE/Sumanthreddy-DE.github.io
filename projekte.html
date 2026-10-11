@@ -1,17 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alle Projekte: Sumanth Reddy Settipalli</title>
-<meta name="description" content="Alle Projekte: Simulation und Machine Learning, Hackathons, Werkzeuge und Automatisierung. PINN, SimReady, NX-zu-Simscape, Topologieoptimierung und mehr.">
+<title>Simulation und Machine Learning: Sumanth Reddy Settipalli</title>
+<meta name="description" content="Projekte in Simulation und Machine Learning: PINN-Parameteridentifikation, SimReady, NX-zu-Simscape, Topologieoptimierung, Hackathons und Engagement.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:url" content="https://sumanthreddy-de.github.io/projekte.html">
-<meta property="og:title" content="Alle Projekte: Sumanth Reddy Settipalli">
-<meta property="og:description" content="Simulation und Machine Learning zuerst, Werkzeuge danach.">
+<meta property="og:title" content="Simulation und Machine Learning: Sumanth Reddy Settipalli">
+<meta property="og:description" content="Fallstudien aus Masterarbeit, Lehrstuhl und eigenen Projekten.">
 <meta property="og:image" content="https://sumanthreddy-de.github.io/assets/portrait.svg">
 <meta name="twitter:card" content="summary">
 
@@ -389,9 +389,9 @@ footer {
       </dl>
     </div>
     <div>
-      <h1>Alle Projekte</h1>
-      <p class="claim">Simulation zuerst, Werkzeuge danach.</p>
-      <p class="hero-facts">Die drei ausführlichen Fallstudien stehen auf der <a class="lnk" href="index.html#projekte">Startseite</a>. Hier steht alles: auch die kleineren Arbeiten, Hackathons, das Engagement und die Software, die neben der Simulation entstanden ist.</p>
+      <h1>Simulation und Machine Learning</h1>
+      <p class="claim">Aus Masterarbeit, Lehrstuhl und eigenen Projekten.</p>
+      <p class="hero-facts">Die drei ausführlichen Fallstudien stehen auf der <a class="lnk" href="index.html#projekte">Startseite</a>. Die Werkzeuge und KI-Automatisierungen haben eine <a class="lnk" href="automatisierung.html">eigene Seite</a>. Hier stehen außerdem Hackathons und Engagement.</p>
     </div>
   </div>
 </header>
@@ -610,114 +610,6 @@ footer {
           <img src="assets/gokart.jpg" alt="Das Kart des Teams mit der Startnummer 85 in der Box" width="314" height="318" loading="lazy">
           <figcaption>Das Kart in der Box, Startnummer 85.</figcaption>
         </figure>
-      </div>
-    </div>
-  </article>
-</section>
-
-<!-- ============================ WERKZEUGE ============================ -->
-<section id="werkzeuge">
-  <div class="row">
-    <div class="rail"></div>
-    <div>
-      <h2 class="section-head">Werkzeuge und Automatisierung</h2>
-      <p class="group-note">Software, die ich neben der Simulation gebaut habe, meist, um ein eigenes Problem loszuwerden.</p>
-      <ul class="minor">
-        <li>
-          <b>Fragen an meinen Lebenslauf: KI-Assistent mit Quellenbindung</b>
-          <p>Beantwortet Fragen zu meinem Werdegang nur aus Lebenslauf und Fallstudien, nennt zu jeder Antwort die Quelle und wird nach jeder Änderung am Prompt gegen 15 Testfragen geprüft. FastAPI auf eigenem Server, Claude über die Anthropic API, gestreamte Antworten, Ratenbegrenzung und vorbereitete Antworten, wenn der Dienst nicht erreichbar ist.</p>
-          <a class="lnk" href="fragen.html" style="margin-right: 16px">Ausprobieren</a>
-          <a class="lnk" href="https://github.com/Sumanthreddy-DE/resume-assistant">Code</a>
-        </li>
-        <li>
-          <b>Tägliche Stellenbenachrichtigung für SmartRecruiters</b>
-          <p>Eine Mail pro Tag mit den Stellen, die seit gestern neu sind. Python, GitHub-Actions-Cron, kein Server, kein API-Schlüssel. Lief fünf Monate täglich.</p>
-          <a class="lnk" href="https://github.com/Sumanthreddy-DE/smartrecruiters-job-alerts">Code</a>
-        </li>
-        <li>
-          <b>Tagesübersicht für Terminbuchungen</b>
-          <p>Playwright-Scraper ohne Oberfläche, Versand über Gmail SMTP, geplant über GitHub Actions, mit pytest und CI.</p>
-          <a class="lnk" href="https://github.com/Sumanthreddy-DE/anny-booking-bot">Code</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ KI-AUTOMATISIERUNG ============================ -->
-<section id="ki-automatisierung">
-  <div class="row">
-    <div class="rail"></div>
-    <h2 class="section-head">KI-Automatisierung</h2>
-  </div>
-
-  <p class="group-note" style="margin-bottom: 48px;">Drei Systeme, die Arbeit übernehmen, die sonst jemand von Hand macht. Zwei davon sind privat, weil sie meine persönlichen Abläufe automatisieren; den Aufbau zeige ich gern im Gespräch.</p>
-
-  <article class="entry">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Jahr</dt><dd>2025</dd>
-          <dt>Rolle</dt><dd>Allein</dd>
-        </dl>
-      </div>
-      <div>
-        <h3>Anny-Booking-Bot: Tagesübersicht für Buchungen</h3>
-
-        <p>In unserem Wohnhaus buchen Bewohner eine Gemeinschaftsküche über anny.co. Der Hausmeister soll jedem die Küche übergeben, sieht die Buchungen aber nur, wenn er sich selbst anmeldet. Der Bot meldet täglich um fünf Uhr morgens per Playwright ohne Oberfläche an, liest die heutigen und morgigen Buchungen und schickt eine aufbereitete Mail an den Hausmeister: Uhrzeit, Name, Telefonnummer, Raum. Geplant über GitHub Actions und einen externen Cron-Dienst, geprüft mit pytest und CI. Lief mehrere Monate täglich.</p>
-
-        <div class="entry-foot">
-          <div class="stack">Python · Playwright · Gmail SMTP · GitHub Actions · pytest</div>
-          <div class="entry-links">
-            <a class="lnk" href="https://github.com/Sumanthreddy-DE/anny-booking-bot">Code</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="entry">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Jahr</dt><dd>2026</dd>
-          <dt>Rolle</dt><dd>Allein</dd>
-        </dl>
-      </div>
-      <div>
-        <h3>Self-Talk-Coach: Sprechübung mit Rückfallebene</h3>
-
-        <p>Ein Gesprächspartner für gesprochenes Deutsch von der Kommandozeile. Ich drücke die Leertaste, spreche, Deepgram transkribiert, ein Sprachmodell antwortet als Gesprächspartner und edge-tts liest die Antwort vor. Stocke ich nach einer Frage, greift eine Hilfsleiter: erst eine Ermutigung, dann ein Satzanfang, dann die Frage in einfacher Form. Jede Runde landet mit Timing in SQLite, am Ende gibt es die mediane Reaktionszeit. Dazu eine Mediathek, die eigene Selbstgespräch-Videos lokal mit faster-whisper transkribiert. Privat, weil er gegen meine eigenen Sprechdaten läuft.</p>
-
-        <div class="entry-foot">
-          <div class="stack">Python · Deepgram · faster-whisper · edge-tts · SQLite</div>
-          <div class="entry-links">
-            <span class="no-link">Repository privat, gern zeige ich es im Gespräch.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="entry">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Jahr</dt><dd>seit 2026</dd>
-          <dt>Rolle</dt><dd>Allein</dd>
-        </dl>
-      </div>
-      <div>
-        <h3>Career-Ops: Bewerbungszentrale mit Schreib-Skills</h3>
-
-        <p>Stellensuche, Lebenslauf-Anpassung und Bewerbungs-Tracking in einem System. Portal-Anbindung über eigene Abfragen, ein privates Dashboard in Go, und eigene Schreib-Skills, die Lebenslauf und Anschreiben pro Stelle erzeugen. Die Skills arbeiten regelbasiert: Belege vor Behauptungen, keine erfundenen Zahlen, Sprachniveau der Ausschreibung übernehmen. Der Chat-Assistent auf der Startseite ist aus diesem System entstanden.</p>
-
-        <div class="entry-foot">
-          <div class="stack">Python · Go · LLM-Pipelines · eigene CLI-Skills</div>
-          <div class="entry-links">
-            <span class="no-link">Repository privat, gern zeige ich es im Gespräch.</span>
-          </div>
-        </div>
       </div>
     </div>
   </article>

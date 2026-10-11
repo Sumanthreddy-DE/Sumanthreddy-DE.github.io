@@ -73,9 +73,9 @@ def test_kontakt_offers_email_and_linkedin_only(page, site_url):
 
 
 def test_werkzeuge_lists_the_assistant_first(page, site_url):
-    page.goto(f"{site_url}/projekte.html")
-    first = page.locator("#werkzeuge ul.minor > li").first
-    expect(first.locator("b")).to_contain_text("Fragen an meinen Lebenslauf")
+    page.goto(f"{site_url}/automatisierung.html")
+    first = page.locator("#assistent article.entry").first
+    expect(first.locator("h3")).to_contain_text("Fragen an meinen Lebenslauf")
     expect(first.locator("a", has_text="Ausprobieren")).to_have_attribute("href", "fragen.html")
     expect(first.locator("a", has_text="Code")).to_have_attribute(
         "href", "https://github.com/Sumanthreddy-DE/resume-assistant")
