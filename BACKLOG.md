@@ -72,24 +72,38 @@ _(none yet)_
   fixed at the source rather than dodged. Revisit only if dotted paths bite
   somewhere new.
 
+- **availability-contradiction** — the CV PDF says „Sofort verfügbar"; the site
+  contact section (rewritten 2026-10-11) says nothing about availability. Decide one
+  position: keep availability public (add one quiet line to the site) or drop it from
+  the master before the next PDF rebuild. *(found 2026-10-11, Sumanthreddy-DE.github.io session)*
+
 ---
 
 ## Doing
 
-- **chat-voice-human** — answers read like a recital of the CV: "B2, Zertifikat in
-  Vorbereitung" comes back word-for-word from the document, so it feels hardcoded /
-  AI-ish rather than a person talking. Want: prompt tweaks so answers paraphrase
-  instead of quoting, with a *little* warmth or wit — sparingly, not quirky every
-  answer. Constraint: must still pass all 15 eval questions (re-run eval after the
-  prompt change; add eval assertions for "not a verbatim CV quote" where feasible).
-  *(opened 2026-10-11, post-launch feedback)*
-
-- **chat-layer step 7** — remaining after launch (needs user approval, CV repo): add
-  the bot as a CV project line and a "Live-Demo" link in AI-job Anschreiben (spec
-  §14). Rebuild the CV PDFs: the master now says "KTmfk" but the published PDF still
-  says "KTMFK".
+- **chat-layer step 7 (partial)** — remaining after launch (needs user approval, CV
+  repo): add the bot as a CV project line and a "Live-Demo" link in AI-job Anschreiben
+  (spec §14). ~~Rebuild the CV PDFs~~ done 2026-10-11: site PDF rebuilt from master,
+  KTmfk fix verified in the shipped PDF.
 
 ## Done this session (2026-10-11)
+
+- **chat-voice-human** — prompt v4 (tone rules: paraphrase, varied openers, light
+  human touch, refusals exempt) deployed and re-evaled: Sonnet 5 15/15 on prompt v3
+  AND v4 (german-row C1 flag = recurring false positive, hand-graded pass both times).
+  Cache prefix 7363 → 7726 tokens. Graded files committed in resume-assistant.
+  User approved the live tone. *(commits: 1a7c6d9→5246045 prompt v4, 79dce67 eval)*
+
+- **site restructure day** — DigiDorf before DEHN; contact section rewritten twice
+  (collaboration invite → plain search statement, no location narrowing, no
+  "ab sofort"); dash density pass (43 replaces, ranges kept); new page
+  `automatisierung.html` (KI-Automatisierung: Resume-Assistant, Self-Talk-Coach,
+  Anny-Booking-Bot, SmartRecruiters — full entries, Anny format); `projekte.html`
+  retitled „Simulation und Machine Learning"; KI-Automatisierung link in topbars;
+  hackathon one-liner + TEA paragraph on homepage; ICAMES talk in profil Ausbildung;
+  thesis repo link relabeled (LaTeX + PDF); CV PDF rebuilt from master (KTmfk fix);
+  duplicate link line removed. Career-Ops removed from public site (user decision).
+  *(commits: 1a4fcea, 4a861c7, f46e8ff, ca32223, e38901e, 744cb34, 4a523ed, fe3ed21)*
 
 - **chat-layer steps 1–6** — Sonnet 5 eval on prompt v3: 15/15 (german-row C1 flag =
   false positive, hand-graded pass). Model pick: Sonnet 5 per spec rule (Haiku 5.5
