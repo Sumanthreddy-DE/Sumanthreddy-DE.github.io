@@ -16,8 +16,12 @@ Edit `index.html` and push to `main`. GitHub Pages redeploys automatically, usua
 minute. To preview locally, open the file in a browser, or run `python -m http.server` in this
 directory and visit `localhost:8000`.
 
-## Planned
+## Question assistant (fragen.html)
 
-A grounded question-and-answer section, so a visitor can ask about the projects listed here and
-get answers drawn from the repositories rather than from an unconstrained model. The static
-summary above stays as the primary content and loads regardless.
+A grounded question-and-answer assistant ("Fragen an meinen Lebenslauf") answers visitor
+questions about the projects listed here, drawn only from the CV and three case studies.
+Backend: [resume-assistant](https://github.com/Sumanthreddy-DE/resume-assistant), live at
+`https://api.sumanthreddy.de`. The model (Claude Sonnet 5) was chosen by an eval of 15 test
+questions — refusal of invented facts, source citation, language mirroring, injection
+resistance — graded in `resume-assistant/evals/results/`; the visible results table is in
+`fragen.html`. The static summary stays as the primary content and loads regardless.

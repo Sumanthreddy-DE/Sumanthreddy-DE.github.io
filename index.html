@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://sumanthreddy-de.github.io/assets/portrait.svg">
 <meta name="twitter:card" content="summary">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/chat.css">
+<script src="assets/chat.js" defer></script>
 
 <style>
 /* ---------------------------------------------------------------
@@ -572,7 +572,6 @@ footer {
       <p>Ich suche eine Festanstellung im Raum Stuttgart und Reutlingen: Berechnung, Simulation, CAE-Automatisierung oder angewandtes Machine Learning in der Fertigung. Ab sofort verfügbar. Schreiben Sie mir gern auf Deutsch oder Englisch.</p>
       <div class="foot-links">
         <a class="lnk" href="mailto:sumanthreddy.settipalli@gmail.com">E-Mail schreiben</a>
-        <a class="lnk" href="https://github.com/Sumanthreddy-DE">GitHub</a>
         <a class="lnk" href="https://www.linkedin.com/in/sumanthreddys">LinkedIn</a>
       </div>
     </div>
@@ -590,5 +589,34 @@ footer {
 </footer>
 
 </div>
+<button class="chat-open" type="button" aria-expanded="false" aria-controls="chat-panel">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></svg>
+  <span><b>Fragen zu meinem Lebenslauf?</b><small>KI-Assistent · antwortet sofort</small></span>
+</button>
+<aside class="chat-panel" id="chat-panel" aria-label="Fragen an meinen Lebenslauf" hidden>
+  <div class="panel-head">
+    <h2>Fragen an meinen Lebenslauf</h2>
+    <button class="panel-close" type="button">Schließen</button>
+  </div>
+  <div class="chat chat-live" data-endpoint="https://api.sumanthreddy.de" data-timeout-ms="8000" data-prepared-url="fragen.html#vorbereitet">
+    <div class="panel-body">
+      <p class="chat-note">Ein Assistent, der nur aus Lebenslauf und Fallstudien antwortet, in der dritten Person und mit Quelle. Ihre Frage wird zur Beantwortung an Anthropic übermittelt; ich speichere sie nicht. <a class="lnk" href="impressum.html#datenschutz">Datenschutz</a></p>
+      <ol class="thread" aria-live="polite"></ol>
+    </div>
+    <div class="panel-foot">
+      <div class="chips" aria-label="Vorschläge">
+        <button class="chip" type="button" data-key="gebaut">Was hat er konkret gebaut?</button>
+        <button class="chip" type="button" data-key="berechnung">Passt er auf eine Stelle in der Berechnung?</button>
+        <button class="chip" type="button" data-key="deutsch">Wie gut ist sein Deutsch?</button>
+        <button class="chip" type="button" data-key="verfuegbar">Ab wann ist er verfügbar?</button>
+      </div>
+      <form class="ask">
+        <textarea aria-label="Eigene Frage" rows="1" maxlength="500" placeholder="Eigene Frage stellen"></textarea>
+        <button type="submit">Fragen</button>
+      </form>
+      <div class="ask-meta"><a class="lnk" href="fragen.html#pruefung">Wie ich prüfe, dass er nichts erfindet</a><span class="count">0 / 500</span></div>
+    </div>
+  </div>
+</aside>
 </body>
 </html>

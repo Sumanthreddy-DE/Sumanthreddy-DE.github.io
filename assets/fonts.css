@@ -1,0 +1,9 @@
+/* Self-hosted fonts, SIL Open Font License 1.1 (fonts/OFL-*.txt).
+   Replaces the Google Fonts link so that loading a page contacts no third party. */
+@font-face { font-family: 'Libre Bodoni'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/libre-bodoni-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Libre Bodoni'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/libre-bodoni-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Libre Bodoni'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/libre-bodoni-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/public-sans-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/public-sans-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/public-sans-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/public-sans-latin-700-normal.woff2') format('woff2'); }

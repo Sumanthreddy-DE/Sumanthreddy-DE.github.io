@@ -2,7 +2,7 @@
 
 Type: project
 Status: active
-Last touched: 2026-10-09
+Last touched: 2026-10-10
 
 <!-- Machine-maintained by /save-session Step 6b. Do not hand-edit rows or dates. -->
 <!-- Set `Type: hub` if this folder only routes to sub-projects; hubs get their
@@ -30,21 +30,20 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
   fold with nothing evidencing it.
 - **EN toggle** — user asked for DE/EN switch; filed as backlog S2, deferred until
   the images land and the German copy has settled.
-- **Phase B chat — spec v3 done (chatbot-first)**, in the private nested repo
-  `docs/exec-plans/` (`portfolio-private`). German corpus from the CV master `ml`
-  preset + case-study HTML; thread UI with streaming and follow-ups; FAQ only as a
-  hidden fallback; the eval picks Haiku 4.5 vs Sonnet 5. Backend repo
-  `Sumanthreddy-DE/resume-assistant` created (public, empty). Placement waits on a
-  chat-first mockup.
+- **Phase B chat — built and deployed, not launched.** Branch `chat-layer` (unpushed,
+  unmerged) holds `fragen.html`, the homepage corner button + panel, self-hosted fonts,
+  Werkzeuge entry and Datenschutz. Backend `Projects/resume-assistant` live at
+  `https://api.sumanthreddy.de` (VPS, Caddy + systemd). Model eval in progress: Haiku 4.5
+  ~11/15, Haiku 5.5 14/15, Sonnet 5 14/15 (older prompt); Sonnet on prompt v3 pending.
+  Steps in `BACKLOG.md` → Doing → chat-layer.
 - Selector / gate idea — parked. Reorder filter, not a gate. Not specced.
 
 ## Resume here
 
-Read spec v3 (`docs/exec-plans/active/2026-09-15-ask-me-anything-chat-design.md` §1,
-§2, §5, §15). Render a **chat-first** `fragen.html` mockup (desktop + 390 px, real
-stylesheet, per memory `lessons_mockups.md`) plus the quiet homepage link, and show
-it to the user. Once placement is picked: superpowers:writing-plans → implementation
-plan in `docs/exec-plans/active/`, committed inside `docs/exec-plans/` (private repo).
+Free laptop memory, then from `Projects/resume-assistant` run
+`.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de` (server on
+Sonnet 5, prompt v3). Grade with the user, pick the model, then `BACKLOG.md` → Doing →
+chat-layer steps 3–7 (fill eval table, `DEBUG_IP=false`, launch gate, merge, CV follow-ups).
 
 Images (parallel track, waiting on user): drop into `assets/` under the existing
 base names, update `src` + `width`/`height`, `class="plate"` for plots and
@@ -53,7 +52,7 @@ screenshots, `<figure class="inset">` under ~700 px. Re-render, lint, commit.
 **Do not re-run `scratchpad/build_details.py`** — `projekte/pinn.html` carries a
 hand-added figure the generator would destroy.
 
-Live plans: chat spec v3 (above); `docs/exec-plans/active/2026-09-17-multipage-portfolio.md`
+Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer-implementation.md` (Tasks 1–14 done); `docs/exec-plans/active/2026-09-17-multipage-portfolio.md`
 (only Task 1, the images, open).
 
 ## Pipeline
@@ -87,6 +86,9 @@ Live plans: chat spec v3 (above); `docs/exec-plans/active/2026-09-17-multipage-p
 
 ## Done
 
+- 2026-10-10 — chat layer: mockups → placement (own page + corner panel) → plan →
+  Tasks 1–14 built and reviewed (corpus, backend, site, VPS deploy at api.sumanthreddy.de);
+  fonts self-hosted; Kontakt e-mail + LinkedIn only; Datenschutz added
 - 2026-09-16 — scaffolded via new-project-init.sh
 - 2026-09-16 — chat layer brainstormed and specced end to end (corpus source, model,
   rate limiting, grounding rules, eval set, error handling); scope then widened to a
