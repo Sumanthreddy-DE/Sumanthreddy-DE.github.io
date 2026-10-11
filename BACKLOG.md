@@ -12,7 +12,7 @@ Living list of open issues, deferred work, and known caveats. Updated each sessi
 - Mention by short slug in commit body (e.g. "Closes: my-issue-slug").
 - On close → move to **Done this session** with commit SHA.
 - End of session → user sweeps **Done** → **Archived** (one-line compress).
-- Last swept: **2026-10-05** (palette + alignment session archived).
+- Last swept: **2026-10-11** (chat-layer steps 1–6 closed).
 
 ---
 
@@ -76,41 +76,28 @@ _(none yet)_
 
 ## Doing
 
-_(items currently being worked — move from Open when started, back to Open if paused.)_
+- **chat-voice-human** — answers read like a recital of the CV: "B2, Zertifikat in
+  Vorbereitung" comes back word-for-word from the document, so it feels hardcoded /
+  AI-ish rather than a person talking. Want: prompt tweaks so answers paraphrase
+  instead of quoting, with a *little* warmth or wit — sparingly, not quirky every
+  answer. Constraint: must still pass all 15 eval questions (re-run eval after the
+  prompt change; add eval assertions for "not a verbatim CV quote" where feasible).
+  *(opened 2026-10-11, post-launch feedback)*
 
-- **chat-layer** — "Fragen an meinen Lebenslauf". Tasks 1–14 of the plan done
-  (corpus, backend, frontend, deploy). Branch `chat-layer` holds all site work and is
-  **not pushed and not merged**. Backend live at `https://api.sumanthreddy.de` (VPS,
-  Caddy + systemd), currently `MODEL=claude-sonnet-5`, `DEBUG_IP=true`. Next steps, in order:
-  1. **Sonnet 5 eval on prompt v3** — re-run after freeing laptop memory (last two runs
-     were cut off: a DNS hiccup, then low memory). From `Projects/resume-assistant`:
-     `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`
-     (~16 min, pauses 62 s per question). Results so far: Haiku 4.5 ~11/15, Sonnet 5 14/15
-     on prompt v2 (wrong language, rule since added), Haiku 5.5 14/15 on v3 (listed
-     SimReady as an employer). Files in `resume-assistant/evals/results/`.
-  2. **Pick the model** by the spec rule (cheapest that passes all 15). If Sonnet 5 passes
-     → keep it. If not → add a rule "projects are not employers", re-run Haiku 5.5 and
-     Sonnet 5. User grades the "Urteil" column by hand; commit the graded files.
-  3. **Fill the page**: `fragen.html` results column (`offen` → `bestanden`, row order =
-     `evals/questions.json`), rail "Modell" → model name; README eval line; spec §10 row.
-  4. **Server clean-up (user, VPS)**: `DEBUG_IP=false` and remove
-     `http://127.0.0.1:8000` from `ALLOWED_ORIGIN` in `/etc/resume-assistant/env`, then
-     restart the service.
-  5. **Launch gate** (plan Task 16 Step 2): `grep -c "\[VPS-" impressum.html` = 0 (done),
-     `grep -c '<td class="res">offen</td>' fragen.html` = 0, `python -m pytest tests -q`,
-     `bash scripts/lint-arch.sh`; live smoke test from `http://127.0.0.1:8000/fragen.html`
-     before removing that origin.
-  6. **Merge** `chat-layer` → `main` (`--no-ff`), user pushes, verify the live site at
-     1280 and 390 px.
-  7. After launch (needs user approval, CV repo): add the bot as a CV project line and a
-     "Live-Demo" link in AI-job Anschreiben (spec §14). Rebuild the CV PDFs: the master
-     now says "KTmfk" but the published PDF still says "KTMFK".
+- **chat-layer step 7** — remaining after launch (needs user approval, CV repo): add
+  the bot as a CV project line and a "Live-Demo" link in AI-job Anschreiben (spec
+  §14). Rebuild the CV PDFs: the master now says "KTmfk" but the published PDF still
+  says "KTMFK".
 
----
+## Done this session (2026-10-11)
 
-## Done this session (2026-10-05)
-
-_(empty — swept to Archived below.)_
+- **chat-layer steps 1–6** — Sonnet 5 eval on prompt v3: 15/15 (german-row C1 flag =
+  false positive, hand-graded pass). Model pick: Sonnet 5 per spec rule (Haiku 5.5
+  14/15). `fragen.html` results filled, rail model name, README eval section, spec §10
+  row, graded eval file committed. VPS clean-up done (`DEBUG_IP=false`, localhost origin
+  removed, restart verified in journal). Launch gate passed (pytest 39, lint-arch PASS).
+  Merged `chat-layer` → `main` `--no-ff` (`05cf98b`), pushed, live site verified
+  (fragen.html + chat.js + API health 200). *(commits: 89c0f5f, 05cf98b)*
 
 ---
 

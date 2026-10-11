@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen – Sumanth Reddy Settipalli</title>
+<title>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen: Sumanth Reddy Settipalli</title>
 <meta name="description" content="Ein physikinformiertes neuronales Netz bestimmt Grenzflächenparameter in faserverstärkten Verbundwerkstoffen invers. Vorhersagefehler unter 5 %.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -567,7 +567,7 @@ footer {
     <div class="row">
       <div class="rail"></div>
       <div class="about">
-        <p>In faserverstärkten Verbundwerkstoffen entscheidet die Interphase zwischen Faser und Matrix maßgeblich über das Bauteilverhalten. Ihre Parameter lassen sich messtechnisch kaum direkt erfassen. In der Praxis bedeutet das: aufwendige Versuchsreihen – oder Annahmewerte aus der Literatur.</p>
+        <p>In faserverstärkten Verbundwerkstoffen entscheidet die Interphase zwischen Faser und Matrix maßgeblich über das Bauteilverhalten. Ihre Parameter lassen sich messtechnisch kaum direkt erfassen. In der Praxis bedeutet das: aufwendige Versuchsreihen oder Annahmewerte aus der Literatur.</p>
 
         <figure>
           <img src="../assets/pinn-interface.svg" class="plate" alt="Die dreischichtige Interphase zwischen Faser und Matrix." width="900" height="560" loading="lazy">
@@ -578,11 +578,11 @@ footer {
 
         <p>Ich habe ein physikinformiertes neuronales Netz (PINN) entwickelt, das diese Parameter invers bestimmt. Eingang sind die effektiven Kompressions- und Schubmoduli eines dreischichtigen Interphasenmodells, Ausgang der Parametersatz, der genau diese Moduli reproduziert.</p>
 
-        <p>Die Mikromechanik der Homogenisierung steckt dabei in der Verlustfunktion selbst – das Netz lernt nicht nur aus Daten, sondern gegen die Physik. Damit bleibt die Lösung auch dort physikalisch sinnvoll, wo der Trainingsdatensatz dünn ist.</p>
+        <p>Die Mikromechanik der Homogenisierung steckt dabei in der Verlustfunktion selbst: das Netz lernt nicht nur aus Daten, sondern gegen die Physik. Damit bleibt die Lösung auch dort physikalisch sinnvoll, wo der Trainingsdatensatz dünn ist.</p>
 
         <h2 class="sub-head">Was über die Genauigkeit entschieden hat</h2>
 
-        <p>Drei Eingriffe, in dieser Reihenfolge: die Korrektur falsch annotierter Randfälle im Trainingsdatensatz, adaptive Verlustgewichtung, und Gradientenbegrenzung gegen instabile Updates. Der erste Punkt war der größte Hebel – fehlerhafte Labels an den Rändern des Parameterraums haben das Modell systematisch in die falsche Richtung gezogen.</p>
+        <p>Drei Eingriffe, in dieser Reihenfolge: die Korrektur falsch annotierter Randfälle im Trainingsdatensatz, adaptive Verlustgewichtung, und Gradientenbegrenzung gegen instabile Updates. Der erste Punkt war der größte Hebel: fehlerhafte Labels an den Rändern des Parameterraums haben das Modell systematisch in die falsche Richtung gezogen.</p>
 
         <figure>
           <img src="../assets/pinn-konvergenz.png" class="plate" alt="Konvergenz des inversen PINN: Gesamt-, Validierungs-, Physik-, Daten- und Property-Verlust über 500 Epochen, logarithmische Skala" width="1155" height="823" loading="lazy">
