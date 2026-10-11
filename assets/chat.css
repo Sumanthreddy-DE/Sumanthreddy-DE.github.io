@@ -69,12 +69,12 @@
 .chat-open small { display: block; font-size: 0.75rem; color: var(--ink-muted); }
 .chat-open:hover b { color: var(--accent); }
 
-/* --- side panel, index.html ----------------------------------- */
+/* --- chat popup, index.html ------------------------------------ */
 .chat-panel {
-  position: fixed; top: 0; right: 0; bottom: 0; z-index: 60;
-  width: 420px; max-width: 100%;
-  background: var(--paper); border-left: 2px solid var(--rule-strong);
-  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
+  position: fixed; right: 24px; bottom: 24px; z-index: 60;
+  width: 420px; max-width: calc(100vw - 32px); height: min(52vh, 560px);
+  background: var(--paper); border: 1px solid var(--rule-strong);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
   display: flex; flex-direction: column;
 }
 .chat-panel[hidden] { display: none; }
@@ -103,7 +103,7 @@
   .chat-panel .ask button { width: auto; }
   .chat-panel .ask textarea { min-height: 44px; }
   .chat-open { right: 16px; bottom: 16px; }
-  .chat-panel { width: 100%; border-left: 0; }
+  .chat-panel { right: 16px; bottom: 16px; width: calc(100vw - 32px); height: min(60vh, 520px); }
   .panel-head, .panel-body, .panel-foot { padding-left: 20px; padding-right: 20px; }
 }
 
