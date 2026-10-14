@@ -24,11 +24,6 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
-- **anny-link-404** — `projekte.html` links `github.com/Sumanthreddy-DE/anny-booking-bot`,
-  which is private since 2026-10-07 (history purge, waiting on GitHub Support), so
-  visitors hit a 404. Remove or unlink it until the repo is public again.
-  *(found 2026-10-10, Sumanthreddy-DE session)*
-
 - **images-placeholder** — 7 placeholder SVGs remain: `portrait`, `pinn-interface`,
   `pinn-fehler`, `simready-ui`, `simready-gnn`, `nx-simscape`, `nx-mapping`. `tea-team`, `gokart`, `digidorf` are already real
   files. Count corrected 2026-10-08 (was "8 slots").
@@ -39,6 +34,8 @@ _(none yet)_
   where AI tells creep back in. Revisit **after** the images land and the German copy
   has settled. Right shape when we do it: a static `en/` mirror or `lang` swap, not
   a JS toggle — and a session of its own.
+  - Re-discussed 2026-10-14: still deferred for the same reasons. User is arranging
+    images; this stays parked until they land.
 
 ---
 
@@ -48,10 +45,6 @@ _(none yet)_
   close button is reached with Shift+Tab. Desktop panel is non-modal by design.
 - **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
   verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
-- **eval-prescreen-nie** — auto pre-screen misses "nie"/"keine/keinen" as negations
-  (false flags on Haiku 5.5 / Sonnet 5 answers). Hand grading decides; tidy the regexes.
-- **state-md-private-path** — `STATE.md` on `main` names a path inside the private CV
-  repo; reword on the next STATE edit (public repo).
 - **css-blocks-drift** — the shared inline `<style>` is no longer one block: four
   variants (index, projekte, impressum, and case studies + profil + fragen). Decide:
   re-unify into one block, or document the drift as intended. *(found 2026-10-10,
@@ -85,6 +78,28 @@ _(none yet)_
   repo): add the bot as a CV project line and a "Live-Demo" link in AI-job Anschreiben
   (spec §14). ~~Rebuild the CV PDFs~~ done 2026-10-11: site PDF rebuilt from master,
   KTmfk fix verified in the shipped PDF.
+
+## Done this session (2026-10-14)
+
+- **anny-link-404** — Anny repo link replaced with the private-repo no-link span in
+  `automatisierung.html` and `content/de.md` (repo private since 2026-10-07).
+  *(commit: f4b1a6d)*
+- **chat-panel-focus** — panel open no longer force-focuses the textarea on desktop
+  (close button reachable by Tab); mobile (modal) still focuses it for the inert page.
+  *(commit: f4b1a6d)*
+- **state-md-private-path** — STATE.md landmine no longer names the private CV path.
+  *(commit: f4b1a6d)*
+- **eval-prescreen-nie** — `must_not_match` regexes in `evals/questions.json` now accept
+  nie/niemals/kein-/keine/keinen as negations; regression tests added (41 pass).
+  *(resume-assistant commit: e0bb7c7)*
+- **chat-voice-doc-speak** — prompt v5 bans document voice ("sein Lebenslauf sagt",
+  "laut Lebenslauf", "aus seiner Tätigkeit bei", "in seiner Funktion als") in rule 13.
+  Committed, **not yet deployed or re-evaled** — needs VPS deploy + 15-question eval
+  before it is live. *(resume-assistant commit: e0bb7c7)*
+- German questions: verified live — the bot answers German questions in German
+  (prompt rule 10, language of the question). No change needed.
+
+---
 
 ## Done this session (2026-10-11)
 
