@@ -2,7 +2,7 @@
 
 Type: project
 Status: active
-Last touched: 2026-10-10
+Last touched: 2026-10-14
 
 <!-- Machine-maintained by /save-session Step 6b. Do not hand-edit rows or dates. -->
 <!-- Set `Type: hub` if this folder only routes to sub-projects; hubs get their
@@ -23,27 +23,33 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
   user flagged the "Claude look"; italics and prose em-dashes swept (AI tells);
   homepage stripped to hero + 3 case studies + Über mich + Kontakt; figure breakout
   killed — 780px column aligns rules/figures/captions/text by construction; Contact
-  heading is now a statement. Werkzeuge gained Career-Ops + self-talk-coach (private).
+  heading is now a statement.
 - **Waiting on the user for 7 images.** Placeholders remain for `portrait`,
   `pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-gnn`, `nx-simscape`,
   `nx-mapping`. `pinn-fehler` matters most — the "unter 5 %" claim sits above the
   fold with nothing evidencing it.
 - **EN toggle** — user asked for DE/EN switch; filed as backlog S2, deferred until
   the images land and the German copy has settled.
-- **Phase B chat — built and deployed, not launched.** Branch `chat-layer` (unpushed,
-  unmerged) holds `fragen.html`, the homepage corner button + panel, self-hosted fonts,
-  Werkzeuge entry and Datenschutz. Backend `Projects/resume-assistant` live at
-  `https://api.sumanthreddy.de` (VPS, Caddy + systemd). Model eval in progress: Haiku 4.5
-  ~11/15, Haiku 5.5 14/15, Sonnet 5 14/15 (older prompt); Sonnet on prompt v3 pending.
-  Steps in `BACKLOG.md` → Doing → chat-layer.
+- **Phase B chat — live.** `fragen.html` + homepage panel merged `05cf98b`.
+  Backend `Projects/resume-assistant` on the VPS at `https://api.sumanthreddy.de`.
+  **Prompt v5 deployed 2026-10-14** (`e0bb7c7`): document-voice ban, smoke-tested
+  live; 15-question eval re-run still open (backlog `eval-v5-rerun`).
+- **chat-layer step 7 (CV part) done 2026-10-14** — bot is a project line in the
+  ml-preset CV (SimReady VLM bullet cut for space); Live-Demo routing for AI-job
+  Anschreiben in `_strategy/selection-rules.md`. Myself/CV edit set needs a commit.
+- **Shared CSS unified 2026-10-14** (`305ba8c`) — one external `assets/site.css`
+  replaces four inline style variants; page-local rules in small inline blocks;
+  live-render check filed as backlog `site-css-live-verify`.
 - Selector / gate idea — parked. Reorder filter, not a gate. Not specced.
 
 ## Resume here
 
-Free laptop memory, then from `Projects/resume-assistant` run
-`.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de` (server on
-Sonnet 5, prompt v3). Grade with the user, pick the model, then `BACKLOG.md` → Doing →
-chat-layer steps 3–7 (fill eval table, `DEBUG_IP=false`, launch gate, merge, CV follow-ups).
+1. User pushes site repo + portfolio-private, then verify a live page renders with
+   the new external `assets/site.css` (backlog `site-css-live-verify`).
+2. Commit the Myself/CV step-7 edit set (explicit paths — PII landmine).
+3. Run the prompt-v5 eval: from `Projects/resume-assistant`,
+   `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`
+   (~16 min), hand-grade, commit the result file (backlog `eval-v5-rerun`).
 
 Images (parallel track, waiting on user): drop into `assets/` under the existing
 base names, update `src` + `width`/`height`, `class="plate"` for plots and
@@ -86,6 +92,13 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Done
 
+- 2026-10-14 — backlog day: anny-link-404, chat-panel-focus, state-md-private-path,
+  eval-prescreen-nie closed; prompt v5 (document-voice ban) committed, deployed to
+  VPS (repo-ownership fix on /opt), smoke-tested live; German-question handling
+  verified live; chat-layer step 7 CV part (bot as ml-preset project line +
+  selection-rules Live-Demo routing, SimReady VLM bullet cut); css-blocks-drift
+  unified into external assets/site.css (DOM-verified); design-directions moved to
+  completed/ in portfolio-private
 - 2026-10-10 — chat layer: mockups → placement (own page + corner panel) → plan →
   Tasks 1–14 built and reviewed (corpus, backend, site, VPS deploy at api.sumanthreddy.de);
   fonts self-hosted; Kontakt e-mail + LinkedIn only; Datenschutz added
