@@ -49,13 +49,6 @@ _(none yet)_
 
 - **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
   verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
-- **css-blocks-drift** — the shared inline `<style>` is no longer one block: four
-  variants (index, projekte, impressum, and case studies + profil + fragen). Decide:
-  re-unify into one block, or document the drift as intended. *(found 2026-10-10,
-  Sumanthreddy-DE.github.io session)*
-- **design-directions-status** — `docs/exec-plans/active/2026-09-16-design-directions.md`
-  has no `**Status:**` line; set done/abandoned and move it to `completed/` (private
-  plans repo). *(found 2026-10-10, Sumanthreddy-DE.github.io session)*
 
 - **dotted-folder-name** — whether to rename the *local* working folder from
   `Sumanthreddy-DE.github.io` to `Sumanthreddy-DE-github-io`. Dots in a path
@@ -85,6 +78,19 @@ _(none yet)_
 
 ## Done this session (2026-10-14)
 
+- **chat-layer step 7** — resume-assistant added as a CV project line (ml preset):
+  "KI-Assistent für Fragen zum Lebenslauf", repo link + Live-Demo URL in the bullet,
+  one line to fit 2 pages; SimReady VLM-Fine-Tuning bullet cut (user choice). Master
+  `lebenslauf-master.json` + new `_strategy/resume-assistant-work.md`; selection-rules
+  now route the Live-Demo line into AI-job Anschreiben. All CVs rebuilt: 2 pages +
+  locked break, PDF/DOCX agree.
+- **css-blocks-drift** — four inline `<style>` variants unified into one external
+  `assets/site.css` (group-A superset verbatim); page-local blocks stay inline
+  (about-width on case studies, fragen/profil extras). Impressum keeps its own sheet.
+  Hero margins on projekte/automatisierung corrected 24px→32px to match the other
+  pages; index/pinn layouts byte-identical (DOM-measured). *(commit: 305ba8c)*
+- **design-directions-status** — Status: done set, file moved to `completed/` in the
+  private plans repo. *(portfolio-private commit: a2f5496)*
 - **anny-link-404** — Anny repo link replaced with the private-repo no-link span in
   `automatisierung.html` and `content/de.md` (repo private since 2026-10-07).
   *(commit: f4b1a6d)*
