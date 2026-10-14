@@ -240,10 +240,10 @@
     function open() {
       panel.hidden = false;
       openButton.setAttribute('aria-expanded', 'true');
-      panel.querySelector('textarea').focus();
       if (isMobile()) {
         const page = document.querySelector('.page');
         if (page) page.setAttribute('inert', '');
+        panel.querySelector('textarea').focus();
       }
     }
     function close() {

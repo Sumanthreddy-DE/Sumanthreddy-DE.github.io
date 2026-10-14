@@ -302,7 +302,7 @@ loszuwerden.
   → [Code](https://github.com/Sumanthreddy-DE/smartrecruiters-job-alerts)
 - **Tagesübersicht für Terminbuchungen** — Playwright-Scraper ohne Oberfläche, Versand
   über Gmail SMTP, geplant über GitHub Actions, mit pytest und CI.
-  → [Code](https://github.com/Sumanthreddy-DE/anny-booking-bot)
+  `[PRÜFEN]` Repository ist **privat** — deshalb ohne Link.
 - **Wöchentliche Zusammenfassung von Newslettern** — fasst abonnierte Newsletter zu
   einer Wochenübersicht zusammen.
   `[PRÜFEN]` Repository ist **privat** — deshalb ohne Link. Entweder öffentlich

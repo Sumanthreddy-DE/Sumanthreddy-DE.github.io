@@ -72,9 +72,9 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 - A parallel `claude-lab` session works in this repo. It has reset history here once
   (`reset: moving to 0a247c4`). Check `git reflog`, not just `git log`, before
   committing.
-- **The CV contradicts the site.** `Myself/CV/DE/content/lebenslauf.json` says joints
-  "in NX Motion"; PTC Creo is correct and the site now says so. The user fixes the CV
-  himself — do not edit it unasked.
+- **The CV contradicts the site.** The CV's master data (kept in a private repo
+  outside this one) says joints "in NX Motion"; PTC Creo is correct and the site now
+  says so. The user fixes the CV himself — do not edit it unasked.
 - **An earlier copy pass invented a fact that reached production**: the site claimed the
   NX→Simscape work was for "elektrische Ski-Rollen", an application in no CV or repo.
   Removed 2026-09-23. Verify concrete specifics in inherited copy before republishing.
