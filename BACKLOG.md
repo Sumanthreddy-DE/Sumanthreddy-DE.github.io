@@ -12,7 +12,8 @@ Living list of open issues, deferred work, and known caveats. Updated each sessi
 - Mention by short slug in commit body (e.g. "Closes: my-issue-slug").
 - On close → move to **Done this session** with commit SHA.
 - End of session → user sweeps **Done** → **Archived** (one-line compress).
-- Last swept: **2026-10-11** (chat-layer steps 1–6 closed).
+- Last swept: **2026-10-14** (anny-link-404, chat-panel-focus, state-md-private-path,
+  eval-prescreen-nie closed; prompt v5 deployed).
 
 ---
 
@@ -27,6 +28,11 @@ _(none yet)_
 - **images-placeholder** — 7 placeholder SVGs remain: `portrait`, `pinn-interface`,
   `pinn-fehler`, `simready-ui`, `simready-gnn`, `nx-simscape`, `nx-mapping`. `tea-team`, `gokart`, `digidorf` are already real
   files. Count corrected 2026-10-08 (was "8 slots").
+- **eval-v5-rerun** — prompt v5 (document-voice ban) is deployed and smoke-tested live,
+  but the 15-question eval has not been re-run on it. From `Projects/resume-assistant`:
+  `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`
+  (~16 min, rate limit), then hand-grade, fill the Urteil column and commit the result
+  file. *(opened 2026-10-14, user decision to defer)*
 - **en-toggle** — user asked for a DE/EN language toggle in the top bar. Deferred
   2026-10-05: the brief's decided line is "German-first, English later", and the
   positioning argument (Mittelstand reads German) still holds. Adding EN doubles the
@@ -41,8 +47,6 @@ _(none yet)_
 
 ## Open — S3 (tech debt, deprecations, low-impact polish)
 
-- **chat-panel-focus** — the homepage chat panel puts focus in the textarea, so the
-  close button is reached with Shift+Tab. Desktop panel is non-modal by design.
 - **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
   verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
 - **css-blocks-drift** — the shared inline `<style>` is no longer one block: four
@@ -94,8 +98,9 @@ _(none yet)_
   *(resume-assistant commit: e0bb7c7)*
 - **chat-voice-doc-speak** — prompt v5 bans document voice ("sein Lebenslauf sagt",
   "laut Lebenslauf", "aus seiner Tätigkeit bei", "in seiner Funktion als") in rule 13.
-  Committed, **not yet deployed or re-evaled** — needs VPS deploy + 15-question eval
-  before it is live. *(resume-assistant commit: e0bb7c7)*
+  Deployed to the VPS 2026-10-14 (`e0bb7c7`, service restarted, `/health` OK) and
+  smoke-tested live: the KTmfk answer now states facts directly. Eval re-run still
+  open → **eval-v5-rerun**. *(resume-assistant commit: e0bb7c7)*
 - German questions: verified live — the bot answers German questions in German
   (prompt rule 10, language of the question). No change needed.
 
