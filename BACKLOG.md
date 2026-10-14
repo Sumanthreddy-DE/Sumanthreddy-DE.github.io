@@ -47,6 +47,11 @@ _(none yet)_
 
 ## Open — S3 (tech debt, deprecations, low-impact polish)
 
+- **site-css-live-verify** — since 305ba8c the shared block loads as external
+  `assets/site.css` (first external stylesheet for the shared CSS). After the
+  site push lands, verify a page on live Pages renders correctly (fonts,
+  palette, rail) and the file returns 200.
+  *(found 2026-10-14, Sumanthreddy-DE.github.io session)*
 - **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
   verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
 
