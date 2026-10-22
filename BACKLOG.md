@@ -44,6 +44,8 @@ _(none yet)_
 
 ## Open — S3 (tech debt, deprecations, low-impact polish)
 
+- **stale-tests-site-css-and-focus** — `tests/test_fragen_static.py::test_shared_style_block_matches_case_study_pages` and `tests/test_index_chat.py::test_open_ask_and_close` still assert the pre-`305ba8c` inline style blocks and pre-`f4b1a6d` desktop textarea auto-focus. Update both tests to match the external `assets/site.css` and mobile-only focus behavior. *(found 2026-10-22, Sumanthreddy-DE.github.io session)*
+- **og-urls-custom-domain** — `<meta property="og:url">` and `<meta property="og:image">` across the 8 HTML pages still reference `https://sumanthreddy-de.github.io/...`; update them to `https://sumanthreddy.de/...`. *(found 2026-10-22, Sumanthreddy-DE.github.io session)*
 - **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
   verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
 
@@ -73,81 +75,17 @@ _(none yet)_
   (spec §14). ~~Rebuild the CV PDFs~~ done 2026-10-11: site PDF rebuilt from master,
   KTmfk fix verified in the shipped PDF.
 
-## Done this session (2026-10-22)
+## Done this session
 
-- **custom-domain-and-https** — IONOS DNS (`@` A + AAAA, `www` CNAME) pointed to GitHub Pages, `CNAME` (`sumanthreddy.de`) merged, TLS certificate provisioned and **Enforce HTTPS** enabled on `https://sumanthreddy.de`. *(commit: f843347)*
-- **chat-cors-custom-domain** — `https://sumanthreddy.de` added to `ALLOWED_ORIGIN` in `resume-assistant` (`app.py` + `/etc/resume-assistant/env` on VPS), service restarted (`journalctl` verified), and live `OPTIONS` + `POST /chat` from `Origin: https://sumanthreddy.de` verified (`200 OK`, streaming `claude-sonnet-5`). *(resume-assistant commit: 36d3803)*
-- **project-images-and-case-studies** — replaced 6 project placeholders (`pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, `nx-mapping`), unified cedar-green SVG palette across all 3 projects, expanded PINN and SimReady case-study copy, aligned case-study text to 780 px column width, removed duplicate homepage figures, and made project headings clickable. *(commit: 30950e5)*
-- **site-css-live-verify** — verified `https://sumanthreddy.de/assets/site.css` returns `200 OK` and renders live. *(closed 2026-10-22)*
-
----
-
-## Done this session (2026-10-14)
-
-- **chat-layer step 7** — resume-assistant added as a CV project line (ml preset):
-  "KI-Assistent für Fragen zum Lebenslauf", repo link + Live-Demo URL in the bullet,
-  one line to fit 2 pages; SimReady VLM-Fine-Tuning bullet cut (user choice). Master
-  `lebenslauf-master.json` + new `_strategy/resume-assistant-work.md`; selection-rules
-  now route the Live-Demo line into AI-job Anschreiben. All CVs rebuilt: 2 pages +
-  locked break, PDF/DOCX agree.
-- **css-blocks-drift** — four inline `<style>` variants unified into one external
-  `assets/site.css` (group-A superset verbatim); page-local blocks stay inline
-  (about-width on case studies, fragen/profil extras). Impressum keeps its own sheet.
-  Hero margins on projekte/automatisierung corrected 24px→32px to match the other
-  pages; index/pinn layouts byte-identical (DOM-measured). *(commit: 305ba8c)*
-- **design-directions-status** — Status: done set, file moved to `completed/` in the
-  private plans repo. *(portfolio-private commit: a2f5496)*
-- **anny-link-404** — Anny repo link replaced with the private-repo no-link span in
-  `automatisierung.html` and `content/de.md` (repo private since 2026-10-07).
-  *(commit: f4b1a6d)*
-- **chat-panel-focus** — panel open no longer force-focuses the textarea on desktop
-  (close button reachable by Tab); mobile (modal) still focuses it for the inert page.
-  *(commit: f4b1a6d)*
-- **state-md-private-path** — STATE.md landmine no longer names the private CV path.
-  *(commit: f4b1a6d)*
-- **eval-prescreen-nie** — `must_not_match` regexes in `evals/questions.json` now accept
-  nie/niemals/kein-/keine/keinen as negations; regression tests added (41 pass).
-  *(resume-assistant commit: e0bb7c7)*
-- **chat-voice-doc-speak** — prompt v5 bans document voice ("sein Lebenslauf sagt",
-  "laut Lebenslauf", "aus seiner Tätigkeit bei", "in seiner Funktion als") in rule 13.
-  Deployed to the VPS 2026-10-14 (`e0bb7c7`, service restarted, `/health` OK) and
-  smoke-tested live: the KTmfk answer now states facts directly. Eval re-run still
-  open → **eval-v5-rerun**. *(resume-assistant commit: e0bb7c7)*
-- German questions: verified live — the bot answers German questions in German
-  (prompt rule 10, language of the question). No change needed.
-
----
-
-## Done this session (2026-10-11)
-
-- **chat-voice-human** — prompt v4 (tone rules: paraphrase, varied openers, light
-  human touch, refusals exempt) deployed and re-evaled: Sonnet 5 15/15 on prompt v3
-  AND v4 (german-row C1 flag = recurring false positive, hand-graded pass both times).
-  Cache prefix 7363 → 7726 tokens. Graded files committed in resume-assistant.
-  User approved the live tone. *(commits: 1a7c6d9→5246045 prompt v4, 79dce67 eval)*
-
-- **site restructure day** — DigiDorf before DEHN; contact section rewritten twice
-  (collaboration invite → plain search statement, no location narrowing, no
-  "ab sofort"); dash density pass (43 replaces, ranges kept); new page
-  `automatisierung.html` (KI-Automatisierung: Resume-Assistant, Self-Talk-Coach,
-  Anny-Booking-Bot, SmartRecruiters — full entries, Anny format); `projekte.html`
-  retitled „Simulation und Machine Learning"; KI-Automatisierung link in topbars;
-  hackathon one-liner + TEA paragraph on homepage; ICAMES talk in profil Ausbildung;
-  thesis repo link relabeled (LaTeX + PDF); CV PDF rebuilt from master (KTmfk fix);
-  duplicate link line removed. Career-Ops removed from public site (user decision).
-  *(commits: 1a4fcea, 4a861c7, f46e8ff, ca32223, e38901e, 744cb34, 4a523ed, fe3ed21)*
-
-- **chat-layer steps 1–6** — Sonnet 5 eval on prompt v3: 15/15 (german-row C1 flag =
-  false positive, hand-graded pass). Model pick: Sonnet 5 per spec rule (Haiku 5.5
-  14/15). `fragen.html` results filled, rail model name, README eval section, spec §10
-  row, graded eval file committed. VPS clean-up done (`DEBUG_IP=false`, localhost origin
-  removed, restart verified in journal). Launch gate passed (pytest 39, lint-arch PASS).
-  Merged `chat-layer` → `main` `--no-ff` (`05cf98b`), pushed, live site verified
-  (fragen.html + chat.js + API health 200). *(commits: 89c0f5f, 05cf98b)*
+_(none — swept to Archived)_
 
 ---
 
 ## Archived (older sweeps, compressed)
+
+- **2026-10-22 · custom domain `sumanthreddy.de`, project figures & case studies, chatbot CORS** (4 items) — see commits `f843347`, `30950e5`, `dc2518d` (and `resume-assistant` `36d3803`). Connected IONOS DNS (`@` A/AAAA + `www` CNAME) and enforced HTTPS on `https://sumanthreddy.de`; replaced all 6 project image placeholders (`pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, `nx-mapping`) with unified cedar-green SVGs and real thesis/Streamlit plates; expanded PINN and SimReady case-study copy, aligned case-study text to 780 px, removed duplicate homepage figures, and linked project headings; added `https://sumanthreddy.de` to `resume-assistant` CORS and verified live streaming on the VPS; closed `site-css-live-verify`.
+- **2026-10-14 · prompt v5 deploy, external `site.css`, CV step-7 line** (7 items) — see commits `f4b1a6d`..`537744e` (and `resume-assistant` `e0bb7c7`, `portfolio-private` `a2f5496`). Unified 4 inline `<style>` variants into external `assets/site.css` (`css-blocks-drift`); deployed prompt v5 banning document voice (`chat-voice-doc-speak`); added `resume-assistant` project line to ml-preset CV (`chat-layer step 7`); closed `anny-link-404`, `chat-panel-focus`, `state-md-private-path`, `eval-prescreen-nie`, `design-directions-status`.
+- **2026-10-11 · chat-layer launch, prompt v4 eval, KI-Automatisierung page** (3 items) — see commits `89c0f5f`, `05cf98b`, `1a4fcea`..`fe3ed21` (and `resume-assistant` `1a7c6d9`..`79dce67`). Shipped `fragen.html` + homepage chat panel (`05cf98b`), evaluated Sonnet 5 15/15 on prompts v3 and v4, added `automatisierung.html`, rebuilt CV PDF from master.
 
 - **2026-10-05 · palette, structure, alignment, AI-tell sweep** (7 items) — see commits
   `f3b0b71`..`1858ab0`. Cream/terracotta replaced with Tinte & Zederngrün after user

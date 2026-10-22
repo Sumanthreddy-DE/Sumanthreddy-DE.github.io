@@ -2,7 +2,7 @@
 
 Type: project
 Status: active
-Last touched: 2026-10-14
+Last touched: 2026-10-22
 
 <!-- Machine-maintained by /save-session Step 6b. Do not hand-edit rows or dates. -->
 <!-- Set `Type: hub` if this folder only routes to sub-projects; hubs get their
@@ -10,56 +10,48 @@ Last touched: 2026-10-14
 
 ## What
 
-The public GitHub Pages site at https://sumanthreddy-de.github.io/ — a job-search
+The public GitHub Pages site at https://sumanthreddy.de/ (`sumanthreddy-de.github.io` redirects) — a job-search
 landing page for recruiters and hiring engineers at midsize German manufacturers.
 Two workstreams: the static site (Phase A — shipped 2026-09-23 as a seven-page
 German portfolio), and an "ask me anything" chat layer grounded in the CV
-(Phase B — deferred, not cancelled).
+(Phase B — live since 2026-10-11).
 
 ## Doing
 
-- Phase A — **shipped and live** (`7e571ff`). Visual overhaul committed 2026-10-05
+- Phase A — **shipped and live** (`7e571ff`, custom domain `https://sumanthreddy.de` with HTTPS enforced 2026-10-22, `f843347`). Visual overhaul committed 2026-10-05
   (`f3b0b71`, `8f0c130`, `1858ab0`): cream/terracotta → Tinte & Zederngrün after the
   user flagged the "Claude look"; italics and prose em-dashes swept (AI tells);
   homepage stripped to hero + 3 case studies + Über mich + Kontakt; figure breakout
   killed — 780px column aligns rules/figures/captions/text by construction; Contact
   heading is now a statement.
-- **Waiting on the user for 7 images.** Placeholders remain for `portrait`,
-  `pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-gnn`, `nx-simscape`,
-  `nx-mapping`. `pinn-fehler` matters most — the "unter 5 %" claim sits above the
-  fold with nothing evidencing it.
+- **6 of 7 image slots replaced 2026-10-22 (`30950e5`).** Only `portrait` remains a placeholder (`assets/portrait.svg`, waiting on user photo). `pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, and `nx-mapping` are now real figures/diagrams, and case-study pages use full 780 px column width without repeating homepage images.
 - **EN toggle** — user asked for DE/EN switch; filed as backlog S2, deferred until
-  the images land and the German copy has settled.
-- **Phase B chat — live.** `fragen.html` + homepage panel merged `05cf98b`.
-  Backend `Projects/resume-assistant` on the VPS at `https://api.sumanthreddy.de`.
+  the portrait lands and the German copy has settled.
+- **Phase B chat — live on `https://sumanthreddy.de`.** `fragen.html` + homepage panel merged `05cf98b`.
+  Backend `Projects/resume-assistant` on the VPS at `https://api.sumanthreddy.de` (CORS updated for `https://sumanthreddy.de` in `36d3803`, verified live 2026-10-22).
   **Prompt v5 deployed 2026-10-14** (`e0bb7c7`): document-voice ban, smoke-tested
   live; 15-question eval re-run still open (backlog `eval-v5-rerun`).
 - **chat-layer step 7 (CV part) done 2026-10-14** — bot is a project line in the
   ml-preset CV (SimReady VLM bullet cut for space); Live-Demo routing for AI-job
   Anschreiben in `_strategy/selection-rules.md`. Myself/CV edit set needs a commit.
 - **Shared CSS unified 2026-10-14** (`305ba8c`) — one external `assets/site.css`
-  replaces four inline style variants; page-local rules in small inline blocks;
-  live-render check filed as backlog `site-css-live-verify`.
+  replaces four inline style variants; verified live 2026-10-22 (`site-css-live-verify` closed).
 - Selector / gate idea — parked. Reorder filter, not a gate. Not specced.
 
 ## Resume here
 
-1. User pushes site repo + portfolio-private, then verify a live page renders with
-   the new external `assets/site.css` (backlog `site-css-live-verify`).
-2. Commit the Myself/CV step-7 edit set (explicit paths — PII landmine).
-3. Run the prompt-v5 eval: from `Projects/resume-assistant`,
+1. Commit the `Myself/CV` step-7 edit set (explicit paths — PII landmine).
+2. Run the prompt-v5 eval: from `Projects/resume-assistant`,
    `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`
    (~16 min), hand-grade, commit the result file (backlog `eval-v5-rerun`).
+3. Optional S3 polish: update the 2 stale pytest assertions (`stale-tests-site-css-and-focus`) and `og:url`/`og:image` tags (`og-urls-custom-domain`).
 
-Images (parallel track, waiting on user): drop into `assets/` under the existing
-base names, update `src` + `width`/`height`, `class="plate"` for plots and
-screenshots, `<figure class="inset">` under ~700 px. Re-render, lint, commit.
+Portrait (parallel track, waiting on user): drop into `assets/` as `portrait.jpg`/`.png`, update `src` + `width`/`height` in `index.html`, lint, commit.
 
-**Do not re-run `scratchpad/build_details.py`** — `projekte/pinn.html` carries a
-hand-added figure the generator would destroy.
+**Do not re-run `scratchpad/build_details.py`** — `projekte/pinn.html`, `simready.html`, and `nx-simscape.html` carry hand-edited layouts and figures the generator would destroy.
 
 Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer-implementation.md` (Tasks 1–14 done); `docs/exec-plans/active/2026-09-17-multipage-portfolio.md`
-(only Task 1, the images, open).
+(only `portrait` in Task 1 open).
 
 ## Pipeline
 
@@ -92,6 +84,7 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Done
 
+- 2026-10-22 — custom domain `sumanthreddy.de` connected (IONOS DNS `@` A/AAAA + `www` CNAME, GitHub Pages `CNAME` `f843347`, HTTPS enforced); replaced 6 project placeholders (`pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, `nx-mapping`) with unified cedar-green SVGs and real thesis/Streamlit plates, expanded PINN & SimReady case studies, aligned case-study text to 780 px, removed duplicate homepage images, and linked project headings (`30950e5`); added `https://sumanthreddy.de` to `resume-assistant` CORS (`36d3803`), deployed on VPS, and verified live chatbot streaming; closed `site-css-live-verify` (`dc2518d`)
 - 2026-10-14 — backlog day: anny-link-404, chat-panel-focus, state-md-private-path,
   eval-prescreen-nie closed; prompt v5 (document-voice ban) committed, deployed to
   VPS (repo-ownership fix on /opt), smoke-tested live; German-question handling
