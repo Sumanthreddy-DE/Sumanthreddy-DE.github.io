@@ -17,7 +17,7 @@
 
 <link rel="stylesheet" href="assets/fonts.css">
 
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=3">
 </head>
 <body>
 <div class="page">
@@ -63,11 +63,11 @@
         </dl>
       </div>
       <div>
-        <h3>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen</h3>
-        <p>Ein physikinformiertes neuronales Netz bestimmt die Parameter der Interphase zwischen Faser und Matrix aus den effektiven Kompressions- und Schubmoduli. Die Mikromechanik der Homogenisierung steckt in der Verlustfunktion.</p>
-        <p class="metric-line">Vorhersagefehler unter 5 %</p>
+        <h3><a href="projekte/pinn.html">Grenzflächenparameter in Verbundwerkstoffen per PINN bestimmen</a></h3>
+        <p>Ein physikinformiertes neuronales Netz ersetzt eine dreischichtige Interphase durch ein äquivalentes Null-Dicken-Grenzflächenmodell und bestimmt dessen vier Parameter direkt aus den effektiven Kompressions- und Schubmoduli. Gebenchmarkt gegen ein Branch-Trunk-DeepONet-Surrogat mit L-BFGS-Inversion und globale Optimierung.</p>
+        <p class="metric-line">Rekonstruktionsfehler unter 5 % in 33 von 36 Konfigurationen (Median 1,4 % für K_eff, 4,0 % für G_eff)</p>
         <div class="entry-foot">
-          <div class="stack">PyTorch · NumPy · SciPy</div>
+          <div class="stack">PyTorch · PINN · DeepONet / Surrogatmodell · Mori-Tanaka-Homogenisierung · NumPy · SciPy</div>
           <div class="entry-links">
             <a class="lnk" href="projekte/pinn.html">Fallstudie lesen</a>
             <a class="lnk" href="https://github.com/Sumanthreddy-DE/PINN-for-composite-interface-identification">Code</a>
@@ -87,11 +87,11 @@
         </dl>
       </div>
       <div>
-        <h3>SimReady: von der STEP-Datei zum vernetzungsfähigen Bauteil</h3>
-        <p>Zwölf Geometrieprüfungen auf einer STEP-Datei, jeder Befund farbig am 3D-Modell begründet. Ein Graph Neural Network sagt voraus, welche Flächen eine Netzverfeinerung brauchen.</p>
-        <p class="metric-line">Graph Neural Network, trainiert auf 1.100 Bauteilen</p>
+        <h3><a href="projekte/simready.html">SimReady: KI-Copilot für FEA-Vorverarbeitung und CAD-Generierung</a></h3>
+        <p>Zwölf B-Rep-Geometrieprüfungen auf einer STEP-Datei, ein Graph Neural Network (GraphSAGE) auf 2.272 Bauteilen für den Netzverfeinerungsbedarf, ein Multi-Turn-LLM-Agent mit RAG und eigener CAD-DSL sowie ein per QLoRA trainiertes Vision-Language-Modell (Qwen2.5-VL-3B) für Bild-zu-CadQuery.</p>
+        <p class="metric-line">91 % F1-Score auf 3.612 Bauteilflächen · 88 von 100 valide CAD-Modelle aus Bildern</p>
         <div class="entry-foot">
-          <div class="stack">PyTorch Geometric · pythonocc · LLM-Fine-Tuning · Streamlit</div>
+          <div class="stack">PyTorch Geometric (GraphSAGE) · pythonocc · Qwen2.5-VL (QLoRA) · CadQuery · LLM-Agent &amp; RAG · Streamlit</div>
           <div class="entry-links">
             <a class="lnk" href="projekte/simready.html">Fallstudie lesen</a>
             <a class="lnk" href="https://github.com/Sumanthreddy-DE/simready">Code</a>
@@ -110,7 +110,7 @@
         </dl>
       </div>
       <div>
-        <h3>Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell</h3>
+        <h3><a href="projekte/nx-simscape.html">Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell</a></h3>
         <p>Die Pipeline liest Geometrie und Zwangsbedingungen über die NXOpen API aus, ordnet jede Zwangsbedingung über ein Transformer-Modell dem passenden Gelenk in PTC Creo zu und prüft am Ende die Gelenkpositionen gegen das Original.</p>
         <p class="metric-line">Aus Stunden manueller Übertragung werden Minuten</p>
         <div class="entry-foot">

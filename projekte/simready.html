@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SimReady: von der STEP-Datei zum vernetzungsfähigen Bauteil: Sumanth Reddy Settipalli</title>
-<meta name="description" content="Zwölf Geometrieprüfungen auf einer STEP-Datei, jeder Befund am 3D-Modell begründet. Ein Graph Neural Network sagt die nötige Netzverfeinerung voraus.">
+<title>SimReady: KI-Copilot für FEA-Vorverarbeitung und CAD-Generierung: Sumanth Reddy Settipalli</title>
+<meta name="description" content="SimReady prüft STEP-Bauteile mit 12 OpenCascade-Regeln, einem GraphSAGE-GNN auf 2.272 CAD-Graphen, einem LLM-Copiloten und einem Qwen2.5-VL QLoRA Modell für Bild-zu-CadQuery.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
 <meta property="og:url" content="https://sumanthreddy-de.github.io/projekte/simready.html">
-<meta property="og:title" content="SimReady: von der STEP-Datei zum vernetzungsfähigen Bauteil">
-<meta property="og:description" content="Zwölf Geometrieprüfungen auf einer STEP-Datei, jeder Befund am 3D-Modell begründet. Ein Graph Neural Network sagt die nötige Netzverfeinerung voraus.">
+<meta property="og:title" content="SimReady: KI-Copilot für FEA-Vorverarbeitung und CAD-Generierung">
+<meta property="og:description" content="SimReady prüft STEP-Bauteile mit 12 OpenCascade-Regeln, einem GraphSAGE-GNN auf 2.272 CAD-Graphen, einem LLM-Copiloten und einem Qwen2.5-VL QLoRA Modell für Bild-zu-CadQuery.">
 <meta property="og:image" content="https://sumanthreddy-de.github.io/assets/simready-ui.svg">
 <meta name="twitter:card" content="summary">
 
 <link rel="stylesheet" href="../assets/fonts.css">
 
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/site.css?v=3">
 <style>
-  /* page-local: case-study about text is narrower than the homepage's */
-  .about p { max-width: 62ch; }
+  /* page-local: align case-study title vertically with the compact rail */
+  .hero-inner { align-items: center; }
+  .hero .rail { padding-top: 0; }
 </style>
 </head>
 <body>
@@ -39,14 +40,12 @@
     <div class="hero-inner">
       <div class="rail">
         <dl>
-          <dt>Kontext</dt><dd>Eigenes Projekt, öffentlich auf GitHub</dd>
+          <dt>Fallstudie</dt><dd>Eigenes Projekt, GitHub</dd>
           <dt>Zeitraum</dt><dd>seit 03/2026</dd>
-          <dt>Feld</dt><dd>FEA-Vorverarbeitung</dd>
-          <dt>Technologien</dt><dd>PyTorch Geometric, pythonocc, LLM-Fine-Tuning, Streamlit</dd>
         </dl>
       </div>
       <div>
-        <h1>SimReady: von der STEP-Datei zum vernetzungsfähigen Bauteil</h1>
+        <h1>SimReady: KI-Copilot für FEA-Vorverarbeitung und CAD-Generierung</h1>
       </div>
     </div>
   </header>
@@ -55,36 +54,44 @@
     <div class="row">
       <div class="rail"></div>
       <div class="about">
-        <p>Vor jeder FE-Rechnung steht die Vorverarbeitung: Geometrie prüfen, Modell bereinigen, entscheiden, wo das Netz verfeinert werden muss. Pro Bauteil kostet das erfahrene Berechnungsingenieure schnell mehrere Stunden. Was dabei übersehen wird, fällt erst im Solver auf, oder gar nicht.</p>
+        <p>Vor jeder Finite-Elemente-Rechnung steht die Vorverarbeitung: Geometrie prüfen, das CAD-Modell reparieren und entscheiden, wo das Netz feiner sein muss. Pro Bauteil kostet das erfahrene Berechnungsingenieure oft mehrere Stunden. Was dabei übersehen wird, führt später im Solver zu Abbrüchen oder ungenauen Spannungen.</p>
 
-        <h2 class="sub-head">Zwölf Prüfungen und eine klare Aussage</h2>
+        <h2 class="sub-head">1. Zwölf B-Rep-Geometrieprüfungen und automatische Heilung</h2>
 
-        <p>SimReady liest eine STEP-Datei ein und führt zwölf Geometrieprüfungen aus, unter anderem auf scharfe Kanten, Kleinstflächen und Lücken in der Topologie. Am Ende steht eine belastbare Aussage: vernetzungsfähig oder nicht.</p>
-
-        <figure>
-          <img src="../assets/simready-ui.svg" class="plate" alt="Jeder Befund wird im Chat begründet und farbig am Modell markiert." width="900" height="560" loading="lazy">
-          <figcaption>Jeder Befund wird im Chat begründet und farbig am Modell markiert.</figcaption>
-        </figure>
-
-        <p>Jeder Befund wird im Chat begründet, die betroffenen Flächen werden farbig direkt am 3D-Modell markiert. Der Unterschied zu einer Prüfliste ist die Begründung: man sieht nicht nur, dass etwas auffällt, sondern warum es für die Vernetzung relevant ist.</p>
-
-        <h2 class="sub-head">Das Graph Neural Network</h2>
-
-        <p>Der zweite Teil sagt voraus, welche CAD-Flächen eine Netzverfeinerung benötigen und welcher Fehlertyp vorliegt. Entscheidend ist der Kontext: jede Fläche wird zusammen mit ihren Nachbarflächen bewertet, so wie ein erfahrener Berechnungsingenieur ein Bauteil als Ganzes liest, nicht Fläche für Fläche.</p>
+        <p>SimReady liest eine STEP-Datei über pythonocc (OpenCascade) ein, repariert Topologiefehler über ShapeFix und führt zwölf Geometrieprüfungen aus. Geprüft werden unter anderem offene Schalen, Selbstüberschneidungen, Splitterflächen (Sliver Faces), sehr kurze Kanten, dünne Wände sowie kleine Bohrungen und Verrundungen. Das Ergebnis ist ein klarer Vernetzbarkeits-Score von 0 bis 100, eine geheilte STEP-Datei und eine farbliche Markierung direkt an den betroffenen Flächen des 3D-Modells.</p>
 
         <figure>
-          <img src="../assets/simready-gnn.svg" class="plate" alt="Flächen mit vorhergesagtem Verfeinerungsbedarf." width="900" height="560" loading="lazy">
-          <figcaption>Flächen mit vorhergesagtem Verfeinerungsbedarf.</figcaption>
+          <img src="../assets/simready-dashboard.png" class="plate" alt="SimReady-Analyse-Dashboard in Streamlit mit Score-Aufschlüsselung, B-Rep-Topologie und Befundtabelle für ein reales STEP-Bauteil." width="1280" height="1500" loading="lazy">
+          <figcaption>Streamlit-Oberfläche von SimReady bei der Analyse eines Kastenprofils mit Bohrungen: Gesamtscore, B-Rep-Topologie, Befundliste und Flächenbewertung.</figcaption>
         </figure>
 
-        <p class="metric-line">Trainiert auf 1.100 selbst generierten Bauteilen</p>
+        <h2 class="sub-head">2. Graph Neural Network auf dem B-Rep-Flächengraphen (BRepSAGE)</h2>
 
-        <p>Der Trainingsdatensatz ist selbst erzeugt, weil es keinen öffentlichen gibt, der Flächen nach Verfeinerungsbedarf annotiert. Das war der aufwendigste Teil des Projekts.</p>
+        <p>Regeln allein betrachten jede Fläche isoliert. Ein Berechnungsingenieur bewertet eine Fläche aber immer zusammen mit ihren Nachbarflächen. Deshalb übersetzt SimReady die B-Rep-Topologie in einen Flächen-Nachbarschaftsgraphen mit zwölf geometrischen Merkmalen pro Fläche (Flächentyp, Größe, Normalenvektor, mittlere Krümmung und UV-Ausdehnung).</p>
+
+        <p>Darauf arbeitet BRepSAGE, ein zweischichtiges GraphSAGE-Netz mit drei Ausgabeköpfen: Es sagt für jede einzelne Fläche den Verfeinerungsbedarf und die lokale Komplexität voraus und klassifiziert gleichzeitig den Fehlertyp des gesamten Bauteils. Trainiert wurde das Modell auf 2.272 selbst generierten und gezielt degradierten CAD-Bauteilen, getrennt nach Ursprungsbauteil ohne Datenleckage zwischen Training und Validierung.</p>
+
+        <figure>
+          <img src="../assets/simready-gnn.svg" class="plate" alt="Validierungsergebnisse von BRepSAGE auf 2.272 CAD-Graphen sowie Qwen2.5-VL QLoRA Ergebnisse für Bild-zu-CadQuery." width="900" height="500" loading="lazy">
+          <figcaption>Links: BRepSAGE-Ergebnisse auf 27 zurückgehaltenen Prüfbauteilen (3.612 Flächen) und Defektklassen. Rechts: Bild-zu-CAD-Generierung (Qwen2.5-VL-3B mit QLoRA) und Prüfung über die SimReady-Checker-Bridge.</figcaption>
+        </figure>
+
+        <p class="metric-line">91 % F1-Score (92 % Precision, 90 % Recall) auf 3.612 Flächen · 88 von 100 valide CAD-Modelle aus Bildern</p>
+
+        <h2 class="sub-head">3. Multi-Turn-LLM-Agent, RAG und sichere Text-zu-CAD-Generierung</h2>
+
+        <p>Über die Analyse-Pipeline legt SimReady einen Multi-Turn-LLM-Copiloten mit vier Werkzeugen: Geometrie analysieren, gezielte Reparaturen vorschlagen, FEA-Standards über eine Vektorsuche (RAG) nachschlagen und neue Bauteile generieren. Für die Generierung führt das System keinen freien LLM-Code aus, sondern nutzt eine typsichere Pydantic-DSL (Quader, Zylinder, Vereinigung, Abzug), die direkt in valide STEP-Dateien übersetzt und sofort durch den eigenen Geometrie-Checker geprüft wird (5 von 5 Prompts fehlerfrei auf gehosteten LLMs).</p>
+
+        <h2 class="sub-head">4. Vision-Language-Fine-Tuning (Bild zu CadQuery) und Qualitätsprüfung</h2>
+
+        <p>Im zweiten Projektstrang bewertet SimReady KI-generierte CAD-Modelle. Dafür habe ich Qwen2.5-VL-3B per QLoRA auf dem GenCAD-Code-Datensatz feinabgestimmt, um aus einem 2D-Bauteilbild direkt ausführbaren CadQuery-Code zu erzeugen. Auf dem 100-Teile-Testset stieg die Rate lauffähiger CAD-Programme von 0 auf 88 von 100 (Volumen-IoU im Mittel 0,563, Median 0,580).</p>
+
+        <p>Entscheidend für die Praxis: Jedes generierte Bauteil läuft anschließend automatisch durch den SimReady-Checker. Dabei erkennt der Checker Selbstüberschneidungen, zu dünne Wände und ungültige Solids, die eine reine Voxel-IoU-Metrik komplett übersieht (zum Beispiel ein Bauteil mit sehr gutem IoU von 0,83, das sich selbst durchdringt). Aktuell baue ich diese Brücke zu einem 150-Prompt-Text-to-CAD-Benchmark für Konstruktionsregeln (ISO-Durchgangslöcher, NEMA-Flanschbilder, Mindestwandstärken) aus, um den Geometrie-Checker als direktes Reward-Signal im Reinforcement Learning (GRPO) zu nutzen.</p>
 
         <div class="entry-foot">
-          <div class="stack">PyTorch Geometric, pythonocc, LLM-Fine-Tuning, Streamlit</div>
+          <div class="stack">PyTorch Geometric (GraphSAGE), pythonocc (OpenCascade), Qwen2.5-VL (QLoRA), CadQuery, Multi-Turn-LLM-Agent &amp; RAG, Streamlit</div>
           <div class="entry-links">
-            <a class="lnk" href="https://github.com/Sumanthreddy-DE/simready">Code auf GitHub</a>
+            <a class="lnk" href="https://github.com/Sumanthreddy-DE/simready">Code und Validierungsberichte auf GitHub</a>
           </div>
         </div>
       </div>

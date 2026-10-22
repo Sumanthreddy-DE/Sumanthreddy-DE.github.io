@@ -215,6 +215,15 @@ section { padding-top: 88px; }
   border-bottom: 1px solid var(--rule-strong);
   margin-bottom: 44px;}
 
+.section-head a,
+.section-head a:visited {
+  color: var(--rule-strong);
+  text-decoration: none;
+  transition: color .15s;
+}
+
+.section-head a:hover, .section-head a:focus-visible { color: var(--accent); }
+
 .section-note {
   font-size: 0.9375rem;
   color: var(--ink-muted);
@@ -234,6 +243,15 @@ section { padding-top: 88px; }
   letter-spacing: -0.01em;
   margin-bottom: 18px;
 }
+
+.entry h3 a,
+.entry h3 a:visited {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color .15s;
+}
+
+.entry h3 a:hover, .entry h3 a:focus-visible { color: var(--accent); }
 
 .entry p { margin-bottom: 12px; }
 .entry p:last-child { margin-bottom: 0; }

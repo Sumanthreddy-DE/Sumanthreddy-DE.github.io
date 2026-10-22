@@ -1,9 +1,139 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" role="img" aria-label="Platzhalter: SimReady — Oberfläche mit markierten Flächen">
-  <rect width="900" height="560" fill="#E8E2D6"/>
-  <rect x="8" y="8" width="884" height="544" fill="none" stroke="#C0B7A4" stroke-width="2" stroke-dasharray="10 8"/>
-  <g fill="#8C8371" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">
-    <text x="450" y="250" font-size="19" letter-spacing="2">PLATZHALTER</text>
-    <text x="450" y="291" font-size="21">SimReady — Oberfläche mit markierten Flächen</text>
-    <text x="450" y="341" font-size="16" fill="#A79D89">900 × 560</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img" aria-label="Überblick über SimReady: STEP-Geometrieprüfung, BRepSAGE Graph Neural Network und KI-Copilot mit Bild-zu-CAD-Generierung">
+  <defs>
+    <style>
+      .bg { fill: #FFFFFF; }
+      .card { fill: #F7F8F5; stroke: #C8CCC4; stroke-width: 1.2; }
+      .card-accent { fill: #F1F5F2; stroke: #2F5D46; stroke-width: 1.6; }
+      .kicker { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; fill: #2F5D46; }
+      .title { font-family: 'Libre Bodoni', Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 600; fill: #171A17; }
+      .body { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: #171A17; }
+      .muted { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11.5px; fill: #555B54; }
+      .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 11px; fill: #171A17; }
+      .badge { fill: #E6EFEA; stroke: #2F5D46; stroke-width: 1; }
+      .badge-text { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; fill: #2F5D46; }
+      .box { fill: #FFFFFF; stroke: #C8CCC4; stroke-width: 1.1; }
+      .box-phys { fill: #EBF2EE; stroke: #2F5D46; stroke-width: 1.2; }
+      .arr { stroke: #2F5D46; stroke-width: 2; fill: none; }
+      .edge { stroke: #63937B; stroke-width: 1.5; fill: none; }
+    </style>
+    <marker id="arrow-sr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#2F5D46"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <!-- ================= PANEL 1: STEP & 12 GEOMETRY CHECKS ================= -->
+  <rect class="card" x="20" y="20" width="265" height="480" rx="4"/>
+  <text class="kicker" x="38" y="46">1 · CAD-Analyse (pythonocc)</text>
+  <text class="title" x="38" y="70">STEP-Prüfung &amp; Heilung</text>
+  <text class="muted" x="38" y="90">12 B-Rep-Regeln + OCC ShapeFix</text>
+
+  <!-- Isometric bracket in unified cedar-green monochrome palette -->
+  <rect class="box" x="36" y="108" width="233" height="176" rx="3"/>
+  <polygon points="68,218 152,178 232,208 148,248" fill="#B8CEC2" stroke="#2F5D46" stroke-width="1.2"/>
+  <polygon points="68,218 148,248 148,264 68,234" fill="#8FB3A0" stroke="#2F5D46" stroke-width="1.2"/>
+  <polygon points="148,248 232,208 232,224 148,264" fill="#63937B" stroke="#2F5D46" stroke-width="1.2"/>
+  <polygon points="88,142 152,114 152,178 88,208" fill="#D5E2DC" stroke="#2F5D46" stroke-width="1.2"/>
+  <!-- Highlighted critical rib face in deep forest slate (#23382D) -->
+  <polygon points="152,132 174,196 144,210 132,144" fill="#23382D" stroke="#171A17" stroke-width="1.5"/>
+  <!-- Highlighted bore rim in medium cedar (#2F5D46) -->
+  <ellipse cx="176" cy="218" rx="16" ry="9" fill="#63937B" stroke="#23382D" stroke-width="1.4"/>
+  <ellipse cx="176" cy="218" rx="8" ry="4.5" fill="#FFFFFF" stroke="#23382D" stroke-width="1.2"/>
+
+  <!-- Legend inside CAD box -->
+  <circle cx="52" cy="126" r="5" fill="#B8CEC2" stroke="#2F5D46" stroke-width="0.9"/>
+  <text class="muted" x="62" y="130">Basis</text>
+  <circle cx="104" cy="126" r="5" fill="#63937B" stroke="#23382D" stroke-width="0.9"/>
+  <text class="muted" x="114" y="130">Feines Netz</text>
+  <circle cx="192" cy="126" r="5" fill="#23382D"/>
+  <text class="muted" x="202" y="130">Befund</text>
+
+  <rect class="box" x="36" y="298" width="233" height="184" rx="3"/>
+  <text class="body" x="48" y="320" font-weight="600">12 Geometrieprüfungen</text>
+  <text class="muted" x="48" y="340">• Offene Schalen &amp; Selbstschnitte</text>
+  <text class="muted" x="48" y="358">• Splitterflächen (Sliver Faces)</text>
+  <text class="muted" x="48" y="376">• Kurze Kanten &amp; dünne Wände</text>
+  <text class="muted" x="48" y="394">• Kleine Bohrungen &amp; Verrundungen</text>
+  <line x1="48" y1="408" x2="255" y2="408" stroke="#C8CCC4" stroke-width="1"/>
+  <text class="body" x="48" y="428" font-weight="600" fill="#2F5D46">Ergebnis: Score 0–100</text>
+  <text class="muted" x="48" y="447">SimulationReady / NeedsAttention</text>
+  <text class="muted" x="48" y="465">+ geheilte STEP-Datei zum Download</text>
+
+  <!-- ================= PANEL 2: BREPSAGE GNN ================= -->
+  <rect class="card-accent" x="315" y="20" width="270" height="480" rx="4"/>
+  <text class="kicker" x="333" y="46">2 · Graph Neural Network</text>
+  <text class="title" x="333" y="70">BRepSAGE (PyG)</text>
+  <text class="muted" x="333" y="90">Flächen-Graph statt Einzelprüfung</text>
+
+  <!-- B-Rep graph visualization in matching PINN cedar shades -->
+  <rect class="box" x="335" y="108" width="230" height="142" rx="3"/>
+  <line class="edge" x1="382" y1="154" x2="446" y2="142"/>
+  <line class="edge" x1="382" y1="154" x2="410" y2="205"/>
+  <line class="edge" x1="446" y1="142" x2="410" y2="205"/>
+  <line class="edge" x1="446" y1="142" x2="508" y2="162"/>
+  <line class="edge" x1="410" y1="205" x2="484" y2="212"/>
+  <line class="edge" x1="508" y1="162" x2="484" y2="212"/>
+
+  <circle cx="382" cy="154" r="13" fill="#8FB3A0" stroke="#2F5D46" stroke-width="1.2"/>
+  <text class="mono" x="382" y="158" text-anchor="middle" fill="#171A17">F1</text>
+
+  <circle cx="446" cy="142" r="14" fill="#23382D" stroke="#171A17" stroke-width="1.2"/>
+  <text class="mono" x="446" y="146" text-anchor="middle" fill="#FFFFFF">F2</text>
+
+  <circle cx="410" cy="205" r="13" fill="#63937B" stroke="#23382D" stroke-width="1.2"/>
+  <text class="mono" x="410" y="209" text-anchor="middle" fill="#FFFFFF">F3</text>
+
+  <circle cx="508" cy="162" r="13" fill="#B8CEC2" stroke="#2F5D46" stroke-width="1.2"/>
+  <text class="mono" x="508" y="166" text-anchor="middle" fill="#171A17">F4</text>
+
+  <circle cx="484" cy="212" r="13" fill="#2F5D46" stroke="#171A17" stroke-width="1.2"/>
+  <text class="mono" x="484" y="216" text-anchor="middle" fill="#FFFFFF">F5</text>
+
+  <text class="muted" x="450" y="238" text-anchor="middle">12 Merkmale je Fläche (Typ, Fläche, Krümmung, UV)</text>
+
+  <rect class="box-phys" x="335" y="264" width="230" height="106" rx="3"/>
+  <text class="body" x="450" y="286" text-anchor="middle" font-weight="600" fill="#2F5D46">2-Layer GraphSAGE · 3 Köpfe</text>
+  <text class="muted" x="349" y="306">1. Netzverfeinerung je Fläche</text>
+  <text class="muted" x="349" y="324">2. Komplexitätswert je Fläche</text>
+  <text class="muted" x="349" y="342">3. Bauteil-Defektklasse (4 Klassen)</text>
+  <text class="mono" x="450" y="360" text-anchor="middle">Trainiert auf 2.272 CAD-Graphen</text>
+
+  <rect class="badge" x="335" y="384" width="230" height="98" rx="3"/>
+  <text class="badge-text" x="450" y="406" text-anchor="middle">Held-Out-Validierung (3.612 Flächen)</text>
+  <text class="muted" x="450" y="426" text-anchor="middle">27 handgebaute Prüf-Bauteile:</text>
+  <text class="body" x="450" y="446" text-anchor="middle" font-weight="600" fill="#2F5D46">Precision 92,0 % · Recall 89,5 %</text>
+  <text class="muted" x="450" y="465" text-anchor="middle">F1 = 90,8 % (leckagefreier Split)</text>
+
+  <!-- ================= PANEL 3: AI COPILOT & GENCAD VLM ================= -->
+  <rect class="card" x="615" y="20" width="265" height="480" rx="4"/>
+  <text class="kicker" x="633" y="46">3 · Agent &amp; Generative CAD</text>
+  <text class="title" x="633" y="70">Copilot &amp; Vision-to-CAD</text>
+  <text class="muted" x="633" y="90">Multi-Turn-LLM + Qwen2.5-VL QLoRA</text>
+
+  <rect class="box" x="631" y="108" width="233" height="162" rx="3"/>
+  <text class="body" x="643" y="130" font-weight="600">LLM-Copilot (4 Werkzeuge)</text>
+  <text class="mono" x="643" y="150">• analyze_geometry (STEP)</text>
+  <text class="mono" x="643" y="168">• suggest_fixes (Reparatur)</text>
+  <text class="mono" x="643" y="186">• lookup_standard (FEA-RAG)</text>
+  <text class="mono" x="643" y="204">• build_part (Typed CAD-DSL)</text>
+  <line x1="643" y1="216" x2="850" y2="216" stroke="#C8CCC4" stroke-width="1"/>
+  <text class="muted" x="643" y="235">Text → CAD über typsichere DSL:</text>
+  <text class="body" x="643" y="254" font-weight="600" fill="#2F5D46">5 / 5 valide STEP-Modelle</text>
+
+  <rect class="box-phys" x="631" y="284" width="233" height="198" rx="3"/>
+  <text class="body" x="643" y="306" font-weight="600" fill="#2F5D46">Bild → CadQuery (GenCAD)</text>
+  <text class="muted" x="643" y="325">Qwen2.5-VL-3B mit QLoRA</text>
+  <text class="muted" x="643" y="343">(6.000 Beispiele, 100 Test-Teile):</text>
+  <text class="body" x="643" y="366" font-weight="600">Valide CAD-Modelle: 0 → 88 / 100</text>
+  <text class="muted" x="643" y="385">Volumen-IoU: 0,563 (Median 0,580)</text>
+  <line x1="643" y1="398" x2="850" y2="398" stroke="#2F5D46" stroke-width="0.9"/>
+  <text class="body" x="643" y="418" font-weight="600">Checker als Qualitätsfilter</text>
+  <text class="muted" x="643" y="436">Findet Selbstschnitte &amp; dünne Wände,</text>
+  <text class="muted" x="643" y="453">die reines Voxel-IoU (0,83) übersieht</text>
+  <text class="muted" x="643" y="470">→ Basis für RL-Reward (GRPO)</text>
+
+  <!-- ================= CONNECTING ARROWS ================= -->
+  <line class="arr" x1="285" y1="180" x2="311" y2="180" marker-end="url(#arrow-sr)"/>
+  <line class="arr" x1="585" y1="180" x2="611" y2="180" marker-end="url(#arrow-sr)"/>
 </svg>

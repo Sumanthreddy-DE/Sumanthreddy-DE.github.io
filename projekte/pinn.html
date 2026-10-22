@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen: Sumanth Reddy Settipalli</title>
-<meta name="description" content="Ein physikinformiertes neuronales Netz bestimmt Grenzflächenparameter in faserverstärkten Verbundwerkstoffen invers. Vorhersagefehler unter 5 %.">
+<title>Grenzflächenparameter in Verbundwerkstoffen per PINN bestimmen: Sumanth Reddy Settipalli</title>
+<meta name="description" content="Ein physikinformiertes neuronales Netz bestimmt Grenzflächenparameter in Verbundwerkstoffen invers und wird gegen ein DeepONet-Surrogat gebenchmarkt. Rekonstruktionsfehler unter 5 % in 33 von 36 Konfigurationen.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
 <meta property="og:url" content="https://sumanthreddy-de.github.io/projekte/pinn.html">
-<meta property="og:title" content="Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen">
-<meta property="og:description" content="Ein physikinformiertes neuronales Netz bestimmt Grenzflächenparameter in faserverstärkten Verbundwerkstoffen invers. Vorhersagefehler unter 5 %.">
+<meta property="og:title" content="Grenzflächenparameter in Verbundwerkstoffen per PINN bestimmen">
+<meta property="og:description" content="Ein physikinformiertes neuronales Netz bestimmt Grenzflächenparameter in Verbundwerkstoffen invers und wird gegen ein DeepONet-Surrogat gebenchmarkt. Rekonstruktionsfehler unter 5 % in 33 von 36 Konfigurationen.">
 <meta property="og:image" content="https://sumanthreddy-de.github.io/assets/pinn-interface.svg">
 <meta name="twitter:card" content="summary">
 
 <link rel="stylesheet" href="../assets/fonts.css">
 
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/site.css?v=3">
 <style>
-  /* page-local: case-study about text is narrower than the homepage's */
-  .about p { max-width: 62ch; }
+  /* page-local: align case-study title vertically with the compact rail */
+  .hero-inner { align-items: center; }
+  .hero .rail { padding-top: 0; }
 </style>
 </head>
 <body>
@@ -39,14 +40,12 @@
     <div class="hero-inner">
       <div class="rail">
         <dl>
-          <dt>Kontext</dt><dd>Masterarbeit, FAU Erlangen-Nürnberg</dd>
+          <dt>Fallstudie</dt><dd>Masterarbeit, FAU</dd>
           <dt>Zeitraum</dt><dd>10/2025 – 02/2026</dd>
-          <dt>Feld</dt><dd>Faserverstärkte Verbundwerkstoffe</dd>
-          <dt>Technologien</dt><dd>PyTorch, NumPy, SciPy</dd>
         </dl>
       </div>
       <div>
-        <h1>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen</h1>
+        <h1>Grenzflächenparameter in Verbundwerkstoffen per PINN bestimmen</h1>
       </div>
     </div>
   </header>
@@ -55,39 +54,38 @@
     <div class="row">
       <div class="rail"></div>
       <div class="about">
-        <p>In faserverstärkten Verbundwerkstoffen entscheidet die Interphase zwischen Faser und Matrix maßgeblich über das Bauteilverhalten. Ihre Parameter lassen sich messtechnisch kaum direkt erfassen. In der Praxis bedeutet das: aufwendige Versuchsreihen oder Annahmewerte aus der Literatur.</p>
+        <p>In Verbundwerkstoffen entscheidet die dünne Übergangszone (Interphase) zwischen Einschluss und Matrix über die Lastübertragung und die effektive Bauteilsteifigkeit. In Finite-Elemente-Rechnungen ist diese Schicht teuer, weil extrem kleine Schichtdicken sehr feine Netze und schlecht konditionierte Steifigkeitsmatrizen erzwingen. Ein Null-Dicken-Grenzflächenmodell (Extended General Interface Model, EGIM) ersetzt die Schicht durch vier effektive Parameter, die sich jedoch weder direkt messen noch analytisch invertieren lassen.</p>
 
-        <figure>
-          <img src="../assets/pinn-interface.svg" class="plate" alt="Die dreischichtige Interphase zwischen Faser und Matrix." width="900" height="560" loading="lazy">
-          <figcaption>Die dreischichtige Interphase zwischen Faser und Matrix.</figcaption>
-        </figure>
+        <h2 class="sub-head">Der Ansatz: Mikromechanik in der Verlustfunktion</h2>
 
-        <h2 class="sub-head">Der Ansatz</h2>
+        <p>Ich habe die analytischen Mori-Tanaka-Homogenisierungsgleichungen von MATLAB nach Python und PyTorch überführt (gegen die Referenzimplementierung bis auf Maschinengenauigkeit von 10⁻¹⁴ verifiziert) und direkt in die Verlustfunktion eines inversen PINN eingebettet. Eingang sind die effektiven Kompressions- und Schubmoduli eines dreischichtigen Interphasenmodells sowie die Phasenkennwerte; Ausgang sind die vier Grenzflächenparameter, die genau diese effektiven Moduli reproduzieren.</p>
 
-        <p>Ich habe ein physikinformiertes neuronales Netz (PINN) entwickelt, das diese Parameter invers bestimmt. Eingang sind die effektiven Kompressions- und Schubmoduli eines dreischichtigen Interphasenmodells, Ausgang der Parametersatz, der genau diese Moduli reproduziert.</p>
+        <p>Physikalische Schranken sind direkt in der Ausgabeschicht verankert, damit das Netz ausschließlich zulässige Steifigkeiten und Grenzflächenpositionen vorhersagt. In jedem Trainingsschritt prüft das eingebettete Vorwärtsmodell, ob die vorhergesagten Parameter die Zielsteifigkeiten tatsächlich rekonstruieren.</p>
 
-        <p>Die Mikromechanik der Homogenisierung steckt dabei in der Verlustfunktion selbst: das Netz lernt nicht nur aus Daten, sondern gegen die Physik. Damit bleibt die Lösung auch dort physikalisch sinnvoll, wo der Trainingsdatensatz dünn ist.</p>
+        <h2 class="sub-head">Was über die Genauigkeit im Training entschieden hat</h2>
 
-        <h2 class="sub-head">Was über die Genauigkeit entschieden hat</h2>
-
-        <p>Drei Eingriffe, in dieser Reihenfolge: die Korrektur falsch annotierter Randfälle im Trainingsdatensatz, adaptive Verlustgewichtung, und Gradientenbegrenzung gegen instabile Updates. Der erste Punkt war der größte Hebel: fehlerhafte Labels an den Rändern des Parameterraums haben das Modell systematisch in die falsche Richtung gezogen.</p>
+        <p>Drei Eingriffe haben die Rekonstruktionsgenauigkeit maßgeblich verbessert: die Korrektur fehlerhaft annotierter Randfälle im Trainingsdatensatz, eine adaptive Verlustgewichtung nach dem ReLoBRaLo-Prinzip zwischen Daten- und Physikverlust sowie Gradientenbegrenzung gegen instabile Updates. Der erste Punkt war der größte Hebel, weil synthetische Platzhalterwerte an den Rändern des Parameterraums das Netz zuvor systematisch verzerrt hatten.</p>
 
         <figure>
           <img src="../assets/pinn-konvergenz.png" class="plate" alt="Konvergenz des inversen PINN: Gesamt-, Validierungs-, Physik-, Daten- und Property-Verlust über 500 Epochen, logarithmische Skala" width="1155" height="823" loading="lazy">
           <figcaption>Konvergenz des inversen PINN über 500 Epochen. Physik- und Datenverlust laufen fast deckungsgleich, der Property-Verlust liegt vier Größenordnungen darunter; das beste Modell steht bei Epoche 323.</figcaption>
         </figure>
 
+        <h2 class="sub-head">Modellvergleich und Validierung im Parameterraum</h2>
+
+        <p>Um die direkte Inversion sauber einzuordnen, habe ich zusätzlich ein Branch-Trunk-DeepONet als differenzierbares Vorwärts-Surrogat trainiert (0,21 % mittlerer Vorwärtsfehler für K_eff und 0,36 % für G_eff) und mit einem Multi-Start-L-BFGS-Inversionssolver sowie einer globalen Differential-Evolution-Optimierung verglichen. Während die iterative Inversion auf dem Surrogatmodell bei extremen Steifigkeitsverhältnissen in lokalen Minima hängenbleibt, liefert das direkte inverse PINN die Parameter in einem einzigen Vorwärtsschritt ohne Laufzeit-Optimierung.</p>
+
         <figure>
-          <img src="../assets/pinn-fehler.svg" class="plate" alt="Vorhergesagte gegen referenzierte Grenzflächenparameter." width="900" height="560" loading="lazy">
-          <figcaption>Vorhergesagte gegen referenzierte Grenzflächenparameter.</figcaption>
+          <img src="../assets/pinn-fehler.png" class="plate" alt="Paritätsdiagramm: Vom inversen PINN rekonstruierte gegen referenzierte effektive Moduli über 500 Testkonfigurationen." width="1878" height="994" loading="lazy">
+          <figcaption>Rekonstruierte gegen referenzierte effektive Moduli (K_eff, G_eff) über 500 zufällige Testkonfigurationen: Medianfehler 1,4 % für K_eff und 4,0 % für G_eff.</figcaption>
         </figure>
 
-        <p class="metric-line">Vorhersagefehler unter 5 %</p>
+        <p class="metric-line">Rekonstruktionsfehler unter 5 % in 33 von 36 Konfigurationen (Median 1,4 % für K_eff, 4,0 % für G_eff)</p>
 
-        <p>Genau genug, um Versuchsreihen gezielt zu ersetzen statt sie vollständig zu fahren. Das ist der eigentliche Nutzen: nicht der Ersatz des Labors, sondern die Entscheidung, welche Versuche sich noch lohnen.</p>
+        <p>Im strukturierten Sweep über Steifigkeitsverhältnis und Volumenanteil liegen 33 von 36 Konfigurationen unter der 5-%-Schwelle, außerhalb extrem weicher Einschlüsse meist unter 2 %. Genau genug, um aufwendige FE-Detailmodelle der Interphase in Parameterstudien durch das schnelle Grenzflächenmodell zu ersetzen.</p>
 
         <div class="entry-foot">
-          <div class="stack">PyTorch, NumPy, SciPy</div>
+          <div class="stack">PyTorch, PINN, DeepONet, Mori-Tanaka-Homogenisierung, NumPy, SciPy</div>
           <div class="entry-links">
             <a class="lnk" href="https://github.com/Sumanthreddy-DE/PINN-for-composite-interface-identification">Code und Dokumentation</a>
             <a class="lnk" href="https://github.com/Sumanthreddy-DE/Master-Thesis">Masterarbeit: LaTeX-Quelle und PDF</a>

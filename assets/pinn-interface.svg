@@ -1,9 +1,134 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" role="img" aria-label="Platzhalter: Interphasen-Schema / Fehlerdiagramm">
-  <rect width="900" height="560" fill="#E8E2D6"/>
-  <rect x="8" y="8" width="884" height="544" fill="none" stroke="#C0B7A4" stroke-width="2" stroke-dasharray="10 8"/>
-  <g fill="#8C8371" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">
-    <text x="450" y="250" font-size="19" letter-spacing="2">PLATZHALTER</text>
-    <text x="450" y="291" font-size="21">Interphasen-Schema / Fehlerdiagramm</text>
-    <text x="450" y="341" font-size="16" fill="#A79D89">900 × 560</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img" aria-label="Schema: Dreischichtiges Interphasenmodell, inverses PINN und äquivalentes Null-Dicken-Grenzflächenmodell (EGIM)">
+  <defs>
+    <style>
+      .bg { fill: #FFFFFF; }
+      .card { fill: #F7F8F5; stroke: #C8CCC4; stroke-width: 1.2; }
+      .card-accent { fill: #F1F5F2; stroke: #2F5D46; stroke-width: 1.6; }
+      .kicker { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; fill: #2F5D46; }
+      .title { font-family: 'Libre Bodoni', Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 600; fill: #171A17; }
+      .body { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: #171A17; }
+      .muted { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11.5px; fill: #555B54; }
+      .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 11.5px; fill: #171A17; }
+      .badge { fill: #E6EFEA; stroke: #2F5D46; stroke-width: 1; }
+      .badge-text { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; fill: #2F5D46; }
+      .box { fill: #FFFFFF; stroke: #C8CCC4; stroke-width: 1.1; }
+      .box-phys { fill: #EBF2EE; stroke: #2F5D46; stroke-width: 1.2; }
+      .arr { stroke: #2F5D46; stroke-width: 2; fill: none; }
+      .arr-dashed { stroke: #555B54; stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+      .leader { stroke: #555B54; stroke-width: 1; fill: none; }
+    </style>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#2F5D46"/>
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#555B54"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <!-- ================= LEFT PANEL: 3-LAYER INTERPHASE ================= -->
+  <rect class="card" x="20" y="20" width="265" height="480" rx="4"/>
+  <text class="kicker" x="38" y="46">1 · Referenzmodell</text>
+  <text class="title" x="38" y="70">3-Schichten-Interphase</text>
+  <text class="muted" x="38" y="90">Auflösung der Übergangszone im RVE</text>
+
+  <!-- Matrix square -->
+  <rect x="48" y="112" width="208" height="208" fill="#E8ECE6" stroke="#8E968B" stroke-width="1.2"/>
+  <text class="muted" x="58" y="130">Matrix (κₘ, μₘ)</text>
+
+  <!-- 3 concentric interphase rings -->
+  <circle cx="152" cy="218" r="78" fill="#B8CEC2" stroke="#2F5D46" stroke-width="0.9"/>
+  <circle cx="152" cy="218" r="64" fill="#8FB3A0" stroke="#2F5D46" stroke-width="0.9"/>
+  <circle cx="152" cy="218" r="50" fill="#63937B" stroke="#2F5D46" stroke-width="0.9"/>
+
+  <!-- Core inclusion -->
+  <circle cx="152" cy="218" r="36" fill="#23382D" stroke="#171A17" stroke-width="1.2"/>
+  <text x="152" y="215" text-anchor="middle" font-family="'Public Sans', sans-serif" font-size="11" font-weight="600" fill="#FFFFFF">Einschluss</text>
+  <text x="152" y="229" text-anchor="middle" font-family="'Public Sans', sans-serif" font-size="10" fill="#DFE6E1">(κᵢ, μᵢ)</text>
+
+  <!-- Callout for 3 layers -->
+  <line class="leader" x1="205" y1="168" x2="238" y2="144"/>
+  <text class="body" x="152" y="344" text-anchor="middle" font-weight="600">3 abgestufte Schichten</text>
+  <text class="muted" x="152" y="362" text-anchor="middle">Gewichte w = (0,75 · 0,50 · 0,25)</text>
+
+  <!-- Bottom info box -->
+  <rect class="box" x="36" y="380" width="233" height="102" rx="3"/>
+  <text class="body" x="48" y="402" font-weight="600">Mori-Tanaka-Homogenisierung</text>
+  <text class="muted" x="48" y="421">• Stetigkeit von u und t je Schicht</text>
+  <text class="muted" x="48" y="439">• Liefert Zielmoduli K_eff, G_eff</text>
+  <text class="muted" x="48" y="457">• Im FE-Bauteilnetz teuer aufzulösen</text>
+
+  <!-- ================= CENTER PANEL: INVERSE PINN ================= -->
+  <rect class="card-accent" x="315" y="20" width="270" height="480" rx="4"/>
+  <text class="kicker" x="333" y="46">2 · Physikinformierte Inversion</text>
+  <text class="title" x="333" y="70">Inverses PINN</text>
+  <text class="muted" x="333" y="90">Direkte Abbildung ohne Laufzeit-Solver</text>
+
+  <!-- Input box -->
+  <rect class="box" x="335" y="110" width="230" height="58" rx="3"/>
+  <text class="body" x="450" y="131" text-anchor="middle" font-weight="600">Eingang (8 Größen)</text>
+  <text class="mono" x="450" y="151" text-anchor="middle">K_eff, G_eff, κᵢ, μᵢ, κₘ, μₘ, f, R</text>
+
+  <line class="arr" x1="450" y1="168" x2="450" y2="192" marker-end="url(#arrow-green)"/>
+
+  <!-- Network box -->
+  <rect class="box" x="335" y="196" width="230" height="72" rx="3"/>
+  <text class="body" x="450" y="218" text-anchor="middle" font-weight="600">Neuronales Netz (3 × 256, tanh)</text>
+  <text class="muted" x="450" y="237" text-anchor="middle">Physikalische Ausgabeschranken:</text>
+  <text class="mono" x="450" y="255" text-anchor="middle">k̄ (exp) · λ̄, μ̄ (softplus) · ᾱ (sigmoid)</text>
+
+  <line class="arr" x1="450" y1="268" x2="450" y2="294" marker-end="url(#arrow-green)"/>
+
+  <!-- Physics loss box -->
+  <rect class="box-phys" x="335" y="298" width="230" height="96" rx="3"/>
+  <text class="body" x="450" y="320" text-anchor="middle" font-weight="600" fill="#2F5D46">Physik-Verlust im Training</text>
+  <text class="muted" x="450" y="340" text-anchor="middle">EGIM-Vorwärtsmodell im Loop:</text>
+  <text class="mono" x="450" y="360" text-anchor="middle">(k̄, λ̄, μ̄, ᾱ) → K_rec, G_rec</text>
+  <text class="muted" x="450" y="380" text-anchor="middle">Adaptive Gewichtung (ReLoBRaLo)</text>
+
+  <!-- Alternative comparison badge -->
+  <rect class="badge" x="335" y="408" width="230" height="74" rx="3"/>
+  <text class="badge-text" x="450" y="429" text-anchor="middle">Benchmark gegen Surrogat-Inversion</text>
+  <text class="muted" x="450" y="448" text-anchor="middle">Verglichen mit Branch-Trunk-DeepONet</text>
+  <text class="muted" x="450" y="465" text-anchor="middle">+ L-BFGS sowie Differential Evolution</text>
+
+  <!-- ================= RIGHT PANEL: ZERO-THICKNESS INTERFACE ================= -->
+  <rect class="card" x="615" y="20" width="265" height="480" rx="4"/>
+  <text class="kicker" x="633" y="46">3 · Ersatzmodell</text>
+  <text class="title" x="633" y="70">Null-Dicken-Grenzfläche</text>
+  <text class="muted" x="633" y="90">Extended General Interface (EGIM)</text>
+
+  <!-- Matrix square -->
+  <rect x="644" y="112" width="208" height="208" fill="#E8ECE6" stroke="#8E968B" stroke-width="1.2"/>
+  <text class="muted" x="654" y="130">Matrix (κₘ, μₘ)</text>
+
+  <!-- Ghosted interphase extent -->
+  <circle cx="748" cy="218" r="78" fill="none" stroke="#9AA397" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Sharp zero-thickness interface at alpha_bar -->
+  <circle cx="748" cy="218" r="57" fill="none" stroke="#2F5D46" stroke-width="3.2"/>
+
+  <!-- Core inclusion -->
+  <circle cx="748" cy="218" r="36" fill="#23382D" stroke="#171A17" stroke-width="1.2"/>
+  <text x="748" y="215" text-anchor="middle" font-family="'Public Sans', sans-serif" font-size="11" font-weight="600" fill="#FFFFFF">Einschluss</text>
+  <text x="748" y="229" text-anchor="middle" font-family="'Public Sans', sans-serif" font-size="10" fill="#DFE6E1">(κᵢ, μᵢ)</text>
+
+  <!-- Position alpha indicator -->
+  <line x1="784" y1="218" x2="805" y2="218" stroke="#2F5D46" stroke-width="1.6"/>
+  <text class="badge-text" x="818" y="222">ᾱ</text>
+
+  <text class="body" x="748" y="344" text-anchor="middle" font-weight="600">4 effektive Grenzflächenparameter</text>
+  <text class="mono" x="748" y="362" text-anchor="middle">k̄, λ̄, μ̄, ᾱ   mit   ⟦u⟧ ≠ 0, ⟦t⟧ ≠ 0</text>
+
+  <!-- Bottom info box -->
+  <rect class="box" x="631" y="380" width="233" height="102" rx="3"/>
+  <text class="body" x="643" y="402" font-weight="600">Gleiche Steifigkeit, kein Schichtnetz</text>
+  <text class="muted" x="643" y="421">• Rekonstruiert K_eff und G_eff</text>
+  <text class="muted" x="643" y="439">• Fehler &lt; 5 % in 33 / 36 Fällen</text>
+  <text class="muted" x="643" y="457">• Median: 1,4 % (K_eff) · 4,0 % (G_eff)</text>
+
+  <!-- ================= CONNECTING ARROWS BETWEEN PANELS ================= -->
+  <line class="arr" x1="285" y1="140" x2="331" y2="140" marker-end="url(#arrow-green)"/>
+  <line class="arr" x1="565" y1="232" x2="611" y2="232" marker-end="url(#arrow-green)"/>
 </svg>

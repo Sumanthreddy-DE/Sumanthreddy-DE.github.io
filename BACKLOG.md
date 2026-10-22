@@ -19,15 +19,13 @@ Living list of open issues, deferred work, and known caveats. Updated each sessi
 
 ## Open — S1 (blocker / broken demo)
 
-_(none yet)_
+- **chat-cors-custom-domain** — `https://sumanthreddy.de` is live with HTTPS enforced (2026-10-22), but the chatbot backend on the VPS still rejects `Origin: https://sumanthreddy.de` (`400 Bad Request`). Update `ALLOWED_ORIGIN` in `/opt/resume-assistant` (or systemd unit environment) on the VPS to include `https://sumanthreddy.de` alongside `https://sumanthreddy-de.github.io`, restart `resume-assistant`, and verify `OPTIONS`/`POST` from `Origin: https://sumanthreddy.de`. *(opened 2026-10-22)*
 
 ---
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
-- **images-placeholder** — 7 placeholder SVGs remain: `portrait`, `pinn-interface`,
-  `pinn-fehler`, `simready-ui`, `simready-gnn`, `nx-simscape`, `nx-mapping`. `tea-team`, `gokart`, `digidorf` are already real
-  files. Count corrected 2026-10-08 (was "8 slots").
+- **images-placeholder** — 1 placeholder SVG remains: `portrait`. All 6 project visual slots (`pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, `nx-mapping`) plus `tea-team`, `gokart`, `digidorf` are now real figures/diagrams (updated 2026-10-22).
 - **eval-v5-rerun** — prompt v5 (document-voice ban) is deployed and smoke-tested live,
   but the 15-question eval has not been re-run on it. From `Projects/resume-assistant`:
   `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`

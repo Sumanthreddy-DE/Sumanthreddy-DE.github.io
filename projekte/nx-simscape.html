@@ -17,10 +17,11 @@
 
 <link rel="stylesheet" href="../assets/fonts.css">
 
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/site.css?v=3">
 <style>
-  /* page-local: case-study about text is narrower than the homepage's */
-  .about p { max-width: 62ch; }
+  /* page-local: align case-study title vertically with the compact rail */
+  .hero-inner { align-items: center; }
+  .hero .rail { padding-top: 0; }
 </style>
 </head>
 <body>
@@ -39,10 +40,8 @@
     <div class="hero-inner">
       <div class="rail">
         <dl>
-          <dt>Kontext</dt><dd>Lehrstuhl für Konstruktionstechnik (KTmfk), FAU Erlangen-Nürnberg</dd>
+          <dt>Fallstudie</dt><dd>KTmfk, FAU</dd>
           <dt>Zeitraum</dt><dd>04/2025 – 02/2026</dd>
-          <dt>Feld</dt><dd>CAD-Automatisierung, Mehrkörpersimulation</dd>
-          <dt>Technologien</dt><dd>TensorFlow, NXOpen API, Siemens NX, PTC Creo, MATLAB Simscape</dd>
         </dl>
       </div>
       <div>
@@ -57,22 +56,17 @@
       <div class="about">
         <p>Am Lehrstuhl entstehen Mehrkörpersimulationen von Baugruppen. Die Geometrie kommt aus Siemens NX, gerechnet wird in MATLAB Simscape. Der Übergang zwischen beiden war Handarbeit: Bauteile, Zwangsbedingungen und Gelenke wurden manuell übertragen, langsam und fehleranfällig.</p>
 
-        <figure>
-          <img src="../assets/nx-simscape.svg" class="plate" alt="Baugruppe und erzeugtes Simscape-Modell." width="900" height="560" loading="lazy">
-          <figcaption>Baugruppe und erzeugtes Simscape-Modell.</figcaption>
-        </figure>
-
         <h2 class="sub-head">Die Pipeline</h2>
 
         <p>Sie liest Geometrie und Zwangsbedingungen über die NXOpen API direkt aus der Baugruppe aus und erzeugt daraus simulationsfähiges XML für Simscape. Der Kern ist die Zuordnung: Jede NX-Zwangsbedingung braucht das passende Gelenk.</p>
 
         <h2 class="sub-head">Zuordnung als Klassifikationsproblem</h2>
 
-        <p>Diese Zuordnung übernimmt ein Transformer-Modell, formuliert als überwachte Klassifikation auf das passende Gelenk in PTC Creo. Den Trainingsdatensatz habe ich selbst aufgebaut: öffentliche STEP-Dateien geparst und daraus 1.000 Paare aus Zwangsbedingung und Gelenk extrahiert. Validiert wurde gegen reale Modelle in PTC Creo.</p>
+        <p>Diese Zuordnung übernimmt ein Klassifikationsmodell auf 41 Constraint-Merkmalen je Bauteilpaar, validiert auf das passende Gelenk in PTC Creo. Den Trainingsdatensatz habe ich selbst aufgebaut: öffentliche STEP-Dateien geparst und daraus Paare aus Zwangsbedingung und Gelenk extrahiert. Validiert wurde gegen reale Modelle in PTC Creo.</p>
 
         <figure>
-          <img src="../assets/nx-mapping.svg" class="plate" alt="Zwangsbedingung aus NX und zugeordnetes Gelenk." width="900" height="560" loading="lazy">
-          <figcaption>Zwangsbedingung aus NX und zugeordnetes Gelenk.</figcaption>
+          <img src="../assets/nx-mapping.svg" class="plate" alt="Zwangsbedingung aus NX, 41-dimensionaler Merkmalsvektor und zugeordneter Gelenktyp mit automatischer Positionsprüfung." width="900" height="460" loading="lazy">
+          <figcaption>Von den NX-Zwangsbedingungen über den 41-dimensionalen Merkmalsvektor zum vorhergesagten Gelenktyp mit anschließender Positionsprüfung.</figcaption>
         </figure>
 
         <h2 class="sub-head">Die Pipeline prüft sich selbst</h2>

@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="assets/chat.css">
 <script src="assets/chat.js" defer></script>
 
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=3">
 </head>
 <body>
 <div class="page">
@@ -46,11 +46,11 @@
       <ul class="jump">
         <li><a href="#pinn">
           <span class="what">Inverse Parameteridentifikation mit PINN</span>
-          <span class="metric">Fehler unter 5 %</span>
+          <span class="metric">Fehler unter 5 % (33/36 Fälle)</span>
         </a></li>
         <li><a href="#simready">
-          <span class="what">SimReady: STEP-Datei auf Vernetzbarkeit prüfen</span>
-          <span class="metric">GNN auf 1.100 Bauteilen</span>
+          <span class="what">SimReady: KI-Copilot für CAD- und FEA-Prüfung</span>
+          <span class="metric">F1 91 % · 88/100 Bild-zu-CAD</span>
         </a></li>
         <li><a href="#nx">
           <span class="what">NX → Simscape automatisiert</span>
@@ -65,7 +65,7 @@
 <section id="projekte">
   <div class="row">
     <div class="rail"></div>
-    <h2 class="section-head">Projekte</h2>
+    <h2 class="section-head"><a href="projekte.html">Projekte</a></h2>
   </div>
 
   <article class="entry" id="pinn">
@@ -74,23 +74,25 @@
         <dl>
           <dt>Kontext</dt><dd>Masterarbeit, FAU Erlangen-Nürnberg</dd>
           <dt>Zeitraum</dt><dd>10/2025 – 02/2026</dd>
-          <dt>Feld</dt><dd>Faserverstärkte Verbundwerkstoffe</dd>
+          <dt>Feld</dt><dd>Mikromechanik, Verbundwerkstoffe</dd>
         </dl>
       </div>
       <div>
-        <h3>Inverse Parameteridentifikation an Faser-Matrix-Grenzflächen</h3>
+        <h3><a href="projekte/pinn.html">Grenzflächenparameter in Verbundwerkstoffen per PINN bestimmen</a></h3>
 
-        <p>Die Parameter der Interphase zwischen Faser und Matrix entscheiden über das Bauteilverhalten, lassen sich messtechnisch aber kaum direkt erfassen. Ich habe ein physikinformiertes neuronales Netz entwickelt, das sie aus den effektiven Kompressions- und Schubmoduli zurückrechnet. Die Mikromechanik der Homogenisierung steckt dabei in der Verlustfunktion selbst.</p>
+        <p>Zwischen Verstärkung und Matrix liegt in Verbundwerkstoffen eine dünne Übergangszone (Interphase). Sie entscheidet über die Bauteilsteifigkeit, ist im FE-Netz aber aufwendig aufzulösen und messtechnisch kaum direkt zugänglich.</p>
 
-        <p class="metric-line">Vorhersagefehler unter 5 %</p>
+        <p>Ich habe ein physikinformiertes neuronales Netz (PINN) entwickelt, das diese Schicht durch ein schnelles Null-Dicken-Grenzflächenmodell ersetzt: Aus den Zielsteifigkeiten bestimmt es in einem einzigen Vorwärtsschritt die vier Grenzflächenparameter, statt pro Bauteil eine iterative Optimierung zu starten. Parallel dazu habe ich ein Branch-Trunk-DeepONet als differenzierbares Vorwärts-Surrogat aufgebaut und gegen die direkte PINN-Inversion gebenchmarkt.</p>
+
+        <p class="metric-line">Rekonstruktionsfehler unter 5 % in 33 von 36 Konfigurationen (Median 1,4 % für K_eff, 4,0 % für G_eff)</p>
 
         <figure>
-          <img src="assets/pinn-interface.svg" class="plate" alt="Schema der dreischichtigen Interphase zwischen Faser und Matrix" width="900" height="560" loading="lazy">
-          <figcaption>Vorhergesagte gegen referenzierte Grenzflächenparameter.</figcaption>
+          <img src="assets/pinn-interface.svg" class="plate" alt="Schema: Dreischichtiges Interphasenmodell, inverses PINN und äquivalentes Null-Dicken-Grenzflächenmodell" width="900" height="520" loading="lazy">
+          <figcaption>Vom dreischichtigen Interphasenmodell über das inverse PINN zum äquivalenten Null-Dicken-Grenzflächenmodell.</figcaption>
         </figure>
 
         <div class="entry-foot">
-          <div class="stack">PyTorch · NumPy · SciPy</div>
+          <div class="stack">PyTorch · PINN · DeepONet / Surrogatmodell · Mori-Tanaka-Homogenisierung · NumPy · SciPy</div>
           <div class="entry-links">
             <a class="lnk" href="projekte/pinn.html">Fallstudie lesen</a>
             <a class="lnk" href="https://github.com/Sumanthreddy-DE/PINN-for-composite-interface-identification">Code</a>
@@ -107,23 +109,25 @@
         <dl>
           <dt>Kontext</dt><dd>Eigenes Projekt, öffentlich auf GitHub</dd>
           <dt>Zeitraum</dt><dd>seit 03/2026</dd>
-          <dt>Feld</dt><dd>FEA-Vorverarbeitung</dd>
+          <dt>Feld</dt><dd>FEA-Vorverarbeitung, Generative CAD</dd>
         </dl>
       </div>
       <div>
-        <h3>SimReady: von der STEP-Datei zum vernetzungsfähigen Bauteil</h3>
+        <h3><a href="projekte/simready.html">SimReady: KI-Copilot für FEA-Vorverarbeitung und CAD-Generierung</a></h3>
 
-        <p>Ein Bauteil für die FE-Rechnung vorzubereiten kostet erfahrene Berechnungsingenieure Stunden, und was dabei übersehen wird, fällt erst im Solver auf. SimReady prüft eine STEP-Datei in zwölf Geometrieprüfungen, begründet jeden Befund farbig am 3D-Modell und sagt über ein Graph Neural Network voraus, welche Flächen eine Netzverfeinerung brauchen.</p>
+        <p>Vor jeder Finite-Elemente-Rechnung muss das CAD-Modell geprüft und repariert werden. Das kostet Berechnungsingenieure oft Stunden, und übersehene Geometriefehler lassen später den Solver abbrechen. SimReady liest eine STEP-Datei ein, führt zwölf Geometrieprüfungen aus, heilt kleine Defekte automatisch und bewertet die Vernetzbarkeit von 0 bis 100.</p>
 
-        <p class="metric-line">Graph Neural Network, trainiert auf 1.100 Bauteilen</p>
+        <p>Dahinter arbeiten drei Module zusammen: ein Graph Neural Network (GraphSAGE) auf 2.272 CAD-Graphen für den Netzverfeinerungsbedarf pro Fläche, ein Multi-Turn-LLM-Agent mit RAG über FEA-Richtlinien und eigener CAD-Generierung sowie ein mit QLoRA feinabgestimmtes Vision-Language-Modell (Qwen2.5-VL-3B), das aus einem Bauteilbild direkt ausführbaren CadQuery-Code erzeugt.</p>
+
+        <p class="metric-line">91 % F1-Score auf 3.612 Bauteilflächen · 88 von 100 valide CAD-Modelle aus Bildern (0/100 vor Fine-Tuning)</p>
 
         <figure>
-          <img src="assets/simready-ui.svg" class="plate" alt="SimReady-Oberfläche mit farbig markierten Befundflächen am 3D-Modell" width="900" height="560" loading="lazy">
-          <figcaption>Zwölf Geometrieprüfungen, jeder Befund am Modell markiert und im Chat begründet.</figcaption>
+          <img src="assets/simready-ui.svg" class="plate" alt="Überblick über SimReady: STEP-Geometrieprüfung, BRepSAGE Graph Neural Network und KI-Copilot mit Bild-zu-CAD-Generierung" width="900" height="520" loading="lazy">
+          <figcaption>Vom STEP-Bauteil über zwölf Geometrieprüfungen und das Graph Neural Network zum KI-Copiloten für Analyse und CAD-Generierung.</figcaption>
         </figure>
 
         <div class="entry-foot">
-          <div class="stack">PyTorch Geometric · pythonocc · LLM-Fine-Tuning · Streamlit</div>
+          <div class="stack">PyTorch Geometric (GraphSAGE) · pythonocc (OpenCascade) · Qwen2.5-VL (QLoRA) · CadQuery · LLM-Agent &amp; RAG · Streamlit</div>
           <div class="entry-links">
             <a class="lnk" href="projekte/simready.html">Fallstudie lesen</a>
             <a class="lnk" href="https://github.com/Sumanthreddy-DE/simready">Code</a>
@@ -143,15 +147,15 @@
         </dl>
       </div>
       <div>
-        <h3>Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell</h3>
+        <h3><a href="projekte/nx-simscape.html">Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell</a></h3>
 
         <p>Der Weg von der NX-Baugruppe ins Simscape-Modell war Handarbeit: Bauteile, Zwangsbedingungen und Gelenke wurden manuell übertragen. Meine Pipeline liest die Baugruppe über die NXOpen API aus, ordnet jede Zwangsbedingung über ein Transformer-Modell dem passenden Gelenk in PTC Creo zu und prüft am Ende die Gelenkpositionen gegen das Original.</p>
 
         <p class="metric-line">Aus Stunden manueller Übertragung werden Minuten</p>
 
         <figure>
-          <img src="assets/nx-simscape.svg" class="plate" alt="NX-Baugruppe neben dem erzeugten Simscape-Blockdiagramm" width="900" height="560" loading="lazy">
-          <figcaption>Baugruppe und erzeugtes Simscape-Modell. Die Pipeline vergleicht beide Gelenkpositionen automatisch.</figcaption>
+          <img src="assets/nx-simscape.svg" class="plate" alt="Schema der NX-zu-Simscape-Pipeline: NX-Baugruppe, KI-Gelenkzuordnung und automatische Positionsprüfung für MATLAB Simscape" width="900" height="520" loading="lazy">
+          <figcaption>Baugruppe in Siemens NX, automatische Gelenkzuordnung und Positionsprüfung im erzeugten Simscape-Modell.</figcaption>
         </figure>
 
         <div class="entry-foot">

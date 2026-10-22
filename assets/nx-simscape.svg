@@ -1,9 +1,128 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" role="img" aria-label="Platzhalter: NX-Baugruppe / Simscape-Blockdiagramm">
-  <rect width="900" height="560" fill="#E8E2D6"/>
-  <rect x="8" y="8" width="884" height="544" fill="none" stroke="#C0B7A4" stroke-width="2" stroke-dasharray="10 8"/>
-  <g fill="#8C8371" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">
-    <text x="450" y="250" font-size="19" letter-spacing="2">PLATZHALTER</text>
-    <text x="450" y="291" font-size="21">NX-Baugruppe / Simscape-Blockdiagramm</text>
-    <text x="450" y="341" font-size="16" fill="#A79D89">900 × 560</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img" aria-label="Schema der NX-zu-Simscape-Pipeline: NX-Baugruppe und NXOpen-Extraktion, Gelenk-Klassifikation und automatische Positionsprüfung für MATLAB Simscape">
+  <defs>
+    <style>
+      .bg { fill: #FFFFFF; }
+      .card { fill: #F7F8F5; stroke: #C8CCC4; stroke-width: 1.2; }
+      .card-accent { fill: #F1F5F2; stroke: #2F5D46; stroke-width: 1.6; }
+      .kicker { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; fill: #2F5D46; }
+      .title { font-family: 'Libre Bodoni', Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 600; fill: #171A17; }
+      .body { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: #171A17; }
+      .muted { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11.5px; fill: #555B54; }
+      .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 11px; fill: #171A17; }
+      .badge { fill: #E6EFEA; stroke: #2F5D46; stroke-width: 1; }
+      .badge-text { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; font-weight: 600; fill: #2F5D46; }
+      .box { fill: #FFFFFF; stroke: #C8CCC4; stroke-width: 1.1; }
+      .box-phys { fill: #EBF2EE; stroke: #2F5D46; stroke-width: 1.2; }
+      .arr { stroke: #2F5D46; stroke-width: 2; fill: none; }
+    </style>
+    <marker id="arrow-nx" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#2F5D46"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <!-- ================= PANEL 1: SIEMENS NX ASSEMBLY ================= -->
+  <rect class="card" x="20" y="20" width="265" height="480" rx="4"/>
+  <text class="kicker" x="38" y="46">1 · CAD-Baugruppe</text>
+  <text class="title" x="38" y="70">Siemens NX + NXOpen</text>
+  <text class="muted" x="38" y="90">Geometrie &amp; Zwangsbedingungen</text>
+
+  <!-- Assembly schematic in cedar-green palette -->
+  <rect class="box" x="36" y="108" width="233" height="176" rx="3"/>
+  <!-- Component A (Housing/Flange) -->
+  <rect x="54" y="146" width="84" height="96" rx="3" fill="#B8CEC2" stroke="#2F5D46" stroke-width="1.3"/>
+  <circle cx="96" cy="194" r="22" fill="#FFFFFF" stroke="#2F5D46" stroke-width="1.3"/>
+  <text class="body" x="96" y="262" text-anchor="middle" font-weight="600">Bauteil A</text>
+
+  <!-- Component B (Shaft/Pin) -->
+  <rect x="164" y="174" width="86" height="40" rx="3" fill="#23382D" stroke="#171A17" stroke-width="1.3"/>
+  <text class="body" x="207" y="198" text-anchor="middle" fill="#FFFFFF" font-weight="600">Welle B</text>
+  <text class="body" x="207" y="262" text-anchor="middle" font-weight="600">Bauteil B</text>
+
+  <!-- Constraint arrows between A and B -->
+  <line class="arr" x1="160" y1="186" x2="122" y2="186" marker-end="url(#arrow-nx)"/>
+  <line class="arr" x1="160" y1="202" x2="122" y2="202" marker-end="url(#arrow-nx)"/>
+  <text class="muted" x="152" y="132" text-anchor="middle">Mating Constraints (Touch / Align)</text>
+
+  <rect class="box" x="36" y="298" width="233" height="184" rx="3"/>
+  <text class="body" x="48" y="320" font-weight="600">Automatischer NXOpen-Export</text>
+  <text class="muted" x="48" y="340">• Bauteile, Massen &amp; Trägheiten</text>
+  <text class="muted" x="48" y="358">• Lokale Koordinatensysteme</text>
+  <text class="muted" x="48" y="376">• 41 Constraint-Merkmale je Paar</text>
+  <text class="muted" x="48" y="394">  (Touch, Align, Parallel, Abstand)</text>
+  <line x1="48" y1="408" x2="255" y2="408" stroke="#C8CCC4" stroke-width="1"/>
+  <text class="body" x="48" y="428" font-weight="600" fill="#2F5D46">Kein manuelles Abtippen</text>
+  <text class="muted" x="48" y="447">Direkt aus der CAD-Sitzung</text>
+  <text class="muted" x="48" y="465">in strukturierte Merkmalsvektoren</text>
+
+  <!-- ================= PANEL 2: ML JOINT CLASSIFIER ================= -->
+  <rect class="card-accent" x="315" y="20" width="270" height="480" rx="4"/>
+  <text class="kicker" x="333" y="46">2 · KI-Gelenkzuordnung</text>
+  <text class="title" x="333" y="70">Zwangsbedingung → Gelenk</text>
+  <text class="muted" x="333" y="90">Überwachte Klassifikation (TensorFlow)</text>
+
+  <rect class="box" x="335" y="108" width="230" height="62" rx="3"/>
+  <text class="body" x="450" y="130" text-anchor="middle" font-weight="600">Eingang je Bauteilpaar</text>
+  <text class="mono" x="450" y="150" text-anchor="middle">41 Constraint-Features + Bauteilklasse</text>
+
+  <line class="arr" x1="450" y1="170" x2="450" y2="196" marker-end="url(#arrow-nx)"/>
+
+  <rect class="box" x="335" y="200" width="230" height="76" rx="3"/>
+  <text class="body" x="450" y="222" text-anchor="middle" font-weight="600">Klassifikationsmodell</text>
+  <text class="muted" x="450" y="241" text-anchor="middle">BatchNorm · Dropout · Iterative</text>
+  <text class="muted" x="450" y="259" text-anchor="middle">Konvergenz-Schleife mit Early Stopping</text>
+
+  <line class="arr" x1="450" y1="276" x2="450" y2="302" marker-end="url(#arrow-nx)"/>
+
+  <rect class="box-phys" x="335" y="306" width="230" height="92" rx="3"/>
+  <text class="body" x="450" y="328" text-anchor="middle" font-weight="600" fill="#2F5D46">Kinematischer Gelenktyp (9 Klassen)</text>
+  <text class="mono" x="450" y="349" text-anchor="middle">Revolute · Cylinder · Planar · Fixed</text>
+  <text class="mono" x="450" y="367" text-anchor="middle">Parallel · Inplane · Slider · Inline</text>
+  <text class="muted" x="450" y="385" text-anchor="middle">+ Konfidenzwert je Vorhersage</text>
+
+  <rect class="badge" x="335" y="412" width="230" height="70" rx="3"/>
+  <text class="badge-text" x="450" y="433" text-anchor="middle">Eigener CAD-Trainingsdatensatz</text>
+  <text class="muted" x="450" y="452" text-anchor="middle">Geparste STEP-Baugruppen &amp; validiert</text>
+  <text class="muted" x="450" y="469" text-anchor="middle">gegen Kinematikmodelle in PTC Creo</text>
+
+  <!-- ================= PANEL 3: SIMSCAPE MULTIBODY + VERIFICATION ================= -->
+  <rect class="card" x="615" y="20" width="265" height="480" rx="4"/>
+  <text class="kicker" x="633" y="46">3 · Mehrkörpersimulation</text>
+  <text class="title" x="633" y="70">MATLAB Simscape + Check</text>
+  <text class="muted" x="633" y="90">XML-Erzeugung &amp; Positionsabgleich</text>
+
+  <!-- Simscape block diagram in cedar-green palette -->
+  <rect class="box" x="631" y="108" width="233" height="176" rx="3"/>
+  <rect x="647" y="148" width="62" height="44" rx="3" fill="#EBF2EE" stroke="#2F5D46" stroke-width="1.3"/>
+  <text class="mono" x="678" y="174" text-anchor="middle">Body A</text>
+
+  <rect x="723" y="142" width="52" height="56" rx="3" fill="#23382D" stroke="#171A17" stroke-width="1.3"/>
+  <text class="mono" x="749" y="166" text-anchor="middle" fill="#FFFFFF">Joint</text>
+  <text class="mono" x="749" y="182" text-anchor="middle" fill="#B8CEC2">Revolute</text>
+
+  <rect x="789" y="148" width="62" height="44" rx="3" fill="#EBF2EE" stroke="#2F5D46" stroke-width="1.3"/>
+  <text class="mono" x="820" y="174" text-anchor="middle">Body B</text>
+
+  <line x1="709" y1="170" x2="723" y2="170" stroke="#2F5D46" stroke-width="2"/>
+  <line x1="775" y1="170" x2="789" y2="170" stroke="#2F5D46" stroke-width="2"/>
+
+  <rect x="665" y="218" width="166" height="44" rx="3" fill="#F1F5F2" stroke="#2F5D46" stroke-width="1.1"/>
+  <text class="body" x="748" y="237" text-anchor="middle" font-weight="600" fill="#2F5D46">Δx, Δφ Positionsprüfung</text>
+  <text class="muted" x="748" y="253" text-anchor="middle">NX-Ursprung ↔ Simscape-Gelenk</text>
+
+  <rect class="box" x="631" y="298" width="233" height="184" rx="3"/>
+  <text class="body" x="643" y="320" font-weight="600">Selbstprüfende Pipeline</text>
+  <text class="muted" x="643" y="340">• Erzeugt simulationsfähiges XML</text>
+  <text class="muted" x="643" y="358">• Vergleicht Gelenkpositionen</text>
+  <text class="muted" x="643" y="376">  automatisch mit dem Original</text>
+  <text class="muted" x="643" y="394">• Warnt gezielt bei Abweichungen</text>
+  <line x1="643" y1="408" x2="850" y2="408" stroke="#C8CCC4" stroke-width="1"/>
+  <text class="body" x="643" y="428" font-weight="600" fill="#2F5D46">Stunden → Minuten</text>
+  <text class="muted" x="643" y="447">Reproduzierbarer Übergang</text>
+  <text class="muted" x="643" y="465">von Konstruktion zu Simulation</text>
+
+  <!-- ================= CONNECTING ARROWS ================= -->
+  <line class="arr" x1="285" y1="180" x2="311" y2="180" marker-end="url(#arrow-nx)"/>
+  <line class="arr" x1="585" y1="180" x2="611" y2="180" marker-end="url(#arrow-nx)"/>
 </svg>

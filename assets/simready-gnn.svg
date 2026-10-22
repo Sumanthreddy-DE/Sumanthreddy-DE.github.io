@@ -1,9 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" role="img" aria-label="Platzhalter: GNN: Flaechen mit Verfeinerungsbedarf">
-  <rect width="900" height="560" fill="#E8E2D6"/>
-  <rect x="8" y="8" width="884" height="544" fill="none" stroke="#C0B7A4" stroke-width="2" stroke-dasharray="10 8"/>
-  <g fill="#8C8371" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">
-    <text x="450" y="250" font-size="19" letter-spacing="2">PLATZHALTER</text>
-    <text x="450" y="291" font-size="21">GNN: Flaechen mit Verfeinerungsbedarf</text>
-    <text x="450" y="341" font-size="16" fill="#A79D89">900 x 560</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500" role="img" aria-label="Ergebnisse von SimReady: BRepSAGE-Bewertung auf 2.272 Bauteilen und Qwen2.5-VL QLoRA Bild-zu-CAD-Benchmark mit Geometrie-Checker">
+  <defs>
+    <style>
+      .bg { fill: #FFFFFF; }
+      .panel { fill: #F7F8F5; stroke: #C8CCC4; stroke-width: 1.2; }
+      .kicker { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; fill: #2F5D46; }
+      .title { font-family: 'Libre Bodoni', Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 600; fill: #171A17; }
+      .body { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: #171A17; }
+      .muted { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11.5px; fill: #555B54; }
+      .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 11.5px; fill: #171A17; }
+      .bar-bg { fill: #E4E7E1; }
+      .bar-green { fill: #2F5D46; }
+      .bar-mid { fill: #5E8C73; }
+      .bar-warn { fill: #C97A2B; }
+      .box { fill: #FFFFFF; stroke: #C8CCC4; stroke-width: 1.1; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="900" height="500"/>
+
+  <!-- ================= LEFT HALF: BREPSAGE GNN METRICS ================= -->
+  <rect class="panel" x="20" y="20" width="420" height="460" rx="4"/>
+  <text class="kicker" x="40" y="48">BRepSAGE · 2.272 B-Rep-Graphen</text>
+  <text class="title" x="40" y="72">Netzverfeinerung &amp; Defektklassen</text>
+  <text class="muted" x="40" y="92">Leckagefreier Split nach Basisbauteil (1.801 Train / 471 Val)</text>
+
+  <!-- Held-out fixtures metrics bars -->
+  <rect class="box" x="40" y="110" width="380" height="172" rx="3"/>
+  <text class="body" x="56" y="134" font-weight="600">Held-Out-Prüfbauteile (27 Teile · 3.612 CAD-Flächen)</text>
+
+  <text class="body" x="56" y="164">Precision</text>
+  <rect class="bar-bg" x="145" y="152" width="210" height="14" rx="2"/>
+  <rect class="bar-green" x="145" y="152" width="193" height="14" rx="2"/>
+  <text class="mono" x="365" y="164">92,0 %</text>
+
+  <text class="body" x="56" y="194">Recall</text>
+  <rect class="bar-bg" x="145" y="182" width="210" height="14" rx="2"/>
+  <rect class="bar-green" x="145" y="182" width="188" height="14" rx="2"/>
+  <text class="mono" x="365" y="194">89,5 %</text>
+
+  <text class="body" x="56" y="224">F1-Score</text>
+  <rect class="bar-bg" x="145" y="212" width="210" height="14" rx="2"/>
+  <rect class="bar-green" x="145" y="212" width="191" height="14" rx="2"/>
+  <text class="mono" x="365" y="224">90,8 %</text>
+
+  <text class="body" x="56" y="254">Accuracy</text>
+  <rect class="bar-bg" x="145" y="242" width="210" height="14" rx="2"/>
+  <rect class="bar-mid" x="145" y="242" width="179" height="14" rx="2"/>
+  <text class="mono" x="365" y="254">85,3 %</text>
+
+  <!-- Defect classification breakdown -->
+  <rect class="box" x="40" y="296" width="380" height="164" rx="3"/>
+  <text class="body" x="56" y="320" font-weight="600">Defekt-Erkennung auf injizierten CAD-Fehlern</text>
+  <text class="muted" x="56" y="340">Nicht-zirkuläre Ground-Truth-Labels aus Degradations-Pipeline:</text>
+
+  <text class="body" x="56" y="368">Splitterflächen (Sliver Faces)</text>
+  <text class="mono" x="355" y="368" fill="#2F5D46">100,0 %</text>
+
+  <text class="body" x="56" y="392">Offene Schalen (Open Shell)</text>
+  <text class="mono" x="362" y="392" fill="#2F5D46">85,6 %</text>
+
+  <text class="body" x="56" y="416">Fehlerfreie Geometrie (Clean)</text>
+  <text class="mono" x="362" y="416">87,0 %</text>
+
+  <text class="muted" x="56" y="444">Vollständige Pipeline-Laufzeit: 2,2 – 7,5 s pro STEP-Bauteil</text>
+
+  <!-- ================= RIGHT HALF: GENCAD VLM + CHECKER BRIDGE ================= -->
+  <rect class="panel" x="460" y="20" width="420" height="460" rx="4"/>
+  <text class="kicker" x="480" y="48">Vision-to-CAD · Qwen2.5-VL-3B + QLoRA</text>
+  <text class="title" x="480" y="72">Bild → CadQuery + SimReady-Prüfung</text>
+  <text class="muted" x="480" y="92">Evaluiert auf 100 Test-Bauteilen aus CADCODER/GenCAD-Code</text>
+
+  <!-- VSR comparison -->
+  <rect class="box" x="480" y="110" width="380" height="142" rx="3"/>
+  <text class="body" x="496" y="134" font-weight="600">Anteil ausführbarer CAD-Programme (Valid Syntax Rate)</text>
+
+  <text class="body" x="496" y="166">Basismodell (4-Bit)</text>
+  <rect class="bar-bg" x="625" y="154" width="170" height="14" rx="2"/>
+  <text class="mono" x="805" y="166">0 / 100</text>
+
+  <text class="body" x="496" y="198" font-weight="600">Mit QLoRA-Tuning</text>
+  <rect class="bar-bg" x="625" y="186" width="170" height="14" rx="2"/>
+  <rect class="bar-green" x="625" y="186" width="150" height="14" rx="2"/>
+  <text class="mono" x="805" y="198" fill="#2F5D46">88 / 100</text>
+
+  <text class="muted" x="496" y="232">Volumen-IoU der 88 Modelle: Mittelwert 0,563 · Median 0,580</text>
+
+  <!-- Checker Bridge & Roadmap -->
+  <rect class="box" x="480" y="266" width="380" height="194" rx="3"/>
+  <text class="body" x="496" y="290" font-weight="600">Warum IoU allein für CAD nicht reicht (Checker-Bridge)</text>
+  <text class="muted" x="496" y="312">Alle 88 generierten Modelle wurden als STEP exportiert und mit</text>
+  <text class="muted" x="496" y="329">SimReady gegen die 88 Referenzbauteile geprüft:</text>
+
+  <text class="body" x="496" y="356">• Erkannte KI-Defekte:</text>
+  <text class="muted" x="635" y="356">6× dünne Wand, 3× Selbstschnitt, 1× invalider Solid</text>
+  <text class="body" x="496" y="378">• Beispiel Bauteil 5699:</text>
+  <text class="muted" x="635" y="378">Voxel-IoU = 0,83 (gut), aber Selbstüberschneidung</text>
+
+  <line x1="496" y1="396" x2="844" y2="396" stroke="#C8CCC4" stroke-width="1"/>
+  <text class="body" x="496" y="418" font-weight="600" fill="#2F5D46">Nächste Ausbaustufe (SP1–SP3 im Aufbau)</text>
+  <text class="muted" x="496" y="438">150-Prompt Text-to-CAD-Benchmark (ISO-Passungen, NEMA-Flansche)</text>
+  <text class="muted" x="496" y="454">+ Reinforcement Learning (GRPO) mit SimReady-Checker als Reward</text>
 </svg>
