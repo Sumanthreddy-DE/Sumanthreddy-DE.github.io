@@ -12,14 +12,13 @@ Living list of open issues, deferred work, and known caveats. Updated each sessi
 - Mention by short slug in commit body (e.g. "Closes: my-issue-slug").
 - On close → move to **Done this session** with commit SHA.
 - End of session → user sweeps **Done** → **Archived** (one-line compress).
-- Last swept: **2026-10-14** (anny-link-404, chat-panel-focus, state-md-private-path,
-  eval-prescreen-nie closed; prompt v5 deployed).
+- Last swept: **2026-10-22** (custom domain `sumanthreddy.de` + HTTPS enforced, 6 project image slots replaced, chatbot CORS fixed on VPS).
 
 ---
 
 ## Open — S1 (blocker / broken demo)
 
-- **chat-cors-custom-domain** — `https://sumanthreddy.de` is live with HTTPS enforced (2026-10-22), but the chatbot backend on the VPS still rejects `Origin: https://sumanthreddy.de` (`400 Bad Request`). Update `ALLOWED_ORIGIN` in `/opt/resume-assistant` (or systemd unit environment) on the VPS to include `https://sumanthreddy.de` alongside `https://sumanthreddy-de.github.io`, restart `resume-assistant`, and verify `OPTIONS`/`POST` from `Origin: https://sumanthreddy.de`. *(opened 2026-10-22)*
+_(none yet)_
 
 ---
 
@@ -45,11 +44,6 @@ Living list of open issues, deferred work, and known caveats. Updated each sessi
 
 ## Open — S3 (tech debt, deprecations, low-impact polish)
 
-- **site-css-live-verify** — since 305ba8c the shared block loads as external
-  `assets/site.css` (first external stylesheet for the shared CSS). After the
-  site push lands, verify a page on live Pages renders correctly (fonts,
-  palette, rail) and the file returns 200.
-  *(found 2026-10-14, Sumanthreddy-DE.github.io session)*
 - **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
   verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
 
@@ -78,6 +72,15 @@ Living list of open issues, deferred work, and known caveats. Updated each sessi
   repo): add the bot as a CV project line and a "Live-Demo" link in AI-job Anschreiben
   (spec §14). ~~Rebuild the CV PDFs~~ done 2026-10-11: site PDF rebuilt from master,
   KTmfk fix verified in the shipped PDF.
+
+## Done this session (2026-10-22)
+
+- **custom-domain-and-https** — IONOS DNS (`@` A + AAAA, `www` CNAME) pointed to GitHub Pages, `CNAME` (`sumanthreddy.de`) merged, TLS certificate provisioned and **Enforce HTTPS** enabled on `https://sumanthreddy.de`. *(commit: f843347)*
+- **chat-cors-custom-domain** — `https://sumanthreddy.de` added to `ALLOWED_ORIGIN` in `resume-assistant` (`app.py` + `/etc/resume-assistant/env` on VPS), service restarted (`journalctl` verified), and live `OPTIONS` + `POST /chat` from `Origin: https://sumanthreddy.de` verified (`200 OK`, streaming `claude-sonnet-5`). *(resume-assistant commit: 36d3803)*
+- **project-images-and-case-studies** — replaced 6 project placeholders (`pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, `nx-mapping`), unified cedar-green SVG palette across all 3 projects, expanded PINN and SimReady case-study copy, aligned case-study text to 780 px column width, removed duplicate homepage figures, and made project headings clickable. *(commit: 30950e5)*
+- **site-css-live-verify** — verified `https://sumanthreddy.de/assets/site.css` returns `200 OK` and renders live. *(closed 2026-10-22)*
+
+---
 
 ## Done this session (2026-10-14)
 
