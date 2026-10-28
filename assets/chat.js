@@ -110,6 +110,10 @@
     function fallback(turn, reason, key) {
       turn.li.classList.add('fallback');
       turn.body.textContent = '';
+      // A tool line describes a live lookup; once the turn falls back to the
+      // prepared answer it would contradict the status line below it.
+      turn.tool.hidden = true;
+      turn.tool.textContent = '';
       if (reason === 'invalid') {
         turn.li.appendChild(statusLine(INVALID));
         return;

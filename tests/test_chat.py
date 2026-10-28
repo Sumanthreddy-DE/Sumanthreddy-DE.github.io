@@ -201,6 +201,19 @@ def test_tool_line_wraps_at_360px_without_overflow(browser, site_url):
     context.close()
 
 
+def test_tool_line_is_hidden_when_the_turn_falls_back(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = [tool(), {"type": "delta", "text": "Teilantwort"}, {"type": "fallback", "reason": "error"}]
+    chip(page, "deutsch").click()
+    turn = last_answer(page)
+    expect(turn.locator(".chat-status")).to_have_text(
+        "Gerade keine Live-Antwort – hier die vorbereitete Antwort.")
+    expect(turn.locator(".text")).to_contain_text("B2")
+    expect(turn.locator(".source")).to_have_text("Quelle: Lebenslauf")
+    expect(turn.locator(".tool")).to_be_hidden()
+    assert turn.locator(".tool").text_content() == ""
+
+
 def test_truncated_stream_replaces_partial_text(page, site_url):
     b = open_page(page, site_url)
     b.reply = [{"type": "delta", "text": "Halber Sa"}, {"type": "fallback", "reason": "truncated"}]
