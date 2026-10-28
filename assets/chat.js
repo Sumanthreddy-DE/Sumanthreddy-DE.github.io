@@ -21,6 +21,8 @@
   const UNREACHABLE = 'Der Assistent ist gerade nicht erreichbar. Schreiben Sie mir: ' + EMAIL;
   const INVALID = 'Diese Frage ließ sich nicht senden. Bitte formulieren Sie sie neu – höchstens 500 Zeichen.';
   const SOURCE_LINE = /^(Quelle|Source):/;
+  const TOOL_OK = 'GitHub live abgefragt: ';
+  const TOOL_ERROR = 'GitHub gerade nicht erreichbar';
 
   document.documentElement.classList.add('js');
 
@@ -78,11 +80,25 @@
     function addTurn(kind, text) {
       const li = el('li', 'turn ' + kind);
       li.appendChild(el('div', 'who', kind === 'q' ? 'Ihre Frage' : 'Assistent'));
+      const tool = el('div', 'tool');
+      tool.hidden = true;
+      li.appendChild(tool);
       const body = el('div', 'text', text);
       li.appendChild(body);
       thread.appendChild(li);
       li.scrollIntoView({ block: 'nearest' });
-      return { li: li, body: body };
+      return { li: li, body: body, tool: tool };
+    }
+
+    // Shown above the answer body. Text only: the summary is model-adjacent
+    // input, so it never goes anywhere near innerHTML.
+    function showTool(turn, event) {
+      turn.tool.hidden = false;
+      if (event.status === 'ok') {
+        turn.tool.textContent = TOOL_OK + (typeof event.summary === 'string' ? event.summary : '');
+      } else {
+        turn.tool.textContent = TOOL_ERROR;
+      }
     }
 
     function finish(turn, full) {
@@ -113,7 +129,7 @@
       }
     }
 
-    async function readEvents(response, onDelta, signal) {
+    async function readEvents(response, onDelta, onTool, signal) {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = '';
@@ -122,7 +138,8 @@
         if (!line) return;
         const event = JSON.parse(line);
         if (event.type === 'delta') onDelta(event.text);
-        else end = event;
+        else if (event.type === 'tool') { if (onTool) onTool(event); }
+        else if (event.type === 'done' || event.type === 'fallback') end = event;
       }
       // A mocked/odd fetch may not honor AbortSignal on its own; cancelling the
       // reader directly is what actually unblocks a stalled reader.read().
@@ -184,6 +201,10 @@
             started = true;
             full += text;
             turn.body.textContent = full;
+            arm();
+          }, (event) => {
+            started = true;
+            showTool(turn, event);
             arm();
           }, controller.signal);
         }

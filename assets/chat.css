@@ -16,6 +16,11 @@
 }
 .turn .text { white-space: pre-line; overflow-wrap: anywhere; }
 .turn.q .text { font-weight: 600; }
+.tool {
+  margin-bottom: 10px; font-size: 0.8125rem; color: var(--ink-muted);
+  overflow-wrap: anywhere;
+}
+.tool[hidden] { display: none; }
 .source {
   margin-top: 12px; font-size: 0.8125rem; color: var(--ink-muted);
   padding-left: 12px; border-left: 2px solid var(--rule-soft);

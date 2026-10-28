@@ -10,6 +10,22 @@ def answer(text, source="Quelle: Lebenslauf"):
             {"type": "done", "model": "claude-haiku-4-5", "cache_read": 0}]
 
 
+def tool(repo="simready", status="ok", summary="simready · letzter Commit 26.10.2026"):
+    """The tool event the backend emits before done. Name matches the live contract."""
+    event = {"type": "tool", "name": "get_repo_activity", "repo": repo, "status": status}
+    if summary is not None:
+        event["summary"] = summary
+    return event
+
+
+def stream(text, *before, source="Quelle: Lebenslauf"):
+    """Deltas for text, with the given events interleaved before the final done."""
+    full = f"{text}\n{source}"
+    return [{"type": "delta", "text": full[:6]}, *before,
+            {"type": "delta", "text": full[6:]},
+            {"type": "done", "model": "claude-haiku-4-5", "cache_read": 0}]
+
+
 class Backend:
     """Stands in for the server: records requests and replays scripted NDJSON."""
 

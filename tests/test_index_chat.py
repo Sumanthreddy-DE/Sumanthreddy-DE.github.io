@@ -1,6 +1,6 @@
 from playwright.sync_api import expect
 
-from chatmock import Backend, answer
+from chatmock import Backend, answer, stream, tool
 
 
 def open_index(page, site_url):
@@ -41,6 +41,17 @@ def test_panel_fallback_links_to_prepared_answers(page, site_url):
     answer_turn = page.locator("#chat-panel .turn.a").last
     expect(answer_turn.locator(".chat-status")).to_contain_text("sumanthreddy.settipalli@gmail.com")
     expect(answer_turn.locator("a.lnk")).to_have_attribute("href", "fragen.html#vorbereitet")
+
+
+def test_panel_renders_tool_line_from_mocked_stream(page, site_url):
+    b = open_index(page, site_url)
+    b.reply = stream("Er ist sofort verfügbar.", tool())
+    page.locator(".chat-open").click()
+    page.locator("#chat-panel .chip[data-key=verfuegbar]").click()
+    turn = page.locator("#chat-panel .turn.a").last
+    expect(turn.locator(".tool")).to_have_text("GitHub live abgefragt: simready · letzter Commit 26.10.2026")
+    expect(turn.locator(".source")).to_have_text("Quelle: Lebenslauf")
+    expect(page.locator(".chat-open")).to_have_attribute("aria-expanded", "true")
 
 
 def test_panel_makes_page_inert_on_mobile_until_closed(browser, site_url):

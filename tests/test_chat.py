@@ -3,7 +3,7 @@ import re
 import pytest
 from playwright.sync_api import expect
 
-from chatmock import Backend, answer
+from chatmock import Backend, answer, stream, tool
 
 STATUS = {
     "rate": "Gerade viele Fragen – hier die vorbereitete Antwort.",
@@ -100,6 +100,105 @@ def test_backend_fallback_shows_prepared_answer_and_status(page, site_url, reaso
     expect(last_answer(page).locator(".chat-status")).to_have_text(STATUS[reason])
     expect(last_answer(page).locator(".text")).to_contain_text("B2")
     expect(last_answer(page).locator(".source")).to_have_text("Quelle: Lebenslauf")
+
+
+TOOL_OK = "GitHub live abgefragt: simready · letzter Commit 26.10.2026"
+TOOL_ERROR = "GitHub gerade nicht erreichbar"
+
+
+def test_tool_event_renders_live_github_line_above_answer(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = stream("Er hat drei Systeme gebaut.", tool())
+    chip(page, "gebaut").click()
+    turn = last_answer(page)
+    expect(turn.locator(".tool")).to_have_text(TOOL_OK)
+    expect(turn.locator(".text")).to_have_text("Er hat drei Systeme gebaut.")
+    expect(turn.locator(".source")).to_have_text("Quelle: Lebenslauf")
+    # Above the answer body, below the "Assistent" label.
+    assert page.evaluate("""() => {
+        const li = document.querySelector('.turn.a');
+        const tool = li.querySelector('.tool');
+        return tool.compareDocumentPosition(li.querySelector('.text')) & Node.DOCUMENT_POSITION_FOLLOWING;
+    }""")
+
+
+def test_tool_event_error_variant_renders(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = stream("Er hat drei Systeme gebaut.",
+                     tool(status="error", summary=None))
+    chip(page, "gebaut").click()
+    turn = last_answer(page)
+    expect(turn.locator(".tool")).to_have_text(TOOL_ERROR)
+    expect(turn.locator(".text")).to_have_text("Er hat drei Systeme gebaut.")
+
+
+def test_tool_summary_is_escaped_not_rendered_as_html(page, site_url):
+    b = open_page(page, site_url)
+    payload = '<img src=x onerror="window.__xss=1">'
+    b.reply = stream("Antwort.", tool(summary=payload))
+    ask_free(page, "Test")
+    turn = last_answer(page)
+    expect(turn.locator(".tool")).to_have_text("GitHub live abgefragt: " + payload)
+    assert page.locator(".thread img").count() == 0
+    assert page.evaluate("window.__xss") is None
+
+
+def test_tool_line_stays_out_of_history(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = stream("Antwort eins.", tool())
+    ask_free(page, "Frage eins")
+    expect(last_answer(page).locator(".tool")).to_be_visible()
+    b.reply = answer("Antwort zwei.")
+    ask_free(page, "Frage zwei")
+    expect(page.locator(".turn.a")).to_have_count(2)
+    assert b.requests[1]["history"] == [
+        {"role": "user", "content": "Frage eins"},
+        {"role": "assistant", "content": "Antwort eins.\nQuelle: Lebenslauf"},
+    ]
+
+
+def test_unknown_event_type_does_not_end_the_stream(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = [{"type": "delta", "text": "Erster Teil. "},
+               {"type": "heartbeat", "at": 1},
+               {"type": "delta", "text": "Zweiter Teil.\nQuelle: Lebenslauf"},
+               {"type": "done", "model": "m", "cache_read": 0}]
+    ask_free(page, "Frage")
+    turn = last_answer(page)
+    expect(turn.locator(".text")).to_have_text("Erster Teil. Zweiter Teil.")
+    expect(turn.locator(".source")).to_have_text("Quelle: Lebenslauf")
+    expect(turn.locator(".chat-status")).to_have_count(0)
+    expect(turn.locator(".tool")).to_be_hidden()
+
+
+def test_no_tool_event_stream_behaves_as_before(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = answer("Er hat drei Systeme gebaut.")
+    chip(page, "gebaut").click()
+    turn = last_answer(page)
+    expect(turn.locator(".text")).to_have_text("Er hat drei Systeme gebaut.")
+    expect(turn.locator(".source")).to_have_text("Quelle: Lebenslauf")
+    expect(turn.locator(".tool")).to_have_count(1)
+    expect(turn.locator(".tool")).to_be_hidden()
+    assert b.requests == [{"question": "Was hat er konkret gebaut?", "history": []}]
+
+
+def test_tool_line_wraps_at_360px_without_overflow(browser, site_url):
+    context = browser.new_context(viewport={"width": 360, "height": 780})
+    pg = context.new_page()
+    b = Backend(pg)
+    pg.goto(f"{site_url}/fragen.html")
+    b.reply = stream("Antwort.", tool(summary="simready · letzter Commit 26.10.2026 · "
+                                              "viele zusätzliche Wörter für den Umbruch"))
+    pg.locator(".chat textarea").fill("Frage")
+    pg.locator(".chat .ask button").click()
+    expect(pg.locator(".turn.a .tool")).to_be_visible()
+    assert pg.evaluate("""() => {
+        const t = document.querySelector('.turn.a .tool');
+        return t.getBoundingClientRect().right <= document.documentElement.clientWidth;
+    }""")
+    assert pg.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+    context.close()
 
 
 def test_truncated_stream_replaces_partial_text(page, site_url):
