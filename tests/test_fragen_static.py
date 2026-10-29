@@ -26,9 +26,9 @@ def test_every_chip_has_a_prepared_answer_with_source(page, site_url):
         assert prepared.locator("p.source").text_content().startswith("Quelle:")
 
 
-def test_eval_table_lists_fifteen_questions(page, site_url):
+def test_eval_table_lists_eighteen_questions(page, site_url):
     page.goto(f"{site_url}/fragen.html")
-    assert page.locator(".evaltab tbody tr").count() == 15
+    assert page.locator(".evaltab tbody tr").count() == 18
 
 
 def test_without_javascript_prepared_answers_are_readable(browser, site_url):
