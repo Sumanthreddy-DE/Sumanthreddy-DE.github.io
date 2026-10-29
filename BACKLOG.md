@@ -25,11 +25,11 @@ _(none yet)_
 ## Open — S2 (UX gap, polish, deferred decisions)
 
 - **images-placeholder** — 1 placeholder SVG remains: `portrait`. All 6 project visual slots (`pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, `nx-mapping`) plus `tea-team`, `gokart`, `digidorf` are now real figures/diagrams (updated 2026-10-22).
-- **eval-v5-rerun** — prompt v5 (document-voice ban) is deployed and smoke-tested live,
-  but the 15-question eval has not been re-run on it. From `Projects/resume-assistant`:
-  `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`
-  (~16 min, rate limit), then hand-grade, fill the Urteil column and commit the result
-  file. *(opened 2026-10-14, user decision to defer)*
+- **chat-demo-video** — 60–90 s demo of the live chat at the top of `README.md`: 10 s problem + audience,
+  20 s the GitHub tool call ("Arbeitet er aktuell noch an SimReady?" → tool line + dated answer),
+  15 s a grounded CV answer (Siemens trap), 15 s multi-turn chat, 5 s the live URL loading. Record
+  with any screen recorder, upload via a GitHub issue comment, embed the user-attachments link.
+  *(found 2026-10-29, claude-lab session: idea 1 from the "4 things that matter" portfolio video)*
 - **en-toggle** — user asked for a DE/EN language toggle in the top bar. Deferred
   2026-10-05: the brief's decided line is "German-first, English later", and the
   positioning argument (Mittelstand reads German) still holds. Adding EN doubles the
@@ -77,7 +77,7 @@ _(none yet)_
 
 ## Done this session
 
-_(none — swept to Archived)_
+- **eval-v5-rerun** — superseded: the prompt-v6 run (all v5 rules + tool rules 15–17) ran 2026-10-28 on a local server with claude-sonnet-5 and was hand-graded 18/18 bestanden on 2026-10-29 (`resume-assistant` `5e27d2d`). *(closed 2026-10-29, claude-lab session)*
 
 ---
 

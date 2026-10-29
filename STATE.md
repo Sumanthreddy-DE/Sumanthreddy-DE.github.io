@@ -2,7 +2,7 @@
 
 Type: project
 Status: active
-Last touched: 2026-10-28
+Last touched: 2026-10-29
 
 <!-- Machine-maintained by /save-session Step 6b. Do not hand-edit rows or dates. -->
 <!-- Set `Type: hub` if this folder only routes to sub-projects; hubs get their
@@ -30,33 +30,25 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
 - **Phase B chat — live on `https://sumanthreddy.de`.** `fragen.html` + homepage panel merged `05cf98b`.
   Backend `Projects/resume-assistant` on the VPS at `https://api.sumanthreddy.de` (CORS updated for `https://sumanthreddy.de` in `36d3803`, verified live 2026-10-22).
   **Prompt v5 deployed 2026-10-14** (`e0bb7c7`): document-voice ban, smoke-tested
-  live; 15-question eval re-run still open (backlog `eval-v5-rerun`).
+  live; superseded by the prompt-v6 eval, hand-graded 18/18 on 2026-10-29 (`resume-assistant` `5e27d2d`).
 - **chat-layer step 7 (CV part) done 2026-10-14** — bot is a project line in the
   ml-preset CV (SimReady VLM bullet cut for space); Live-Demo routing for AI-job
   Anschreiben in `_strategy/selection-rules.md`. Myself/CV edit set needs a commit.
 - **Shared CSS unified 2026-10-14** (`305ba8c`) — one external `assets/site.css`
   replaces four inline style variants; verified live 2026-10-22 (`site-css-live-verify` closed).
-- **chat-layer `tool` event — built 2026-10-28, on branch `feat/tool-card`, not merged**
-  (`e45343c`, `c836f81`). The client now ends the NDJSON stream only on `done`/`fallback`,
-  so the backend's upcoming `{"type":"tool", …get_repo_activity…}` no longer looks like a
-  terminator; an ok event renders a muted "GitHub live abgefragt: \<summary\>" line above the
-  answer, error renders "GitHub gerade nicht erreichbar", and any fallback hides it again.
-  Text only (`textContent`), styled off `--ink-muted`, verified in light/dark at 1280/360.
-  Suite: 46 passed, 2 failed — the same known `stale-tests-site-css-and-focus` pair.
-  **The backend does not emit `tool` yet** (`Projects/resume-assistant`), so the line only
-  appears once that lands.
+- **Live GitHub tool — shipped 2026-10-29.** Backend `resume-assistant` `get_repo_activity`
+  (allowlist simready / PINN / Peak-Power, date + short SHA only, commit messages dropped `6a5714b`),
+  deployed on the VPS; site shows "GitHub live abgefragt: …" above the answer (`e45343c`, `c836f81`),
+  German/English source label normalised in `chat.js` (`6b1a500`), `fragen.html` Grundlage line +
+  18 test questions (`7656de4`). Live browser check (T4) passed on fragen.html, homepage panel and 360 px.
+  Suite: 49 passed + the 2 known `stale-tests-site-css-and-focus` failures.
 - Selector / gate idea — parked. Reorder filter, not a gate. Not specced.
 
 ## Resume here
 
-1. Decide the `feat/tool-card` ship order: push and merge it as a no-op (the client
-   ignores an absent event), or land the `resume-assistant` `tool` emitter first so the
-   line is visible the moment the site deploys.
+1. Record the 60–90 s chat demo video for the README (BACKLOG S2 `chat-demo-video`).
 2. Commit the `Myself/CV` step-7 edit set (explicit paths — PII landmine).
-3. Run the prompt-v5 eval: from `Projects/resume-assistant`,
-   `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`
-   (~16 min), hand-grade, commit the result file (backlog `eval-v5-rerun`).
-4. Optional S3 polish: update the 2 stale pytest assertions (`stale-tests-site-css-and-focus`) and `og:url`/`og:image` tags (`og-urls-custom-domain`).
+3. Optional S3 polish: update the 2 stale pytest assertions (`stale-tests-site-css-and-focus`) and `og:url`/`og:image` tags (`og-urls-custom-domain`).
 
 Portrait (parallel track, waiting on user): drop into `assets/` as `portrait.jpg`/`.png`, update `src` + `width`/`height` in `index.html`, lint, commit.
 
