@@ -42,6 +42,14 @@
     return { body: full.trim(), source: '' };
   }
 
+  // The prompt cannot reliably keep the label's language in step with the
+  // sentence around it. Repair the one known mismatch on the source line only.
+  function fixSourceLang(source) {
+    if (source.indexOf('Quelle:') === 0) return source.replace('(live queried)', '(live abgefragt)');
+    if (source.indexOf('Source:') === 0) return source.replace('(live abgefragt)', '(live queried)');
+    return source;
+  }
+
   function preparedAnswer(key) {
     const block = key && document.getElementById('antwort-' + key);
     if (!block) return null;
@@ -104,7 +112,7 @@
     function finish(turn, full) {
       const parts = splitSource(full);
       turn.body.textContent = parts.body;
-      if (parts.source) turn.li.appendChild(el('div', 'source', parts.source));
+      if (parts.source) turn.li.appendChild(el('div', 'source', fixSourceLang(parts.source)));
     }
 
     function fallback(turn, reason, key) {

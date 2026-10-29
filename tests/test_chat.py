@@ -132,6 +132,32 @@ def test_tool_event_error_variant_renders(page, site_url):
     expect(turn.locator(".text")).to_have_text("Er hat drei Systeme gebaut.")
 
 
+def test_german_source_line_gets_german_live_label(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = stream("Er hat drei Systeme gebaut.", tool(),
+                     source="Quelle: GitHub (live queried)")
+    chip(page, "gebaut").click()
+    turn = last_answer(page)
+    expect(turn.locator(".source")).to_have_text("Quelle: GitHub (live abgefragt)")
+
+
+def test_english_source_line_gets_english_live_label(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = stream("He built three systems.", tool(),
+                     source="Source: GitHub (live abgefragt)")
+    chip(page, "gebaut").click()
+    turn = last_answer(page)
+    expect(turn.locator(".source")).to_have_text("Source: GitHub (live queried)")
+
+
+def test_plain_source_line_is_left_alone(page, site_url):
+    b = open_page(page, site_url)
+    b.reply = stream("Er hat drei Systeme gebaut.", tool(), source="Quelle: Lebenslauf")
+    chip(page, "gebaut").click()
+    turn = last_answer(page)
+    expect(turn.locator(".source")).to_have_text("Quelle: Lebenslauf")
+
+
 def test_tool_summary_is_escaped_not_rendered_as_html(page, site_url):
     b = open_page(page, site_url)
     payload = '<img src=x onerror="window.__xss=1">'
