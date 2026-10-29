@@ -2,7 +2,7 @@
 
 Type: project
 Status: active
-Last touched: 2026-10-22
+Last touched: 2026-10-28
 
 <!-- Machine-maintained by /save-session Step 6b. Do not hand-edit rows or dates. -->
 <!-- Set `Type: hub` if this folder only routes to sub-projects; hubs get their
@@ -36,15 +36,27 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
   Anschreiben in `_strategy/selection-rules.md`. Myself/CV edit set needs a commit.
 - **Shared CSS unified 2026-10-14** (`305ba8c`) — one external `assets/site.css`
   replaces four inline style variants; verified live 2026-10-22 (`site-css-live-verify` closed).
+- **chat-layer `tool` event — built 2026-10-28, on branch `feat/tool-card`, not merged**
+  (`e45343c`, `c836f81`). The client now ends the NDJSON stream only on `done`/`fallback`,
+  so the backend's upcoming `{"type":"tool", …get_repo_activity…}` no longer looks like a
+  terminator; an ok event renders a muted "GitHub live abgefragt: \<summary\>" line above the
+  answer, error renders "GitHub gerade nicht erreichbar", and any fallback hides it again.
+  Text only (`textContent`), styled off `--ink-muted`, verified in light/dark at 1280/360.
+  Suite: 46 passed, 2 failed — the same known `stale-tests-site-css-and-focus` pair.
+  **The backend does not emit `tool` yet** (`Projects/resume-assistant`), so the line only
+  appears once that lands.
 - Selector / gate idea — parked. Reorder filter, not a gate. Not specced.
 
 ## Resume here
 
-1. Commit the `Myself/CV` step-7 edit set (explicit paths — PII landmine).
-2. Run the prompt-v5 eval: from `Projects/resume-assistant`,
+1. Decide the `feat/tool-card` ship order: push and merge it as a no-op (the client
+   ignores an absent event), or land the `resume-assistant` `tool` emitter first so the
+   line is visible the moment the site deploys.
+2. Commit the `Myself/CV` step-7 edit set (explicit paths — PII landmine).
+3. Run the prompt-v5 eval: from `Projects/resume-assistant`,
    `.venv/Scripts/python.exe evals/run_eval.py --url https://api.sumanthreddy.de`
    (~16 min), hand-grade, commit the result file (backlog `eval-v5-rerun`).
-3. Optional S3 polish: update the 2 stale pytest assertions (`stale-tests-site-css-and-focus`) and `og:url`/`og:image` tags (`og-urls-custom-domain`).
+4. Optional S3 polish: update the 2 stale pytest assertions (`stale-tests-site-css-and-focus`) and `og:url`/`og:image` tags (`og-urls-custom-domain`).
 
 Portrait (parallel track, waiting on user): drop into `assets/` as `portrait.jpg`/`.png`, update `src` + `width`/`height` in `index.html`, lint, commit.
 
@@ -84,6 +96,13 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Done
 
+- 2026-10-28 — chat layer taught the backend's `tool` event: `readEvents` ends only on
+  `done`/`fallback` (unknown types ignored), an ok event renders "GitHub live abgefragt:
+  \<summary\>" above the answer body and an error renders "GitHub gerade nicht erreichbar",
+  all `textContent`; any fallback hides and clears the line first. 9 new tests
+  (incl. no-tool stream unchanged, escaped payload, 360 px overflow, index panel);
+  suite 46 passed + the 2 pre-existing `stale-tests-site-css-and-focus` failures.
+  Branch `feat/tool-card` (`e45343c`, `c836f81`), not merged — backend emitter still to come.
 - 2026-10-22 — custom domain `sumanthreddy.de` connected (IONOS DNS `@` A/AAAA + `www` CNAME, GitHub Pages `CNAME` `f843347`, HTTPS enforced); replaced 6 project placeholders (`pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, `nx-mapping`) with unified cedar-green SVGs and real thesis/Streamlit plates, expanded PINN & SimReady case studies, aligned case-study text to 780 px, removed duplicate homepage images, and linked project headings (`30950e5`); added `https://sumanthreddy.de` to `resume-assistant` CORS (`36d3803`), deployed on VPS, and verified live chatbot streaming; closed `site-css-live-verify` (`dc2518d`)
 - 2026-10-14 — backlog day: anny-link-404, chat-panel-focus, state-md-private-path,
   eval-prescreen-nie closed; prompt v5 (document-voice ban) committed, deployed to
