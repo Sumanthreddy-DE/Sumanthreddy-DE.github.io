@@ -68,7 +68,6 @@ _(none yet)_
 
 ## Doing
 
-- **impressum-not-on-site-css** — `vps-run: fix/impressum-site-css` (brief in claude-lab: `docs/exec-plans/active/2026-11-03-portfolio-impressum-site-css.md` — this repo's `docs/exec-plans/` is the private nested repo, not on the VPS, opencode GPT-6.1 Sol, VPS run pending). `impressum.html` was left out of `305ba8c`: no `assets/site.css` link, still its own 128-line inline `<style>` with a `:root` token copy, so it drifts from the other 8 pages. Move it onto `site.css` (keep only page-local rules inline), check it in a browser, then add it to the site.css test list in `tests/test_fragen_static.py`. *(found 2026-11-03, claude-lab session)*
 - **chat-layer step 7 (partial)** — remaining after launch (needs user approval, CV
   repo): add the bot as a CV project line and a "Live-Demo" link in AI-job Anschreiben
   (spec §14). ~~Rebuild the CV PDFs~~ done 2026-10-11: site PDF rebuilt from master,
@@ -76,6 +75,7 @@ _(none yet)_
 
 ## Done this session
 
+- **impressum-not-on-site-css** — done 2026-11-03 (merge `b362ac4`; `1f77124`, handoff `f416644`, review fix `2684b98`): impressum.html links `assets/site.css`, inline block keeps only page rules, test list includes it. Built on the VPS by opencode with GPT-6.1 Sol (it cannot view images); the laptop screenshot review found rows stacked with no spacing (brief's "site.css wins" rule dropped `.row` margins) and restored page-local spacing. Visible changes kept: side borders, 780px text column, as on the other pages. 51 passed.
 - **og-urls-custom-domain** — done 2026-11-03 (`a43bdc0`, merge `5c05884`): 16 og:url/og:image lines in 8 pages moved to `https://sumanthreddy.de/`, only the domain changed. Built on the VPS by opencode with GPT-6.1 Sol via dlab (not an open-weight model), reviewed on the laptop.
 - **stale-tests-site-css-and-focus** — done 2026-11-03 (`bfdf99e`, merge `5c05884`): style-block equality test → `test_pages_share_site_css_without_redefining_tokens` (fail-checked against impressum.html); desktop chat expects no textarea focus, mobile test now asserts focus. 51 passed on VPS and laptop. Same VPS run (GPT-6.1 Sol); handoff `docs/handoff-2026-11-03-og-tests.md`.
 - **eval-v5-rerun** — superseded: the prompt-v6 run (all v5 rules + tool rules 15–17) ran 2026-10-28 on a local server with claude-sonnet-5 and was hand-graded 18/18 bestanden on 2026-10-29 (`resume-assistant` `5e27d2d`). *(closed 2026-10-29, claude-lab session)*
