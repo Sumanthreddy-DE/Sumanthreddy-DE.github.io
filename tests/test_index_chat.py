@@ -24,7 +24,7 @@ def test_open_ask_and_close(page, site_url):
     page.locator(".chat-open").click()
     expect(page.locator("#chat-panel")).to_be_visible()
     expect(page.locator(".chat-open")).to_have_attribute("aria-expanded", "true")
-    expect(page.locator("#chat-panel textarea")).to_be_focused()
+    expect(page.locator("#chat-panel textarea")).not_to_be_focused()
     page.locator("#chat-panel .chip[data-key=verfuegbar]").click()
     expect(page.locator("#chat-panel .turn.a .source")).to_have_text("Quelle: Lebenslauf")
     assert b.health == 1
@@ -62,6 +62,7 @@ def test_panel_makes_page_inert_on_mobile_until_closed(browser, site_url):
     pg.locator(".chat-open").click()
     expect(pg.locator("#chat-panel")).to_be_visible()
     assert pg.locator(".page").get_attribute("inert") is not None
+    expect(pg.locator("#chat-panel textarea")).to_be_focused()
     pg.keyboard.press("Escape")
     expect(pg.locator("#chat-panel")).to_be_hidden()
     assert pg.locator(".page").get_attribute("inert") is None

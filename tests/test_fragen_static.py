@@ -10,8 +10,19 @@ def style_blocks(rel):
     return re.findall(r"<style>.*?</style>", (ROOT / rel).read_text(encoding="utf-8-sig"), re.S)
 
 
-def test_shared_style_block_matches_case_study_pages():
-    assert style_blocks("fragen.html")[0] == style_blocks("projekte/pinn.html")[0]
+SITE_CSS_PAGES = ["index.html", "projekte.html", "profil.html", "fragen.html", "automatisierung.html",
+                  "projekte/pinn.html", "projekte/simready.html", "projekte/nx-simscape.html"]
+SITE_CSS_LINK = re.compile(r'href="(?:\.\./)?assets/site\.css(?:\?v=\d+)?"')
+
+
+def test_pages_share_site_css_without_redefining_tokens():
+    # 305ba8c moved the shared styles into assets/site.css. Page-local <style> blocks stay,
+    # but none may redefine the shared :root tokens. impressum.html is not migrated yet
+    # (BACKLOG impressum-not-on-site-css).
+    for rel in SITE_CSS_PAGES:
+        html = (ROOT / rel).read_text(encoding="utf-8-sig")
+        assert len(SITE_CSS_LINK.findall(html)) == 1, rel
+        assert not any(":root" in b for b in style_blocks(rel)), rel
 
 
 def test_every_chip_has_a_prepared_answer_with_source(page, site_url):
