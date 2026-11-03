@@ -88,6 +88,7 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Done
 
+- 2026-11-03 — impressum-not-on-site-css merged into main (`b362ac4`; `1f77124`, review fix `2684b98`): impressum.html on `assets/site.css`, page-local row spacing kept; 51 passed. VPS run (GPT-6.1 Sol), reviewed with screenshots in claude-lab. Handoff: harness/sessions/claude-lab/2026-11-03-vps-runs-simready-stc-session.tmp
 - 2026-11-03 — og-urls-custom-domain + stale-tests-site-css-and-focus merged into main (`5c05884`; `a43bdc0`, `bfdf99e`; BACKLOG `7f7bce6`): og:url/og:image on `sumanthreddy.de`, tests match `site.css` and mobile-only focus; 51 passed on VPS and laptop. VPS run by opencode GPT-6.1 Sol, reviewed in claude-lab. New S3 `impressum-not-on-site-css` (`4d4854c`).
 - 2026-10-28 — chat layer taught the backend's `tool` event: `readEvents` ends only on
   `done`/`fallback` (unknown types ignored), an ok event renders "GitHub live abgefragt:
