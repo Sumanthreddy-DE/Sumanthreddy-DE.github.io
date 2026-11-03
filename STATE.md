@@ -2,7 +2,7 @@
 
 Type: project
 Status: active
-Last touched: 2026-10-29
+Last touched: 2026-11-03
 
 <!-- Machine-maintained by /save-session Step 6b. Do not hand-edit rows or dates. -->
 <!-- Set `Type: hub` if this folder only routes to sub-projects; hubs get their
@@ -41,14 +41,14 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
   deployed on the VPS; site shows "GitHub live abgefragt: …" above the answer (`e45343c`, `c836f81`),
   German/English source label normalised in `chat.js` (`6b1a500`), `fragen.html` Grundlage line +
   18 test questions (`7656de4`). Live browser check (T4) passed on fragen.html, homepage panel and 360 px.
-  Suite: 49 passed + the 2 known `stale-tests-site-css-and-focus` failures.
+  Suite: 51 passed (2026-11-03, after the stale-test fix).
 - Selector / gate idea — parked. Reorder filter, not a gate. Not specced.
 
 ## Resume here
 
 1. Record the 60–90 s chat demo video for the README (BACKLOG S2 `chat-demo-video`).
 2. Commit the `Myself/CV` step-7 edit set (explicit paths — PII landmine).
-3. Optional S3 polish: update the 2 stale pytest assertions (`stale-tests-site-css-and-focus`) and `og:url`/`og:image` tags (`og-urls-custom-domain`).
+Handoff: harness/sessions/claude-lab/2026-11-03-vps-agent-pipeline-session.tmp
 
 Portrait (parallel track, waiting on user): drop into `assets/` as `portrait.jpg`/`.png`, update `src` + `width`/`height` in `index.html`, lint, commit.
 
@@ -88,6 +88,7 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Done
 
+- 2026-11-03 — og-urls-custom-domain + stale-tests-site-css-and-focus merged into main (`5c05884`; `a43bdc0`, `bfdf99e`; BACKLOG `7f7bce6`): og:url/og:image on `sumanthreddy.de`, tests match `site.css` and mobile-only focus; 51 passed on VPS and laptop. VPS run by opencode GPT-6.1 Sol, reviewed in claude-lab. New S3 `impressum-not-on-site-css` (`4d4854c`).
 - 2026-10-28 — chat layer taught the backend's `tool` event: `readEvents` ends only on
   `done`/`fallback` (unknown types ignored), an ok event renders "GitHub live abgefragt:
   \<summary\>" above the answer body and an error renders "GitHub gerade nicht erreichbar",
