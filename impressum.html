@@ -14,6 +14,10 @@
 <style>
 /* Page-specific only. Shared styles: assets/site.css. */
 
+/* Rows stack directly here, unlike the sectioned pages, so the spacing between
+   them is page-local. Without it the labels sit on the previous row's text. */
+.row { margin-bottom: 36px; }
+
 h1 {
   font-family: 'Libre Bodoni', Georgia, serif;
   font-size: 2.75rem;
@@ -49,6 +53,7 @@ h1 {
 .row strong { font-weight: 600; }
 
 @media (max-width: 900px) {
+  .row { gap: 10px; margin-bottom: 32px; }
   .row h2 { padding-top: 0; }
   h1 { font-size: 2.125rem; margin: 48px 0 36px; }
 }
