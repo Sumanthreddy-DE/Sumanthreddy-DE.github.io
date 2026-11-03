@@ -9,79 +9,14 @@
 <meta name="robots" content="noindex">
 
 <link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/site.css">
 
 <style>
-:root {
-  --paper: #F3F4F1;
-  --ink: #171A17;
-  --ink-muted: #555B54;
-  --rule-soft: #C8CCC4;
-  --rule-strong: #23261F;
-  --accent: #2F5D46;
-}
+/* Page-specific only. Shared styles: assets/site.css. */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #141613;
-    --ink: #DFE2DC;
-    --ink-muted: #8E938A;
-    --rule-soft: #2C2F29;
-    --rule-strong: #C4C8BF;
-    --accent: #8FB8A3;
-  }
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.page {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 40px 96px;
-}
-
-.topbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 24px;
-  padding: 28px 0 0;
-}
-
-.topbar .mark {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-size: 1.0625rem;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  margin-right: auto;
-  border-bottom: none;
-}
-
-.topbar .mark:hover { color: var(--accent); }
-
-.lnk {
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.875rem;
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 1px;
-  transition: color .15s;
-}
-
-.lnk:hover, .lnk:focus-visible { color: var(--accent); }
-
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* Rows stack directly here, unlike the sectioned pages, so the spacing between
+   them is page-local. Without it the labels sit on the previous row's text. */
+.row { margin-bottom: 36px; }
 
 h1 {
   font-family: 'Libre Bodoni', Georgia, serif;
@@ -92,13 +27,6 @@ h1 {
   margin: 72px 0 48px;
   padding-bottom: 24px;
   border-bottom: 2px solid var(--rule-strong);
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 180px minmax(0, 660px);
-  gap: 48px;
-  margin-bottom: 36px;
 }
 
 .row h2 {
@@ -124,17 +52,8 @@ h1 {
 
 .row strong { font-weight: 600; }
 
-footer {
-  margin-top: 72px;
-  padding-top: 32px;
-  border-top: 2px solid var(--rule-strong);
-  font-size: 0.8125rem;
-  color: var(--ink-muted);
-}
-
 @media (max-width: 900px) {
-  .page { padding: 0 28px 72px; }
-  .row { grid-template-columns: 1fr; gap: 10px; margin-bottom: 32px; }
+  .row { gap: 10px; margin-bottom: 32px; }
   .row h2 { padding-top: 0; }
   h1 { font-size: 2.125rem; margin: 48px 0 36px; }
 }
