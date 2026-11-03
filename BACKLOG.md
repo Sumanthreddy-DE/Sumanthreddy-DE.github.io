@@ -44,7 +44,6 @@ _(none yet)_
 
 ## Open — S3 (tech debt, deprecations, low-impact polish)
 
-- **impressum-not-on-site-css** — `impressum.html` was left out of `305ba8c`: no `assets/site.css` link, still its own 128-line inline `<style>` with a `:root` token copy, so it drifts from the other 8 pages. Move it onto `site.css` (keep only page-local rules inline), check it in a browser, then add it to the site.css test list in `tests/test_fragen_static.py`. *(found 2026-11-03, claude-lab session)*
 - **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
   verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
 
@@ -69,6 +68,7 @@ _(none yet)_
 
 ## Doing
 
+- **impressum-not-on-site-css** — `vps-run: fix/impressum-site-css` (brief in claude-lab: `docs/exec-plans/active/2026-11-03-portfolio-impressum-site-css.md` — this repo's `docs/exec-plans/` is the private nested repo, not on the VPS, opencode GPT-6.1 Sol, VPS run pending). `impressum.html` was left out of `305ba8c`: no `assets/site.css` link, still its own 128-line inline `<style>` with a `:root` token copy, so it drifts from the other 8 pages. Move it onto `site.css` (keep only page-local rules inline), check it in a browser, then add it to the site.css test list in `tests/test_fragen_static.py`. *(found 2026-11-03, claude-lab session)*
 - **chat-layer step 7 (partial)** — remaining after launch (needs user approval, CV
   repo): add the bot as a CV project line and a "Live-Demo" link in AI-job Anschreiben
   (spec §14). ~~Rebuild the CV PDFs~~ done 2026-10-11: site PDF rebuilt from master,
