@@ -45,6 +45,7 @@ _(none yet)_
 ## Open — S3 (tech debt, deprecations, low-impact polish)
 
 - **stale-tests-site-css-and-focus** — `tests/test_fragen_static.py::test_shared_style_block_matches_case_study_pages` and `tests/test_index_chat.py::test_open_ask_and_close` still assert the pre-`305ba8c` inline style blocks and pre-`f4b1a6d` desktop textarea auto-focus. Update both tests to match the external `assets/site.css` and mobile-only focus behavior. *(found 2026-10-22, Sumanthreddy-DE.github.io session)*
+- **impressum-not-on-site-css** — `impressum.html` was left out of `305ba8c`: no `assets/site.css` link, still its own 128-line inline `<style>` with a `:root` token copy, so it drifts from the other 8 pages. Move it onto `site.css` (keep only page-local rules inline), check it in a browser, then add it to the site.css test list in `tests/test_fragen_static.py`. *(found 2026-11-03, claude-lab session)*
 - **og-urls-custom-domain** — `<meta property="og:url">` and `<meta property="og:image">` across the 8 HTML pages still reference `https://sumanthreddy-de.github.io/...`; update them to `https://sumanthreddy.de/...`. *(found 2026-10-22, Sumanthreddy-DE.github.io session)*
 - **chat-copy-sofort** — "antwortet sofort" on the corner button sits next to "ab sofort
   verfügbar" on the homepage; user kept the wording, revisit if it reads oddly live.
