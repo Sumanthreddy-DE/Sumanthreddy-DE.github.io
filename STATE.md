@@ -2,7 +2,7 @@
 
 Type: project
 Status: active
-Last touched: 2026-11-03
+Last touched: 2026-11-14
 
 <!-- Machine-maintained by /save-session Step 6b. Do not hand-edit rows or dates. -->
 <!-- Set `Type: hub` if this folder only routes to sub-projects; hubs get their
@@ -18,6 +18,7 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
 
 ## Doing
 
+- **Review fixes 2026-11-14** — harsh review (GPT-6 Astra, branch `gpt/portfolio-harsh-review`, never merge; plan `docs/exec-plans/active/2026-11-14-portfolio-review-fixes.md`). Batch 1 live (`2991a2f`); NX + SimReady homepage images `1ae12a4`, `7e684b3`. Open: BACKLOG S2 `review-layout-mockups`, `review-text-batch`, `blog-page`, `homepage-chat-demo-entry`, `case-page-green-diagrams`, `accent-colour-decision`.
 - Phase A — **shipped and live** (`7e571ff`, custom domain `https://sumanthreddy.de` with HTTPS enforced 2026-10-22, `f843347`). Visual overhaul committed 2026-10-05
   (`f3b0b71`, `8f0c130`, `1858ab0`): cream/terracotta → Tinte & Zederngrün after the
   user flagged the "Claude look"; italics and prose em-dashes swept (AI tells);
@@ -46,11 +47,16 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
 
 ## Resume here
 
+Newest (2026-11-14):
+1. Build 2–3 layout mockups (BACKLOG `review-layout-mockups`): copies of index.html + one case study, screenshots 1440/1920/390, Sumanth picks. Then `review-text-batch` with Sumanth.
+Handoff: harness/sessions/Sumanthreddy-DE.github.io/2026-11-14-portfolio-review-batch1-session.tmp
+
+Older (2026-11-03):
 1. Record the 60–90 s chat demo video for the README (BACKLOG S2 `chat-demo-video`).
 2. Commit the `Myself/CV` step-7 edit set (explicit paths — PII landmine).
 Handoff: harness/sessions/claude-lab/2026-11-03-vps-agent-pipeline-session.tmp
 
-Portrait (parallel track, waiting on user): drop into `assets/` as `portrait.jpg`/`.png`, update `src` + `width`/`height` in `index.html`, lint, commit.
+Portrait: done (`8c92799`, `assets/portrait.jpg`; filter removed `2991a2f`).
 
 **Do not re-run `scratchpad/build_details.py`** — `projekte/pinn.html`, `simready.html`, and `nx-simscape.html` carry hand-edited layouts and figures the generator would destroy.
 
@@ -88,6 +94,7 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Done
 
+- 2026-11-14 — portfolio review batch 1 (`2991a2f`): colour portrait, real PINN plot, homepage template SVGs gone, links under results, CV PDF first, DigiDorf link removed + mascot small, og:image fix; NX image `1ae12a4`; SimReady copilot screenshot `7e684b3`; 57 passed, lint PASS. Handoff: harness/sessions/Sumanthreddy-DE.github.io/2026-11-14-portfolio-review-batch1-session.tmp
 - 2026-11-03 — impressum-not-on-site-css merged into main (`b362ac4`; `1f77124`, review fix `2684b98`): impressum.html on `assets/site.css`, page-local row spacing kept; 51 passed. VPS run (GPT-6.1 Sol), reviewed with screenshots in claude-lab. Handoff: harness/sessions/claude-lab/2026-11-03-vps-runs-simready-stc-session.tmp
 - 2026-11-03 — og-urls-custom-domain + stale-tests-site-css-and-focus merged into main (`5c05884`; `a43bdc0`, `bfdf99e`; BACKLOG `7f7bce6`): og:url/og:image on `sumanthreddy.de`, tests match `site.css` and mobile-only focus; 51 passed on VPS and laptop. VPS run by opencode GPT-6.1 Sol, reviewed in claude-lab. New S3 `impressum-not-on-site-css` (`4d4854c`).
 - 2026-10-28 — chat layer taught the backend's `tool` event: `readEvents` ends only on
