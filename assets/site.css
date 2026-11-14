@@ -139,7 +139,6 @@ a:focus-visible {
   height: 180px;
   object-fit: cover;
   display: block;
-  filter: grayscale(1) contrast(1.05);
 }
 
 .hero h1 {
@@ -300,6 +299,8 @@ figure.inset img {
   width: auto;
   max-width: 100%;
 }
+
+figure.inset.small img { max-width: 200px; }
 
 figure.inset figcaption {
   font-size: 0.8125rem;
