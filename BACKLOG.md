@@ -24,6 +24,48 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
+- **review-layout-mockups** — plan item B (`docs/exec-plans/active/2026-11-14-portfolio-review-fixes.md`).
+  Sumanth asked for this first in the next session. Build 2–3 wider, borderless variants on copies of
+  `index.html` plus one case study (pattern: memory `lessons_mockups.md`), screenshots at 1440/1920/390,
+  Sumanth picks before any real page changes. Decided: prose stays near 680px, never full width;
+  images/UI get wider (the SimReady copilot screenshot is hard to read at the current 780px column).
+  Starting numbers from the review: drop `.page` side borders and the 1140px sheet; wrapper
+  `min(100% - 96px, 1440px)`; visuals ~736px; metadata rail → one line above each title; under
+  900px stack with 20px gutters. Also B3: the mobile chat launcher must not cover content
+  (`assets/chat.css:66`, `:110`). *(decided 2026-11-14, review session)*
+- **review-text-batch** — wording done together with Sumanth, not delegated:
+  (1) key decision at the top of each case study (D2; drafts were in the 2026-11-14 session, sourced from
+  `projekte/pinn.html:67`, `projekte/simready.html:72,83`, `projekte/nx-simscape.html:74`; not yet approved);
+  (2) PINN caption: the plot's title shows G_eff mean error 10.0 % / pass 56 %, the homepage says
+  "unter 5 % in 33 von 36", the caption gives the 500-sample medians (1,4 % / 4,0 %). Write a caption
+  that names the two tests separately, so nothing looks contradictory (check the numbers against the
+  pinn repo record first);
+  (3) `projekte.html:45` "Die drei ausführlichen Fallstudien stehen auf der Startseite" → link the three
+  case-study pages directly (A6). *(2026-11-14)*
+- **blog-page** — plan D3. `blog.html` on shared CSS: reverse-chronological list (date, title,
+  two-sentence summary, link out). First post: gist
+  https://gist.github.com/Sumanthreddy-DE/71f8ae5471d102c6f274470281640c0a ("Claude Code on a VPS
+  from your phone" guide). Needs from Sumanth: the two-sentence summary. Claude's view: the topic is
+  off-message for Mittelstand mech+ML readers, so add one intro line saying why it is there. "Blog" nav
+  entry on every page (nav differs per page today), must still fit at 390px. RSS later. *(2026-11-14)*
+- **homepage-chat-demo-entry** — plan D1. In-flow project block on the homepage (brief §7.2: chat is a
+  project, never the front door, no pop-up), reusing `automatisierung.html:61–69` copy: "Ausprobieren" →
+  `fragen.html`, Code → resume-assistant repo. Build alongside the chosen layout. *(2026-11-14)*
+- **case-page-green-diagrams** — plan C4/C5. `projekte/simready.html:75` (`simready-gnn.svg`) and
+  `projekte/nx-simscape.html:68` (`nx-mapping.svg`) still use the green template Sumanth dislikes.
+  Needs Sumanth's choice. Claude recommends: SimReady → HTML results table, NX → remove. Also switch the
+  case pages' og:image from SVG to PNG/JPG (`projekte/*.html:15`). *(2026-11-14)*
+- **accent-colour-decision** — plan C6. Decide after the new layout is on screenshots: keep `#2F5D46`,
+  ink blue `#244C73` (8.07:1) or slate `#39424E` (9.22:1); dark mode needs its own value. *(2026-11-14)*
+- **impeccable-hook-false-positives** — the impeccable Stop hook flags `tight-leading` (line-height 1.2
+  on 28–30px serif headings, `assets/site.css:241`, `:391`) and `cramped-padding` (`.jump`; its links
+  have 13px padding, `site.css:187`). Both are false positives that predate the session. Suppressing them
+  creates a new `.impeccable/config.json` in the repo, a new-structure ask: Sumanth to say yes or no.
+  *(2026-11-14)*
+- **simready-face-render-all-green** — SimReady task, noted here because it shaped the homepage crop: the
+  copilot's face-score render for `small_feature_hole.step` was all green while it reported two
+  findings, so the render was cropped out of `assets/simready-copilot.png`. Fix in SimReady, then
+  maybe re-shoot. *(2026-11-14)*
 - **nx-image-own-render** — the homepage NX figure (`assets/nx-baugruppe.png`, added
   2026-11-14) is a 484×491 frame of the KTmfk render of the assembly Sumanth converted from NX
   to Simscape-ready XML; the KTmfk logo is projected on the floor under the frame. Replace it
