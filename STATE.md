@@ -59,7 +59,7 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Pipeline
 
-- Ideas not started yet.
+- Blog entry in the top nav (2026-11-14): first post links Sumanth's GitHub gist, then about one post a week. Structure decision waits on the `portfolio-harsh-review` GPT review (section 6).
 
 ## Landmines
 
