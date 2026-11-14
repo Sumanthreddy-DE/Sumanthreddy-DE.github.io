@@ -24,7 +24,10 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
-- **review-layout-mockups** — plan item B (`docs/exec-plans/active/2026-11-14-portfolio-review-fixes.md`).
+- **new-site-run** — execute `docs/exec-plans/active/2026-11-15-new-site.md` (approved 2026-11-15) with a cheaper agent via citadel delegation + Orca: worktree `~/projects/site-new-site`, branch `feat/new-site`, stop after Task 8. Then Claude reviews the 27 screenshots and the diff, Sumanth approves, merges and pushes. (found 2026-11-15, new-site session)
+- **new-site-screenshots** — SimReady copilot recaptured at 200% zoom (current file 776×376 px, unreadable in a tile) and a Simufact result, both from `~/inbox`; KI-Telefonassistent image once Sumanth finishes it (tile 6). (found 2026-11-15, new-site session)
+
+- **review-layout-mockups** — *superseded 2026-11-15 by `docs/exec-plans/active/2026-11-15-new-site.md` (round-1 variants rejected; new cream/black/white site planned).* Plan item B (`docs/exec-plans/active/2026-11-14-portfolio-review-fixes.md`).
   Sumanth asked for this first in the next session. Build 2–3 wider, borderless variants on copies of
   `index.html` plus one case study (pattern: memory `lessons_mockups.md`), screenshots at 1440/1920/390,
   Sumanth picks before any real page changes. Decided: prose stays near 680px, never full width;
@@ -55,7 +58,7 @@ _(none yet)_
   `projekte/nx-simscape.html:68` (`nx-mapping.svg`) still use the green template Sumanth dislikes.
   Needs Sumanth's choice. Claude recommends: SimReady → HTML results table, NX → remove. Also switch the
   case pages' og:image from SVG to PNG/JPG (`projekte/*.html:15`). *(2026-11-14)*
-- **accent-colour-decision** — plan C6. Decide after the new layout is on screenshots: keep `#2F5D46`,
+- **accent-colour-decision** — *superseded 2026-11-15: the new site uses only cream, black and white, no accent (`2026-11-15-new-site.md`).* Plan C6. Decide after the new layout is on screenshots: keep `#2F5D46`,
   ink blue `#244C73` (8.07:1) or slate `#39424E` (9.22:1); dark mode needs its own value. *(2026-11-14)*
 - **impeccable-hook-false-positives** — the impeccable Stop hook flags `tight-leading` (line-height 1.2
   on 28–30px serif headings, `assets/site.css:241`, `:391`) and `cramped-padding` (`.jump`; its links
