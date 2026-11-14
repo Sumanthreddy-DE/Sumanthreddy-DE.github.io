@@ -33,10 +33,6 @@ _(none yet)_
   assembly, and under a case study that claims real engineering work that reads as fake.
   Keep the source file name, swap `index.html` src/width/height, rerun the screenshot check.
   *(found 2026-11-14, portfolio review session)*
-- **simready-homepage-screenshot** — homepage SimReady entry has no image since 2026-11-14
-  (`simready-ui.svg` removed). Sumanth takes a copilot screenshot on the laptop
-  (`C:\mm\sr\python.exe -m streamlit run ui/copilot_app.py`, demo CAD `small_feature_hole.step`).
-  UI polish of the SimReady copilot itself is a SimReady task for a later session.
 - **chat-demo-video** — 60–90 s demo of the live chat at the top of `README.md`: 10 s problem + audience,
   20 s the GitHub tool call ("Arbeitet er aktuell noch an SimReady?" → tool line + dated answer),
   15 s a grounded CV answer (Siemens trap), 15 s multi-turn chat, 5 s the live URL loading. Record
@@ -87,6 +83,7 @@ _(none yet)_
 
 ## Done this session
 
+- **simready-homepage-screenshot** — done 2026-11-14: `assets/simready-copilot.png`, a crop of Sumanth's copilot screenshot (German question on `small_feature_hole.step`, score 84/100, two findings, CalculiX citation). Full frame kept in `~/inbox/Simready-image.png`; the face-score render was all green, so it was cropped out. Text in the image is small at the current 780px column; the wider layout (plan item B) fixes that.
 - **impressum-not-on-site-css** — done 2026-11-03 (merge `b362ac4`; `1f77124`, handoff `f416644`, review fix `2684b98`): impressum.html links `assets/site.css`, inline block keeps only page rules, test list includes it. Built on the VPS by opencode with GPT-6.1 Sol (it cannot view images); the laptop screenshot review found rows stacked with no spacing (brief's "site.css wins" rule dropped `.row` margins) and restored page-local spacing. Visible changes kept: side borders, 780px text column, as on the other pages. 51 passed.
 - **og-urls-custom-domain** — done 2026-11-03 (`a43bdc0`, merge `5c05884`): 16 og:url/og:image lines in 8 pages moved to `https://sumanthreddy.de/`, only the domain changed. Built on the VPS by opencode with GPT-6.1 Sol via dlab (not an open-weight model), reviewed on the laptop.
 - **stale-tests-site-css-and-focus** — done 2026-11-03 (`bfdf99e`, merge `5c05884`): style-block equality test → `test_pages_share_site_css_without_redefining_tokens` (fail-checked against impressum.html); desktop chat expects no textarea focus, mobile test now asserts focus. 51 passed on VPS and laptop. Same VPS run (GPT-6.1 Sol); handoff `docs/handoff-2026-11-03-og-tests.md`.

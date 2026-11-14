@@ -24,6 +24,7 @@ def test_homepage_shows_no_template_diagrams():
     for svg in ["pinn-interface.svg", "simready-ui.svg", "nx-simscape.svg"]:
         assert f'src="assets/{svg}"' not in html, svg
     assert 'src="assets/pinn-fehler.png"' in html
+    assert 'src="assets/simready-copilot.png"' in html
 
 
 def test_homepage_links_sit_under_the_result_line():
