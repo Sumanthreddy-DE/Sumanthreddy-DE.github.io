@@ -78,10 +78,11 @@ def test_button_hidden_without_javascript(browser, site_url):
 
 
 def test_kontakt_offers_email_and_linkedin_only(page, site_url):
-    for path in ("index.html", "projekte.html"):
-        page.goto(f"{site_url}/{path}")
-        links = page.locator("#kontakt .foot-links a")
-        assert links.all_inner_texts() == ["E-Mail schreiben", "LinkedIn"], path
+    page.goto(f"{site_url}/index.html")
+    assert page.locator("#kontakt .boxes a b").all_inner_texts() == ["E-Mail", "LinkedIn"]
+    page.goto(f"{site_url}/projekte.html")
+    links = page.locator("#kontakt .foot-links a")
+    assert links.all_inner_texts() == ["E-Mail schreiben", "LinkedIn"]
 
 
 def test_werkzeuge_lists_the_assistant_first(page, site_url):

@@ -27,14 +27,6 @@ def test_homepage_shows_no_template_diagrams():
     assert 'src="assets/simready-copilot.png"' in html
 
 
-def test_homepage_links_sit_under_the_result_line():
-    html = (ROOT / "index.html").read_text(encoding="utf-8")
-    for art in ["pinn", "simready", "nx"]:
-        seg = html[html.index(f'id="{art}"'):]
-        seg = seg[:seg.index("</article>")]
-        assert re.search(r'class="metric-line">.*?</p>\s*<div class="entry-links">', seg, re.S), art
-
-
 def test_cv_download_comes_before_the_experience(page, site_url):
     page.goto(f"{site_url}/profil.html")
     order = page.evaluate(

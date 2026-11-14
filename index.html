@@ -19,208 +19,148 @@
 <link rel="stylesheet" href="assets/chat.css">
 <script src="assets/chat.js" defer></script>
 
-<link rel="stylesheet" href="assets/site.css?v=3">
+<link rel="stylesheet" href="assets/site.css?v=4">
 </head>
 <body>
 <div class="page">
-
-<nav class="topbar" aria-label="Hauptnavigation">
-  <a class="lnk" href="projekte.html" style="margin-left:auto">Projekte</a>
-          <a class="lnk" href="automatisierung.html">KI-Automatisierung</a>
-  <a class="lnk" href="#ueber-mich">Über mich</a>
-  <a class="lnk" href="#kontakt">Kontakt</a>
-  <a class="lnk" href="profil.html">Lebenslauf</a>
-</nav>
-
-<header class="hero">
-  <div class="hero-inner">
-    <img class="portrait" src="assets/portrait.jpg" alt="Porträt von Sumanth Reddy Settipalli" width="720" height="720">
-    <div>
-      <h1>Sumanth Reddy Settipalli</h1>
-      <div class="role">Ingenieur für Simulation und Machine Learning</div>
-      <p class="claim">Ich mache Simulationen schneller und günstiger, mit Machine Learning.</p>
-      <div class="hero-facts">
-        Reutlingen, Deutschland · Master Computational Engineering,
-        FAU Erlangen-Nürnberg (08/2026)
+<header class="band">
+  <div class="wrap">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="name" href="index.html">Sumanth Reddy Settipalli</a>
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#projekte">Projekte</a>
+      <a href="profil.html">Lebenslauf</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="hero">
+      <h1>Hallo, ich bin Sumanth.</h1>
+      <p class="sub">Maschinenbauingenieur, der KI-Systeme baut.</p>
+      <p class="meta">Reutlingen · Master Computational Engineering, FAU Erlangen-Nürnberg (08/2026)</p>
+      <div class="btns">
+        <a class="btn fill" href="#projekte">Projekte ansehen</a>
+        <a class="btn line" href="#kontakt">Kontakt</a>
       </div>
-      <ul class="jump">
-        <li><a href="#pinn">
-          <span class="what">Inverse Parameteridentifikation mit PINN</span>
-          <span class="metric">Fehler unter 5 % (33/36 Fälle)</span>
-        </a></li>
-        <li><a href="#simready">
-          <span class="what">SimReady: KI-Copilot für CAD- und FEA-Prüfung</span>
-          <span class="metric">F1 91 % · 88/100 Bild-zu-CAD</span>
-        </a></li>
-        <li><a href="#nx">
-          <span class="what">NX → Simscape automatisiert</span>
-          <span class="metric">Stunden zu Minuten</span>
-        </a></li>
-      </ul>
     </div>
   </div>
 </header>
 
-<!-- ============================ PROJEKTE ============================ -->
-<section id="projekte">
-  <div class="row">
-    <div class="rail"></div>
-    <h2 class="section-head"><a href="projekte.html">Projekte</a></h2>
-  </div>
-
-  <article class="entry" id="pinn">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Kontext</dt><dd>Masterarbeit, FAU Erlangen-Nürnberg</dd>
-          <dt>Zeitraum</dt><dd>10/2025 – 02/2026</dd>
-          <dt>Feld</dt><dd>Mikromechanik, Verbundwerkstoffe</dd>
-        </dl>
-      </div>
-      <div>
-        <h3><a href="projekte/pinn.html">Grenzflächenparameter in Verbundwerkstoffen per PINN bestimmen</a></h3>
-
-        <p>Zwischen Verstärkung und Matrix liegt in Verbundwerkstoffen eine dünne Übergangszone (Interphase). Sie entscheidet über die Bauteilsteifigkeit, ist im FE-Netz aber aufwendig aufzulösen und messtechnisch kaum direkt zugänglich.</p>
-
-        <p>Ich habe ein physikinformiertes neuronales Netz (PINN) entwickelt, das diese Schicht durch ein schnelles Null-Dicken-Grenzflächenmodell ersetzt: Aus den Zielsteifigkeiten bestimmt es in einem einzigen Vorwärtsschritt die vier Grenzflächenparameter, statt pro Bauteil eine iterative Optimierung zu starten. Parallel dazu habe ich ein Branch-Trunk-DeepONet als differenzierbares Vorwärts-Surrogat aufgebaut und gegen die direkte PINN-Inversion gebenchmarkt.</p>
-
-        <p class="metric-line">Rekonstruktionsfehler unter 5 % in 33 von 36 Konfigurationen (Median 1,4 % für K_eff, 4,0 % für G_eff)</p>
-
-        <div class="entry-links">
-          <a class="lnk" href="projekte/pinn.html">Fallstudie lesen</a>
-          <a class="lnk" href="https://github.com/Sumanthreddy-DE/PINN-for-composite-interface-identification">Code</a>
-          <a class="lnk" href="https://github.com/Sumanthreddy-DE/Master-Thesis">Masterarbeit</a>
-        </div>
-
-        <figure>
-          <img src="assets/pinn-fehler.png" class="plate" alt="Paritätsdiagramm: Vom inversen PINN rekonstruierte gegen referenzierte effektive Moduli über 500 Testkonfigurationen." width="1878" height="994" loading="lazy">
-          <figcaption>Rekonstruierte gegen referenzierte effektive Moduli (K_eff, G_eff) über 500 zufällige Testkonfigurationen: Medianfehler 1,4 % für K_eff und 4,0 % für G_eff.</figcaption>
-        </figure>
-
-        <div class="entry-foot">
-          <div class="stack">PyTorch · PINN · DeepONet / Surrogatmodell · Mori-Tanaka-Homogenisierung · NumPy · SciPy</div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="entry" id="simready">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Kontext</dt><dd>Eigenes Projekt, öffentlich auf GitHub</dd>
-          <dt>Zeitraum</dt><dd>seit 03/2026</dd>
-          <dt>Feld</dt><dd>FEA-Vorverarbeitung, Generative CAD</dd>
-        </dl>
-      </div>
-      <div>
-        <h3><a href="projekte/simready.html">SimReady: KI-Copilot für FEA-Vorverarbeitung und CAD-Generierung</a></h3>
-
-        <p>Vor jeder Finite-Elemente-Rechnung muss das CAD-Modell geprüft und repariert werden. Das kostet Berechnungsingenieure oft Stunden, und übersehene Geometriefehler lassen später den Solver abbrechen. SimReady liest eine STEP-Datei ein, führt zwölf Geometrieprüfungen aus, heilt kleine Defekte automatisch und bewertet die Vernetzbarkeit von 0 bis 100.</p>
-
-        <p>Dahinter arbeiten drei Module zusammen: ein Graph Neural Network (GraphSAGE) auf 2.272 CAD-Graphen für den Netzverfeinerungsbedarf pro Fläche, ein Multi-Turn-LLM-Agent mit RAG über FEA-Richtlinien und eigener CAD-Generierung sowie ein mit QLoRA feinabgestimmtes Vision-Language-Modell (Qwen2.5-VL-3B), das aus einem Bauteilbild direkt ausführbaren CadQuery-Code erzeugt.</p>
-
-        <p class="metric-line">91 % F1-Score auf 3.612 Bauteilflächen · 88 von 100 valide CAD-Modelle aus Bildern (0/100 vor Fine-Tuning)</p>
-
-        <div class="entry-links">
-          <a class="lnk" href="projekte/simready.html">Fallstudie lesen</a>
-          <a class="lnk" href="https://github.com/Sumanthreddy-DE/simready">Code</a>
-        </div>
-
-        <figure>
-          <img src="assets/simready-copilot.png" class="plate" alt="SimReady-Copilot beantwortet eine deutsche Frage zu einem Testbauteil: Score 84/100, zwei Befunde, Behebungsvorschläge und ein Zitat aus dem CalculiX-Handbuch." width="776" height="376" loading="lazy">
-          <figcaption>Der Copilot prüft ein Testbauteil mit kleiner Bohrung: zwei Befunde, konkrete Behebung und die Quelle aus dem CalculiX-Handbuch.</figcaption>
-        </figure>
-
-        <div class="entry-foot">
-          <div class="stack">PyTorch Geometric (GraphSAGE) · pythonocc (OpenCascade) · Qwen2.5-VL (QLoRA) · CadQuery · LLM-Agent &amp; RAG · Streamlit</div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="entry" id="nx">
-    <div class="row">
-      <div class="rail">
-        <dl>
-          <dt>Kontext</dt><dd>Lehrstuhl für Konstruktionstechnik (KTmfk), FAU Erlangen-Nürnberg</dd>
-          <dt>Zeitraum</dt><dd>04/2025 – 02/2026</dd>
-          <dt>Feld</dt><dd>CAD-Automatisierung, Mehrkörpersimulation</dd>
-        </dl>
-      </div>
-      <div>
-        <h3><a href="projekte/nx-simscape.html">Von der NX-Baugruppe zum simulationsfähigen Simscape-Modell</a></h3>
-
-        <p>Der Weg von der NX-Baugruppe ins Simscape-Modell war Handarbeit: Bauteile, Zwangsbedingungen und Gelenke wurden manuell übertragen. Meine Pipeline liest die Baugruppe über die NXOpen API aus, ordnet jede Zwangsbedingung über ein Transformer-Modell dem passenden Gelenk in PTC Creo zu und prüft am Ende die Gelenkpositionen gegen das Original.</p>
-
-        <p class="metric-line">Aus Stunden manueller Übertragung werden Minuten</p>
-
-        <div class="entry-links">
-          <a class="lnk" href="projekte/nx-simscape.html">Fallstudie lesen</a>
-          <a class="lnk" href="https://github.com/Sumanthreddy-DE/NX-Constraints-training">Code</a>
-        </div>
-
-        <figure class="inset">
-          <img src="assets/nx-baugruppe.png" alt="Rendering der Baugruppe, die die Pipeline aus Siemens NX in ein simulationsfähiges Simscape-Modell überführt hat" width="484" height="491" loading="lazy">
-          <figcaption>Die Baugruppe, die meine Pipeline aus Siemens NX in simulationsfähiges XML für Simscape überführt hat. Rendering: KTmfk, FAU Erlangen-Nürnberg.</figcaption>
-        </figure>
-
-        <div class="entry-foot">
-          <div class="stack">TensorFlow · NXOpen API · Siemens NX · PTC Creo · MATLAB Simscape</div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <div class="row">
-    <div class="rail"></div>
-    <p>Hackathons und Engagement: DigiDorf, der DEHN Hackathon, die Gründung von TEA und ein Go-Kart-Wettbewerb stehen auf der <a class="lnk" href="projekte.html">Projektseite</a>. Die KI-Automatisierungen haben eine <a class="lnk" href="automatisierung.html">eigene Seite</a>.</p>
-  </div>
-</section>
-
-<!-- ============================ ÜBER MICH ============================ -->
-<section id="ueber-mich">
-  <div class="row">
-    <div class="rail"></div>
+<main>
+<section class="s" id="ueber-mich">
+  <div class="wrap">
+    <div class="s-head"><h2>Über mich</h2></div>
     <div class="about">
-      <h2 class="section-head">Über mich</h2>
-
-      <p>Ich komme aus dem Maschinenbau. Mein Bachelor in Indien war klassische Konstruktion und Fertigung: Zeichnungen, Bauteile, Prüfstände. Im Master Computational Engineering an der FAU habe ich gelernt, dieselben Fragen numerisch zu stellen: nicht „hält das", sondern „was sagt das Modell, und wie weit traue ich ihm".</p>
-
-      <p>Zum Machine Learning bin ich nicht aus Begeisterung für Machine Learning gekommen, sondern aus Ungeduld. In der Simulation ist zu vieles Routine, das trotzdem jemand mit Erfahrung von Hand macht: Geometrie aufräumen, Gelenke übertragen, entscheiden, wo das Netz feiner werden muss. Genau diese Stellen lassen sich lernen, und genau dort arbeite ich am liebsten.</p>
-
-      <p>Seit 2022 lebe ich in Deutschland, inzwischen in Reutlingen. Deutsch habe ich neben dem Studium gelernt und arbeite weiter daran. Was ich baue, baue ich meistens, weil mich etwas im Alltag gestört hat. Deshalb steht auf der Projektseite auch Software, die mit Simulation nichts zu tun hat.</p>
-
-      <p>Im September 2024 habe ich TEA mitgegründet, eine Studierendeninitiative in Erlangen, die internationale Studierende beim Start in Deutschland begleitet: Ankunft, Behördengänge, erste Wochen. Sechs Personen im Kernteam, bis heute aktiv.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ KONTAKT ============================ -->
-<section id="kontakt">
-  <div class="row">
-    <div class="rail"></div>
-    <div class="cta">
-      <h2>Ich suche eine Festanstellung in Simulation und angewandtem Machine Learning.</h2>
-      <p>In Berechnung, Simulation und Machine Learning für mechanische Anwendungen, in und um Deutschland. Wenn das zu Ihrer Stelle oder Ihrem Projekt passt, schreiben Sie mir gern.</p>
-      <div class="foot-links">
-        <a class="lnk" href="mailto:sumanthreddy.settipalli@gmail.com">E-Mail schreiben</a>
-        <a class="lnk" href="https://www.linkedin.com/in/sumanthreddys">LinkedIn</a>
+      <img class="portrait" src="assets/portrait.jpg" alt="Porträt von Sumanth Reddy Settipalli">
+      <div>
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-t="t1">Werdegang</button>
+          <button role="tab" aria-selected="false" data-t="t2">Warum Machine Learning</button>
+          <button role="tab" aria-selected="false" data-t="t3">Deutschland</button>
+        </div>
+        <div class="tab" id="t1">
+          <h3>Vom Prüfstand zum Modell</h3>
+          <p>Ich komme aus dem Maschinenbau. Mein Bachelor in Indien war klassische Konstruktion und Fertigung: Zeichnungen, Bauteile, Prüfstände.</p>
+          <p>Im Master Computational Engineering an der FAU habe ich gelernt, dieselben Fragen numerisch zu stellen: nicht „hält das", sondern „was sagt das Modell, und wie weit traue ich ihm".</p>
+        </div>
+        <div class="tab" id="t2" hidden>
+          <h3>Aus Ungeduld, nicht aus Begeisterung</h3>
+          <p>In der Simulation ist zu vieles Routine, das trotzdem jemand mit Erfahrung von Hand macht: Geometrie aufräumen, Gelenke übertragen, entscheiden, wo das Netz feiner werden muss. Genau diese Stellen lassen sich lernen, und genau dort arbeite ich am liebsten.</p>
+        </div>
+        <div class="tab" id="t3" hidden>
+          <h3>Seit 2022 in Deutschland</h3>
+          <p>Inzwischen lebe ich in Reutlingen. Deutsch habe ich neben dem Studium gelernt und arbeite weiter daran.</p>
+          <p>Im September 2024 habe ich TEA mitgegründet, eine Studierendeninitiative in Erlangen, die internationale Studierende beim Start in Deutschland begleitet. Sechs Personen im Kernteam, bis heute aktiv.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="row">
-    <div class="rail"></div>
-    <p class="fineprint">
-      Sumanth Reddy Settipalli · Reutlingen, Deutschland ·
-      <a href="impressum.html">Impressum</a>
-    </p>
+<section class="s" id="projekte">
+  <div class="wrap">
+    <div class="s-head"><h2>Projekte und Erfahrung</h2><a href="projekte.html">Alle Projekte</a></div>
+    <div class="tiles">
+      <a class="tile" href="projekte/simready.html"><div class="pic"><img src="assets/simready-copilot.png" alt="SimReady-Copilot beantwortet eine deutsche Frage zu einem Testbauteil: Score 84/100, zwei Befunde, Behebungsvorschläge und ein Zitat aus dem CalculiX-Handbuch."></div>
+        <div class="txt"><span class="meta">Eigenes Projekt · seit 03/2026</span><h3>SimReady: KI-Copilot für FEA-Vorverarbeitung</h3><p>91 % F1 auf 3.612 Flächen · 88/100 CAD-Modelle aus Bildern</p></div></a>
+      <a class="tile" href="projekte/pinn.html"><div class="pic"><img src="assets/pinn-fehler.png" alt="Paritätsdiagramm: Vom inversen PINN rekonstruierte gegen referenzierte effektive Moduli über 500 Testkonfigurationen."></div>
+        <div class="txt"><span class="meta">Masterarbeit, FAU · 2025 – 2026</span><h3>Grenzflächenparameter per PINN bestimmen</h3><p>Fehler unter 5 % in 33 von 36 Konfigurationen</p></div></a>
+      <a class="tile" href="projekte/nx-simscape.html"><div class="pic"><img src="assets/nx-baugruppe.png" alt="Rendering der Baugruppe, die die Pipeline aus Siemens NX in ein simulationsfähiges Simscape-Modell überführt hat"></div>
+        <div class="txt"><span class="meta">HiWi, Lehrstuhl KTmfk · 2025 – 2026</span><h3>NX-Baugruppe zum Simscape-Modell</h3><p>Aus Stunden manueller Übertragung werden Minuten</p></div></a>
+      <a class="tile dark" href="fragen.html"><div class="pic word" aria-hidden="true"><span class="q">„Passt er auf eine Stelle in der Berechnung?"</span><span class="q a">Antwortet nur aus Lebenslauf und Fallstudien, mit Quelle.</span></div>
+        <div class="txt"><span class="meta">Eigenes Projekt · 2026</span><h3>Fragen an meinen Lebenslauf</h3><p>Chat-Assistent mit Quellenbindung, live ausprobieren</p></div></a>
+      <a class="tile" href="projekte.html#engagement"><div class="pic photo"><img src="assets/gokart.jpg" alt="Das Kart des Teams mit der Startnummer 85 in der Box"></div>
+        <div class="txt"><span class="meta">Studierendenwettbewerb · Indien</span><h3>Rahmen und Lenkgeometrie eines Go-Karts</h3><p>Platz 11 von über 250 Teams</p></div></a>
+      <a class="tile dark" href="profil.html#berufserfahrung"><div class="pic word flow" aria-hidden="true"><span class="meta">Anruf</span><span class="meta">Deepgram: Spracherkennung</span><span class="meta">OpenAI: Sprachmodell</span><span class="meta">ElevenLabs: Sprachausgabe</span></div>
+        <div class="txt"><span class="meta">Freiberuflich · in Entwicklung</span><h3>KI-Telefonassistent für lokale Unternehmen</h3><p>Dienste nach Antwortzeit und Sprachqualität gewählt</p></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="werdegang">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Ausbildung</h3>
+        <ol class="tl">
+          <li><b>Master Computational Engineering</b><span class="meta">FAU Erlangen-Nürnberg · 10/2022 – 08/2026</span></li>
+          <li><b>Bachelor Maschinenbau</b><span class="meta">Amrita Vishwa Vidyapeetham, Indien · 07/2016 – 06/2020</span></li>
+        </ol>
+      </div>
+      <div>
+        <h3>Berufserfahrung</h3>
+        <ol class="tl">
+          <li><b>KI-Entwicklung und Automatisierung · Freiberuflich</b><span class="meta">Reutlingen · 04/2026 – heute</span></li>
+          <li><b>Wissenschaftliche Hilfskraft und Tutor</b><span class="meta">FAU Erlangen-Nürnberg · 11/2023 – 08/2026</span>
+            <ul class="sub">
+              <li><span>Konstruktionstechnik (KTmfk)</span><span class="meta">04/2025 – 02/2026</span></li>
+              <li><span>Technische Dynamik, Tutor</span><span class="meta">09/2025 – 08/2026</span></li>
+              <li><span>Fertigungstechnologie</span><span class="meta">06/2024 – 12/2024</span></li>
+              <li><span>BRAINIACS, Kontinuumsmechanik</span><span class="meta">11/2023 – 11/2024</span></li>
+            </ul></li>
+          <li><b>Automatisierungsingenieur, Tata Consultancy Services</b><span class="meta">Indien · 08/2020 – 09/2022</span></li>
+        </ol>
+        <p class="pdf"><a href="Sumanth-Reddy-Settipalli-Lebenslauf.pdf">Lebenslauf als PDF</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="kenntnisse">
+  <div class="wrap">
+    <div class="s-head"><h2>Kenntnisse</h2></div>
+    <div class="skills">
+      <div><b>Machine Learning</b><p>PyTorch, PyTorch Geometric, TensorFlow, Transformer, scikit-learn</p></div>
+      <div><b>ML-Methoden</b><p>PINN, Graph Neural Networks, LLM-Fine-Tuning, inverse Parameteridentifikation</p></div>
+      <div><b>Simulation und FEM</b><p>FEM, Kontinuumsmechanik, Mehrkörpersimulation, Simufact Forming, Simscape, ParaView</p></div>
+      <div><b>CAD</b><p>Siemens NX, NXOpen API, PTC Creo, STEP, pythonocc</p></div>
+      <div><b>Programmierung</b><p>Python, C++ (deal.II), MATLAB, Fortran, Git</p></div>
+      <div><b>Sprachen</b><p>Deutsch B2 · Englisch C1 · Hindi fließend · Telugu Muttersprache</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="band contact" id="kontakt">
+  <div class="wrap">
+    <h2>Ich suche eine Festanstellung, in der ich KI-Systeme für Engineering baue.</h2>
+    <p>In und um Deutschland. Ob konkrete Stelle, Projekt oder erste Idee: Schreiben Sie mir gern.</p>
+    <div class="boxes">
+      <a href="mailto:sumanthreddy.settipalli@gmail.com"><b>E-Mail</b><span class="meta">sumanthreddy.settipalli@gmail.com</span></a>
+      <a href="https://www.linkedin.com/in/sumanthreddys"><b>LinkedIn</b><span class="meta">/in/sumanthreddys</span></a>
+    </div>
+  </div>
+  <div class="wrap foot" style="margin-top:96px">
+    <span class="meta">Sumanth Reddy Settipalli · Reutlingen</span>
+    <span class="meta"><a href="https://github.com/Sumanthreddy-DE">GitHub</a> · <a href="impressum.html">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
   </div>
 </footer>
 
+<script>
+document.querySelector('.tabs').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
+  document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== b.dataset.t);
+});
+</script>
 </div>
 <button class="chat-open" type="button" aria-expanded="false" aria-controls="chat-panel">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></svg>

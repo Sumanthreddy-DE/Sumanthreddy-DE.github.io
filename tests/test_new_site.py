@@ -38,3 +38,35 @@ def test_no_page_scrolls_sideways(browser, site_url):
             over = pg.evaluate("document.documentElement.scrollWidth - innerWidth")
             assert over <= 0, (name, width, over)
         ctx.close()
+
+
+TILES = ["projekte/simready.html", "projekte/pinn.html", "projekte/nx-simscape.html",
+         "fragen.html", "projekte.html#engagement", "profil.html#berufserfahrung"]
+
+
+def test_homepage_grid_has_six_linked_tiles(page, site_url):
+    page.goto(f"{site_url}/index.html")
+    hrefs = page.locator("#projekte .tiles > a.tile").evaluate_all("els => els.map(e => e.getAttribute('href'))")
+    assert len(hrefs) == 6
+    for want, got in zip(TILES, hrefs):
+        if want:
+            assert got == want
+
+
+def test_homepage_tiles_are_square_on_desktop_and_text_fits(browser, site_url):
+    for width in (390, 700, 1024, 1440, 1920):
+        ctx = browser.new_context(viewport={"width": width, "height": 900})
+        pg = ctx.new_page()
+        pg.goto(f"{site_url}/index.html")
+        cut = pg.evaluate("[...document.querySelectorAll('.tile .txt')].map(t => t.scrollHeight - t.clientHeight)")
+        assert max(cut) <= 0, (width, cut)
+        if width >= 1440:
+            r = pg.locator(".tile").first.bounding_box()
+            assert abs(r["width"] - r["height"]) < 2, (width, r)
+        ctx.close()
+
+
+def test_hero_says_the_decided_line(page, site_url):
+    page.goto(f"{site_url}/index.html")
+    assert page.locator(".hero h1").inner_text() == "Hallo, ich bin Sumanth."
+    assert page.locator(".hero .sub").inner_text() == "Maschinenbauingenieur, der KI-Systeme baut."
