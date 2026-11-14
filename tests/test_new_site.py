@@ -1,0 +1,40 @@
+import re
+
+from conftest import ROOT, PAGES
+
+ALL_PAGES = PAGES + ["automatisierung.html", "fragen.html"]
+ALLOWED = {"#f2ece0", "#121110", "#ffffff", "#fff"}
+
+
+def test_site_css_uses_only_the_three_colours():
+    css = (ROOT / "assets/site.css").read_text(encoding="utf-8").lower()
+    found = set(re.findall(r"#[0-9a-f]{3,8}\b", css))
+    assert found <= ALLOWED, found - ALLOWED
+    assert "rgb(" not in css and "hsl(" not in css
+    assert "prefers-color-scheme" not in css
+    assert "border-radius" not in css
+
+
+def test_legacy_tokens_exist_for_chat_css():
+    css = (ROOT / "assets/site.css").read_text(encoding="utf-8")
+    root = css[css.index(":root"):css.index("}", css.index(":root"))]
+    for token in ["--paper", "--ink", "--ink-muted", "--rule-soft", "--rule-strong", "--accent", "--figure-bg"]:
+        assert token + ":" in root, token
+
+
+def test_every_page_has_the_black_header_band(page, site_url):
+    for name in ALL_PAGES:
+        page.goto(f"{site_url}/{name}")
+        band = page.locator("header.band").first
+        assert band.evaluate("e => getComputedStyle(e).backgroundColor") == "rgb(18, 17, 16)", name
+
+
+def test_no_page_scrolls_sideways(browser, site_url):
+    for width in (390, 1440, 1920):
+        ctx = browser.new_context(viewport={"width": width, "height": 900})
+        pg = ctx.new_page()
+        for name in ALL_PAGES:
+            pg.goto(f"{site_url}/{name}")
+            over = pg.evaluate("document.documentElement.scrollWidth - innerWidth")
+            assert over <= 0, (name, width, over)
+        ctx.close()
