@@ -24,7 +24,19 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
-- **images-placeholder** — 1 placeholder SVG remains: `portrait`. All 6 project visual slots (`pinn-interface`, `pinn-fehler`, `simready-ui`, `simready-dashboard`, `simready-gnn`, `nx-simscape`, `nx-mapping`) plus `tea-team`, `gokart`, `digidorf` are now real figures/diagrams (updated 2026-10-22).
+- **nx-image-own-render** — the homepage NX figure (`assets/nx-baugruppe.png`, added
+  2026-11-14) is a 484×491 frame of the KTmfk render of the assembly Sumanth converted from NX
+  to Simscape-ready XML; the KTmfk logo is projected on the floor under the frame. Replace it
+  with an own image without the logo. Best: re-render or screenshot the assembly in NX (or
+  the Simscape model) at 1200 px+ on a plain background, which also gives the "before/after"
+  the review asked for. Avoid an AI-regenerated "replica": it would no longer be the real
+  assembly, and under a case study that claims real engineering work that reads as fake.
+  Keep the source file name, swap `index.html` src/width/height, rerun the screenshot check.
+  *(found 2026-11-14, portfolio review session)*
+- **simready-homepage-screenshot** — homepage SimReady entry has no image since 2026-11-14
+  (`simready-ui.svg` removed). Sumanth takes a copilot screenshot on the laptop
+  (`C:\mm\sr\python.exe -m streamlit run ui/copilot_app.py`, demo CAD `small_feature_hole.step`).
+  UI polish of the SimReady copilot itself is a SimReady task for a later session.
 - **chat-demo-video** — 60–90 s demo of the live chat at the top of `README.md`: 10 s problem + audience,
   20 s the GitHub tool call ("Arbeitet er aktuell noch an SimReady?" → tool line + dated answer),
   15 s a grounded CV answer (Siemens trap), 15 s multi-turn chat, 5 s the live URL loading. Record
