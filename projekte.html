@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simulation und Machine Learning: Sumanth Reddy Settipalli</title>
-<meta name="description" content="Projekte in Simulation und Machine Learning: PINN-Parameteridentifikation, SimReady, NX-zu-Simscape, Topologieoptimierung, Hackathons und Engagement.">
+<meta name="description" content="Projekte in Simulation und Machine Learning und KI-Automatisierung: PINN-Parameteridentifikation, SimReady, NX-zu-Simscape, Chat-Assistent, KI-Telefonassistent, Hackathons und Engagement.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="website">
@@ -39,7 +39,7 @@
     <span class="meta">Oktober 2026 · <a class="lnk" href="https://github.com/Sumanthreddy-DE">github.com/Sumanthreddy-DE</a></span>
       <h1>Projekte</h1>
       <p>Aus Masterarbeit, Lehrstuhl und eigenen Projekten.</p>
-      <p>Die drei ausführlichen Fallstudien, Hackathons und Engagement stehen auf dieser Seite. Werkzeuge und KI-Automatisierungen stehen auf der <a class="lnk" href="automatisierung.html">Seite KI-Automatisierung</a>.</p>
+      <p>Auf dieser Seite: Simulation und Machine Learning mit drei ausführlichen Fallstudien, KI-Automatisierung, Hackathons und Engagement.</p>
   </div>
 </header>
 
@@ -114,6 +114,89 @@
         </li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- ============================ KI-AUTOMATISIERUNG ============================ -->
+<section id="ki-automatisierung">
+  <div class="wrap" style="max-width:880px">
+    <h2 class="section-head">KI-Automatisierung</h2>
+
+  <article class="entry">
+      <div>
+        <h3>Fragen an meinen Lebenslauf: Chat-Assistent mit Quellenbindung</h3>
+
+        <p>Ein Assistent, der Fragen zum Werdegang beantwortet und dabei nur aus zwei Quellen schöpfen darf: dem Lebenslauf und drei Fallstudien. Er antwortet in der dritten Person, nennt zu jeder Antwort den Abschnitt, aus dem sie stammt, und sagt offen, wenn etwas nicht dokumentiert ist. Nach jeder Änderung am Prompt läuft er gegen fünfzehn Testfragen: erfundene Arbeitgeber, Einschleusen von Regeln im Gesprächsverlauf, eine Kontrollfrage, deren Antwort nur in den Quellen stehen kann. Das Modell wurde per Test ausgewählt, der Server läuft bei einem deutschen Hoster, die Antworten werden gestreamt. Der gesamte Verlauf bleibt im Browser.</p>
+
+        <div class="entry-foot">
+          <div class="stack">Python · FastAPI · Claude · NDJSON-Streaming · Caddy · systemd</div>
+          <div class="entry-links">
+            <a class="lnk" href="fragen.html" style="margin-right: 16px">Ausprobieren</a>
+            <a class="lnk" href="https://github.com/Sumanthreddy-DE/resume-assistant">Code</a>
+          </div>
+        </div>
+      </div>
+  </article>
+
+  <article class="entry" id="telefonassistent">
+      <div>
+        <h3>KI-Telefonassistent für lokale Betriebe</h3>
+
+        <p>Ein Telefonassistent, der Anrufe auf Deutsch und Englisch annimmt, zuerst für Restaurants. Damit sich ein Anruf normal anfühlt, muss die Antwort schnell kommen. Deshalb habe ich Spracherkennung, Sprachmodell und Sprachausgabe nach Antwortzeit und Sprachqualität verglichen und Deepgram, OpenAI und ElevenLabs gewählt.</p>
+
+        <div class="entry-foot">
+          <div class="stack">Python · Deepgram · OpenAI · ElevenLabs</div>
+          <div class="entry-links">
+            <span class="no-link">Repository privat, gern zeige ich es im Gespräch.</span>
+          </div>
+        </div>
+      </div>
+  </article>
+
+  <article class="entry">
+      <div>
+        <h3>Self-Talk-Coach: Gesprächspartner für gesprochenes Deutsch</h3>
+
+        <p>Ein Gesprächspartner für gesprochenes Deutsch von der Kommandozeile. Ich drücke die Leertaste, spreche, Deepgram transkribiert, ein Sprachmodell antwortet als Gesprächspartner und edge-tts liest die Antwort vor. Stocke ich nach einer Frage, greift eine Hilfsleiter: erst eine Ermutigung, dann ein Satzanfang, dann die Frage in einfacher Form. Jede Runde landet mit Timing in SQLite, am Ende gibt es die mediane Reaktionszeit. Dazu eine Mediathek, die eigene Selbstgespräch-Videos lokal mit faster-whisper transkribiert. Privat, weil er gegen meine eigenen Sprechdaten läuft.</p>
+
+        <div class="entry-foot">
+          <div class="stack">Python · Deepgram · faster-whisper · edge-tts · SQLite</div>
+          <div class="entry-links">
+            <span class="no-link">Repository privat, gern zeige ich es im Gespräch.</span>
+          </div>
+        </div>
+      </div>
+  </article>
+
+  <article class="entry" id="anny">
+      <div>
+        <h3>Anny-Booking-Bot: Tagesübersicht für Buchungen</h3>
+
+        <p>In unserem Wohnhaus buchen Bewohner eine Gemeinschaftsküche über anny.co. Der Hausmeister soll jedem die Küche übergeben, sieht die Buchungen aber nur, wenn er sich selbst anmeldet. Der Bot meldet täglich um fünf Uhr morgens per Playwright ohne Oberfläche an, liest die heutigen und morgigen Buchungen und schickt eine aufbereitete Mail an den Hausmeister: Uhrzeit, Name, Telefonnummer, Raum. Geplant über GitHub Actions und einen externen Cron-Dienst, geprüft mit pytest und CI. Lief mehrere Monate täglich.</p>
+
+        <div class="entry-foot">
+          <div class="stack">Python · Playwright · Gmail SMTP · GitHub Actions · pytest</div>
+          <div class="entry-links">
+            <span class="no-link">Repository privat, gern zeige ich es im Gespräch.</span>
+          </div>
+        </div>
+      </div>
+  </article>
+
+  <article class="entry">
+      <div>
+        <h3>Tägliche Stellenbenachrichtigung für SmartRecruiters</h3>
+
+        <p>Stellenportale zeigen Neues nur nach dem Einloggen, und täglich nachschauen ist Arbeit, die ein Skript übernehmen kann. Der Bot fragt die Suchergebnisse von SmartRecruiters ab, gleicht sie mit dem Stand von gestern ab und schickt eine Mail nur dann, wenn etwas neu dazugekommen ist. Python, GitHub Actions als Cron, kein Server, kein API-Schlüssel. Lief fünf Monate täglich.</p>
+
+        <div class="entry-foot">
+          <div class="stack">Python · GitHub Actions · HTML-E-Mail</div>
+          <div class="entry-links">
+            <a class="lnk" href="https://github.com/Sumanthreddy-DE/smartrecruiters-job-alerts">Code</a>
+          </div>
+        </div>
+      </div>
+  </article>
   </div>
 </section>
 
