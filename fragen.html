@@ -20,7 +20,6 @@
 <link rel="stylesheet" href="assets/site.css?v=4">
 <style>
 /* page-local: fragen.html only */
-.hero.compact { padding: 56px 0 40px; }
 #fragen { padding-top: 48px; }
 .fallback { margin-top: 36px; border-top: 1px solid var(--rule-soft); padding-top: 14px; }
 .fallback summary { cursor: pointer; font-size: 0.875rem; color: var(--ink-muted); }
@@ -28,7 +27,7 @@
 .prepared h2 { font-size: 0.9375rem; font-weight: 600; margin-bottom: 6px; }
 .prepared p { margin-bottom: 8px; }
 .prepared p.source { margin: 10px 0 0; }
-.why { font-family: 'Libre Bodoni', Georgia, serif; font-size: 1.25rem; line-height: 1.4; margin-bottom: 18px; }
+.why { font-family: var(--display); font-size: 1.25rem; line-height: 1.4; margin-bottom: 18px; }
 .why-body { margin-bottom: 28px; max-width: 64ch; }
 .evaltab { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
 .evaltab th {
@@ -42,7 +41,6 @@
 .evaltab td.res { white-space: nowrap; width: 1%; }
 .evalfoot { font-size: 0.8125rem; color: var(--ink-muted); margin-top: 14px; }
 @media (max-width: 900px) {
-  .hero.compact { padding: 36px 0 28px; }
   #fragen { padding-top: 32px; }
   .evaltab thead { display: none; }
   .evaltab tr { display: block; border-bottom: 1px solid var(--rule-soft); padding: 10px 0; }
@@ -67,31 +65,17 @@
   </div>
 </header>
 
-<header class="hero compact">
-  <div class="hero-inner">
-    <div class="rail">
-      <dl>
-        <dt>Projekt</dt><dd>Eigenes Projekt, <a class="lnk" href="https://github.com/Sumanthreddy-DE/resume-assistant">Code auf GitHub</a></dd>
-        <dt>Modell</dt><dd>Claude Sonnet 5, per Test ausgewählt</dd>
-        <dt>Grundlage</dt><dd>Lebenslauf, drei Fallstudien und die Live-Aktivität seiner drei öffentlichen GitHub-Projekte</dd>
-      </dl>
-    </div>
-    <div>
+<header class="band page-hero">
+  <div class="wrap">
+    <span class="meta">Eigenes Projekt, <a class="lnk" href="https://github.com/Sumanthreddy-DE/resume-assistant">Code auf GitHub</a> · Claude Sonnet 5, per Test ausgewählt · Lebenslauf, drei Fallstudien und die Live-Aktivität seiner drei öffentlichen GitHub-Projekte</span>
       <h1>Fragen an meinen Lebenslauf</h1>
-      <p class="claim">Ein Assistent, der nur weiß, was hier steht.</p>
-      <p class="hero-facts">Er antwortet in der dritten Person und nennt zu jeder Antwort die Quelle. Er ist ein Werkzeug, nicht ich. Für alles Verbindliche schreiben Sie mir.</p>
-    </div>
+      <p>Ein Assistent, der nur weiß, was hier steht.</p>
+      <p>Er antwortet in der dritten Person und nennt zu jeder Antwort die Quelle. Er ist ein Werkzeug, nicht ich. Für alles Verbindliche schreiben Sie mir.</p>
   </div>
 </header>
 
 <section id="fragen">
-  <div class="row">
-    <div class="rail">
-      <dl>
-        <dt>Verlauf</dt><dd>Bleibt nur in Ihrem Browser</dd>
-        <dt>Grenze</dt><dd>500 Zeichen pro Frage</dd>
-      </dl>
-    </div>
+  <div class="wrap" style="max-width:880px">
     <div>
       <noscript><p class="chat-status">Der Assistent braucht JavaScript. Die vorbereiteten Antworten stehen direkt darunter.</p></noscript>
       <div class="chat chat-live" data-endpoint="https://api.sumanthreddy.de" data-timeout-ms="8000">
@@ -144,8 +128,7 @@
 </section>
 
 <section id="pruefung">
-  <div class="row">
-    <div class="rail"></div>
+  <div class="wrap" style="max-width:880px">
     <div>
       <h2 class="section-head">Wie ich prüfe, dass er nichts erfindet</h2>
       <p class="why">Warum nicht einfach ChatGPT mit dem Lebenslauf?</p>
@@ -179,8 +162,7 @@
 </section>
 
 <section id="kontakt">
-  <div class="row">
-    <div class="rail"></div>
+  <div class="wrap" style="max-width:880px">
     <div>
       <h2 class="section-head">Kontakt</h2>
       <p style="margin-bottom: 28px; max-width: 56ch;">Fragen, die der Assistent nicht beantworten kann, beantworte ich gern selbst.</p>

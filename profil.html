@@ -20,12 +20,6 @@
 <link rel="stylesheet" href="assets/site.css?v=4">
 <style>
 /* Page-specific only. The shared block above is byte-identical to index.html. */
-.job h3 {
-  font-family: 'Libre Bodoni', Georgia, serif;
-  font-size: 1.1875rem;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
 
 .download {
   display: inline-block;
@@ -65,27 +59,19 @@
   </div>
 </header>
 
-<header class="hero">
-  <div class="hero-inner">
-    <div class="rail">
-      <dl>
-        <dt>Ort</dt><dd>Reutlingen, Deutschland</dd>
-        <dt>Abschluss</dt><dd>Master Computational Engineering, FAU Erlangen-Nürnberg (08/2026)</dd>
-      </dl>
-    </div>
-    <div>
+<header class="band page-hero">
+  <div class="wrap">
+    <span class="meta">Reutlingen, Deutschland · Master Computational Engineering, FAU Erlangen-Nürnberg (08/2026)</span>
       <h1>Lebenslauf</h1>
-      <p class="claim">Berechnung, Simulation und angewandtes Machine Learning.</p>
-      <p class="hero-facts">Die Projekte dazu stehen auf der <a class="lnk" href="projekte.html">Projektseite</a>.</p>
-    </div>
+      <p>Berechnung, Simulation und angewandtes Machine Learning.</p>
+      <p>Die Projekte dazu stehen auf der <a class="lnk" href="projekte.html">Projektseite</a>.</p>
   </div>
 </header>
 
 <!-- ============================ DOWNLOAD ============================ -->
 <section id="download">
-  <div class="row">
-    <div class="rail"></div>
-    <div>
+  <div class="wrap">
+    <div class="prose">
       <h2 class="section-head">Vollständiger Lebenslauf</h2>
       <p><a class="download" href="Sumanth-Reddy-Settipalli-Lebenslauf.pdf">Lebenslauf als PDF herunterladen</a></p>
       <p class="download-note">PDF, zwei Seiten, auf Deutsch.</p>
@@ -95,10 +81,18 @@
 
 <!-- ============================ BERUFSERFAHRUNG ============================ -->
 <section id="berufserfahrung">
-  <div class="row">
-    <div class="rail"></div>
+  <div class="wrap" style="max-width:880px">
     <div>
       <h2 class="section-head">Berufserfahrung</h2>
+
+      <div class="job">
+        <h3>KI-Entwicklung und Automatisierung · Freiberuflich</h3>
+        <div class="when">04/2026 – heute · Reutlingen</div>
+        <ul>
+          <li>Programmierung eines Buchungs-Bots in Python und Playwright, der die Küchenbuchungen eines Wohnhauses täglich über GitHub Actions per E-Mail an den Hausmeister sendet. <a class="lnk" href="automatisierung.html">Mehr dazu</a></li>
+          <li>Entwicklung eines deutschsprachigen KI-Telefonassistenten für lokale Unternehmen und Auswahl von Spracherkennung (Deepgram), Sprachmodell (OpenAI) und Sprachausgabe (ElevenLabs) nach Antwortzeit und Sprachqualität</li>
+        </ul>
+      </div>
 
       <div class="job">
         <h3>Wissenschaftliche Hilfskraft und Tutor, FAU Erlangen-Nürnberg</h3>
@@ -125,8 +119,7 @@
 
 <!-- ============================ AUSBILDUNG ============================ -->
 <section id="ausbildung">
-  <div class="row">
-    <div class="rail"></div>
+  <div class="wrap" style="max-width:880px">
     <div>
       <h2 class="section-head">Ausbildung</h2>
       <div class="job">
@@ -142,8 +135,7 @@
 
 <!-- ============================ KENNTNISSE ============================ -->
 <section id="kenntnisse">
-  <div class="row">
-    <div class="rail"></div>
+  <div class="wrap" style="max-width:880px">
     <div>
       <h2 class="section-head">Kenntnisse</h2>
       <table class="pairs">
