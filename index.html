@@ -51,24 +51,19 @@
     <div class="about">
       <img class="portrait" src="assets/portrait.jpg" alt="Porträt von Sumanth Reddy Settipalli">
       <div>
-        <div class="tabs" role="tablist">
-          <button role="tab" aria-selected="true" data-t="t1">Werdegang</button>
-          <button role="tab" aria-selected="false" data-t="t2">Warum Machine Learning</button>
-          <button role="tab" aria-selected="false" data-t="t3">Deutschland</button>
+        <div class="about-item">
+          <h3>Woher ich komme</h3>
+          <p>Aus dem Maschinenbau. Im Bachelor in Indien habe ich im Team den Rahmen eines Go-Karts konstruiert. Danach war ich zwei Jahre bei Tata Consultancy Services und habe Software für einen Kunden in acht Ländern eingeführt.</p>
+          <p>2022 bin ich für den Master nach Erlangen gekommen, im August 2026 habe ich ihn abgeschlossen. Heute wohne ich in Reutlingen.</p>
         </div>
-        <div class="tab" id="t1">
-          <h3>Vom Prüfstand zum Modell</h3>
-          <p>Ich komme aus dem Maschinenbau. Mein Bachelor in Indien war klassische Konstruktion und Fertigung: Zeichnungen, Bauteile, Prüfstände.</p>
-          <p>Im Master Computational Engineering an der FAU habe ich gelernt, dieselben Fragen numerisch zu stellen: nicht „hält das", sondern „was sagt das Modell, und wie weit traue ich ihm".</p>
+        <div class="about-item">
+          <h3>Was ich baue</h3>
+          <p>Werkzeuge, die Simulationsingenieuren Routinearbeit abnehmen. Mein größtes Projekt ist SimReady: Es prüft ein CAD-Bauteil, bevor es in die FEM-Rechnung geht, und zeigt, wo das Netz feiner werden muss. Am Lehrstuhl KTmfk habe ich ein Werkzeug gebaut, das NX-Baugruppen automatisch in Simscape-Modelle überträgt.</p>
         </div>
-        <div class="tab" id="t2" hidden>
-          <h3>Aus Ungeduld, nicht aus Begeisterung</h3>
-          <p>In der Simulation ist zu vieles Routine, das trotzdem jemand mit Erfahrung von Hand macht: Geometrie aufräumen, Gelenke übertragen, entscheiden, wo das Netz feiner werden muss. Genau diese Stellen lassen sich lernen, und genau dort arbeite ich am liebsten.</p>
-        </div>
-        <div class="tab" id="t3" hidden>
-          <h3>Seit 2022 in Deutschland</h3>
-          <p>Inzwischen lebe ich in Reutlingen. Deutsch habe ich neben dem Studium gelernt und arbeite weiter daran.</p>
-          <p>Im September 2024 habe ich TEA mitgegründet, eine Studierendeninitiative in Erlangen, die internationale Studierende beim Start in Deutschland begleitet. Sechs Personen im Kernteam, bis heute aktiv.</p>
+        <div class="about-item">
+          <h3>Was ich gerade lerne</h3>
+          <p>Deutsch: Ich lerne gerade für B2 und übe das Sprechen mit einem Gesprächspartner, den ich mir selbst gebaut habe.</p>
+          <p>Und wie man KI-Systeme für lokale Betriebe baut. Das erste ist ein Telefonassistent, der Anrufe auf Deutsch annimmt.</p>
         </div>
       </div>
     </div>
@@ -154,13 +149,6 @@
   </div>
 </footer>
 
-<script>
-document.querySelector('.tabs').addEventListener('click', e => {
-  const b = e.target.closest('button'); if (!b) return;
-  document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
-  document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== b.dataset.t);
-});
-</script>
 </div>
 <button class="chat-open" type="button" aria-expanded="false" aria-controls="chat-panel">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></svg>
