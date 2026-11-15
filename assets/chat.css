@@ -88,7 +88,7 @@
   padding: 20px 24px 14px; border-bottom: 1px solid var(--rule-soft);
 }
 .panel-head h2 {
-  font-family: 'Libre Bodoni', Georgia, serif; font-size: 1.25rem; font-weight: 500;
+  font-family: var(--display); font-size: 1.25rem; font-weight: 500;
   margin-right: auto;
 }
 .panel-close {
