@@ -98,6 +98,7 @@ section.s { padding: 112px 0 0; }
 .boxes a { display: block; min-width: 170px; padding: 18px 20px; border: 1px solid var(--cream); text-decoration: none; }
 .boxes a:hover { background: var(--cream); color: var(--black); }
 .boxes b { display: block; font-size: 1rem; }
+.boxes .meta { overflow-wrap: anywhere; }
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-top: 1px solid var(--cream); padding: 28px 0 40px; }
 
 
@@ -145,6 +146,7 @@ section.s { padding: 112px 0 0; }
 .page-hero { padding: 72px 0 88px; }
 .page-hero .meta { display: block; margin-bottom: 18px; }
 .page-hero h1 { font-size: clamp(2.25rem, 4.5vw, 3.5rem); max-width: 22ch; }
+.page-hero h1 { hyphens: auto; overflow-wrap: anywhere; }
 .page-hero p { max-width: 680px; margin-top: 18px; font-size: 1.125rem; }
 .page-hero a { color: var(--cream); }
 
