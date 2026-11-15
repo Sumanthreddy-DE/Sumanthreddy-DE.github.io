@@ -92,11 +92,9 @@ section.s { padding: 112px 0 0; }
 .contact { padding: 120px 0 96px; margin-top: 128px; }
 .contact h2 { font-size: clamp(2rem, 4vw, 3.25rem); max-width: 24ch; }
 .contact p { max-width: 640px; margin-top: 22px; font-size: 1.0625rem; }
-.boxes { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
-.boxes a { display: block; min-width: 170px; padding: 18px 20px; border: 1px solid var(--cream); text-decoration: none; }
-.boxes a:hover { background: var(--cream); color: var(--black); }
-.boxes b { display: block; font-size: 1rem; }
-.boxes .meta { overflow-wrap: normal; }
+.icons { display: flex; gap: 12px; margin-top: 40px; }
+.icons a { display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border: 1px solid var(--cream); color: var(--cream); }
+.icons a:hover, .icons a:focus-visible { background: var(--cream); color: var(--black); }
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-top: 1px solid var(--cream); padding: 28px 0 40px; }
 
 
@@ -136,7 +134,6 @@ section.s { padding: 112px 0 0; }
   .about img { max-width: 260px; }
   .skills { gap: 0; }
   .contact { padding: 80px 0 64px; margin-top: 96px; }
-  .boxes a { flex: 1 1 140px; min-width: 0; }
 }
 
 /* --- inner pages ------------------------------------------------ */
@@ -212,9 +209,6 @@ figcaption { font-family: var(--meta); font-size: .8125rem; border-top: 1px soli
 
 @media (max-width: 599px) {
   .nav { gap: 14px; }
-  .boxes { flex-direction: column; }
-  .boxes a { flex: none; width: 100%; }
-  .boxes .meta { white-space: nowrap; }
   .tl .sub li { flex-direction: column; gap: 0; }
   .tl .sub .meta { white-space: nowrap; }
 }
