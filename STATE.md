@@ -18,8 +18,6 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
 
 ## Doing
 
-- **New site 2026-11-15** — cream/black/white, IBM Plex, homepage with a six-tile project grid (reference structure: camillamazzoleni.com). Plan approved: `docs/exec-plans/active/2026-11-15-new-site.md` (portfolio-private `c52f013`); execution by a cheaper agent via Orca on `feat/new-site` (BACKLOG `new-site-run`). Supersedes review item B and the accent-colour decision.
-- **Review fixes 2026-11-14** — harsh review (GPT-6 Astra, branch `gpt/portfolio-harsh-review`, never merge; plan `docs/exec-plans/active/2026-11-14-portfolio-review-fixes.md`). Batch 1 live (`2991a2f`); NX + SimReady homepage images `1ae12a4`, `7e684b3`. Open: BACKLOG S2 `review-layout-mockups`, `review-text-batch`, `blog-page`, `homepage-chat-demo-entry`, `case-page-green-diagrams`, `accent-colour-decision`.
 - Phase A — **shipped and live** (`7e571ff`, custom domain `https://sumanthreddy.de` with HTTPS enforced 2026-10-22, `f843347`). Visual overhaul committed 2026-10-05
   (`f3b0b71`, `8f0c130`, `1858ab0`): cream/terracotta → Tinte & Zederngrün after the
   user flagged the "Claude look"; italics and prose em-dashes swept (AI tells);
@@ -48,8 +46,12 @@ German portfolio), and an "ask me anything" chat layer grounded in the CV
 
 ## Resume here
 
-Newest (2026-11-15):
-1. Hand `docs/exec-plans/active/2026-11-15-new-site.md` to a cheaper agent via citadel delegation + Orca (worktree `~/projects/site-new-site`, branch `feat/new-site`, stop after Task 8). Then Claude reviews the 27 screenshots + diff, Sumanth approves and merges.
+Newest (2026-11-15, merge):
+1. When Sumanth sends the images (SimReady copilot at 200 %, Simufact result, telephone assistant, own NX render), put them into the homepage tiles (BACKLOG `new-site-screenshots`, `nx-image-own-render`) and rerun the screenshot check at 1440/390.
+Handoff: harness/sessions/Sumanthreddy-DE.github.io/2026-11-15-new-site-merge-session.tmp
+
+Older (2026-11-15, plan):
+1. ~~Hand `docs/exec-plans/active/2026-11-15-new-site.md` to a cheaper agent via citadel delegation + Orca (worktree `~/projects/site-new-site`, branch `feat/new-site`, stop after Task 8). Then Claude reviews the 27 screenshots + diff, Sumanth approves and merges.~~ Done, merged and live.
 Handoff: harness/sessions/Sumanthreddy-DE.github.io/2026-11-15-new-site-plan-session.tmp
 
 Older (2026-11-14):
@@ -70,7 +72,7 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Pipeline
 
-- Blog entry in the top nav (2026-11-14): first post links Sumanth's GitHub gist, then about one post a week. Structure decision waits on the `portfolio-harsh-review` GPT review (section 6).
+- Blog: about one post a week after the first (the VPS gist, live since 2026-11-15).
 
 ## Landmines
 
@@ -99,6 +101,7 @@ Live plans: chat spec (v4 block) + `docs/exec-plans/active/2026-10-09-chat-layer
 
 ## Done
 
+- 2026-11-15 — new site built by opencode GPT-6.1 Sol via Orca (`3237a32`..`15b7a38`, review round `e845523`), merged and live; follow-ups `b519e73`..`aa43aea` (About blocks, KI-Automatisierung on projekte.html, blog page, contact icons, SimReady results table, NX figure removed, case og:image portrait, key decisions, PINN particle-only); chat corpus synced (`resume-assistant` `652b801`, `3bf0ee6`), live eval hand-graded 18/18 (`c1b526a`); 63 passed, lint PASS. Handoff: harness/sessions/Sumanthreddy-DE.github.io/2026-11-15-new-site-merge-session.tmp
 - 2026-11-15 — layout mockup rounds: borderless variants A/B/C rejected; reference site captured; cream/black/white homepage mockup in 3 font pairings → IBM Plex + six-tile grid chosen; new-site plan written and approved (portfolio-private `dcce785`, `c52f013`). Handoff: harness/sessions/Sumanthreddy-DE.github.io/2026-11-15-new-site-plan-session.tmp
 - 2026-11-14 — portfolio review batch 1 (`2991a2f`): colour portrait, real PINN plot, homepage template SVGs gone, links under results, CV PDF first, DigiDorf link removed + mascot small, og:image fix; NX image `1ae12a4`; SimReady copilot screenshot `7e684b3`; 57 passed, lint PASS. Handoff: harness/sessions/Sumanthreddy-DE.github.io/2026-11-14-portfolio-review-batch1-session.tmp
 - 2026-11-03 — impressum-not-on-site-css merged into main (`b362ac4`; `1f77124`, review fix `2684b98`): impressum.html on `assets/site.css`, page-local row spacing kept; 51 passed. VPS run (GPT-6.1 Sol), reviewed with screenshots in claude-lab. Handoff: harness/sessions/claude-lab/2026-11-03-vps-runs-simready-stc-session.tmp

@@ -24,42 +24,8 @@ _(none yet)_
 
 ## Open — S2 (UX gap, polish, deferred decisions)
 
-- **new-site-run** — execute `docs/exec-plans/active/2026-11-15-new-site.md` (approved 2026-11-15) with a cheaper agent via citadel delegation + Orca: worktree `~/projects/site-new-site`, branch `feat/new-site`, stop after Task 8. Then Claude reviews the 27 screenshots and the diff, Sumanth approves, merges and pushes. (found 2026-11-15, new-site session)
 - **new-site-screenshots** — SimReady copilot recaptured at 200% zoom (current file 776×376 px, unreadable in a tile) and a Simufact result, both from `~/inbox`; KI-Telefonassistent image once Sumanth finishes it (tile 6). (found 2026-11-15, new-site session)
 
-- **review-layout-mockups** — *superseded 2026-11-15 by `docs/exec-plans/active/2026-11-15-new-site.md` (round-1 variants rejected; new cream/black/white site planned).* Plan item B (`docs/exec-plans/active/2026-11-14-portfolio-review-fixes.md`).
-  Sumanth asked for this first in the next session. Build 2–3 wider, borderless variants on copies of
-  `index.html` plus one case study (pattern: memory `lessons_mockups.md`), screenshots at 1440/1920/390,
-  Sumanth picks before any real page changes. Decided: prose stays near 680px, never full width;
-  images/UI get wider (the SimReady copilot screenshot is hard to read at the current 780px column).
-  Starting numbers from the review: drop `.page` side borders and the 1140px sheet; wrapper
-  `min(100% - 96px, 1440px)`; visuals ~736px; metadata rail → one line above each title; under
-  900px stack with 20px gutters. Also B3: the mobile chat launcher must not cover content
-  (`assets/chat.css:66`, `:110`). *(decided 2026-11-14, review session)*
-- **review-text-batch** — wording done together with Sumanth, not delegated:
-  (1) key decision at the top of each case study (D2; drafts were in the 2026-11-14 session, sourced from
-  `projekte/pinn.html:67`, `projekte/simready.html:72,83`, `projekte/nx-simscape.html:74`; not yet approved);
-  (2) PINN caption: the plot's title shows G_eff mean error 10.0 % / pass 56 %, the homepage says
-  "unter 5 % in 33 von 36", the caption gives the 500-sample medians (1,4 % / 4,0 %). Write a caption
-  that names the two tests separately, so nothing looks contradictory (check the numbers against the
-  pinn repo record first);
-  (3) `projekte.html:45` "Die drei ausführlichen Fallstudien stehen auf der Startseite" → link the three
-  case-study pages directly (A6). *(2026-11-14)*
-- **blog-page** — plan D3. `blog.html` on shared CSS: reverse-chronological list (date, title,
-  two-sentence summary, link out). First post: gist
-  https://gist.github.com/Sumanthreddy-DE/71f8ae5471d102c6f274470281640c0a ("Claude Code on a VPS
-  from your phone" guide). Needs from Sumanth: the two-sentence summary. Claude's view: the topic is
-  off-message for Mittelstand mech+ML readers, so add one intro line saying why it is there. "Blog" nav
-  entry on every page (nav differs per page today), must still fit at 390px. RSS later. *(2026-11-14)*
-- **homepage-chat-demo-entry** — plan D1. In-flow project block on the homepage (brief §7.2: chat is a
-  project, never the front door, no pop-up), reusing `automatisierung.html:61–69` copy: "Ausprobieren" →
-  `fragen.html`, Code → resume-assistant repo. Build alongside the chosen layout. *(2026-11-14)*
-- **case-page-green-diagrams** — plan C4/C5. `projekte/simready.html:75` (`simready-gnn.svg`) and
-  `projekte/nx-simscape.html:68` (`nx-mapping.svg`) still use the green template Sumanth dislikes.
-  Needs Sumanth's choice. Claude recommends: SimReady → HTML results table, NX → remove. Also switch the
-  case pages' og:image from SVG to PNG/JPG (`projekte/*.html:15`). *(2026-11-14)*
-- **accent-colour-decision** — *superseded 2026-11-15: the new site uses only cream, black and white, no accent (`2026-11-15-new-site.md`).* Plan C6. Decide after the new layout is on screenshots: keep `#2F5D46`,
-  ink blue `#244C73` (8.07:1) or slate `#39424E` (9.22:1); dark mode needs its own value. *(2026-11-14)*
 - **impeccable-hook-false-positives** — the impeccable Stop hook flags `tight-leading` (line-height 1.2
   on 28–30px serif headings, `assets/site.css:241`, `:391`) and `cramped-padding` (`.jump`; its links
   have 13px padding, `site.css:187`). Both are false positives that predate the session. Suppressing them
@@ -112,11 +78,6 @@ _(none yet)_
   fixed at the source rather than dodged. Revisit only if dotted paths bite
   somewhere new.
 
-- **availability-contradiction** — the CV PDF says „Sofort verfügbar"; the site
-  contact section (rewritten 2026-10-11) says nothing about availability. Decide one
-  position: keep availability public (add one quiet line to the site) or drop it from
-  the master before the next PDF rebuild. *(found 2026-10-11, Sumanthreddy-DE.github.io session)*
-
 ---
 
 ## Doing
@@ -128,6 +89,14 @@ _(none yet)_
 
 ## Done this session
 
+- **new-site-run** — done 2026-11-15: plan run by opencode GPT-6.1 Sol via Orca on `feat/new-site` (`3237a32`..`15b7a38`, review round `e845523`), reviewed with screenshots, merged into `main` and pushed; worktree and branch removed.
+- **review-layout-mockups** — superseded 2026-11-15 by the new site (above).
+- **review-text-batch** — done 2026-11-15: key decision line on each case study (`9d1bfd3`, approved), PINN caption names the two tests separately and the whole site says particle-reinforced (`aa43aea`), projekte intro fixed (`b519e73`).
+- **blog-page** — done 2026-11-15 (`c80d738`): `blog.html` with the VPS guide (gist, dated 07.10.2026), Blog in the nav on every page, fits at 390px.
+- **homepage-chat-demo-entry** — done 2026-11-15 (`433bf79`): chat is tile 4 of the homepage grid, linking `fragen.html`.
+- **case-page-green-diagrams** — done 2026-11-15 (`3f8bc1a`): SimReady results as HTML tables, NX mapping figure removed, case og:image is `portrait.jpg`.
+- **accent-colour-decision** — superseded 2026-11-15: the new site uses only cream, black and white.
+- **availability-contradiction** — closed 2026-11-15: Sumanth decided to leave it as is (CV and chat say sofort verfügbar).
 - **simready-homepage-screenshot** — done 2026-11-14: `assets/simready-copilot.png`, a crop of Sumanth's copilot screenshot (German question on `small_feature_hole.step`, score 84/100, two findings, CalculiX citation). Full frame kept in `~/inbox/Simready-image.png`; the face-score render was all green, so it was cropped out. Text in the image is small at the current 780px column; the wider layout (plan item B) fixes that.
 - **impressum-not-on-site-css** — done 2026-11-03 (merge `b362ac4`; `1f77124`, handoff `f416644`, review fix `2684b98`): impressum.html links `assets/site.css`, inline block keeps only page rules, test list includes it. Built on the VPS by opencode with GPT-6.1 Sol (it cannot view images); the laptop screenshot review found rows stacked with no spacing (brief's "site.css wins" rule dropped `.row` margins) and restored page-local spacing. Visible changes kept: side borders, 780px text column, as on the other pages. 51 passed.
 - **og-urls-custom-domain** — done 2026-11-03 (`a43bdc0`, merge `5c05884`): 16 og:url/og:image lines in 8 pages moved to `https://sumanthreddy.de/`, only the domain changed. Built on the VPS by opencode with GPT-6.1 Sol via dlab (not an open-weight model), reviewed on the laptop.
