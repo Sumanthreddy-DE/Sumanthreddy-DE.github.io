@@ -213,6 +213,13 @@ figcaption { font-family: var(--meta); font-size: .8125rem; border-top: 1px soli
   .tl .sub .meta { white-space: nowrap; }
 }
 
+/* results tables on case pages */
+.results { display: grid; gap: 32px; margin: 40px 0; }
+.results table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.results caption { text-align: left; font-family: var(--meta); font-size: .8125rem; padding-bottom: 10px; border-bottom: 2px solid var(--black); }
+.results th, .results td { padding: 10px 0; border-bottom: 1px solid var(--black); text-align: left; vertical-align: top; font-weight: 400; }
+.results td { text-align: right; padding-left: 16px; font-weight: 600; }
+
 @media print {
   .band, .nav, .btns, .chat-open, .chat-panel { display: none !important; }
   body { background: #FFFFFF; color: #121110; font-size: 11pt; }
