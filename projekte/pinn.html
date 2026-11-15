@@ -48,7 +48,7 @@
       <div class="prose">
         <p class="metric-line key-decision">Die wichtigste Entscheidung: die Homogenisierungsgleichungen direkt in die Verlustfunktion einzubauen, statt das Netz nur auf Daten zu trainieren. So prüft jeder Trainingsschritt, ob die vorhergesagten Parameter die Steifigkeiten wirklich ergeben.</p>
 
-        <p>In Verbundwerkstoffen entscheidet die dünne Übergangszone (Interphase) zwischen Einschluss und Matrix über die Lastübertragung und die effektive Bauteilsteifigkeit. In Finite-Elemente-Rechnungen ist diese Schicht teuer, weil extrem kleine Schichtdicken sehr feine Netze und schlecht konditionierte Steifigkeitsmatrizen erzwingen. Ein Null-Dicken-Grenzflächenmodell (Extended General Interface Model, EGIM) ersetzt die Schicht durch vier effektive Parameter, die sich jedoch weder direkt messen noch analytisch invertieren lassen.</p>
+        <p>In partikelverstärkten Verbundwerkstoffen entscheidet die dünne Übergangszone (Interphase) zwischen Partikel und Matrix über die Lastübertragung und die effektive Bauteilsteifigkeit. In Finite-Elemente-Rechnungen ist diese Schicht teuer, weil extrem kleine Schichtdicken sehr feine Netze und schlecht konditionierte Steifigkeitsmatrizen erzwingen. Ein Null-Dicken-Grenzflächenmodell (Extended General Interface Model, EGIM) ersetzt die Schicht durch vier effektive Parameter, die sich jedoch weder direkt messen noch analytisch invertieren lassen.</p>
 
         <h2 class="sub-head">Der Ansatz: Mikromechanik in der Verlustfunktion</h2>
 
@@ -71,12 +71,12 @@
 
         <figure>
           <img src="../assets/pinn-fehler.png" class="plate" alt="Paritätsdiagramm: Vom inversen PINN rekonstruierte gegen referenzierte effektive Moduli über 500 Testkonfigurationen." width="1878" height="994" loading="lazy">
-          <figcaption>Rekonstruierte gegen referenzierte effektive Moduli (K_eff, G_eff) über 500 zufällige Testkonfigurationen: Medianfehler 1,4 % für K_eff und 4,0 % für G_eff.</figcaption>
+          <figcaption>Partikelverstärkter Fall, 500 zufällige Testkonfigurationen: K_eff wird genauer getroffen als G_eff (Medianfehler 1,4 % gegen 4,0 %). Die „33 von 36“ darunter stammen aus einer separaten, strukturierten Parameterstudie.</figcaption>
         </figure>
 
-        <p class="metric-line">Rekonstruktionsfehler unter 5 % in 33 von 36 Konfigurationen (Median 1,4 % für K_eff, 4,0 % für G_eff)</p>
+        <p class="metric-line">Rekonstruktionsfehler unter 5 % in 33 von 36 Konfigurationen der strukturierten Parameterstudie</p>
 
-        <p>Im strukturierten Sweep über Steifigkeitsverhältnis und Volumenanteil liegen 33 von 36 Konfigurationen unter der 5-%-Schwelle, außerhalb extrem weicher Einschlüsse meist unter 2 %. Genau genug, um aufwendige FE-Detailmodelle der Interphase in Parameterstudien durch das schnelle Grenzflächenmodell zu ersetzen.</p>
+        <p>Im strukturierten Sweep über Steifigkeitsverhältnis und Volumenanteil liegen 33 von 36 Konfigurationen unter der 5-%-Schwelle, außerhalb extrem weicher Partikel meist unter 2 %. Genau genug, um aufwendige FE-Detailmodelle der Interphase in Parameterstudien durch das schnelle Grenzflächenmodell zu ersetzen.</p>
 
         <div class="entry-foot">
           <div class="stack">PyTorch, PINN, DeepONet, Mori-Tanaka-Homogenisierung, NumPy, SciPy</div>
