@@ -154,7 +154,7 @@ section.s { padding: 112px 0 0; }
 .prose section h2 { margin-bottom: 16px; }
 #download > .wrap { max-width: 880px; }
 #download .prose { margin-left: 0; }
-#assistent { padding-top: 88px; }
+#assistent, #beitraege { padding-top: 88px; }
 footer.band { margin-top: 88px; }
 .prose figure { width: min(1040px, calc(100vw - 96px)); position: relative; left: 50%; transform: translateX(-50%); margin: 40px 0; }
 .prose figure img { width: auto; height: auto; max-width: 100%; max-height: 880px; margin: 0 auto; display: block; }
@@ -201,7 +201,7 @@ figcaption { font-family: var(--meta); font-size: .8125rem; border-top: 1px soli
 
 @media (max-width: 900px) {
   .page-hero { padding: 48px 0 56px; }
-  #assistent { padding-top: 64px; }
+  #assistent, #beitraege { padding-top: 64px; }
   footer.band { margin-top: 64px; }
   .prose { padding-top: 48px; }
   .prose figure { width: 100%; left: 0; transform: none; }
@@ -211,6 +211,7 @@ figcaption { font-family: var(--meta); font-size: .8125rem; border-top: 1px soli
 }
 
 @media (max-width: 599px) {
+  .nav { gap: 14px; }
   .boxes { flex-direction: column; }
   .boxes a { flex: none; width: 100%; }
   .boxes .meta { white-space: nowrap; }
