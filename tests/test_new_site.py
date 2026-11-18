@@ -70,3 +70,12 @@ def test_hero_says_the_decided_line(page, site_url):
     page.goto(f"{site_url}/index.html")
     assert page.locator(".hero h1").inner_text() == "Hallo, ich bin Sumanth."
     assert page.locator(".hero .sub").inner_text() == "Maschinenbauingenieur, der KI-Systeme baut."
+
+
+def test_nav_lebenslauf_links_directly_to_pdf_on_every_page(page, site_url):
+    for name in ALL_PAGES:
+        page.goto(f"{site_url}/{name}")
+        expected = "../Sumanth-Reddy-Settipalli-Lebenslauf.pdf" if "/" in name else "Sumanth-Reddy-Settipalli-Lebenslauf.pdf"
+        href = page.locator(".nav a", has_text="Lebenslauf").get_attribute("href")
+        assert href == expected, (name, href)
+

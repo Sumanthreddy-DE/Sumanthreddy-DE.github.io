@@ -12,7 +12,7 @@ Pages from the `main` branch (custom domain set in `CNAME`).
 | `index.html` | Start page: summary, selected projects, contact |
 | `projekte.html` | Project overview |
 | `projekte/pinn.html`, `projekte/simready.html`, `projekte/nx-simscape.html` | Case studies |
-| `profil.html` | CV (Lebenslauf); the PDF version is `Sumanth-Reddy-Settipalli-Lebenslauf.pdf` |
+| `Sumanth-Reddy-Settipalli-Lebenslauf.pdf` | CV (Lebenslauf) linked from top navigation (`profil.html` remains as fallback page) |
 | `fragen.html` | Question assistant and its eval results |
 | `automatisierung.html`, `blog.html` | AI automation work, blog |
 | `impressum.html` | Legal notice |
