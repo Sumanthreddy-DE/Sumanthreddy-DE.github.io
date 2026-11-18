@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude plant, ein günstigeres Modell baut: Sumanth Reddy Settipalli</title>
+<meta name="description" content="Wie ich den Neubau dieser Website an ein günstigeres Sprachmodell abgegeben habe: Claude schreibt den Plan und prüft, GPT-6.1 Sol schreibt den Code. Was funktioniert hat, was schiefging und welche Regeln ich daraus mitnehme.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://sumanthreddy.de/blog/agenten-delegieren.html">
+<meta property="og:title" content="Claude plant, ein günstigeres Modell baut">
+<meta property="og:description" content="Wie ich den Neubau dieser Website an ein günstigeres Sprachmodell abgegeben habe, und welche Regeln ich daraus mitnehme.">
+<meta property="og:image" content="https://sumanthreddy.de/assets/portrait.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/chat.css?v=2">
+<script src="../assets/chat.js?v=2" defer></script>
+
+<link rel="stylesheet" href="../assets/site.css?v=4">
+<style>
+  .prose ol { padding-left: 1.25em; }
+  .prose li + li { margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="band">
+  <div class="wrap">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="name" href="../index.html">Sumanth Reddy Settipalli</a>
+      <a href="../index.html#ueber-mich">Über mich</a>
+      <a href="../projekte.html">Projekte</a>
+      <a href="../Sumanth-Reddy-Settipalli-Lebenslauf.pdf">Lebenslauf</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../index.html#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <header class="band page-hero">
+    <div class="wrap">
+      <span class="meta">Blog · 18.11.2026</span>
+      <h1>Claude plant, ein günstigeres Modell baut</h1>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p class="metric-line key-decision">Die wichtigste Entscheidung: Das teure Modell schreibt keinen Code. Es schreibt den Plan und prüft das Ergebnis. Den Code schreibt ein günstigeres Modell.</p>
+
+        <p>Die aktuelle Version dieser Website hat nicht Claude geschrieben. Geschrieben hat sie GPT-6.1 Sol, ein günstigeres Modell, das in opencode läuft. Claude hat den Plan geschrieben und das Ergebnis geprüft. Ich habe die Entwürfe ausgewählt, die Texte freigegeben und am Ende gemergt.</p>
+
+        <p>Die Idee dahinter ist einfach. Ein starkes Modell lohnt sich dort, wo man denken muss: beim Planen und beim Prüfen. Einen guten Plan Schritt für Schritt abzuarbeiten, kann ein günstigeres Modell. Ob das in der Praxis trägt, habe ich an dieser Website ausprobiert.</p>
+
+        <h2 class="sub-head">1. Der Plan ist das eigentliche Produkt</h2>
+
+        <p>Vor dem Plan kamen drei Runden Entwürfe. Die erste Runde mit drei Varianten habe ich komplett abgelehnt. In der dritten Runde stand das Raster mit sechs Projektkacheln, das Sie jetzt auf der Startseite sehen.</p>
+
+        <p>Daraus hat Claude einen Plan mit neun Aufgaben geschrieben. Jede Aufgabe nennt die Dateien, die sich ändern, einen Prüfbefehl und einen Commit. Dazu kommen feste Regeln, die für jede Aufgabe gelten:</p>
+
+        <ol>
+          <li>Genau drei Farben: Creme, Schwarz und Weiß, mit festen Hex-Werten. Kein Grau, kein Grün, keine abgerundeten Ecken.</li>
+          <li>Keine Fakten erfinden. Jede Zahl und jedes Datum muss schon auf der alten Website stehen. Fehlt ein Text, schreibt das Modell eine Notiz, statt selbst etwas zu formulieren.</li>
+          <li>Alle Texte für die Startseite stehen wörtlich im Plan, in einer Tabelle, die ich vorher freigegeben habe.</li>
+          <li>Nach jeder Aufgabe committen. Nicht pushen, nicht mergen, nach Aufgabe 8 anhalten und übergeben.</li>
+        </ol>
+
+        <p>Neben dem Plan lag ein HTML-Entwurf der Startseite als Vorlage. Das Modell musste also nichts gestalten. Es musste nur einen klar beschriebenen Zielzustand herstellen.</p>
+
+        <h2 class="sub-head">2. Was zurückkam</h2>
+
+        <p>Das Modell lief in einem eigenen Git-Worktree auf einem eigenen Branch. Gestartet und überwacht habe ich es mit Orca, einer App, in der die Agenten jeweils in einem eigenen Terminal laufen. Die Live-Seite blieb dabei unberührt.</p>
+
+        <p>Zurück kamen acht Commits in 27 Minuten: Schriften, ein neues Stylesheet, die Startseite, die Kopf- und Fußleisten, die Fallstudien und die übrigen Seiten. Claude hat danach die Screenshots auf Desktop- und Handybreite geprüft und eine Runde mit sieben Layout-Korrekturen zurückgegeben. Am nächsten Morgen habe ich gemergt, und die neue Seite war live.</p>
+
+        <h2 class="sub-head">3. Was schiefging</h2>
+
+        <p>Interessanter als der glatte Teil sind die Fehler, denn aus ihnen sind meine Regeln entstanden.</p>
+
+        <p><strong>Falsche Aussagen im Auftrag.</strong> Bei einer früheren Runde enthielt jeder von drei Aufträgen eine falsche Behauptung über das Repository. Ein Beispiel: Laut Auftrag hatte keine Seite einen eigenen Style-Block, tatsächlich hatten fünf Seiten einen. Das Modell hat den Widerspruch jedes Mal gemeldet, statt blind zu folgen. Ein schwächeres Modell hätte vermutlich einfach Code geändert. Der Fehler lag bei uns, nicht beim Modell.</p>
+
+        <p><strong>Ein Modell, das keine Bilder sieht.</strong> GPT-6.1 Sol kann in meinem Setup keine Bilder lesen. Bei einer Änderung am Impressum waren alle Tests grün, und das Modell beschrieb das neue Layout als „dichter“. Auf den Screenshots saß jede Abschnittsüberschrift auf dem Text der vorherigen Zeile. Das Modell hat offen gesagt, dass es die Bilder nicht prüfen kann. Die Prüfung muss also jemand machen, der sie sieht.</p>
+
+        <p><strong>Warten auf einen Menschen.</strong> Für die Screenshots wollte das Modell in einen Ordner außerhalb seines Worktrees schreiben. Dafür brauchte es eine Freigabe, die nur ich in der Orca-App geben konnte. Zweimal blieb der Lauf an dieser Stelle stehen, einmal etwa acht Stunden lang.</p>
+
+        <p><strong>Das eigene Werkzeug.</strong> Mein Startbefehl für solche Läufe erwartete einen festen Branch-Namen. Dieser Plan nutzte einen anderen, also habe ich Orca von Hand gesteuert.</p>
+
+        <h2 class="sub-head">4. Regeln, die ich seitdem anwende</h2>
+
+        <ol>
+          <li>Jeden Befehl und jede Aussage im Auftrag führe ich vorher selbst gegen das Repository aus. Ein Auftrag ist erst fertig, wenn er stimmt.</li>
+          <li>Das Modell bekommt eine Vorlage mit markierten Lücken, keine Beispieldatei. Mit einer Beispieldatei sucht es nach dem Format, statt zu arbeiten.</li>
+          <li>Visuelle Ergebnisse gibt nur frei, wer die Bilder sehen kann.</li>
+          <li>Alle Arbeitsdateien bleiben im Worktree, damit keine Freigabe den Lauf anhält.</li>
+          <li>Was ein Skript erledigen kann, erledigt ein Skript. Jeder Schritt eines Agenten kostet, denn ein Agent liest seinen gesamten Kontext bei jedem Schritt neu. Ein Claude-Code-Subagent startet bei mir mit rund 67.000 Tokens, bevor er die erste Datei öffnet.</li>
+        </ol>
+
+        <p>Nicht abgegeben habe ich die Entscheidungen: welcher Entwurf gewinnt, welcher Text auf der Seite steht und wann gemergt wird. Das bleibt bei mir.</p>
+
+        <h2 class="sub-head">5. Was noch fehlt</h2>
+
+        <p>Wie viel günstiger der Lauf war, habe ich nicht gemessen. Beim nächsten Lauf zeichne ich den Tokenverbrauch vorher und nachher mit <code>opencode stats</code> auf. Dann kann ich die Frage mit Zahlen beantworten, statt mit einem Gefühl.</p>
+
+        <div class="entry-foot">
+          <div class="stack">Claude Code · opencode · GPT-6.1 Sol · Orca · Git Worktrees · Playwright</div>
+          <div class="entry-links">
+            <a class="lnk" href="https://github.com/Sumanthreddy-DE/Sumanthreddy-DE.github.io">Code der Website auf GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+<footer class="band">
+  <div class="wrap foot">
+    <span class="meta">Sumanth Reddy Settipalli · Reutlingen</span>
+    <span class="meta"><a href="https://github.com/Sumanthreddy-DE">GitHub</a> · <a href="../impressum.html">Impressum</a> · <a href="../impressum.html#datenschutz">Datenschutz</a></span>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

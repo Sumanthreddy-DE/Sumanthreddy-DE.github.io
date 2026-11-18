@@ -2,7 +2,7 @@ import re
 
 from conftest import ROOT, PAGES
 
-ALL_PAGES = PAGES + ["automatisierung.html", "fragen.html", "blog.html"]
+ALL_PAGES = PAGES + ["automatisierung.html", "fragen.html", "blog.html", "blog/agenten-delegieren.html"]
 ALLOWED = {"#f2ece0", "#121110", "#ffffff", "#fff"}
 
 

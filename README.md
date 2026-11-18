@@ -14,7 +14,7 @@ Pages from the `main` branch (custom domain set in `CNAME`).
 | `projekte/pinn.html`, `projekte/simready.html`, `projekte/nx-simscape.html` | Case studies |
 | `Sumanth-Reddy-Settipalli-Lebenslauf.pdf` | CV (Lebenslauf) linked from top navigation (`profil.html` remains as fallback page) |
 | `fragen.html` | Question assistant and its eval results |
-| `automatisierung.html`, `blog.html` | AI automation work, blog |
+| `automatisierung.html`, `blog.html`, `blog/*.html` | AI automation work, blog index, blog posts |
 | `impressum.html` | Legal notice |
 
 Shared styling lives in `assets/site.css` (one light colour scheme, no dark mode) and
