@@ -24,3 +24,13 @@ Archive/
 
 __pycache__/
 .pytest_cache/
+
+# Working notes moved to the private portfolio-private repo (docs/exec-plans/) on
+# 2026-11-18. GitHub Pages serves every tracked file, so these were public at
+# sumanthreddy.de. Listed here so a copy recreated at the old path is never committed.
+/STATE.md
+/BACKLOG.md
+/SESSION-END.md
+/docs/handoff-*.md
+/content/
+/preview-*.png
