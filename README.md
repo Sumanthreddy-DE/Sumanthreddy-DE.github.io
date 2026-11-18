@@ -19,7 +19,7 @@ Pages from the `main` branch (custom domain set in `CNAME`).
 
 Shared styling lives in `assets/site.css` (one light colour scheme, no dark mode) and
 `assets/fonts.css` (self-hosted IBM Plex in `assets/fonts/`). The chat widget is
-`assets/chat.js` and `assets/chat.css`, used by `index.html` and `fragen.html`. When you change
+`assets/chat.js` and `assets/chat.css`, mounted as a floating corner assistant across all pages (and inline on `fragen.html`). When you change
 `site.css`, bump its `?v=` query in every page so browsers drop the cached copy.
 
 ## Question assistant

@@ -266,6 +266,102 @@
     });
   }
 
+  const ENDPOINT = 'https://api.sumanthreddy.de';
+  const PANEL_CHIPS = [
+    ['gebaut', 'Was hat er konkret gebaut?'],
+    ['berechnung', 'Passt er auf eine Stelle in der Berechnung?'],
+    ['deutsch', 'Wie gut ist sein Deutsch?'],
+    ['verfuegbar', 'Ab wann ist er verfügbar?']
+  ];
+
+  function assetPrefix() {
+    const script = document.currentScript || document.querySelector('script[src*="assets/chat.js"]');
+    const raw = script ? (script.getAttribute('src') || '') : '';
+    const idx = raw.indexOf('assets/chat.js');
+    return idx > 0 ? raw.slice(0, idx) : '';
+  }
+
+  function buildOpenButton() {
+    const ns = 'http://www.w3.org/2000/svg';
+    const btn = el('button', 'chat-open');
+    btn.type = 'button';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'chat-panel');
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '1.8');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    const p1 = document.createElementNS(ns, 'path');
+    p1.setAttribute('d', 'M4 5h16v11H9l-5 4z');
+    const p2 = document.createElementNS(ns, 'path');
+    p2.setAttribute('d', 'M8 9.5h8M8 12.5h5');
+    p2.setAttribute('stroke-linecap', 'round');
+    svg.append(p1, p2);
+    const label = el('span');
+    label.append(el('b', '', 'Fragen zu meinem Lebenslauf?'), el('small', '', 'KI-Assistent · antwortet sofort'));
+    btn.append(svg, label);
+    return btn;
+  }
+
+  function buildPanel(prefix) {
+    const panel = el('aside', 'chat-panel');
+    panel.id = 'chat-panel';
+    panel.setAttribute('aria-label', 'Fragen an meinen Lebenslauf');
+    panel.hidden = true;
+    const head = el('div', 'panel-head');
+    const closeBtn = el('button', 'panel-close', 'Schließen');
+    closeBtn.type = 'button';
+    head.append(el('h2', '', 'Fragen an meinen Lebenslauf'), closeBtn);
+    const chat = el('div', 'chat chat-live');
+    chat.dataset.endpoint = ENDPOINT;
+    chat.dataset.timeoutMs = '8000';
+    chat.dataset.preparedUrl = prefix + 'fragen.html#vorbereitet';
+    const body = el('div', 'panel-body');
+    const note = el('p', 'chat-note', 'Ein Assistent, der nur aus Lebenslauf und Fallstudien antwortet, in der dritten Person und mit Quelle. Ihre Frage wird zur Beantwortung an Anthropic übermittelt; ich speichere sie nicht. ');
+    const dsLink = el('a', 'lnk', 'Datenschutz');
+    dsLink.href = prefix + 'impressum.html#datenschutz';
+    note.appendChild(dsLink);
+    const thread = el('ol', 'thread');
+    thread.setAttribute('aria-live', 'polite');
+    body.append(note, thread);
+    const foot = el('div', 'panel-foot');
+    const chips = el('div', 'chips');
+    chips.setAttribute('aria-label', 'Vorschläge');
+    PANEL_CHIPS.forEach(([key, text]) => {
+      const c = el('button', 'chip', text);
+      c.type = 'button';
+      c.dataset.key = key;
+      chips.appendChild(c);
+    });
+    const form = el('form', 'ask');
+    const ta = el('textarea');
+    ta.setAttribute('aria-label', 'Eigene Frage');
+    ta.rows = 1;
+    ta.maxLength = MAX_CHARS;
+    ta.placeholder = 'Eigene Frage stellen';
+    const submit = el('button', '', 'Fragen');
+    submit.type = 'submit';
+    form.append(ta, submit);
+    const meta = el('div', 'ask-meta');
+    const evalLink = el('a', 'lnk', 'Wie ich prüfe, dass er nichts erfindet');
+    evalLink.href = prefix + 'fragen.html#pruefung';
+    meta.append(evalLink, el('span', 'count', '0 / ' + MAX_CHARS));
+    foot.append(chips, form, meta);
+    chat.append(body, foot);
+    panel.append(head, chat);
+    return panel;
+  }
+
+  function mountPanel(prefix) {
+    if (document.getElementById('chat-panel') || document.querySelector('.chat')) return;
+    document.body.append(buildOpenButton(), buildPanel(prefix));
+  }
+
   function initPanel(openButton) {
     const panel = document.getElementById(openButton.getAttribute('aria-controls'));
     const closeButton = panel.querySelector('.panel-close');
@@ -289,8 +385,16 @@
     openButton.addEventListener('click', () => (panel.hidden ? open() : close()));
     closeButton.addEventListener('click', close);
     panel.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
+    document.querySelectorAll('[data-open-chat]').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        open();
+        panel.querySelector('textarea').focus();
+      });
+    });
   }
 
+  const prefix = assetPrefix();
+  mountPanel(prefix);
   document.querySelectorAll('.chat').forEach(initChat);
   document.querySelectorAll('.chat-open').forEach(initPanel);
   const prepared = document.getElementById('vorbereitet');

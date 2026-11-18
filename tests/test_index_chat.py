@@ -93,3 +93,34 @@ def test_werkzeuge_lists_the_assistant_first(page, site_url):
     expect(first.locator("a", has_text="Ausprobieren")).to_have_attribute("href", "fragen.html")
     expect(first.locator("a", has_text="Code")).to_have_attribute(
         "href", "https://github.com/Sumanthreddy-DE/resume-assistant")
+
+
+NON_FRAGEN_PAGES = [
+    "index.html", "projekte.html", "blog.html", "impressum.html",
+    "profil.html", "automatisierung.html",
+    "projekte/simready.html", "projekte/pinn.html", "projekte/nx-simscape.html",
+]
+
+
+def test_floating_chat_available_on_every_non_fragen_page(page, site_url):
+    Backend(page)
+    for name in NON_FRAGEN_PAGES:
+        page.goto(f"{site_url}/{name}")
+        expect(page.locator(".chat-open")).to_be_visible()
+        expect(page.locator("#chat-panel")).to_be_hidden()
+        page.locator(".chat-open").click()
+        expect(page.locator("#chat-panel")).to_be_visible()
+        if "/" in name:
+            expect(page.locator("#chat-panel .ask-meta a.lnk")).to_have_attribute("href", "../fragen.html#pruefung")
+            assert page.locator("#chat-panel .chat").get_attribute("data-prepared-url") == "../fragen.html#vorbereitet"
+            expect(page.locator("#chat-panel .chat-note a.lnk")).to_have_attribute("href", "../impressum.html#datenschutz")
+
+
+def test_fragen_inline_chat_is_styled_as_white_card_without_duplicate_panel(page, site_url):
+    page.goto(f"{site_url}/fragen.html")
+    assert page.locator(".chat").count() == 1
+    assert page.locator(".chat-open").count() == 0
+    box = page.locator("#fragen .chat")
+    assert box.evaluate("e => getComputedStyle(e).backgroundColor") == "rgb(255, 255, 255)"
+    assert box.evaluate("e => getComputedStyle(e).borderTopWidth") == "1px"
+
