@@ -1,27 +1,44 @@
 # Sumanthreddy-DE.github.io
 
-Source for [sumanthreddy-de.github.io](https://sumanthreddy-de.github.io), a single-page
-professional summary: education, selected engineering projects, work experience and contact
-details. Static HTML with no build step and no dependencies, served by GitHub Pages from the
-`main` branch.
+Source for [sumanthreddy.de](https://sumanthreddy.de), a German-language portfolio for
+simulation and machine-learning engineering roles: CV, three case studies, and a question
+assistant that answers from the CV. Static HTML and CSS with no build step, served by GitHub
+Pages from the `main` branch (custom domain set in `CNAME`).
 
-## Structure
+## Pages
 
-- `index.html` holds the whole site. Content and styling are in one file; the CSS uses
-  `prefers-color-scheme` so the page follows the visitor's light or dark setting.
+| File | Content |
+|---|---|
+| `index.html` | Start page: summary, selected projects, contact |
+| `projekte.html` | Project overview |
+| `projekte/pinn.html`, `projekte/simready.html`, `projekte/nx-simscape.html` | Case studies |
+| `profil.html` | CV (Lebenslauf); the PDF version is `Sumanth-Reddy-Settipalli-Lebenslauf.pdf` |
+| `fragen.html` | Question assistant and its eval results |
+| `automatisierung.html`, `blog.html` | AI automation work, blog |
+| `impressum.html` | Legal notice |
 
-## Editing
+Shared styling lives in `assets/site.css` (one light colour scheme, no dark mode) and
+`assets/fonts.css` (self-hosted IBM Plex in `assets/fonts/`). The chat widget is
+`assets/chat.js` and `assets/chat.css`, used by `index.html` and `fragen.html`. When you change
+`site.css`, bump its `?v=` query in every page so browsers drop the cached copy.
 
-Edit `index.html` and push to `main`. GitHub Pages redeploys automatically, usually within a
-minute. To preview locally, open the file in a browser, or run `python -m http.server` in this
-directory and visit `localhost:8000`.
+## Question assistant
 
-## Question assistant (fragen.html)
+`fragen.html` ("Fragen an meinen Lebenslauf") answers visitor questions only from the CV and
+the three case studies, and names its source. The backend is
+[resume-assistant](https://github.com/Sumanthreddy-DE/resume-assistant), live at
+`https://api.sumanthreddy.de`. The model (Claude Sonnet 5) was picked by an eval of 18 test
+questions covering invented facts, source citation, language mirroring and prompt injection; the
+results table is on `fragen.html`, the full answers in the backend repo. If the API is down the
+pages still load, and the chat falls back to prepared answers.
 
-A grounded question-and-answer assistant ("Fragen an meinen Lebenslauf") answers visitor
-questions about the projects listed here, drawn only from the CV and three case studies.
-Backend: [resume-assistant](https://github.com/Sumanthreddy-DE/resume-assistant), live at
-`https://api.sumanthreddy.de`. The model (Claude Sonnet 5) was chosen by an eval of 15 test
-questions — refusal of invented facts, source citation, language mirroring, injection
-resistance — graded in `resume-assistant/evals/results/`; the visible results table is in
-`fragen.html`. The static summary stays as the primary content and loads regardless.
+## Working on it
+
+```bash
+python -m http.server          # preview at localhost:8000
+pip install pytest playwright  # test dependencies (needs a Chromium for Playwright)
+pytest tests/                  # page, chat, font and privacy checks against a local server
+bash scripts/lint-arch.sh      # run before every commit
+```
+
+Push to `main` and GitHub Pages redeploys, usually within a minute.
