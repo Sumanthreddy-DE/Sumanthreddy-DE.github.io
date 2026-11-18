@@ -87,12 +87,17 @@ def test_kontakt_offers_email_linkedin_and_github_icons(page, site_url):
 
 
 def test_werkzeuge_lists_the_assistant_first(page, site_url):
-    page.goto(f"{site_url}/projekte.html")
-    first = page.locator("#ki-automatisierung article.entry").first
+    Backend(page)
+    page.goto(f"{site_url}/projekte.html#lebenslauf-assistent")
+    first = page.locator("#ki-automatisierung article.entry#lebenslauf-assistent")
     expect(first.locator("h3")).to_contain_text("Fragen an meinen Lebenslauf")
-    expect(first.locator("a", has_text="Ausprobieren")).to_have_attribute("href", "fragen.html")
+    expect(first).to_contain_text("unten rechts")
+    expect(first.locator("a", has_text="18 Testfragen")).to_have_attribute("href", "fragen.html#pruefung")
     expect(first.locator("a", has_text="Code")).to_have_attribute(
         "href", "https://github.com/Sumanthreddy-DE/resume-assistant")
+    first.locator("[data-open-chat]").click()
+    expect(page.locator("#chat-panel")).to_be_visible()
+    expect(page.locator("#chat-panel textarea")).to_be_focused()
 
 
 NON_FRAGEN_PAGES = [

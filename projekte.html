@@ -125,16 +125,18 @@
   <div class="wrap" style="max-width:880px">
     <h2 class="section-head">KI-Automatisierung</h2>
 
-  <article class="entry">
+  <article class="entry" id="lebenslauf-assistent">
       <div>
         <h3>Fragen an meinen Lebenslauf: Chat-Assistent mit Quellenbindung</h3>
 
-        <p>Ein Assistent, der Fragen zum Werdegang beantwortet und dabei nur aus zwei Quellen schöpfen darf: dem Lebenslauf und drei Fallstudien. Er antwortet in der dritten Person, nennt zu jeder Antwort den Abschnitt, aus dem sie stammt, und sagt offen, wenn etwas nicht dokumentiert ist. Nach jeder Änderung am Prompt läuft er gegen 18 Testfragen: erfundene Arbeitgeber, Einschleusen von Regeln im Gesprächsverlauf, eine Kontrollfrage, deren Antwort nur in den Quellen stehen kann. Das Modell wurde per Test ausgewählt, der Server läuft bei einem deutschen Hoster, die Antworten werden gestreamt. Der gesamte Verlauf bleibt im Browser.</p>
+        <p>Ein Assistent, der Fragen zu meinem Werdegang ausschließlich aus dem Lebenslauf, den drei Fallstudien und der Live-Aktivität meiner öffentlichen GitHub-Projekte beantwortet. Er nennt zu jeder Antwort die Quelle, sagt offen, wenn etwas nicht belegt ist, und wird nach jeder Prompt-Änderung gegen 18 Testfragen geprüft.</p>
+        <p>Zum Ausprobieren klicken Sie unten rechts auf „Fragen zu meinem Lebenslauf?“ – der Assistent ist auf jeder Seite direkt erreichbar.</p>
 
         <div class="entry-foot">
           <div class="stack">Python · FastAPI · Claude · NDJSON-Streaming · Caddy · systemd</div>
           <div class="entry-links">
-            <a class="lnk" href="fragen.html" style="margin-right: 16px">Ausprobieren</a>
+            <button class="lnk chat-trigger" type="button" data-open-chat>Chat unten rechts öffnen</button>
+            <a class="lnk" href="fragen.html#pruefung">18 Testfragen</a>
             <a class="lnk" href="https://github.com/Sumanthreddy-DE/resume-assistant">Code</a>
           </div>
         </div>

@@ -41,7 +41,7 @@ def test_no_page_scrolls_sideways(browser, site_url):
 
 
 TILES = ["projekte/simready.html", "projekte/pinn.html", "projekte/nx-simscape.html",
-         "fragen.html", "projekte.html#engagement", "projekte.html#telefonassistent"]
+         "projekte.html#lebenslauf-assistent", "projekte.html#engagement", "projekte.html#telefonassistent"]
 
 
 def test_homepage_grid_has_six_linked_tiles(page, site_url):
