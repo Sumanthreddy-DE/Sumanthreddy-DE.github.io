@@ -63,7 +63,7 @@
   display: flex; justify-content: space-between; gap: 16px;
   font-size: 0.75rem; color: var(--ink-muted); margin-top: 6px;
 }
-.ask-meta .count { white-space: nowrap; }
+.ask-meta .count { white-space: nowrap; margin-left: auto; }
 .ask-meta .lnk { font-size: 0.75rem; }
 
 .chip:focus-visible, .ask button:focus-visible, .ask textarea:focus-visible,

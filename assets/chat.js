@@ -348,9 +348,7 @@
     submit.type = 'submit';
     form.append(ta, submit);
     const meta = el('div', 'ask-meta');
-    const evalLink = el('a', 'lnk', 'Wie ich prüfe, dass er nichts erfindet');
-    evalLink.href = prefix + 'fragen.html#pruefung';
-    meta.append(evalLink, el('span', 'count', '0 / ' + MAX_CHARS));
+    meta.append(el('span', 'count', '0 / ' + MAX_CHARS));
     foot.append(chips, form, meta);
     chat.append(body, foot);
     panel.append(head, chat);

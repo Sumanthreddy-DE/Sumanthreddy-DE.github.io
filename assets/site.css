@@ -183,6 +183,7 @@ figcaption { font-family: var(--meta); font-size: .8125rem; border-top: 1px soli
 .minor { list-style: none; margin-bottom: 48px; }
 .minor li { padding: 16px 0; border-bottom: 1px solid var(--black); }
 .minor li:first-child { border-top: 1px solid var(--black); }
+.section-head + .minor li:first-child { border-top: 0; padding-top: 0; }
 .minor b { display: block; font-weight: 600; margin-bottom: 3px; }
 
 .job { margin-bottom: 36px; }

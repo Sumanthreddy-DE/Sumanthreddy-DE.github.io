@@ -116,8 +116,8 @@ def test_floating_chat_available_on_every_non_fragen_page(page, site_url):
         expect(page.locator("#chat-panel")).to_be_hidden()
         page.locator(".chat-open").click()
         expect(page.locator("#chat-panel")).to_be_visible()
+        expect(page.locator("#chat-panel .ask-meta a")).to_have_count(0)
         if "/" in name:
-            expect(page.locator("#chat-panel .ask-meta a.lnk")).to_have_attribute("href", "../fragen.html#pruefung")
             assert page.locator("#chat-panel .chat").get_attribute("data-prepared-url") == "../fragen.html#vorbereitet"
             expect(page.locator("#chat-panel .chat-note a.lnk")).to_have_attribute("href", "../impressum.html#datenschutz")
 

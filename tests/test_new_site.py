@@ -79,3 +79,19 @@ def test_nav_lebenslauf_links_directly_to_pdf_on_every_page(page, site_url):
         href = page.locator(".nav a", has_text="Lebenslauf").get_attribute("href")
         assert href == expected, (name, href)
 
+
+
+def test_homepage_project_links_open_the_projects_page(page, site_url):
+    page.goto(f"{site_url}/index.html")
+    expect_href = "projekte.html"
+    assert page.locator("nav.nav a", has_text="Projekte").get_attribute("href") == expect_href
+    assert page.locator("a.btn", has_text="Projekte ansehen").get_attribute("href") == expect_href
+    assert page.locator(".ask-meta a").count() == 0
+
+
+def test_kleinere_arbeiten_is_own_section_after_ki_automatisierung(page, site_url):
+    page.goto(f"{site_url}/projekte.html")
+    ids = page.locator("section[id]").evaluate_all("els => els.map(e => e.id)")
+    assert ids.index("ki-automatisierung") < ids.index("kleinere-arbeiten") < ids.index("hackathons")
+    assert page.locator("#simulation-ml .minor").count() == 0
+    assert page.locator("#kleinere-arbeiten .minor li").count() == 3
