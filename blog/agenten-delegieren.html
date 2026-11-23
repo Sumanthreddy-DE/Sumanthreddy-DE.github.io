@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Claude plant, ein günstigeres Modell baut: Sumanth Reddy Settipalli</title>
-<meta name="description" content="Wie ich den Neubau dieser Website an ein günstigeres Sprachmodell abgegeben habe: Claude schreibt den Plan und prüft, GPT-6.1 Sol schreibt den Code. Was funktioniert hat, was schiefging und welche Regeln ich daraus mitnehme.">
+<meta name="description" content="Claude schreibt den Plan und prüft, ein günstigeres Modell in opencode schreibt den Code, gesteuert über Orca. Wie der Neubau dieser Website so entstand und wo es hakte.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="de_DE">
 <meta property="og:url" content="https://sumanthreddy.de/blog/agenten-delegieren.html">
 <meta property="og:title" content="Claude plant, ein günstigeres Modell baut">
-<meta property="og:description" content="Wie ich den Neubau dieser Website an ein günstigeres Sprachmodell abgegeben habe, und welche Regeln ich daraus mitnehme.">
+<meta property="og:description" content="Claude plant und prüft, ein günstigeres Modell schreibt den Code. Wie der Neubau dieser Website so entstand.">
 <meta property="og:image" content="https://sumanthreddy.de/assets/portrait.jpg">
 <meta name="twitter:card" content="summary">
 
@@ -52,60 +52,35 @@
   <section>
     <div class="wrap">
       <div class="prose">
-        <p class="metric-line key-decision">Die wichtigste Entscheidung: Das teure Modell schreibt keinen Code. Es schreibt den Plan und prüft das Ergebnis. Den Code schreibt ein günstigeres Modell.</p>
+        <p class="metric-line key-decision">Ich habe diese Website nicht programmiert. Claude auch nicht.</p>
 
-        <p>Die aktuelle Version dieser Website hat nicht Claude geschrieben. Geschrieben hat sie GPT-6.1 Sol, ein günstigeres Modell, das in opencode läuft. Claude hat den Plan geschrieben und das Ergebnis geprüft. Ich habe die Entwürfe ausgewählt, die Texte freigegeben und am Ende gemergt.</p>
+        <p>Mitte November lag auf meinem Server ein Plan mit neun Aufgaben für den Neubau dieser Seite. Ich hatte erwartet, jetzt Terminals zu öffnen, Agenten zu starten und Befehle hin und her zu kopieren. Stattdessen hatte Claude sich ein paar Tage vorher selbst ein Werkzeug geschrieben: Es startet Agenten in opencode, wartet auf sie, beantwortet ihre Rückfragen und räumt danach auf. Ich musste nur zusehen.</p>
 
-        <p>Die Idee dahinter ist einfach. Ein starkes Modell lohnt sich dort, wo man denken muss: beim Planen und beim Prüfen. Einen guten Plan Schritt für Schritt abzuarbeiten, kann ein günstigeres Modell. Ob das in der Praxis trägt, habe ich an dieser Website ausprobiert.</p>
+        <p>Warum das Ganze? Zur Hälfte Geld, zur Hälfte Neugier. Claude ist stark, aber teuer. Mich interessierte, ob es reicht, wenn das teure Modell nur denkt: den Plan schreiben und das Ergebnis prüfen. Den Code sollte GPT-6.1 Sol schreiben, ein deutlich günstigeres Modell.</p>
 
-        <h2 class="sub-head">1. Der Plan ist das eigentliche Produkt</h2>
+        <h2 class="sub-head">27 Minuten</h2>
 
-        <p>Vor dem Plan kamen drei Runden Entwürfe. Die erste Runde mit drei Varianten habe ich komplett abgelehnt. In der dritten Runde stand das Raster mit sechs Projektkacheln, das Sie jetzt auf der Startseite sehen.</p>
+        <p>Der Agent arbeitete in einem eigenen Git-Worktree, einer getrennten Kopie des Projekts auf einem eigenen Branch. Die Live-Seite blieb unberührt. Nach 27 Minuten lagen acht Commits da: Schriften, Stylesheet, Startseite, Fallstudien und alle übrigen Seiten. Claude prüfte die Screenshots auf Desktop- und Handybreite und schickte sieben Korrekturen zurück. Am nächsten Morgen habe ich gemergt.</p>
 
-        <p>Daraus hat Claude einen Plan mit neun Aufgaben geschrieben. Jede Aufgabe nennt die Dateien, die sich ändern, einen Prüfbefehl und einen Commit. Dazu kommen feste Regeln, die für jede Aufgabe gelten:</p>
+        <p>Verfolgt habe ich das in Orca, einer App, in der jeder Agent in seinem eigenen Terminal läuft. Überrascht hat mich, wie gut das vom Handy aus funktioniert. Die Benachrichtigungen kamen an, jeder Worktree war sauber zu sehen, und kleinere Änderungen an der Website konnte ich direkt aus Orca anstoßen, ohne mich an den Laptop zu setzen.</p>
 
-        <ol>
-          <li>Genau drei Farben: Creme, Schwarz und Weiß, mit festen Hex-Werten. Kein Grau, kein Grün, keine abgerundeten Ecken.</li>
-          <li>Keine Fakten erfinden. Jede Zahl und jedes Datum muss schon auf der alten Website stehen. Fehlt ein Text, schreibt das Modell eine Notiz, statt selbst etwas zu formulieren.</li>
-          <li>Alle Texte für die Startseite stehen wörtlich im Plan, in einer Tabelle, die ich vorher freigegeben habe.</li>
-          <li>Nach jeder Aufgabe committen. Nicht pushen, nicht mergen, nach Aufgabe 8 anhalten und übergeben.</li>
-        </ol>
+        <h2 class="sub-head">Wo es hakte</h2>
 
-        <p>Neben dem Plan lag ein HTML-Entwurf der Startseite als Vorlage. Das Modell musste also nichts gestalten. Es musste nur einen klar beschriebenen Zielzustand herstellen.</p>
+        <p>Glatt lief nicht alles, weder in diesem Lauf noch in den Testläufen davor.</p>
 
-        <h2 class="sub-head">2. Was zurückkam</h2>
+        <p>Bei einer Änderung am Impressum waren alle Tests grün, und das Modell beschrieb das neue Layout als „dichter“. Auf den Screenshots saß jede Überschrift auf der Zeile darüber. Das Modell sieht in meinem Setup keine Bilder und hat das auch offen gesagt. Seitdem gilt: Was man sehen muss, prüft jemand, der sehen kann.</p>
 
-        <p>Das Modell lief in einem eigenen Git-Worktree auf einem eigenen Branch. Gestartet und überwacht habe ich es mit Orca, einer App, in der die Agenten jeweils in einem eigenen Terminal laufen. Die Live-Seite blieb dabei unberührt.</p>
+        <p>Für die Screenshots wollte der Agent in einen Ordner außerhalb seines Worktrees schreiben und brauchte dafür meine Freigabe. Einmal stand der Lauf deshalb rund acht Stunden still. Die einzige Stelle, an der der ganze Ablauf auf mich gewartet hat, war ein Klick. Heute bleiben alle Arbeitsdateien im Worktree.</p>
 
-        <p>Zurück kamen acht Commits in 27 Minuten: Schriften, ein neues Stylesheet, die Startseite, die Kopf- und Fußleisten, die Fallstudien und die übrigen Seiten. Claude hat danach die Screenshots auf Desktop- und Handybreite geprüft und eine Runde mit sieben Layout-Korrekturen zurückgegeben. Am nächsten Morgen habe ich gemergt, und die neue Seite war live.</p>
+        <p>Ein Fehler lag bei uns: In einer früheren Runde enthielt jeder von drei Aufträgen eine falsche Behauptung über das Repository. Das Modell hat den Widerspruch gemeldet, statt blind zu folgen. Seitdem prüft Claude jeden Auftrag gegen das Repository, bevor er rausgeht.</p>
 
-        <h2 class="sub-head">3. Was schiefging</h2>
+        <h2 class="sub-head">Was ich daraus mitnehme</h2>
 
-        <p>Interessanter als der glatte Teil sind die Fehler, denn aus ihnen sind meine Regeln entstanden.</p>
+        <p>Wer mit Claude Code und Subagenten arbeitet, lässt die Arbeit meist wieder von Claude-Modellen erledigen, also ebenfalls von teuren. Bei mir arbeiten die Agenten in opencode mit einem günstigeren Modell, und Claude bleibt Planer und Prüfer. Ob andere das schon so machen, weiß ich nicht. Für mich hat es funktioniert.</p>
 
-        <p><strong>Falsche Aussagen im Auftrag.</strong> Bei einer früheren Runde enthielt jeder von drei Aufträgen eine falsche Behauptung über das Repository. Ein Beispiel: Laut Auftrag hatte keine Seite einen eigenen Style-Block, tatsächlich hatten fünf Seiten einen. Das Modell hat den Widerspruch jedes Mal gemeldet, statt blind zu folgen. Ein schwächeres Modell hätte vermutlich einfach Code geändert. Der Fehler lag bei uns, nicht beim Modell.</p>
+        <p>Abgegeben habe ich das Schreiben, nicht die Entscheidungen. Welcher Entwurf gewinnt, welcher Text auf der Seite steht und wann gemergt wird, entscheide weiter ich.</p>
 
-        <p><strong>Ein Modell, das keine Bilder sieht.</strong> GPT-6.1 Sol kann in meinem Setup keine Bilder lesen. Bei einer Änderung am Impressum waren alle Tests grün, und das Modell beschrieb das neue Layout als „dichter“. Auf den Screenshots saß jede Abschnittsüberschrift auf dem Text der vorherigen Zeile. Das Modell hat offen gesagt, dass es die Bilder nicht prüfen kann. Die Prüfung muss also jemand machen, der sie sieht.</p>
-
-        <p><strong>Warten auf einen Menschen.</strong> Für die Screenshots wollte das Modell in einen Ordner außerhalb seines Worktrees schreiben. Dafür brauchte es eine Freigabe, die nur ich in der Orca-App geben konnte. Zweimal blieb der Lauf an dieser Stelle stehen, einmal etwa acht Stunden lang.</p>
-
-        <p><strong>Das eigene Werkzeug.</strong> Mein Startbefehl für solche Läufe erwartete einen festen Branch-Namen. Dieser Plan nutzte einen anderen, also habe ich Orca von Hand gesteuert.</p>
-
-        <h2 class="sub-head">4. Regeln, die ich seitdem anwende</h2>
-
-        <ol>
-          <li>Jeden Befehl und jede Aussage im Auftrag führe ich vorher selbst gegen das Repository aus. Ein Auftrag ist erst fertig, wenn er stimmt.</li>
-          <li>Das Modell bekommt eine Vorlage mit markierten Lücken, keine Beispieldatei. Mit einer Beispieldatei sucht es nach dem Format, statt zu arbeiten.</li>
-          <li>Visuelle Ergebnisse gibt nur frei, wer die Bilder sehen kann.</li>
-          <li>Alle Arbeitsdateien bleiben im Worktree, damit keine Freigabe den Lauf anhält.</li>
-          <li>Was ein Skript erledigen kann, erledigt ein Skript. Jeder Schritt eines Agenten kostet, denn ein Agent liest seinen gesamten Kontext bei jedem Schritt neu. Ein Claude-Code-Subagent startet bei mir mit rund 67.000 Tokens, bevor er die erste Datei öffnet.</li>
-        </ol>
-
-        <p>Nicht abgegeben habe ich die Entscheidungen: welcher Entwurf gewinnt, welcher Text auf der Seite steht und wann gemergt wird. Das bleibt bei mir.</p>
-
-        <h2 class="sub-head">5. Was noch fehlt</h2>
-
-        <p>Wie viel günstiger der Lauf war, habe ich nicht gemessen. Beim nächsten Lauf zeichne ich den Tokenverbrauch vorher und nachher mit <code>opencode stats</code> auf. Dann kann ich die Frage mit Zahlen beantworten, statt mit einem Gefühl.</p>
+        <p>Offen ist die wichtigste Frage: Wie viel günstiger war es wirklich? Gemessen habe ich das nicht. Beim nächsten Lauf zeichne ich den Tokenverbrauch mit <code>opencode stats</code> auf. Dann gibt es eine Zahl statt eines Gefühls.</p>
 
         <div class="entry-foot">
           <div class="stack">Claude Code · opencode · GPT-6.1 Sol · Orca · Git Worktrees · Playwright</div>
