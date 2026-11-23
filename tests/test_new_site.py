@@ -95,3 +95,10 @@ def test_kleinere_arbeiten_is_own_section_after_ki_automatisierung(page, site_ur
     assert ids.index("ki-automatisierung") < ids.index("kleinere-arbeiten") < ids.index("hackathons")
     assert page.locator("#simulation-ml .minor").count() == 0
     assert page.locator("#kleinere-arbeiten .minor li").count() == 3
+
+
+def test_newest_hackathon_comes_first(page, site_url):
+    page.goto(f"{site_url}/projekte.html")
+    first = page.locator("#hackathons article.entry").first
+    expect_text = "Bio Waste Tracker"
+    assert expect_text in first.locator("h3").inner_text()
