@@ -12,7 +12,7 @@ def style_blocks(rel):
 
 SITE_CSS_PAGES = ["index.html", "projekte.html", "profil.html", "fragen.html", "automatisierung.html", "impressum.html",
                   "projekte/pinn.html", "projekte/simready.html", "projekte/nx-simscape.html",
-                  "projekte/lebenslauf-assistent.html"]
+                  "projekte/lebenslauf-assistent.html", "projekte/text-to-cad-rl.html"]
 SITE_CSS_LINK = re.compile(r'href="(?:\.\./)?assets/site\.css(?:\?v=\d+)?"')
 
 

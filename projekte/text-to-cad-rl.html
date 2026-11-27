@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>text-to-cad-rl: RL-Umgebung für Text-zu-CAD: Sumanth Reddy Settipalli</title>
+<meta name="description" content="Eine Reinforcement-Learning- und Evaluationsumgebung für Text-zu-CAD auf dem Prime Intellect Hub: Sprachmodelle beschreiben Bauteile als JSON-CAD-Programm, eine Prüfung in OpenCASCADE bewertet die erzeugte 3D-Geometrie.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://sumanthreddy.de/projekte/text-to-cad-rl.html">
+<meta property="og:title" content="text-to-cad-rl: RL-Umgebung für Text-zu-CAD">
+<meta property="og:description" content="Eine Reinforcement-Learning- und Evaluationsumgebung für Text-zu-CAD auf dem Prime Intellect Hub: Sprachmodelle beschreiben Bauteile als JSON-CAD-Programm, eine Prüfung in OpenCASCADE bewertet die erzeugte 3D-Geometrie.">
+<meta property="og:image" content="https://sumanthreddy.de/assets/portrait.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/chat.css?v=2">
+<script src="../assets/chat.js?v=2" defer></script>
+
+<link rel="stylesheet" href="../assets/site.css?v=4">
+</head>
+<body>
+<div class="page">
+
+<header class="band">
+  <div class="wrap">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="name" href="../index.html">Sumanth Reddy Settipalli</a>
+      <a href="../index.html#ueber-mich">Über mich</a>
+      <a href="../projekte.html">Projekte</a>
+      <a href="../Sumanth-Reddy-Settipalli-Lebenslauf.pdf">Lebenslauf</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../index.html#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <header class="band page-hero">
+    <div class="wrap">
+      <span class="meta">Fallstudie · Eigenes Projekt · 11/2026</span>
+        <h1>text-to-cad-rl: RL-Umgebung für Text-zu-CAD</h1>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p class="metric-line key-decision">Die wichtigste Entscheidung: bewertet wird die gebaute 3D-Geometrie, nicht der Text der Antwort. Das Modell schreibt keinen ausführbaren Code, sondern ein JSON-CAD-Programm, und eine Prüfung in OpenCASCADE misst Maße und Features direkt am Volumenkörper.</p>
+
+        <p>Sprachmodelle sollen aus einer Beschreibung wie „Montageplatte für einen NEMA-17-Schrittmotor, 5 mm dick, mit Freiraum für den Zentrierbund und die vier M3-Schrauben“ ein korrektes CAD-Bauteil erzeugen. Um sie darin zu trainieren oder fair zu vergleichen, braucht es eine Belohnung, die nur ein wirklich richtiges Bauteil bekommt. Eine Umgebung, die sich mit einem fast richtigen Körper täuschen lässt, trainiert genau diese Täuschung.</p>
+
+        <h2 class="sub-head">Der Aufbau: JSON-CAD-Programm, Prüfung im Subprozess</h2>
+
+        <p>Die Umgebung baut auf verifiers v1 von Prime Intellect auf und ist auf dem Prime Intellect Environments Hub veröffentlicht. Das Modell antwortet in einem Schritt mit einem JSON-Programm in der CAD-Sprache aus meinem Projekt SimReady, die vier Operationen kennt: Quader, Zylinder, Vereinigen und Abziehen. Der B-Rep-Checker aus SimReady baut daraus den Körper in einem isolierten Subprozess, der sich bei Hängern beenden lässt, und prüft Maße und Features am 3D-Modell. Fehler im Checker selbst führen zu einem Ausführungsfehler statt zu einer falschen Null-Belohnung.</p>
+
+        <h2 class="sub-head">Daten: getrennte Test- und Trainingsaufgaben</h2>
+
+        <p>Der Testsatz besteht aus 111 festen Aufgaben: 37 mechanische Bauteile in drei Formulierungen, mit expliziten Maßen, im Stil eines Ingenieurs mit Normen und Passungen, und als Konstruktionsabsicht. Die Trainingsaufgaben (Platten mit Bohrungen, Buchsen, Flansche) erzeugt ein deterministischer Generator mit Durchgangsbohrungen nach ISO 273. Eine Prüfung über geometrische Signaturen stellt sicher, dass kein Trainingsbauteil einem Testbauteil gleicht: 6.000 von 6.000 erzeugten Aufgaben bestehen ihre eigenen Prüfungen, ohne eine einzige Überschneidung mit dem Testsatz. Als Kontrolle bestehen alle 111 Musterlösungen, und alle 111 unveränderten Leerantworten erhalten 0.</p>
+
+        <h2 class="sub-head">Gegen Täuschung abgesichert</h2>
+
+        <p>Ich habe versucht, die Bewertung selbst zu überlisten: Platte ohne Bohrungen, drei statt vier Bohrungen, Sacklöcher statt Durchgangsbohrungen, Bohrungen neben dem Bauteil, ein zweiter loser Körper, ein Vollstab statt einer Buchse und weitere. Alle 13 Täuschungsversuche fallen durch. Drei bekannte Lücken des Checkers sind dokumentiert und in Tests festgehalten, sodass jede Verbesserung in SimReady hier sofort sichtbar wird.</p>
+
+        <h2 class="sub-head">Ergebnis: Normangaben sind die eigentliche Hürde</h2>
+
+        <p>Vier offene Sprachmodelle liefen mit je fünf Durchläufen pro Aufgabe über den ganzen Testsatz, zusammen 2.220 Episoden. Die Erfolgsquote pro Versuch (pass@1) liegt zwischen 43,6 % und 91,5 %; zwei Frontier-Modelle erreichten auf denselben Aufgaben mit demselben Checker in SimReady 95,5 % und 96,2 %, wenn auch über einen Tool-Aufruf statt einer Textantwort. Die meisten Fehler sind Geometriefehler, also falsche Maße oder fehlende Features, keine Formatfehler. Eine Episode deckte zudem einen Fehler im SimReady-Checker auf, den ich gemeldet habe.</p>
+
+        <p class="metric-line">14 bis 49 Prozentpunkte weniger Erfolg bei Normangaben als bei expliziten Maßen, bei allen vier Modellen statistisch belegt</p>
+
+        <p>Bei expliziten Aufgaben steht jedes Maß im Text, für die Motorplatte also 42 × 42 × 5 mm, eine 22,5-mm-Mittelbohrung und vier 3,4-mm-Bohrungen im 31-mm-Quadrat. Bei Ingenieursaufgaben muss das Modell diese Zahlen selbst aus Normen und Passungen ableiten, aus „NEMA 17“ und „M3“. Bei allen vier Modellen schließt das gepaarte 95-%-Bootstrap-Intervall der Lücke die Null aus; bei den Frontier-Modellen ist die Lücke klein und nicht gesichert. Genau diesen Übersetzungsschritt belohnt die Umgebung. Ein Modell wurde mit ihr noch nicht trainiert: Gebaut, validiert und evaluiert ist die Umgebung, ein RL-Lauf steht noch aus.</p>
+
+        <div class="entry-foot">
+          <div class="stack">Python, verifiers, OpenCASCADE (OCCT), SimReady, Prime Intellect Hub</div>
+          <div class="entry-links">
+            <a class="lnk" href="https://github.com/Sumanthreddy-DE/text-to-cad-rl">Code und Dokumentation</a>
+            <a class="lnk" href="https://app.primeintellect.ai/dashboard/environments/sumanth/text-to-cad-rl">Prime Intellect Hub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+<footer class="band">
+  <div class="wrap foot">
+    <span class="meta">Sumanth Reddy Settipalli · Reutlingen</span>
+    <span class="meta"><a href="https://github.com/Sumanthreddy-DE">GitHub</a> · <a href="../impressum.html">Impressum</a> · <a href="../impressum.html#datenschutz">Datenschutz</a></span>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
