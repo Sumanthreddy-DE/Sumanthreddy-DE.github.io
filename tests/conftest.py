@@ -8,7 +8,8 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ["index.html", "projekte.html", "profil.html", "impressum.html",
-         "projekte/pinn.html", "projekte/simready.html", "projekte/nx-simscape.html"]
+         "projekte/pinn.html", "projekte/simready.html", "projekte/nx-simscape.html",
+         "projekte/lebenslauf-assistent.html"]
 
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
