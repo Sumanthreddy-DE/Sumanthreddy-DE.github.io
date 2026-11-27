@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KI-Telefonassistent für lokale Betriebe: Latenz zuerst messen: Sumanth Reddy Settipalli</title>
+<meta name="description" content="Ein deutschsprachiger Telefonassistent, zuerst für Restaurants, in Entwicklung: Spracherkennung, Sprachmodell und Sprachausgabe gegen feste Grenzwerte für Antwortzeit, Fehler, Stimmqualität und Kosten gemessen.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://sumanthreddy.de/projekte/telefonassistent.html">
+<meta property="og:title" content="KI-Telefonassistent für lokale Betriebe: Latenz zuerst messen">
+<meta property="og:description" content="Ein deutschsprachiger Telefonassistent, zuerst für Restaurants, in Entwicklung: Spracherkennung, Sprachmodell und Sprachausgabe gegen feste Grenzwerte für Antwortzeit, Fehler, Stimmqualität und Kosten gemessen.">
+<meta property="og:image" content="https://sumanthreddy.de/assets/portrait.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/chat.css?v=2">
+<script src="../assets/chat.js?v=2" defer></script>
+
+<link rel="stylesheet" href="../assets/site.css?v=4">
+</head>
+<body>
+<div class="page">
+
+<header class="band">
+  <div class="wrap">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="name" href="../index.html">Sumanth Reddy Settipalli</a>
+      <a href="../index.html#ueber-mich">Über mich</a>
+      <a href="../projekte.html">Projekte</a>
+      <a href="../Sumanth-Reddy-Settipalli-Lebenslauf.pdf">Lebenslauf</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../index.html#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <header class="band page-hero">
+    <div class="wrap">
+      <span class="meta">Fallstudie · Eigenes Projekt, in Entwicklung · seit 11/2026</span>
+        <h1>KI-Telefonassistent für lokale Betriebe: Latenz zuerst messen</h1>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p class="metric-line key-decision">Die wichtigste Entscheidung: erst messen, dann bauen. Bevor es ein Produkt gibt, laufen alle Kandidaten für Spracherkennung, Sprachmodell und Sprachausgabe gegen Grenzwerte, die vorher feststehen. So zeigt die Messung, an welcher Stufe es hängt, bevor ein Anbieter fest eingebaut ist.</p>
+
+        <p>Der Assistent soll Anrufe für lokale Betriebe auf Deutsch und Englisch annehmen, zuerst Tischreservierungen im Restaurant. Am Telefon zählt jede Pause: Bis die erste Silbe der Antwort zu hören ist, laufen Spracherkennung, die Antwort des Sprachmodells bis zum ersten Satz und der Start der Sprachausgabe nacheinander ab. Lange Pausen wirken am Telefon wie eine abgebrochene Verbindung. Das Projekt ist noch in Entwicklung, es gibt noch keinen Kunden.</p>
+
+        <h2 class="sub-head">Runde 1: jede Stufe einzeln gegen feste Grenzwerte</h2>
+
+        <p>Gemessen habe ich mit eigenen Testsätzen aus dem Restaurantalltag: 30 Sätze für die Spracherkennung, darunter Gerichte wie „Chicken Tikka Masala“ und Uhrzeiten wie „halb 8“, zehn Gesprächsschritte für das Sprachmodell, das über ein Werkzeug freie Tische sucht, und 15 Sätze für die Sprachausgabe, deren Stimmen ich blind bewertet habe. Die Grenzwerte standen vorher fest: Median bis zur ersten Audioausgabe höchstens 2,3 Sekunden bei einfachen Antworten und 3,5 Sekunden mit Werkzeugaufruf, keine kritischen Erkennungsfehler, mindestens 9 von 10 richtigen Gesprächsschritten, Stimmqualität im Mittel mindestens 4 von 5 und höchstens 15 Cent pro Gesprächsminute.</p>
+
+        <p class="metric-line">Schnellste Kombination: 1,28 Sekunden bis zur ersten Audioausgabe (Summe der Mediane je Stufe) bei rund 4 bis 5 US-Cent pro Minute</p>
+
+        <p>Trotzdem besteht keine Kombination jeden Grenzwert, und das Ergebnis sagt auch, woran es liegt. Die Spracherkennung macht in fünf von sechs Läufen trotz Keyword-Boosting aus „Butter Chicken“ ein „Buttered Chicken“, und im Streaming-Modus schneidet sie einen Satz einmal zu früh ab. Die Sprachmodelle verfehlen vor allem Datumsangaben, etwa einen Sonntag statt des nächsten Montags, oder überspringen die Tischsuche. Zwei Prüfungen waren selbst fehlerhaft („halb 8“ ist eine richtige Uhrzeit); ich habe sie korrigiert und dokumentiert, nicht passend gemacht.</p>
+
+        <h2 class="sub-head">Was feststeht und was offen ist</h2>
+
+        <p>Gewählt sind Deepgram im Streaming-Modus, mit der Erkennung ganzer Sätze als Rückfallebene, und eine Stimme von ElevenLabs; deren Bewertung von 3,93 stammt bisher von nur einer Person und bleibt vorläufig. Beim Sprachmodell liegen Claude Haiku 4.5 und das offene Modell gpt-oss-120b auf Groq innerhalb des Rauschens von zehn Gesprächsschritten: gpt-oss ist bei einfachen Antworten rund 750 Millisekunden schneller, macht aber mehr Datumsfehler. Beide laufen deshalb weiter, mit einem verbesserten Prompt.</p>
+
+        <h2 class="sub-head">Runde 2: die ganze Pipeline mit Pipecat</h2>
+
+        <p>Die zweite Runde setzt die Stufen mit dem Open-Source-Framework Pipecat zu einer Pipeline zusammen. Unterbricht der Anrufer die Antwort, stoppt die Ausgabe mit den Standardeinstellungen nach rund 390 bis 500 Millisekunden, mit einer schneller reagierenden Sprachaktivitätserkennung nach 257 bis 303 Millisekunden; im Gesprächsverlauf bleiben nur die Sätze, die der Anrufer vollständig gehört hat. Eine erste Sperrliste vor dem Sprachmodell zeigt, wo die Sicherheitsprüfung sitzt: Gesperrte Anfragen erreichen das Modell gar nicht erst. Geprüft habe ich auch Lizenz und Pflege des Frameworks und ob es eine Telefonanbindung für sipgate gibt: Die gibt es nicht direkt, mögliche Wege sind notiert. Offen sind die Ende-zu-Ende-Messung mit der echten Stimme und der Wechsel des Anbieters per Konfiguration.</p>
+
+        <div class="entry-foot">
+          <div class="stack">Python, Pipecat, Deepgram, ElevenLabs, Claude, gpt-oss</div>
+          <div class="entry-links">
+            <span class="no-link">Repository privat, gern zeige ich es im Gespräch.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+<footer class="band">
+  <div class="wrap foot">
+    <span class="meta">Sumanth Reddy Settipalli · Reutlingen</span>
+    <span class="meta"><a href="https://github.com/Sumanthreddy-DE">GitHub</a> · <a href="../impressum.html">Impressum</a> · <a href="../impressum.html#datenschutz">Datenschutz</a></span>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

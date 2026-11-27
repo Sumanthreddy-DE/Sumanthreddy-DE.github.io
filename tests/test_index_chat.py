@@ -105,7 +105,7 @@ NON_FRAGEN_PAGES = [
     "profil.html", "automatisierung.html",
     "projekte/simready.html", "projekte/pinn.html", "projekte/nx-simscape.html",
     "projekte/lebenslauf-assistent.html", "projekte/text-to-cad-rl.html",
-    "blog/agenten-delegieren.html",
+    "projekte/telefonassistent.html", "blog/agenten-delegieren.html",
 ]
 
 
