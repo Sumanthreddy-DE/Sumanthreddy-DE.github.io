@@ -92,7 +92,7 @@ def test_werkzeuge_lists_the_assistant_first(page, site_url):
     first = page.locator("#ki-automatisierung article.entry#lebenslauf-assistent")
     expect(first.locator("h3")).to_contain_text("Fragen an meinen Lebenslauf")
     expect(first).to_contain_text("unten rechts")
-    expect(first.locator("a", has_text="21 Testfragen")).to_have_attribute("href", "fragen.html#pruefung")
+    expect(first.locator("a", has_text="29 Testfragen")).to_have_attribute("href", "fragen.html#pruefung")
     expect(first.locator("a", has_text="Code")).to_have_attribute(
         "href", "https://github.com/Sumanthreddy-DE/resume-assistant")
     first.locator("[data-open-chat]").click()

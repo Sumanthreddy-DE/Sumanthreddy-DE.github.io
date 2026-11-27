@@ -40,7 +40,7 @@ def test_every_chip_has_a_prepared_answer_with_source(page, site_url):
 
 def test_eval_table_lists_eighteen_questions(page, site_url):
     page.goto(f"{site_url}/fragen.html")
-    assert page.locator(".evaltab tbody tr").count() == 18
+    assert page.locator(".evaltab tbody tr").count() == 29
 
 
 def test_without_javascript_prepared_answers_are_readable(browser, site_url):
