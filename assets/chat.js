@@ -322,7 +322,7 @@
     chat.dataset.timeoutMs = '8000';
     chat.dataset.preparedUrl = prefix + 'fragen.html#vorbereitet';
     const body = el('div', 'panel-body');
-    const note = el('p', 'chat-note', 'Ein Assistent, der nur aus Lebenslauf und Fallstudien antwortet, in der dritten Person und mit Quelle. Ihre Frage wird zur Beantwortung an Anthropic übermittelt; ich speichere sie nicht. ');
+    const note = el('p', 'chat-note', 'Ein Assistent, der nur aus Lebenslauf und Fallstudien antwortet, in der dritten Person und mit Quelle. Ihre Frage wird zur Beantwortung an Anthropic übermittelt; den Fragetext speichere ich 90 Tage lang, ohne Antworten und ohne IP-Adresse. ');
     const dsLink = el('a', 'lnk', 'Datenschutz');
     dsLink.href = prefix + 'impressum.html#datenschutz';
     note.appendChild(dsLink);
