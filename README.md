@@ -1,7 +1,7 @@
 # Sumanthreddy-DE.github.io
 
 Source for [sumanthreddy.de](https://sumanthreddy.de), a German-language portfolio for
-simulation and machine-learning engineering roles: CV, three case studies, and a question
+simulation and machine-learning engineering roles: CV, six case studies, and a question
 assistant that answers from the CV. Static HTML and CSS with no build step, served by GitHub
 Pages from the `main` branch (custom domain set in `CNAME`).
 
@@ -25,7 +25,7 @@ Shared styling lives in `assets/site.css` (one light colour scheme, no dark mode
 ## Question assistant
 
 `fragen.html` ("Fragen an meinen Lebenslauf") answers visitor questions only from the CV and
-the three case studies, and names its source. The backend is
+the six case studies, and names its source. The backend is
 [resume-assistant](https://github.com/Sumanthreddy-DE/resume-assistant), live at
 `https://api.sumanthreddy.de`. The model (Claude Sonnet 5) was picked by an eval of 18 test
 questions covering invented facts, source citation, language mirroring and prompt injection; the
